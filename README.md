@@ -1,1 +1,0 @@
-# firatbb.github.io
