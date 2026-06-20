@@ -3,138 +3,107 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Siber-Şaman Metin İstasyonu</title>
+<title>Ötüken Siber-Şaman İstasyonu</title>
 
 <style>
 /* ==========================================================================
-   MATTE, SOPHISTICATED & SACRED SHAMANIC HIGH-END THEMES (10 PALETTES)
+   10 DISTINCT VIBRANT THEMES (TAMAMEN FARKLI RENK DÜNYALARI)
    ========================================================================== */
 
-/* 1. TENGRI BLUE (Default) */
+/* 1. TENGRI CYAN (Derin Kozmik Mavi & Canlı Camgöbeği) */
 :root {
-    --bg-main: #0a0d14; --bg-card: #121622; --bg-input: #06080d; --bg-btn: #1a2030; --bg-btn-hover: #232b40;
-    --accent: #5c7ee6; --accent-glow: rgba(92, 126, 230, 0.12); --text-main: #828fa8; --text-light: #dbe2f0; --text-heading: #9bb1f0; --border: #1e2538;
+    --bg-main: #060b14; --bg-card: #0f1a2e; --bg-input: #0a1120; --bg-btn: #1d3557; --bg-btn-hover: #457b9d;
+    --accent: #00f2ff; --accent-glow: rgba(0, 242, 255, 0.2); --text-main: #a2b4cb; --text-light: #f1faee; --text-heading: #00f2ff; --border: #1e3d6b;
 }
-/* 2. ÖTÜKEN EARTH (Mat Toprak & Yaprak) */
+/* 2. ÖTÜKEN EMERALD (Mistik Zümrüt Yeşili & Canlı Neon Yeşil) */
 html[data-theme="otuken"] {
-    --bg-main: #0c0b09; --bg-card: #161410; --bg-input: #080705; --bg-btn: #221f19; --bg-btn-hover: #2d2921;
-    --accent: #638767; --accent-glow: rgba(99, 135, 103, 0.12); --text-main: #969c93; --text-light: #edf2eb; --text-heading: #abc7ae; --border: #28241d;
+    --bg-main: #05120a; --bg-card: #0b2414; --bg-input: #07190e; --bg-btn: #134224; --bg-btn-hover: #1f6b3a;
+    --accent: #10b981; --accent-glow: rgba(16, 185, 129, 0.2); --text-main: #9cbda7; --text-light: #ecfdf5; --text-heading: #34d399; --border: #1b4d2c;
 }
-/* 3. CRIMSON RITUAL (Derin Ritüel Kırmızısı) */
-html[data-theme="crimson"] {
-    --bg-main: #12090b; --bg-card: #1c1012; --bg-input: #0a0506; --bg-btn: #2a181b; --bg-btn-hover: #382024;
-    --accent: #a1454c; --accent-glow: rgba(161, 69, 76, 0.12); --text-main: #a89496; --text-light: #faebec; --text-heading: #cf8a8f; --border: #301c1f;
+/* 3. ALTAI FLAME (Kor Ateş Kırmızısı & Kömür Siyahı) */
+html[data-theme="altai"] {
+    --bg-main: #0f0506; --bg-card: #240c0e; --bg-input: #170809; --bg-btn: #4c1114; --bg-btn-hover: #7f1d1d;
+    --accent: #ef4444; --accent-glow: rgba(239, 68, 68, 0.2); --text-main: #caa6a8; --text-light: #fef2f2; --text-heading: #f87171; --border: #4c1114;
 }
-/* 4. ASENA GOLD (Bozkurt Grisi & Mat Altın) */
+/* 4. ASENA PURPLE (Büyücü Moru & Elektrik Ultraviyole) */
 html[data-theme="asena"] {
-    --bg-main: #0f1012; --bg-card: #191b1f; --bg-input: #090a0b; --bg-btn: #25282e; --bg-btn-hover: #30343c;
-    --accent: #bfa065; --accent-glow: rgba(191, 160, 101, 0.12); --text-main: #9fa6b3; --text-light: #f2f5fa; --text-heading: #dec18a; --border: #2c3038;
+    --bg-main: #0b0512; --bg-card: #1b0c2b; --bg-input: #11081c; --bg-btn: #3b114c; --bg-btn-hover: #5b21b6;
+    --accent: #d946ef; --accent-glow: rgba(217, 70, 239, 0.2); --text-main: #c4b2d6; --text-light: #fdf4ff; --text-heading: #e879f9; --border: #4c1360;
 }
-/* 5. LUNAR ECLIPSE (Mistik Şaman Gece Moru) */
-html[data-theme="lunar"] {
-    --bg-main: #0d0a12; --bg-card: #16111f; --bg-input: #07050a; --bg-btn: #231b30; --bg-btn-hover: #2f2440;
-    --accent: #8660b5; --accent-glow: rgba(134, 96, 181, 0.12); --text-main: #9c94a8; --text-light: #f5effc; --text-heading: #b193db; --border: #281f36;
+/* 5. STEPPE GOLD (Kadim Bozkır Altını & Sıcak Toprak) */
+html[data-theme="gold"] {
+    --bg-main: #140e05; --bg-card: #291d0a; --bg-input: #1c1407; --bg-btn: #47320f; --bg-btn-hover: #78350f;
+    --accent: #f59e0b; --accent-glow: rgba(245, 158, 11, 0.2); --text-main: #d9cbb5; --text-light: #fffbeb; --text-heading: #fbbf24; --border: #543d15;
 }
-/* 6. ANCESTRAL SMOKE (Kül Kokulu Gece Grisi) */
-html[data-theme="smoke"] {
-    --bg-main: #121214; --bg-card: #1c1c21; --bg-input: #09090a; --bg-btn: #282830; --bg-btn-hover: #33333d;
-    --accent: #878c94; --accent-glow: rgba(135, 140, 148, 0.12); --text-main: #a3a3ab; --text-light: #f4f4f7; --text-heading: #c2c5cc; --border: #2e2e36;
+/* 6. SIBERIAN ICE (Donmuş Buz Beyazı & Kutup Mavisi - AYDINLIK TEMA) */
+html[data-theme="ice"] {
+    --bg-main: #f1f5f9; --bg-card: #ffffff; --bg-input: #e2e8f0; --bg-btn: #cbd5e1; --bg-btn-hover: #94a3b8;
+    --accent: #06b6d4; --accent-glow: rgba(6, 182, 212, 0.2); --text-main: #475569; --text-light: #0f172a; --text-heading: #0891b2; --border: #cbd5e1;
 }
-/* 7. UMAY COPPER (Kızıl Bakır & Kil) */
-html[data-theme="umay"] {
-    --bg-main: #140d0a; --bg-card: #211510; --bg-input: #0a0605; --bg-btn: #301f18; --bg-btn-hover: #3d281f;
-    --accent: #ba7454; --accent-glow: rgba(186, 116, 84, 0.12); --text-main: #b3a198; --text-light: #fcf6f2; --text-heading: #d19f86; --border: #36221a;
+/* 7. SHAMANIC PINK (Göz Alıcı Fuşya & Gece Karanlığı) */
+html[data-theme="pink"] {
+    --bg-main: #0d040a; --bg-card: #240b1b; --bg-input: #170711; --bg-btn: #4c1138; --bg-btn-hover: #701a53;
+    --accent: #f43f5e; --accent-glow: rgba(244, 63, 94, 0.2); --text-main: #d6b2c7; --text-light: #fff1f2; --text-heading: #fb7185; --border: #4e1439;
 }
-/* 8. SIBERIAN TUNDRA (Kutup Mavisi & Donmuş Kaya) */
-html[data-theme="tundra"] {
-    --bg-main: #0a1012; --bg-card: #12191c; --bg-input: #050809; --bg-btn: #1b262b; --bg-btn-hover: #24323a;
-    --accent: #4fa0ab; --accent-glow: rgba(79, 160, 171, 0.12); --text-main: #8f9ea1; --text-light: #eff7f7; --text-heading: #83c1c9; --border: #1f2c30;
+/* 8. KUTLU TURQUOISE (Saf Türk Turkuazı & Füme Safir) */
+html[data-theme="turquoise"] {
+    --bg-main: #060c0e; --bg-card: #0f1e24; --bg-input: #0a1418; --bg-btn: #16323c; --bg-btn-hover: #245263;
+    --accent: #06b6d4; --accent-glow: rgba(6, 182, 212, 0.2); --text-main: #a5b9bf; --text-light: #ecfeff; --text-heading: #22d3ee; --border: #1d3d49;
 }
-/* 9. SAGRADO MOSS (Karanlık Adaçayı) */
-html[data-theme="moss"] {
-    --bg-main: #0b0d0c; --bg-card: #131715; --bg-input: #060807; --bg-btn: #1e2421; --bg-btn-hover: #272f2b;
-    --accent: #558c74; --accent-glow: rgba(85, 140, 116, 0.12); --text-main: #909c96; --text-light: #f0f5f2; --text-heading: #99bfaf; --border: #212925;
+/* 9. NOMAD ORANGE (Bakır Turuncusu & Kerpiç Kahvesi) */
+html[data-theme="orange"] {
+    --bg-main: #120703; --bg-card: #261107; --bg-input: #1a0b05; --bg-btn: #471d0c; --bg-btn-hover: #7c2d12;
+    --accent: #ea580c; --accent-glow: rgba(234, 88, 12, 0.2); --text-main: #d9bfb4; --text-light: #fff7ed; --text-heading: #f97316; --border: #4b210e;
 }
-/* 10. OBSIDIAN VOID (Kusursuz Saf Mat Siyah) */
+/* 10. OBSIDIAN VOID (Yüksek Kontrast Saf Neon Yeşili & Simsiyah Uzay) */
 html[data-theme="void"] {
-    --bg-main: #050505; --bg-card: #0f0f12; --bg-input: #000000; --bg-btn: #18181c; --bg-btn-hover: #222229;
-    --accent: #787880; --accent-glow: rgba(120, 120, 128, 0.12); --text-main: #85858c; --text-light: #ffffff; --text-heading: #b5b5bd; --border: #222226;
+    --bg-main: #000000; --bg-card: #111111; --bg-input: #050505; --bg-btn: #222222; --bg-btn-hover: #333333;
+    --accent: #39ff14; --accent-glow: rgba(57, 255, 20, 0.3); --text-main: #999999; --text-light: #ffffff; --text-heading: #39ff14; --border: #222222;
 }
 
 *{box-sizing:border-box;}
 body, div, input, textarea { cursor: default; }
-button, .tab-btn, .theme-dot, .totem-area, .timeline-wrapper { cursor: pointer; }
+button, .tab-btn, .theme-dot, .timeline-wrapper, #boncuk-bird-container { cursor: pointer; }
 
 body {
-    margin:0; padding: 20px 20px 160px 20px;
+    margin:0; padding: 20px 20px 240px 20px;
     background: var(--bg-main); color: var(--text-main);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     min-height: 100vh; overflow-x: hidden;
-    transition: background 0.4s ease, color 0.4s ease;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* TOP MATRIX */
+/* TOP TOOLBAR */
 .top-toolbar {
     display: flex; justify-content: space-between; align-items: center;
     max-width: 950px; margin: 0 auto 20px auto;
-    background: var(--bg-card); padding: 10px 16px;
+    background: var(--bg-card); padding: 12px 16px;
     border-radius: 6px; border: 1px solid var(--border);
 }
-.theme-grid { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
-.theme-label { font-size: 9px; letter-spacing: 1.5px; font-weight: 700; opacity: 0.5; margin-right: 6px; }
-.theme-dot { width: 14px; height: 14px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.05); transition: all 0.2s ease; }
-.theme-dot:hover { transform: scale(1.2); }
-.theme-dot.active { border-color: var(--text-light) !important; box-shadow: 0 0 10px var(--accent); }
+.theme-grid { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.theme-label { font-size: 10px; letter-spacing: 1.5px; font-weight: 700; opacity: 0.6; margin-right: 6px; }
+.theme-dot { width: 16px; height: 16px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.1); transition: all 0.2s; }
+.theme-dot:hover { transform: scale(1.25); }
+.theme-dot.active { border-color: var(--accent) !important; box-shadow: 0 0 10px var(--accent); }
 
-/* DASHBOARD HEAD */
-.dashboard-header {
-    display: flex; max-width: 950px; margin: 0 auto 24px auto; gap: 20px;
-}
-
-/* SHAMANIC ORACLE BOX */
+/* ORACLE CARD */
 .oracle-card {
-    flex-grow: 1; background: var(--bg-card); border: 1px solid var(--border);
-    border-radius: 8px; padding: 24px; display: flex; align-items: center; gap: 24px;
+    max-width: 950px; margin: 0 auto 24px auto; background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 8px; padding: 20px; display: flex; align-items: center; gap: 20px;
 }
 .oracle-trigger {
-    width: 46px; height: 46px; border-radius: 50%; background: var(--bg-main);
+    width: 44px; height: 44px; border-radius: 50%; background: var(--bg-main);
     border: 1px solid var(--border); display: flex; align-items: center; justify-content: center;
     font-size: 18px; color: var(--accent); transition: all 0.3s;
 }
 .oracle-card:hover .oracle-trigger { border-color: var(--accent); box-shadow: 0 0 12px var(--accent-glow); }
 .oracle-content { flex-grow: 1; }
-.oracle-tag { font-size: 9px; letter-spacing: 2px; color: var(--accent); font-weight: 700; margin-bottom: 6px; }
+.oracle-tag { font-size: 9px; letter-spacing: 2px; color: var(--accent); font-weight: 700; margin-bottom: 4px; }
 .oracle-txt { font-size: 13.5px; color: var(--text-light); font-style: italic; line-height: 1.5; }
 
-/* 🥁 VISUAL SHAMAN TOTEM DRUM COMPONENT */
-.totem-card {
-    width: 150px; background: var(--bg-card); border: 1px solid var(--border);
-    border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center;
-    position: relative; overflow: hidden; padding: 12px; flex-shrink: 0;
-}
-.totem-viewport {
-    width: 64px; height: 64px; position: relative; display: flex; align-items: center; justify-content: center; margin-bottom: 10px;
-}
-.kam-drum {
-    width: 56px; height: 56px; border-radius: 50%; border: 2px dashed var(--accent);
-    position: absolute; transition: transform 0.6s cubic-bezier(0.1, 0.8, 0.3, 1);
-    animation: drumPulse 3s infinite ease-in-out;
-}
-.kam-axis-x { position: absolute; width: 44px; height: 1px; background: var(--border); top: 27px; left: 6px; }
-.kam-axis-y { position: absolute; width: 1px; height: 44px; background: var(--border); top: 6px; left: 27px; }
-.kam-core {
-    width: 10px; height: 10px; border-radius: 50%; background: var(--accent);
-    z-index: 2; transition: all 0.3s; box-shadow: 0 0 8px var(--accent);
-}
-@keyframes drumPulse {
-    0%, 100% { transform: scale(1); opacity: 0.6; }
-    50% { transform: scale(1.05); opacity: 1; box-shadow: inset 0 0 10px var(--accent-glow); }
-}
-.totem-status-tag { font-size: 9px; letter-spacing: 0.5px; opacity: 0.4; text-transform: uppercase; font-weight: bold; }
-
-/* INTERFACE WORKSPACE */
+/* WORKSPACE INTERFACE */
 .tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
-.tab-btn { background: var(--bg-btn); color: var(--text-main); border: 1px solid var(--border); padding: 10px 24px; font-size: 11px; font-weight: 600; letter-spacing: 0.5px; border-radius: 4px; transition: all 0.2s; }
+.tab-btn { background: var(--bg-btn); color: var(--text-main); border: 1px solid var(--border); padding: 10px 24px; font-size: 11px; font-weight: 600; border-radius: 4px; transition: all 0.2s; }
 .tab-btn:hover { background: var(--bg-btn-hover); color: var(--text-light); }
 .tab-btn.active { background: var(--bg-btn-hover) !important; color: var(--text-heading) !important; border-color: var(--accent) !important; }
 
@@ -143,69 +112,156 @@ body {
 .tab-content.active { opacity: 1; transform: scale(1); position: relative; pointer-events: auto; }
 
 h3 { color: var(--text-heading); font-size: 11px; margin: 0 0 16px 0; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; }
-.input-area, .output { width: 100%; height: 230px; background: var(--bg-input); color: var(--text-light); border: 1px solid var(--border); padding: 16px; font-size: 14px; line-height: 1.6; border-radius: 4px; outline: none; transition: border 0.2s; margin-bottom: 8px; overflow-y: auto; word-break: break-word; font-family: inherit; }
+.input-area, .output { width: 100%; height: 220px; background: var(--bg-input); color: var(--text-light); border: 1px solid var(--border); padding: 16px; font-size: 14px; line-height: 1.6; border-radius: 4px; outline: none; margin-bottom: 8px; overflow-y: auto; word-break: break-word; font-family: inherit; }
 .input-area:focus { border-color: var(--accent); }
-.output { border-style: dashed; min-height: 230px; height: auto; }
+.output { border-style: dashed; min-height: 220px; height: auto; }
 .meta-pane { font-size: 11px; color: var(--text-main); margin-bottom: 16px; display: flex; gap: 20px; opacity: 0.6; }
 .meta-pane strong { color: var(--text-light); }
 .action-row { display: flex; gap: 10px; }
 
 .bad-word { color: var(--text-heading); font-weight: 600; text-decoration: underline; background: rgba(255,255,255,0.03); padding: 1px 3px; border-radius: 2px; }
-.toast { position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); background: var(--bg-card); border: 1px solid var(--accent); color: var(--text-light); padding: 10px 24px; border-radius: 4px; font-size: 11px; font-weight: bold; transition: bottom 0.3s cubic-bezier(0.1, 0.8, 0.3, 1); z-index: 100000; letter-spacing: 1px; }
+.toast { position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); background: var(--bg-card); border: 1px solid var(--accent); color: var(--text-light); padding: 10px 24px; border-radius: 4px; font-size: 11px; font-weight: bold; transition: bottom 0.3s; z-index: 100000; }
 .toast.show { bottom: 30px; }
 
-/* ==========================================================================
-   ☕ SHAMANIC MEDITATIVE BREAK SCREEN
-   ========================================================================== */
+/* BREAK SCREEN OVERLAY */
 .coffee-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 6, 8, 0.95);
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 6, 8, 0.96);
     backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); z-index: 999999;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
 }
 .coffee-overlay.active { opacity: 1; pointer-events: auto; }
-.ritual-fire { width: 4px; height: 30px; background: var(--accent); border-radius: 2px; margin-bottom: 20px; animation: fireBurn 1s infinite alternate; }
-@keyframes fireBurn { 0% { transform: scaleY(0.7); opacity: 0.5; } 100% { transform: scaleY(1.3); opacity: 1; } }
 .coffee-title { font-size: 14px; letter-spacing: 3px; color: var(--text-heading); font-weight: bold; text-transform: uppercase; margin-bottom: 16px; }
-.coffee-advice-box { max-width: 500px; text-align: center; min-height: 50px; padding: 0 20px; margin-bottom: 20px; }
-.coffee-advice { font-size: 13px; color: var(--text-main); font-style: italic; line-height: 1.6; }
+.coffee-advice { font-size: 13px; color: var(--text-main); font-style: italic; text-align: center; max-width: 500px; padding: 0 20px; margin-bottom: 20px; line-height: 1.6; }
 .coffee-timer { font-size: 36px; font-family: monospace; font-weight: bold; color: var(--text-light); margin-bottom: 24px; }
 
 /* ==========================================================================
-   🎚️ HIGH-END MINIMALIST AUDIO PLAYER INTERFACE
+   🎚️ TÜRK ŞAMANİK GÖRSELLİ MÜZİK KONSOLU & BONCUK MOTORU
    ========================================================================== */
-.studio-player {
-    position: fixed; bottom: 0; left: 0; width: 100%; background: var(--bg-card);
-    border-top: 1px solid var(--border); padding: 16px 40px; display: flex; flex-direction: column;
-    gap: 12px; box-shadow: 0 -10px 40px rgba(0,0,0,0.4); z-index: 99999;
-    transition: transform 0.3s cubic-bezier(0.1, 0.8, 0.3, 1);
+.shamanic-audio-station {
+    position: fixed; bottom: 0; left: 0; width: 100%; display: flex; flex-direction: column; align-items: center; z-index: 99999; pointer-events: none;
 }
-.studio-player.minimized { transform: translateY(100%); }
-.player-toggle-tab {
-    position: absolute; right: 40px; top: -24px; background: var(--bg-card);
-    border: 1px solid var(--border); border-bottom: none; padding: 4px 16px;
-    font-size: 9px; font-weight: 700; letter-spacing: 1px; border-radius: 4px 4px 0 0;
-    color: var(--text-main);
+
+/* 🐦 ALIVE BLUE BIRD ("BONCUK") CONTAINER */
+#boncuk-bird-container {
+    width: 75px; height: 75px; position: relative; margin-bottom: -4px; z-index: 10; pointer-events: auto;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-.player-main-line { display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 30px; }
-.meta-deck { display: flex; align-items: center; gap: 14px; width: 30%; min-width: 200px; }
-.deck-disc { width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--accent); transition: transform 0.5s; }
-.studio-player.playing .deck-disc { animation: discSpin 4s infinite linear; }
-@keyframes discSpin { 100% { transform: rotate(360deg); } }
-.deck-info { display: flex; flex-direction: column; overflow: hidden; }
-.deck-title { color: var(--text-light); font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.deck-index { font-size: 10px; font-family: monospace; color: var(--text-main); opacity: 0.5; margin-top: 2px; }
+#boncuk-bird-container:hover { transform: scale(1.1); }
 
-.control-deck { display: flex; align-items: center; gap: 6px; }
-.deck-btn { background: transparent; border: 1px solid transparent; color: var(--text-main); padding: 6px 12px; font-size: 11px; font-weight: 600; border-radius: 4px; transition: all 0.15s; }
-.deck-btn:hover { color: var(--text-light); background: var(--bg-btn); }
-.deck-btn.active-mode { color: var(--accent); border-color: var(--accent); background: var(--bg-main); }
+/* SVG Components Styling & Living State Animations */
+.boncuk-svg { width: 100%; height: 100%; overflow: visible; }
+.bird-body { fill: #2563eb; transition: fill 0.3s; }
+.bird-head { fill: #3b82f6; transition: fill 0.3s; transform-origin: 52px 48px; }
+.bird-wing { fill: #1d4ed8; transform-origin: 38px 52px; transition: all 0.2s; }
+.bird-beak { fill: #f59e0b; transform-origin: 66px 45px; }
+.bird-tail { fill: #1e40af; transform-origin: 25px 62px; }
+.bird-eye { fill: #000000; }
+.bird-eye-closed { display: none; stroke: #000000; stroke-width: 2; stroke-linecap: round; fill: none; }
+.bird-zzz { position: absolute; top: -10px; right: 0; font-family: monospace; font-size: 10px; font-weight: bold; color: var(--accent); opacity: 0; pointer-events: none; }
 
-.timeline-deck { display: flex; align-items: center; gap: 14px; width: 45%; }
-.time-lbl { font-family: monospace; font-size: 11px; color: var(--text-main); opacity: 0.6; min-width: 36px; }
-.timeline-wrapper { flex-grow: 1; height: 2px; background: var(--bg-main); position: relative; padding: 4px 0; }
-.timeline-rail { height: 100%; width: 100%; background: var(--border); position: relative; }
-.timeline-fill { height: 100%; width: 0%; background: var(--accent); position: absolute; top:0; left:0; }
+/* --- ANIMATION STATES --- */
+/* 1. IDLE (Doğal Nefes Alma & Kuyruk Sallama) */
+#boncuk-bird-container[data-state="idle"] .bird-body { animation: idleFloat 2.5s infinite ease-in-out; }
+#boncuk-bird-container[data-state="idle"] .bird-wing { animation: idleWing 4s infinite ease-in-out; }
+#boncuk-bird-container[data-state="idle"] .bird-tail { animation: tailWag 1.8s infinite ease-in-out; }
+
+@keyframes idleFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+@keyframes idleWing { 0%, 100% { transform: rotate(0deg); } 5% { transform: rotate(-5deg); } 10% { transform: rotate(0deg); } }
+@keyframes tailWag { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(6deg); } }
+
+/* 2. PLAYING (Şarkı Dinlerken Ritmik Dans & Kanat Çırpma) */
+#boncuk-bird-container[data-state="playing"] { animation: danceJump 0.6s infinite ease-in-out alternate; }
+#boncuk-bird-container[data-state="playing"] .bird-wing { animation: fastFlap 0.3s infinite linear alternate; }
+#boncuk-bird-container[data-state="playing"] .bird-tail { animation: tailWag 0.3s infinite linear; }
+
+@keyframes danceJump { 0% { transform: translateY(0) scaleY(1); } 100% { transform: translateY(-10px) scaleY(0.95); } }
+@keyframes fastFlap { 0% { transform: rotate(-25deg); } 100% { transform: rotate(15deg); } }
+
+/* 3. TYPING (Yazı Yazarken Gaga & Kafa Tıkırtısı) */
+#boncuk-bird-container[data-state="typing"] .bird-head { animation: headPeck 0.2s infinite ease-in-out; }
+#boncuk-bird-container[data-state="typing"] .bird-beak { animation: beakChirp 0.1s infinite linear; }
+
+@keyframes headPeck { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(8deg) translateY(1px); } }
+@keyframes beakChirp { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(2px) translateX(1px); } }
+
+/* 4. COPY (Kopyalayınca Büyük Sevinç Zıplaması) */
+#boncuk-bird-container[data-state="copy"] { animation: celebrationLeap 0.8s ease-out forwards; }
+#boncuk-bird-container[data-state="copy"] .bird-wing { animation: fastFlap 0.15s infinite linear; }
+
+@keyframes celebrationLeap {
+    0% { transform: translateY(0) scale(1); }
+    30% { transform: translateY(-25px) scale(1.2) rotate(-10deg); }
+    70% { transform: translateY(-25px) scale(1.2) rotate(10deg); }
+    100% { transform: translateY(0) scale(1) rotate(0deg); }
+}
+
+/* 5. CLEAR (Silince Hafif Şaşırma/Geri Çekilme) */
+#boncuk-bird-container[data-state="clear"] { animation: shockShake 0.6s ease-in-out; }
+@keyframes shockShake {
+    0%, 100% { transform: translateX(0) scale(1); }
+    20%, 60% { transform: translateX(-6px) scale(0.9); }
+    40%, 80% { transform: translateX(4px) scale(0.9); }
+}
+
+/* 6. SLEEPING (Mola Esnasında Uyku Modu) */
+#boncuk-bird-container[data-state="sleeping"] .bird-eye { display: none; }
+#boncuk-bird-container[data-state="sleeping"] .bird-eye-closed { display: block; }
+#boncuk-bird-container[data-state="sleeping"] .bird-body { animation: sleepBreath 3s infinite ease-in-out; }
+#boncuk-bird-container[data-state="sleeping"] .bird-zzz { animation: zzzFly 3s infinite linear; }
+
+@keyframes sleepBreath { 0%, 100% { transform: scale(0.98); opacity: 0.8; } 50% { transform: scale(1.02); opacity: 1; } }
+@keyframes zzzFly { 0% { opacity: 0; transform: translate(0, 0) scale(0.6); } 30% { opacity: 1; } 100% { opacity: 0; transform: translate(15px, -20px) scale(1.2); } }
+
+
+/* 🪵 ÖTÜKEN ŞAMAN KONSOLU (KADİM DOĞAL AHŞAP & BRONZ ESKİTME) */
+.shaman-console-box {
+    width: 100%; max-width: 850px; pointer-events: auto;
+    background: linear-gradient(135deg, #2b1a0f 0%, #1c1008 100%);
+    border: 3px solid #5c3a21;
+    border-radius: 12px 12px 0 0; padding: 18px 30px;
+    box-shadow: 0 -15px 40px rgba(0,0,0,0.6), inset 0 2px 4px rgba(255,255,255,0.05);
+    display: flex; flex-direction: column; gap: 12px;
+    position: relative; transition: transform 0.3s cubic-bezier(0.1, 0.8, 0.3, 1);
+}
+.shaman-console-box::before {
+    content: "𐱅𐰭𐰼𐰃 ⸱ 𐰶𐰆𐱃 ⸱ 𐰇𐱅𐰇𐰚𐰤"; /* Göktürkçe Rün Süslemesi */
+    position: absolute; top: 4px; left: 50%; transform: translateX(-50%);
+    font-size: 9px; color: #5c3a21; letter-spacing: 4px; font-weight: bold; opacity: 0.7;
+}
+.shaman-console-box.minimized { transform: translateY(100%); }
+
+.console-toggle-tab {
+    position: absolute; right: 20px; top: -22px; 
+    background: #2b1a0f; border: 2px solid #5c3a21; border-bottom: none;
+    padding: 3px 12px; font-size: 9px; font-weight: 700; letter-spacing: 1px;
+    border-radius: 4px 4px 0 0; color: #d9cbb5;
+}
+
+.console-main-row { display: flex; align-items: center; justify-content: space-between; gap: 20px; width: 100%; margin-top: 4px; }
+
+.track-identity-block { display: flex; align-items: center; gap: 12px; width: 30%; }
+.shaman-rune-badge {
+    width: 32px; height: 32px; border-radius: 4px; background: #1c1008; border: 1px solid #5c3a21;
+    display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--accent); font-weight: bold;
+}
+.identity-meta { display: flex; flex-direction: column; overflow: hidden; }
+.track-title-node { color: #f1faee; font-size: 13.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.track-index-node { font-size: 10px; font-family: monospace; color: #9cbda7; opacity: 0.6; margin-top: 1px; }
+
+.buttons-deck { display: flex; align-items: center; gap: 4px; }
+.shaman-btn { 
+    background: #1c1008; border: 1px solid #5c3a21; color: #d9cbb5; 
+    padding: 6px 12px; font-size: 10px; font-weight: bold; border-radius: 4px; transition: all 0.1s;
+}
+.shaman-btn:hover { background: #3d2516; color: #ffffff; border-color: var(--accent); }
+.shaman-btn.active-status { color: var(--accent); border-color: var(--accent); box-shadow: 0 0 8px var(--accent-glow); }
+
+.rail-deck { display: flex; align-items: center; gap: 12px; width: 45%; }
+.time-counter { font-family: monospace; font-size: 11px; color: #d9cbb5; opacity: 0.7; min-width: 36px; }
+.timeline-wrapper { flex-grow: 1; height: 4px; background: #1c1008; position: relative; padding: 4px 0; border-radius: 2px; }
+.timeline-rail { height: 100%; width: 100%; background: #3d2516; position: relative; border-radius: 2px; }
+.timeline-fill { height: 100%; width: 0%; background: var(--accent); position: absolute; top:0; left:0; border-radius: 2px; box-shadow: 0 0 6px var(--accent); }
 </style>
 </head>
 
@@ -214,42 +270,27 @@ h3 { color: var(--text-heading); font-size: 11px; margin: 0 0 16px 0; letter-spa
 <!-- TOP CONTROL INTERFACE -->
 <div class="top-toolbar">
     <div class="theme-grid">
-        <span class="theme-label">RİTÜEL TONU:</span>
-        <div class="theme-dot" style="background: #121622;" onclick="selectRitualTheme('dark', this)" title="Tengri Blue"></div>
-        <div class="theme-dot" style="background: #161410;" onclick="selectRitualTheme('otuken', this)" title="Ötüken Earth"></div>
-        <div class="theme-dot" style="background: #1c1012;" onclick="selectRitualTheme('crimson', this)" title="Crimson Ritual"></div>
-        <div class="theme-dot" style="background: #191b1f;" onclick="selectRitualTheme('asena', this)" title="Asena Gold"></div>
-        <div class="theme-dot" style="background: #16111f;" onclick="selectRitualTheme('lunar', this)" title="Lunar Eclipse"></div>
-        <div class="theme-dot" style="background: #1c1c21;" onclick="selectRitualTheme('smoke', this)" title="Ancestral Smoke"></div>
-        <div class="theme-dot" style="background: #211510;" onclick="selectRitualTheme('umay', this)" title="Umay Copper"></div>
-        <div class="theme-dot" style="background: #12191c;" onclick="selectRitualTheme('tundra', this)" title="Siberian Tundra"></div>
-        <div class="theme-dot" style="background: #131715;" onclick="selectRitualTheme('moss', this)" title="Sagrado Moss"></div>
-        <div class="theme-dot" style="background: #0f0f12;" onclick="selectRitualTheme('void', this)" title="Obsidian Void"></div>
+        <span class="theme-label">KAM SEÇİMİ (10 FARKLI RENK):</span>
+        <div class="theme-dot active" style="background: #3b82f6;" onclick="mutateRitualTheme('cyan', this)" title="Tengri Cyan"></div>
+        <div class="theme-dot" style="background: #10b981;" onclick="mutateRitualTheme('otuken', this)" title="Ötüken Emerald"></div>
+        <div class="theme-dot" style="background: #ef4444;" onclick="mutateRitualTheme('altai', this)" title="Altai Flame"></div>
+        <div class="theme-dot" style="background: #d946ef;" onclick="mutateRitualTheme('asena', this)" title="Asena Purple"></div>
+        <div class="theme-dot" style="background: #f59e0b;" onclick="mutateRitualTheme('gold', this)" title="Steppe Gold"></div>
+        <div class="theme-dot" style="background: #94a3b8;" onclick="mutateRitualTheme('ice', this)" title="Siberian Ice (Aydınlık)"></div>
+        <div class="theme-dot" style="background: #f43f5e;" onclick="mutateRitualTheme('pink', this)" title="Shamanic Pink"></div>
+        <div class="theme-dot" style="background: #06b6d4;" onclick="mutateRitualTheme('turquoise', this)" title="Kutlu Turquoise"></div>
+        <div class="theme-dot" style="background: #ea580c;" onclick="mutateRitualTheme('orange', this)" title="Nomad Orange"></div>
+        <div class="theme-dot" style="background: #39ff14;" onclick="mutateRitualTheme('void', this)" title="Obsidian Void"></div>
     </div>
-    <button onclick="enterRitualBreak()" style="padding: 4px 10px; font-size: 9px; border-color: var(--border);">SESSİZ MOLA</button>
+    <button onclick="enterRitualBreak()" style="padding: 4px 10px; font-size: 9px;">SESSİZ MOLA</button>
 </div>
 
-<!-- DASHBOARD HEADER ROW -->
-<div class="dashboard-header">
-    <!-- ORACLE -->
-    <div class="oracle-card">
-        <div class="oracle-trigger" onclick="readShamanOracle()">🔮</div>
-        <div class="oracle-content">
-            <div class="oracle-tag">RUSTİK SİBER KEHANET</div>
-            <div id="oracle-display-node" class="oracle-txt">Cevhere dokun, ataların fısıltısı ekrana dökülsün...</div>
-        </div>
-    </div>
-
-    <!-- 🥁 REALISTIC SHAMAN TOTEM COMPONENT (KAM DAVULU) -->
-    <div class="totem-card">
-        <div class="totem-viewport">
-            <div id="kam-drum-element" class="kam-drum">
-                <div class="kam-axis-x"></div>
-                <div class="kam-axis-y"></div>
-            </div>
-            <div id="kam-core-element" class="kam-core"></div>
-        </div>
-        <div id="totem-status-lbl" class="totem-status-tag">DİNGİN</div>
+<!-- ORACLE -->
+<div class="oracle-card">
+    <div class="oracle-trigger" onclick="readShamanOracle()">🔮</div>
+    <div class="oracle-content">
+        <div class="oracle-tag">SİBER ŞAMAN KEHANETİ</div>
+        <div id="oracle-display-node" class="oracle-txt">Kuşun fısıltısına kulak ver, ruhunu arındır...</div>
     </div>
 </div>
 
@@ -295,113 +336,129 @@ h3 { color: var(--text-heading); font-size: 11px; margin: 0 0 16px 0; letter-spa
     </div>
 </div>
 
-<!-- MEDITATIVE RITUAL SCREEN -->
+<!-- RITUAL BREAK SCREEN -->
 <div id="break-screen-overlay" class="coffee-overlay">
-    <div class="ritual-fire"></div>
-    <div class="coffee-title">Ruhani Mola</div>
-    <div class="coffee-advice-box">
-        <div id="break-advice-node" class="coffee-advice">Gözlerini kapat. Derin bir nefes al ve evrenin ritmini dinle...</div>
-    </div>
+    <div class="coffee-title">Ruhani Dinlenme</div>
+    <div id="break-advice-node" class="coffee-advice">Gözlerini kapat. Boncuk da seninle beraber uykuya dalıyor...</div>
     <div id="break-countdown-node" class="coffee-timer">00:45</div>
-    <button onclick="exitRitualBreak()" style="padding: 6px 16px; font-size: 10px; opacity: 0.3; border-color: transparent;">MOLAYI BİTİR</button>
+    <button onclick="exitRitualBreak()" style="padding: 6px 16px; font-size: 10px; opacity: 0.4;">MOLAYI BİTİR</button>
 </div>
 
-<!-- 🎚️ STUDIO-GRADE HIGH END AUDIO PLAYER -->
-<div id="studio-audio-deck" class="studio-player">
-    <button id="deck-toggle-trigger" class="player-toggle-tab" onclick="toggleDeckHeight()">PANELİ GİZLE</button>
-    <div class="player-main-line">
-        <div class="meta-deck">
-            <div class="deck-disc"></div>
-            <div class="deck-info">
-                <div id="deck-track-title" class="deck-title">Mistik Seans Seçilmedi</div>
-                <div id="deck-track-meta" class="deck-index">TRK: 00 / 00</div>
-            </div>
-        </div>
-        
-        <div class="control-deck">
-            <button class="deck-btn" onclick="prevTrack()">PREV</button>
-            <button id="deck-play-btn" class="deck-btn" onclick="togglePlayback()">PLAY</button>
-            <button class="deck-btn" onclick="nextTrack()">NEXT</button>
-            <button id="deck-shuf-btn" class="deck-btn" onclick="toggleShuffleMode()">SHUF</button>
-            <button id="deck-rep-btn" class="deck-btn" onclick="toggleRepeatMode()">REP</button>
-        </div>
 
-        <div class="timeline-deck">
-            <span id="deck-time-current" class="time-lbl">00:00</span>
-            <div class="timeline-wrapper" onclick="seekPlayback(event)">
-                <div class="timeline-rail">
-                    <div id="deck-timeline-fill" class="timeline-fill"></div>
+<!-- 🎚️ SHAMANIC AUDIO STATION & ALIVE BIRD SYSTEM -->
+<div class="shamanic-audio-station">
+    
+    <!-- 🐦 YAŞAYAN MAVİ KUŞ: BONCUK -->
+    <div id="boncuk-bird-container" data-state="idle" title="boncuk">
+        <div class="bird-zzz">zZz</div>
+        <svg class="boncuk-svg" viewBox="0 0 100 100">
+            <!-- Tail -->
+            <path class="bird-tail" d="M15,65 L28,58 L22,70 L10,75 Z" />
+            <!-- Body -->
+            <path class="bird-body" d="M30,65 C30,50 45,40 55,50 C65,55 60,70 48,72 C36,74 30,70 30,65 Z" />
+            <!-- Head -->
+            <circle class="bird-head" cx="56" cy="44" r="13" />
+            <!-- Eye (Open) -->
+            <circle class="bird-eye" cx="60" cy="41" r="2" />
+            <!-- Eye (Closed) -->
+            <path class="bird-eye-closed" d="M58,42 Q60,44 62,42" />
+            <!-- Beak -->
+            <polygon class="bird-beak" points="68,41 77,45 67,48" />
+            <!-- Wing -->
+            <path class="bird-wing" d="M36,56 C34,44 46,42 48,54 C50,66 38,64 36,56 Z" />
+        </svg>
+    </div>
+
+    <!-- 🪵 ÖTÜKEN KONSOLU -->
+    <div id="shaman-console-element" class="shaman-console-box">
+        <button id="console-toggle-trigger" class="console-toggle-tab" onclick="toggleConsoleHeight()">PANELİ GİZLE</button>
+        
+        <div class="console-main-row">
+            <div class="track-identity-block">
+                <div class="shaman-rune-badge">𐰎</div>
+                <div class="identity-meta">
+                    <div id="deck-track-title" class="track-title-node">Mistik Ezgi Seçilmedi</div>
+                    <div id="deck-track-meta" class="track-index-node">EZGİ: 00 / 00</div>
                 </div>
             </div>
-            <span id="deck-time-total" class="time-lbl">00:00</span>
+            
+            <div class="buttons-deck">
+                <button class="shaman-btn" onclick="prevTrack()">ÖNCEKİ</button>
+                <button id="deck-play-btn" class="shaman-btn" onclick="togglePlayback()">ÇAL</button>
+                <button class="shaman-btn" onclick="nextTrack()">SONRAKİ</button>
+                <button id="deck-shuf-btn" class="shaman-btn" onclick="toggleShuffleMode()">KARIŞTIR</button>
+                <button id="deck-rep-btn" class="shaman-btn" onclick="toggleRepeatMode()">TEKRAR</button>
+            </div>
+
+            <div class="rail-deck">
+                <span id="deck-time-current" class="time-counter">00:00</span>
+                <div class="timeline-wrapper" onclick="seekPlayback(event)">
+                    <div class="timeline-rail">
+                        <div id="deck-timeline-fill" class="timeline-fill"></div>
+                    </div>
+                </div>
+                <span id="deck-time-total" class="time-counter">00:00</span>
+            </div>
         </div>
+        <audio id="core-audio-engine" src=""></audio>
     </div>
-    <audio id="core-audio-engine" src=""></audio>
 </div>
 
 <script>
 const shamanicSayings = [
-    "Zihnini sadeleştir. Metindeki gereksiz boşluklar gibi, ruhunu daraltan yükleri de serbest bırak.",
-    "Doğa acele etmez, yine de her şey mükemmel bir uyumla tamamlanır. Yazıya döktüğün her satır zamana emanettir.",
-    "Kelimelerin birer mühürdür. Doğru kurgulanan her cümle, zihnindeki niyetin dış dünyaya yansımasıdır.",
-    "Kam davulunun ritmi kalbinin ritmiyle bir olsun. Sakinleş, odaklan ve sadece üretmeye odaklan.",
-    "Derin bir soluk al. Şu an ürettiğin alan senin sığınağındır. Dış dünyanın gürültüsünü arkanda bırak."
+    "Zihnini sadeleştir. Gereksiz tüm yükleri Boncuk ile beraber gökyüzüne fırlat.",
+    "Doğa acele etmez, yine de her şey mükemmel bir uyumla tamamlanır.",
+    "Kelimelerin birer mühürdür. Kadim rünler gibi dikkatle kazı sayfaya.",
+    "Kuşun kanat çırpışı evrenin ritmidir. Sakinleş, odaklan ve sadece üret.",
+    "Derin bir soluk al. Şu an ürettiğin alan senin kutsal sığınağındır."
 ];
 
 const shamanicAdvices = [
-    "Gözlerini ekrandan ayır. Omuzlarındaki tüm gerginliği toprağa bırak...",
-    "Derin ve yavaş bir nefes al. Omurganı dikleştir, ataların bilgeliğini zihninde hisset...",
-    "Ellerini serbest bırak, parmak uçlarındaki enerjiyi serbest bırak. Kısa bir an sadece dur...",
-    "Zihnindeki düşünce bulutlarının dağılmasına izin ver. Sadece kam davulunun sesine odaklan..."
+    "Gözlerini ekrandan ayır. Boncuk şu an senin yerine nöbette...",
+    "Derin ve yavaş bir nefes al. Omurganı dikleştir ve rahatla...",
+    "Ellerini klavyeden çek, parmak uçlarındaki yorgunluğu toprağa bırak...",
+    "Zihnindeki düşünce bulutlarının dağılmasına izin ver. Sadece dinginliği hisset..."
 ];
 
 /* ==========================================================================
-   🥁 SHAMANIC TOTEM ENGINE (REALISTIC GRAPHICAL INTERACTION)
+   🐦 BONCUK STATE MOTORU (LIVING BIRD REACT ENGINE)
    ========================================================================== */
-let totemRotation = 0;
 let writingTimeout;
 
-function updateTotemAesthetics(mode) {
-    const drum = document.getElementById("kam-drum-element");
-    const core = document.getElementById("kam-core-element");
-    const label = document.getElementById("totem-status-lbl");
+function setBirdState(state) {
+    const bird = document.getElementById("boncuk-bird-container");
+    if (!bird) return;
+    
+    // Eğer mola ekranı aktifse ve dışarıdan başka durum tetiklenmeye çalışıyorsa engelle (uyku bölünmez)
+    if (document.getElementById("break-screen-overlay").classList.contains("active") && state !== 'sleeping') {
+        return;
+    }
 
-    if (mode === 'typing') {
-        totemRotation += 45;
-        drum.style.transform = `rotate(${totemRotation}deg)`;
-        core.style.transform = "scale(1.3)";
-        label.innerText = "AKIF / TRANS";
-        label.style.opacity = "0.9";
-    } else if (mode === 'playing') {
-        core.style.transform = "scale(1.1)";
-        label.innerText = "RİTMİK SEANS";
-        label.style.opacity = "0.7";
-    } else if (mode === 'resting') {
-        drum.style.transform = "scale(0.9)";
-        core.style.transform = "scale(0.8)";
-        label.innerText = "DİNGİN KOR";
-    } else {
-        core.style.transform = "scale(1)";
-        label.innerText = "GÖZLEMLİYOR";
-        label.style.opacity = "0.4";
+    bird.setAttribute("data-state", state);
+
+    // Kopyalama ve silme gibi anlık tepkiler belirli bir süre sonra eski ritmine dönmeli
+    if (state === 'copy' || state === 'clear') {
+        setTimeout(() => {
+            if (isAudioPlaying) { setBirdState('playing'); }
+            else { setBirdState('idle'); }
+        }, 1200);
     }
 }
 
 function registerWritingTrack(tabIndex) {
     measureMetrics(tabIndex);
-    triggerOrganicWoodTick(); // Tactile Sound
-    updateTotemAesthetics('typing');
+    triggerOrganicWoodTick(); 
+    
+    setBirdState('typing');
     
     clearTimeout(writingTimeout);
     writingTimeout = setTimeout(() => {
-        if (isAudioPlaying) { updateTotemAesthetics('playing'); } 
-        else { updateTotemAesthetics('idle'); }
-    }, 900);
+        if (isAudioPlaying) { setBirdState('playing'); } 
+        else { setBirdState('idle'); }
+    }, 800);
 }
 
-/* ==========================================================================
-   🪵 TACTILE SOUND ENGINE (ORGANIC WOODEN TICK)
-   ========================================================================== */
+/* 🪵 DOKUNSAL KLAVYE SES MOTORU */
 let audioContextInstance = null;
 function triggerOrganicWoodTick() {
     try {
@@ -411,23 +468,21 @@ function triggerOrganicWoodTick() {
         let osc = audioContextInstance.createOscillator();
         let gain = audioContextInstance.createGain();
         
-        osc.type = 'triangle'; // Warmer, more organic wood-like signature
-        osc.frequency.setValueAtTime(95, audioContextInstance.currentTime);
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(110, audioContextInstance.currentTime);
         
-        gain.gain.setValueAtTime(0.02, audioContextInstance.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.00001, audioContextInstance.currentTime + 0.03);
+        gain.gain.setValueAtTime(0.015, audioContextInstance.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.00001, audioContextInstance.currentTime + 0.02);
         
         osc.connect(gain);
         gain.connect(audioContextInstance.destination);
         
         osc.start();
-        osc.stop(audioContextInstance.currentTime + 0.03);
+        osc.stop(audioContextInstance.currentTime + 0.02);
     } catch(e){}
 }
 
-/* ==========================================================================
-   ☕ MEDITATIVE RITUAL MOLASI ENGINE
-   ========================================================================== */
+/* ☕ RİTÜEL MOLASI ENGINE */
 let breakTimerLoop;
 let breakAdviceLoop;
 
@@ -437,7 +492,7 @@ function enterRitualBreak() {
     const adviceNode = document.getElementById("break-advice-node");
     
     overlay.classList.add("active");
-    updateTotemAesthetics('resting');
+    setBirdState('sleeping');
     let secondsLeft = 45;
     
     let adviceIdx = 0;
@@ -448,7 +503,7 @@ function enterRitualBreak() {
             adviceNode.innerText = shamanicAdvices[adviceIdx];
             adviceNode.style.opacity = 1;
         }, 350);
-    }, 8000);
+    }, 7000);
 
     breakTimerLoop = setInterval(() => {
         secondsLeft--;
@@ -464,11 +519,11 @@ function exitRitualBreak() {
     clearInterval(breakTimerLoop);
     clearInterval(breakAdviceLoop);
     document.getElementById("break-screen-overlay").classList.remove("active");
-    if (isAudioPlaying) { updateTotemAesthetics('playing'); } else { updateTotemAesthetics('idle'); }
+    if (isAudioPlaying) { setBirdState('playing'); } else { setBirdState('idle'); }
 }
 
 /* ==========================================================================
-   CORE PLATFORM ENGINE
+   METİN İŞLEME VE ANA MOTORLAR
    ========================================================================== */
 function readShamanOracle() {
     const node = document.getElementById("oracle-display-node");
@@ -480,8 +535,8 @@ function readShamanOracle() {
     }, 200);
 }
 
-function selectRitualTheme(name, dotEl) {
-    if(name === 'dark') { document.documentElement.removeAttribute('data-theme'); }
+function mutateRitualTheme(name, dotEl) {
+    if(name === 'cyan') { document.documentElement.removeAttribute('data-theme'); }
     else { document.documentElement.setAttribute('data-theme', name); }
     document.querySelectorAll('.theme-dot').forEach(d => d.classList.remove('active'));
     dotEl.classList.add('active');
@@ -550,7 +605,10 @@ function processCopyCommand(outId) {
     let payloadHtml = `<span style="font-size: 14px; font-family: sans-serif; line-height: 1.6;">${clone.innerHTML}</span>`;
     const blobHtml = new Blob([payloadHtml], { type: 'text/html' });
     const blobText = new Blob([clone.innerText], { type: 'text/plain' });
-    navigator.clipboard.write([new ClipboardItem({ 'text/html': blobHtml, 'text/plain': blobText })]).then(() => displayToast());
+    navigator.clipboard.write([new ClipboardItem({ 'text/html': blobHtml, 'text/plain': blobText })]).then(() => {
+        displayToast();
+        setBirdState('copy'); // Kuş zıplama tepkisi
+    });
 }
 
 function executeSpaceClean(){ document.getElementById("output-pane-1").innerHTML = runParsingEngine("input-pane-1", false); }
@@ -559,27 +617,30 @@ function interceptEnter(e) { if (e.key === "Enter") { document.execCommand('inse
 document.getElementById("input-pane-1").addEventListener("keydown", interceptEnter);
 document.getElementById("input-pane-2").addEventListener("keydown", interceptEnter);
 function dispatchCopy(i){ processCopyCommand(`output-pane-${i}`); }
-function flushFields(i){ document.getElementById(`input-pane-${i}`).innerHTML=""; document.getElementById(`output-pane-${i}`).innerHTML=""; measureMetrics(i); }
+function flushFields(i){ 
+    document.getElementById(`input-pane-${i}`).innerHTML=""; 
+    document.getElementById(`output-pane-${i}`).innerHTML=""; 
+    measureMetrics(i); 
+    setBirdState('clear'); // Kuş şaşırma tepkisi
+}
 
 window.addEventListener("DOMContentLoaded", () => {
-    const defDot = document.querySelector(".theme-dot");
-    if (defDot) selectRitualTheme('dark', defDot);
-    buildStudioAudio();
+    buildShamanicAudio();
 });
 
 /* ==========================================================================
-   🎚️ STUDIO-GRADE AUDIO ARCHITECTURE
+   🎚️ AUDIO ARCHITECTURE (EZGİ SİSTEMİ)
    ========================================================================== */
 const ritualTracks = [
-    { title: "Siber Melodi 1", url: "./muzikler/1.mp3" }, { title: "Siber Melodi 2", url: "./muzikler/12345.mp3" },
-    { title: "Siber Melodi 3", url: "./muzikler/2.mp3" }, { title: "Siber Melodi 4", url: "./muzikler/3.mp3" },
-    { title: "Siber Melodi 5", url: "./muzikler/4.mp3" }, { title: "Siber Melodi 6", url: "./muzikler/5.mp3" },
-    { title: "Siber Melodi 7", url: "./muzikler/6.mp3" }, { title: "Siber Melodi 8", url: "./muzikler/7.mp3" },
-    { title: "Siber Melodi 9", url: "./muzikler/8.mp3" }, { title: "Siber Melodi 10", url: "./muzikler/9.mp3" },
-    { title: "Siber Melodi 11", url: "./muzikler/10.mp3" }, { title: "Siber Melodi 12", url: "./muzikler/11.mp3" },
-    { title: "Siber Melodi 13", url: "./muzikler/12.mp3" }, { title: "Siber Melodi 14", url: "./muzikler/13.mp3" },
-    { title: "Siber Melodi 15", url: "./muzikler/14.mp3" }, { title: "Siber Melodi 16", url: "./muzikler/15.mp3" },
-    { title: "Siber Melodi 17", url: "./muzikler/16.mp3" }, { title: "Siber Melodi 18", url: "./muzikler/17.mp3" }
+    { title: "Şaman Ezgisi 1", url: "./muzikler/1.mp3" }, { title: "Şaman Ezgisi 2", url: "./muzikler/12345.mp3" },
+    { title: "Şaman Ezgisi 3", url: "./muzikler/2.mp3" }, { title: "Şaman Ezgisi 4", url: "./muzikler/3.mp3" },
+    { title: "Şaman Ezgisi 5", url: "./muzikler/4.mp3" }, { title: "Şaman Ezgisi 6", url: "./muzikler/5.mp3" },
+    { title: "Şaman Ezgisi 7", url: "./muzikler/6.mp3" }, { title: "Şaman Ezgisi 8", url: "./muzikler/7.mp3" },
+    { title: "Şaman Ezgisi 9", url: "./muzikler/8.mp3" }, { title: "Şaman Ezgisi 10", url: "./muzikler/9.mp3" },
+    { title: "Şaman Ezgisi 11", url: "./muzikler/10.mp3" }, { title: "Şaman Ezgisi 12", url: "./muzikler/11.mp3" },
+    { title: "Şaman Ezgisi 13", url: "./muzikler/12.mp3" }, { title: "Şaman Ezgisi 14", url: "./muzikler/13.mp3" },
+    { title: "Şaman Ezgisi 15", url: "./muzikler/14.mp3" }, { title: "Şaman Ezgisi 16", url: "./muzikler/15.mp3" },
+    { title: "Şaman Ezgisi 17", url: "./muzikler/16.mp3" }, { title: "Şaman Ezgisi 18", url: "./muzikler/17.mp3" }
 ];
 
 let trackIndex = 0;
@@ -588,7 +649,7 @@ let shuffleActive = false;
 let repeatActive = false;
 let audioEngine = document.getElementById("core-audio-engine");
 
-function buildStudioAudio() {
+function buildShamanicAudio() {
     stageTrack(trackIndex);
     audioEngine.addEventListener("ended", onTrackFinished);
     audioEngine.addEventListener("timeupdate", onTimeTick);
@@ -599,39 +660,36 @@ function buildStudioAudio() {
 function stageTrack(idx) {
     audioEngine.src = ritualTracks[idx].url;
     document.getElementById("deck-track-title").innerText = ritualTracks[idx].title;
-    document.getElementById("deck-track-meta").innerText = `TRK: ${idx + 1} / ${ritualTracks.length}`;
+    document.getElementById("deck-track-meta").innerText = `EZGİ: ${idx + 1} / ${ritualTracks.length}`;
 }
 function togglePlayback() {
     const playBtn = document.getElementById("deck-play-btn");
-    const container = document.getElementById("studio-audio-deck");
     if (isAudioPlaying) {
         audioEngine.pause();
         isAudioPlaying = false;
-        playBtn.innerText = "PLAY";
-        container.classList.remove("playing");
-        updateTotemAesthetics('idle');
+        playBtn.innerText = "ÇAL";
+        setBirdState('idle'); // Kuş normal ritmine döner
     } else {
         audioEngine.play().catch(()=>{});
         isAudioPlaying = true;
-        playBtn.innerText = "PAUS";
-        container.classList.add("playing");
-        updateTotemAesthetics('playing');
+        playBtn.innerText = "DURDUR";
+        setBirdState('playing'); // Kuş dans etmeye başlar
     }
 }
 function nextTrack() {
     if (shuffleActive) { trackIndex = Math.floor(Math.random() * ritualTracks.length); } 
     else { trackIndex = (trackIndex + 1) % ritualTracks.length; }
     stageTrack(trackIndex);
-    if (isAudioPlaying) audioEngine.play().catch(()=>{});
+    if (isAudioPlaying) { audioEngine.play().catch(()=>{}); setBirdState('playing'); }
 }
 function prevTrack() {
     trackIndex = (trackIndex - 1 + ritualTracks.length) % ritualTracks.length;
     stageTrack(trackIndex);
-    if (isAudioPlaying) audioEngine.play().catch(()=>{});
+    if (isAudioPlaying) { audioEngine.play().catch(()=>{}); setBirdState('playing'); }
 }
 function onTrackFinished() { if (repeatActive) { audioEngine.currentTime = 0; audioEngine.play().catch(()=>{}); } else { nextTrack(); } }
-function toggleShuffleMode() { shuffleActive = !shuffleActive; document.getElementById("deck-shuf-btn").classList.toggle("active-mode", shuffleActive); }
-function toggleRepeatMode() { repeatActive = !repeatActive; document.getElementById("deck-rep-btn").classList.toggle("active-mode", repeatActive); }
+function toggleShuffleMode() { shuffleActive = !shuffleActive; document.getElementById("deck-shuf-btn").classList.toggle("active-status", shuffleActive); }
+function toggleRepeatMode() { repeatActive = !repeatActive; document.getElementById("deck-rep-btn").classList.toggle("active-status", repeatActive); }
 function onTimeTick() {
     const progressFill = document.getElementById("deck-timeline-fill");
     const currentLbl = document.getElementById("deck-time-current");
@@ -652,9 +710,9 @@ function convertTime(sec) {
     const m = Math.floor(sec / 60); const s = Math.floor(sec % 60);
     return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
 }
-function toggleDeckHeight() {
-    const p = document.getElementById("studio-audio-deck");
-    const trig = document.getElementById("deck-toggle-trigger");
+function toggleConsoleHeight() {
+    const p = document.getElementById("shaman-console-element");
+    const trig = document.getElementById("console-toggle-trigger");
     p.classList.toggle("minimized");
     trig.innerText = p.classList.contains("minimized") ? "PANELİ AÇ" : "PANELİ GİZLE";
 }
