@@ -3,294 +3,352 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ötüken Siber-Şaman İstasyonu</title>
+<title>Siber-Şaman İstasyonu V2</title>
 
 <style>
 /* ==========================================================================
-   10 DISTINCT VIBRANT THEMES (TAMAMEN FARKLI RENK DÜNYALARI)
+   10 ULTRA-VIBRANT GLASSMORPHIC THEMES (TAMAMEN YENİ RENKLER)
    ========================================================================== */
 
-/* 1. TENGRI CYAN (Derin Kozmik Mavi & Canlı Camgöbeği) */
+/* 1. CYBER NEON CYAN (Varsayılan) */
 :root {
-    --bg-main: #060b14; --bg-card: #0f1a2e; --bg-input: #0a1120; --bg-btn: #1d3557; --bg-btn-hover: #457b9d;
-    --accent: #00f2ff; --accent-glow: rgba(0, 242, 255, 0.2); --text-main: #a2b4cb; --text-light: #f1faee; --text-heading: #00f2ff; --border: #1e3d6b;
+    --bg-universe: #030712; --glass-bg: rgba(15, 23, 42, 0.45); --glass-border: rgba(6, 182, 212, 0.25);
+    --accent: #06b6d4; --accent-glow: rgba(6, 182, 212, 0.4); --text-primary: #cbd5e1; --text-bright: #ffffff;
 }
-/* 2. ÖTÜKEN EMERALD (Mistik Zümrüt Yeşili & Canlı Neon Yeşil) */
-html[data-theme="otuken"] {
-    --bg-main: #05120a; --bg-card: #0b2414; --bg-input: #07190e; --bg-btn: #134224; --bg-btn-hover: #1f6b3a;
-    --accent: #10b981; --accent-glow: rgba(16, 185, 129, 0.2); --text-main: #9cbda7; --text-light: #ecfdf5; --text-heading: #34d399; --border: #1b4d2c;
+/* 2. COSMIC AMETHYST (Derin Galaktik Mor) */
+html[data-theme="amethyst"] {
+    --bg-universe: #0b0114; --glass-bg: rgba(24, 4, 43, 0.5); --glass-border: rgba(168, 85, 247, 0.25);
+    --accent: #a855f7; --accent-glow: rgba(168, 85, 247, 0.4); --text-primary: #e2e8f0; --text-bright: #f4f4f5;
 }
-/* 3. ALTAI FLAME (Kor Ateş Kırmızısı & Kömür Siyahı) */
-html[data-theme="altai"] {
-    --bg-main: #0f0506; --bg-card: #240c0e; --bg-input: #170809; --bg-btn: #4c1114; --bg-btn-hover: #7f1d1d;
-    --accent: #ef4444; --accent-glow: rgba(239, 68, 68, 0.2); --text-main: #caa6a8; --text-light: #fef2f2; --text-heading: #f87171; --border: #4c1114;
+/* 3. ACID LIME (Matris Yeşili) */
+html[data-theme="lime"] {
+    --bg-universe: #020604; --glass-bg: rgba(4, 30, 15, 0.5); --glass-border: rgba(34, 197, 94, 0.25);
+    --accent: #22c55e; --accent-glow: rgba(34, 197, 94, 0.4); --text-primary: #cbd5e1; --text-bright: #f0fdf4;
 }
-/* 4. ASENA PURPLE (Büyücü Moru & Elektrik Ultraviyole) */
-html[data-theme="asena"] {
-    --bg-main: #0b0512; --bg-card: #1b0c2b; --bg-input: #11081c; --bg-btn: #3b114c; --bg-btn-hover: #5b21b6;
-    --accent: #d946ef; --accent-glow: rgba(217, 70, 239, 0.2); --text-main: #c4b2d6; --text-light: #fdf4ff; --text-heading: #e879f9; --border: #4c1360;
+/* 4. SOLAR FLARE (Kor Kehribar & Turuncu) */
+html[data-theme="solar"] {
+    --bg-universe: #0c0401; --glass-bg: rgba(43, 14, 4, 0.5); --glass-border: rgba(249, 115, 22, 0.3);
+    --accent: #f97316; --accent-glow: rgba(249, 115, 22, 0.4); --text-primary: #e2e8f0; --text-bright: #fff7ed;
 }
-/* 5. STEPPE GOLD (Kadim Bozkır Altını & Sıcak Toprak) */
-html[data-theme="gold"] {
-    --bg-main: #140e05; --bg-card: #291d0a; --bg-input: #1c1407; --bg-btn: #47320f; --bg-btn-hover: #78350f;
-    --accent: #f59e0b; --accent-glow: rgba(245, 158, 11, 0.2); --text-main: #d9cbb5; --text-light: #fffbeb; --text-heading: #fbbf24; --border: #543d15;
+/* 5. FROZEN AURORA (Kutup Yeşili & Buz) */
+html[data-theme="aurora"] {
+    --bg-universe: #02080a; --glass-bg: rgba(4, 28, 30, 0.5); --glass-border: rgba(20, 184, 166, 0.25);
+    --accent: #20b8a6; --accent-glow: rgba(20, 184, 166, 0.4); --text-primary: #e2e8f0; --text-bright: #f0fdfa;
 }
-/* 6. SIBERIAN ICE (Donmuş Buz Beyazı & Kutup Mavisi - AYDINLIK TEMA) */
-html[data-theme="ice"] {
-    --bg-main: #f1f5f9; --bg-card: #ffffff; --bg-input: #e2e8f0; --bg-btn: #cbd5e1; --bg-btn-hover: #94a3b8;
-    --accent: #06b6d4; --accent-glow: rgba(6, 182, 212, 0.2); --text-main: #475569; --text-light: #0f172a; --text-heading: #0891b2; --border: #cbd5e1;
+/* 6. VAMPIRIC CRIMSON (Kan Kırmızısı) */
+html[data-theme="crimson"] {
+    --bg-universe: #0a0102; --glass-bg: rgba(38, 4, 9, 0.5); --glass-border: rgba(239, 68, 68, 0.25);
+    --accent: #ef4444; --accent-glow: rgba(239, 68, 68, 0.4); --text-primary: #e2e8f0; --text-bright: #fef2f2;
 }
-/* 7. SHAMANIC PINK (Göz Alıcı Fuşya & Gece Karanlığı) */
-html[data-theme="pink"] {
-    --bg-main: #0d040a; --bg-card: #240b1b; --bg-input: #170711; --bg-btn: #4c1138; --bg-btn-hover: #701a53;
-    --accent: #f43f5e; --accent-glow: rgba(244, 63, 94, 0.2); --text-main: #d6b2c7; --text-light: #fff1f2; --text-heading: #fb7185; --border: #4e1439;
+/* 7. RETRO SYNTHWAVE (Sıcak Pembe) */
+html[data-theme="synth"] {
+    --bg-universe: #09010b; --glass-bg: rgba(35, 2, 43, 0.5); --glass-border: rgba(236, 72, 153, 0.25);
+    --accent: #ec4899; --accent-glow: rgba(236, 72, 153, 0.4); --text-primary: #e2e8f0; --text-bright: #fdf2f8;
 }
-/* 8. KUTLU TURQUOISE (Saf Türk Turkuazı & Füme Safir) */
-html[data-theme="turquoise"] {
-    --bg-main: #060c0e; --bg-card: #0f1e24; --bg-input: #0a1418; --bg-btn: #16323c; --bg-btn-hover: #245263;
-    --accent: #06b6d4; --accent-glow: rgba(6, 182, 212, 0.2); --text-main: #a5b9bf; --text-light: #ecfeff; --text-heading: #22d3ee; --border: #1d3d49;
+/* 8. LUXURY MIDNIGHT (Siyah Altın) */
+html[data-theme="luxury"] {
+    --bg-universe: #050505; --glass-bg: rgba(20, 20, 20, 0.6); --glass-border: rgba(234, 179, 8, 0.25);
+    --accent: #eab308; --accent-glow: rgba(234, 179, 8, 0.3); --text-primary: #d4d4d8; --text-bright: #fef08a;
 }
-/* 9. NOMAD ORANGE (Bakır Turuncusu & Kerpiç Kahvesi) */
-html[data-theme="orange"] {
-    --bg-main: #120703; --bg-card: #261107; --bg-input: #1a0b05; --bg-btn: #471d0c; --bg-btn-hover: #7c2d12;
-    --accent: #ea580c; --accent-glow: rgba(234, 88, 12, 0.2); --text-main: #d9bfb4; --text-light: #fff7ed; --text-heading: #f97316; --border: #4b210e;
+/* 9. DEEP INDIGO (Okyanus Ötesi) */
+html[data-theme="indigo"] {
+    --bg-universe: #020212; --glass-bg: rgba(8, 8, 40, 0.5); --glass-border: rgba(99, 102, 241, 0.25);
+    --accent: #6366f1; --accent-glow: rgba(99, 102, 241, 0.4); --text-primary: #e2e8f0; --text-bright: #eef2ff;
 }
-/* 10. OBSIDIAN VOID (Yüksek Kontrast Saf Neon Yeşili & Simsiyah Uzay) */
-html[data-theme="void"] {
-    --bg-main: #000000; --bg-card: #111111; --bg-input: #050505; --bg-btn: #222222; --bg-btn-hover: #333333;
-    --accent: #39ff14; --accent-glow: rgba(57, 255, 20, 0.3); --text-main: #999999; --text-light: #ffffff; --text-heading: #39ff14; --border: #222222;
+/* 10. TOXIC WASTE (Radyoaktif Sarı) */
+html[data-theme="toxic"] {
+    --bg-universe: #040501; --glass-bg: rgba(18, 20, 3, 0.55); --glass-border: rgba(163, 230, 53, 0.25);
+    --accent: #a3e635; --accent-glow: rgba(163, 230, 53, 0.4); --text-primary: #e2e8f0; --text-bright: #f7fee7;
 }
 
-*{box-sizing:border-box;}
+/* ==========================================================================
+   GLOBAL GLASS SYSTEM & BASE STYLES
+   ========================================================================== */
+* { box-sizing: border-box; transition: background 0.25s ease, border-color 0.25s ease; }
 body, div, input, textarea { cursor: default; }
-button, .tab-btn, .theme-dot, .timeline-wrapper, #boncuk-bird-container { cursor: pointer; }
+button, .tab-btn, .theme-dot, .timeline-wrapper, #boncuk-wrapper { cursor: pointer; }
 
 body {
-    margin:0; padding: 20px 20px 240px 20px;
-    background: var(--bg-main); color: var(--text-main);
+    margin: 0; padding: 20px 20px 280px 20px;
+    background: var(--bg-universe); color: var(--text-primary);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     min-height: 100vh; overflow-x: hidden;
-    transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* TOP TOOLBAR */
+/* THE GLASS EFFECT (CAM GÖRÜNÜMÜ) */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.05);
+}
+
 .top-toolbar {
     display: flex; justify-content: space-between; align-items: center;
-    max-width: 950px; margin: 0 auto 20px auto;
-    background: var(--bg-card); padding: 12px 16px;
-    border-radius: 6px; border: 1px solid var(--border);
+    max-width: 950px; margin: 0 auto 20px auto; padding: 14px 20px;
 }
 .theme-grid { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .theme-label { font-size: 10px; letter-spacing: 1.5px; font-weight: 700; opacity: 0.6; margin-right: 6px; }
-.theme-dot { width: 16px; height: 16px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.1); transition: all 0.2s; }
-.theme-dot:hover { transform: scale(1.25); }
-.theme-dot.active { border-color: var(--accent) !important; box-shadow: 0 0 10px var(--accent); }
+.theme-dot { width: 18px; height: 18px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.1); transition: transform 0.2s; }
+.theme-dot:hover { transform: scale(1.3); }
+.theme-dot.active { border-color: var(--accent) !important; box-shadow: 0 0 12px var(--accent); }
 
-/* ORACLE CARD */
-.oracle-card {
-    max-width: 950px; margin: 0 auto 24px auto; background: var(--bg-card); border: 1px solid var(--border);
-    border-radius: 8px; padding: 20px; display: flex; align-items: center; gap: 20px;
-}
+.oracle-card { max-width: 950px; margin: 0 auto 24px auto; padding: 20px; display: flex; align-items: center; gap: 20px; }
 .oracle-trigger {
-    width: 44px; height: 44px; border-radius: 50%; background: var(--bg-main);
-    border: 1px solid var(--border); display: flex; align-items: center; justify-content: center;
-    font-size: 18px; color: var(--accent); transition: all 0.3s;
+    width: 46px; height: 46px; border-radius: 50%; background: rgba(0,0,0,0.3);
+    border: 1px solid var(--glass-border); display: flex; align-items: center; justify-content: center;
+    font-size: 20px; transition: all 0.3s;
 }
-.oracle-card:hover .oracle-trigger { border-color: var(--accent); box-shadow: 0 0 12px var(--accent-glow); }
+.oracle-card:hover .oracle-trigger { border-color: var(--accent); box-shadow: 0 0 14px var(--accent-glow); transform: scale(1.05); }
 .oracle-content { flex-grow: 1; }
 .oracle-tag { font-size: 9px; letter-spacing: 2px; color: var(--accent); font-weight: 700; margin-bottom: 4px; }
-.oracle-txt { font-size: 13.5px; color: var(--text-light); font-style: italic; line-height: 1.5; }
+.oracle-txt { font-size: 13.5px; color: var(--text-bright); font-style: italic; line-height: 1.5; }
 
-/* WORKSPACE INTERFACE */
+/* REKOR KUTUCUKLARI VE AKIŞKAN ALANLAR */
 .tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
-.tab-btn { background: var(--bg-btn); color: var(--text-main); border: 1px solid var(--border); padding: 10px 24px; font-size: 11px; font-weight: 600; border-radius: 4px; transition: all 0.2s; }
-.tab-btn:hover { background: var(--bg-btn-hover); color: var(--text-light); }
-.tab-btn.active { background: var(--bg-btn-hover) !important; color: var(--text-heading) !important; border-color: var(--accent) !important; }
+.tab-btn { background: rgba(255,255,255,0.03); color: var(--text-primary); border: 1px solid var(--glass-border); padding: 10px 24px; font-size: 11px; font-weight: 600; border-radius: 6px; transition: all 0.2s; }
+.tab-btn:hover { background: rgba(255,255,255,0.08); color: var(--text-bright); }
+.tab-btn.active { background: var(--glass-bg) !important; color: var(--accent) !important; border-color: var(--accent) !important; box-shadow: 0 0 10px var(--accent-glow); }
 
 .container { position: relative; width: 100%; max-width: 950px; margin: 0 auto; }
-.tab-content { position: absolute; width: 100%; opacity: 0; transform: scale(0.99); transition: all 0.25s ease; pointer-events: none; background: var(--bg-card); padding: 24px; border-radius: 8px; border: 1px solid var(--border); }
-.tab-content.active { opacity: 1; transform: scale(1); position: relative; pointer-events: auto; }
+.tab-content { position: absolute; width: 100%; opacity: 0; transform: translateY(10px); transition: all 0.3s ease; pointer-events: none; padding: 24px; }
+.tab-content.active { opacity: 1; transform: translateY(0); position: relative; pointer-events: auto; }
 
-h3 { color: var(--text-heading); font-size: 11px; margin: 0 0 16px 0; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; }
-.input-area, .output { width: 100%; height: 220px; background: var(--bg-input); color: var(--text-light); border: 1px solid var(--border); padding: 16px; font-size: 14px; line-height: 1.6; border-radius: 4px; outline: none; margin-bottom: 8px; overflow-y: auto; word-break: break-word; font-family: inherit; }
-.input-area:focus { border-color: var(--accent); }
-.output { border-style: dashed; min-height: 220px; height: auto; }
-.meta-pane { font-size: 11px; color: var(--text-main); margin-bottom: 16px; display: flex; gap: 20px; opacity: 0.6; }
-.meta-pane strong { color: var(--text-light); }
+h3 { color: var(--accent); font-size: 11px; margin: 0 0 16px 0; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; }
+.input-area, .output { width: 100%; height: 200px; background: rgba(0, 0, 0, 0.25); color: var(--text-bright); border: 1px solid var(--glass-border); padding: 16px; font-size: 14px; line-height: 1.6; border-radius: 8px; outline: none; margin-bottom: 12px; overflow-y: auto; word-break: break-word; font-family: inherit; }
+.input-area:focus { border-color: var(--accent); box-shadow: 0 0 12px var(--accent-glow); }
+.output { border-style: dashed; min-height: 200px; height: auto; background: rgba(255,255,255,0.01); }
+.meta-pane { font-size: 11px; color: var(--text-primary); margin-bottom: 16px; display: flex; gap: 20px; opacity: 0.7; }
+.meta-pane strong { color: var(--accent); }
 .action-row { display: flex; gap: 10px; }
+button { background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: var(--text-bright); padding: 8px 18px; font-size: 11px; font-weight: 600; border-radius: 6px; transition: all 0.2s; }
+button:hover { background: var(--accent); color: #000; border-color: var(--accent); box-shadow: 0 0 12px var(--accent); }
 
-.bad-word { color: var(--text-heading); font-weight: 600; text-decoration: underline; background: rgba(255,255,255,0.03); padding: 1px 3px; border-radius: 2px; }
-.toast { position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); background: var(--bg-card); border: 1px solid var(--accent); color: var(--text-light); padding: 10px 24px; border-radius: 4px; font-size: 11px; font-weight: bold; transition: bottom 0.3s; z-index: 100000; }
-.toast.show { bottom: 30px; }
+.bad-word { color: #ff4500; font-weight: 600; text-decoration: underline; background: rgba(255,69,0,0.1); padding: 2px 4px; border-radius: 4px; }
+.toast { position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); background: var(--glass-bg); backdrop-filter: blur(10px); border: 1px solid var(--accent); color: var(--text-bright); padding: 12px 28px; border-radius: 30px; font-size: 11px; font-weight: bold; transition: bottom 0.3s; z-index: 100000; box-shadow: 0 0 20px var(--accent-glow); }
+.toast.show { bottom: 40px; }
 
-/* BREAK SCREEN OVERLAY */
+/* COFFEE / BREAK OVERLAY */
 .coffee-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 6, 8, 0.96);
-    backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); z-index: 999999;
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 3, 6, 0.95);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); z-index: 999999;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
 }
 .coffee-overlay.active { opacity: 1; pointer-events: auto; }
-.coffee-title { font-size: 14px; letter-spacing: 3px; color: var(--text-heading); font-weight: bold; text-transform: uppercase; margin-bottom: 16px; }
-.coffee-advice { font-size: 13px; color: var(--text-main); font-style: italic; text-align: center; max-width: 500px; padding: 0 20px; margin-bottom: 20px; line-height: 1.6; }
-.coffee-timer { font-size: 36px; font-family: monospace; font-weight: bold; color: var(--text-light); margin-bottom: 24px; }
+.coffee-title { font-size: 14px; letter-spacing: 3px; color: var(--accent); font-weight: bold; text-transform: uppercase; margin-bottom: 16px; }
+.coffee-advice { font-size: 13px; color: var(--text-primary); font-style: italic; text-align: center; max-width: 500px; padding: 0 20px; margin-bottom: 20px; line-height: 1.6; }
+.coffee-timer { font-size: 42px; font-family: monospace; font-weight: bold; color: var(--text-bright); margin-bottom: 24px; text-shadow: 0 0 15px rgba(255,255,255,0.2); }
+
 
 /* ==========================================================================
-   🎚️ TÜRK ŞAMANİK GÖRSELLİ MÜZİK KONSOLU & BONCUK MOTORU
+   🔥 ATEŞLİ SİBER-MAGMA MÜZİK KONSOLU TASARIMI
    ========================================================================== */
 .shamanic-audio-station {
     position: fixed; bottom: 0; left: 0; width: 100%; display: flex; flex-direction: column; align-items: center; z-index: 99999; pointer-events: none;
 }
 
-/* 🐦 ALIVE BLUE BIRD ("BONCUK") CONTAINER */
-#boncuk-bird-container {
-    width: 75px; height: 75px; position: relative; margin-bottom: -4px; z-index: 10; pointer-events: auto;
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-#boncuk-bird-container:hover { transform: scale(1.1); }
-
-/* SVG Components Styling & Living State Animations */
-.boncuk-svg { width: 100%; height: 100%; overflow: visible; }
-.bird-body { fill: #2563eb; transition: fill 0.3s; }
-.bird-head { fill: #3b82f6; transition: fill 0.3s; transform-origin: 52px 48px; }
-.bird-wing { fill: #1d4ed8; transform-origin: 38px 52px; transition: all 0.2s; }
-.bird-beak { fill: #f59e0b; transform-origin: 66px 45px; }
-.bird-tail { fill: #1e40af; transform-origin: 25px 62px; }
-.bird-eye { fill: #000000; }
-.bird-eye-closed { display: none; stroke: #000000; stroke-width: 2; stroke-linecap: round; fill: none; }
-.bird-zzz { position: absolute; top: -10px; right: 0; font-family: monospace; font-size: 10px; font-weight: bold; color: var(--accent); opacity: 0; pointer-events: none; }
-
-/* --- ANIMATION STATES --- */
-/* 1. IDLE (Doğal Nefes Alma & Kuyruk Sallama) */
-#boncuk-bird-container[data-state="idle"] .bird-body { animation: idleFloat 2.5s infinite ease-in-out; }
-#boncuk-bird-container[data-state="idle"] .bird-wing { animation: idleWing 4s infinite ease-in-out; }
-#boncuk-bird-container[data-state="idle"] .bird-tail { animation: tailWag 1.8s infinite ease-in-out; }
-
-@keyframes idleFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
-@keyframes idleWing { 0%, 100% { transform: rotate(0deg); } 5% { transform: rotate(-5deg); } 10% { transform: rotate(0deg); } }
-@keyframes tailWag { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(6deg); } }
-
-/* 2. PLAYING (Şarkı Dinlerken Ritmik Dans & Kanat Çırpma) */
-#boncuk-bird-container[data-state="playing"] { animation: danceJump 0.6s infinite ease-in-out alternate; }
-#boncuk-bird-container[data-state="playing"] .bird-wing { animation: fastFlap 0.3s infinite linear alternate; }
-#boncuk-bird-container[data-state="playing"] .bird-tail { animation: tailWag 0.3s infinite linear; }
-
-@keyframes danceJump { 0% { transform: translateY(0) scaleY(1); } 100% { transform: translateY(-10px) scaleY(0.95); } }
-@keyframes fastFlap { 0% { transform: rotate(-25deg); } 100% { transform: rotate(15deg); } }
-
-/* 3. TYPING (Yazı Yazarken Gaga & Kafa Tıkırtısı) */
-#boncuk-bird-container[data-state="typing"] .bird-head { animation: headPeck 0.2s infinite ease-in-out; }
-#boncuk-bird-container[data-state="typing"] .bird-beak { animation: beakChirp 0.1s infinite linear; }
-
-@keyframes headPeck { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(8deg) translateY(1px); } }
-@keyframes beakChirp { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(2px) translateX(1px); } }
-
-/* 4. COPY (Kopyalayınca Büyük Sevinç Zıplaması) */
-#boncuk-bird-container[data-state="copy"] { animation: celebrationLeap 0.8s ease-out forwards; }
-#boncuk-bird-container[data-state="copy"] .bird-wing { animation: fastFlap 0.15s infinite linear; }
-
-@keyframes celebrationLeap {
-    0% { transform: translateY(0) scale(1); }
-    30% { transform: translateY(-25px) scale(1.2) rotate(-10deg); }
-    70% { transform: translateY(-25px) scale(1.2) rotate(10deg); }
-    100% { transform: translateY(0) scale(1) rotate(0deg); }
-}
-
-/* 5. CLEAR (Silince Hafif Şaşırma/Geri Çekilme) */
-#boncuk-bird-container[data-state="clear"] { animation: shockShake 0.6s ease-in-out; }
-@keyframes shockShake {
-    0%, 100% { transform: translateX(0) scale(1); }
-    20%, 60% { transform: translateX(-6px) scale(0.9); }
-    40%, 80% { transform: translateX(4px) scale(0.9); }
-}
-
-/* 6. SLEEPING (Mola Esnasında Uyku Modu) */
-#boncuk-bird-container[data-state="sleeping"] .bird-eye { display: none; }
-#boncuk-bird-container[data-state="sleeping"] .bird-eye-closed { display: block; }
-#boncuk-bird-container[data-state="sleeping"] .bird-body { animation: sleepBreath 3s infinite ease-in-out; }
-#boncuk-bird-container[data-state="sleeping"] .bird-zzz { animation: zzzFly 3s infinite linear; }
-
-@keyframes sleepBreath { 0%, 100% { transform: scale(0.98); opacity: 0.8; } 50% { transform: scale(1.02); opacity: 1; } }
-@keyframes zzzFly { 0% { opacity: 0; transform: translate(0, 0) scale(0.6); } 30% { opacity: 1; } 100% { opacity: 0; transform: translate(15px, -20px) scale(1.2); } }
-
-
-/* 🪵 ÖTÜKEN ŞAMAN KONSOLU (KADİM DOĞAL AHŞAP & BRONZ ESKİTME) */
 .shaman-console-box {
     width: 100%; max-width: 850px; pointer-events: auto;
-    background: linear-gradient(135deg, #2b1a0f 0%, #1c1008 100%);
-    border: 3px solid #5c3a21;
-    border-radius: 12px 12px 0 0; padding: 18px 30px;
-    box-shadow: 0 -15px 40px rgba(0,0,0,0.6), inset 0 2px 4px rgba(255,255,255,0.05);
+    background: linear-gradient(180deg, #160401 0%, #050100 100%);
+    border-top: 3px solid #ff4500;
+    border-left: 1px solid rgba(255,69,0,0.2); border-right: 1px solid rgba(255,69,0,0.2);
+    border-radius: 16px 16px 0 0; padding: 22px 30px;
+    box-shadow: 0 -10px 35px rgba(255, 69, 0, 0.25), inset 0 1px 15px rgba(255, 140, 0, 0.1);
     display: flex; flex-direction: column; gap: 12px;
-    position: relative; transition: transform 0.3s cubic-bezier(0.1, 0.8, 0.3, 1);
-}
-.shaman-console-box::before {
-    content: "𐱅𐰭𐰼𐰃 ⸱ 𐰶𐰆𐱃 ⸱ 𐰇𐱅𐰇𐰚𐰤"; /* Göktürkçe Rün Süslemesi */
-    position: absolute; top: 4px; left: 50%; transform: translateX(-50%);
-    font-size: 9px; color: #5c3a21; letter-spacing: 4px; font-weight: bold; opacity: 0.7;
+    position: relative; transition: transform 0.4s cubic-bezier(0.1, 0.8, 0.3, 1);
+    animation: firePulseAmbient 3s infinite alternate;
 }
 .shaman-console-box.minimized { transform: translateY(100%); }
 
-.console-toggle-tab {
-    position: absolute; right: 20px; top: -22px; 
-    background: #2b1a0f; border: 2px solid #5c3a21; border-bottom: none;
-    padding: 3px 12px; font-size: 9px; font-weight: 700; letter-spacing: 1px;
-    border-radius: 4px 4px 0 0; color: #d9cbb5;
+/* Alev Püskürme ve Nabız Animasyonu */
+@keyframes firePulseAmbient {
+    0% { box-shadow: 0 -8px 25px rgba(255, 69, 0, 0.2), inset 0 1px 10px rgba(255, 69, 0, 0.05); border-top-color: #ff4500; }
+    50% { box-shadow: 0 -15px 40px rgba(255, 100, 0, 0.35), inset 0 1px 20px rgba(255, 100, 0, 0.15); border-top-color: #ff7c00; }
+    100% { box-shadow: 0 -10px 30px rgba(255, 50, 0, 0.25), inset 0 1px 12px rgba(255, 50, 0, 0.08); border-top-color: #e63900; }
 }
 
-.console-main-row { display: flex; align-items: center; justify-content: space-between; gap: 20px; width: 100%; margin-top: 4px; }
+/* Şarkı çalarken tetiklenen aşırı çılgın alev efekti class'ı */
+.shaman-console-box.blazing {
+    animation: fireBlazeActive 0.4s infinite alternate !important;
+}
+@keyframes fireBlazeActive {
+    0% { border-top-color: #ff4500; box-shadow: 0 -20px 45px rgba(255, 69, 0, 0.5); }
+    100% { border-top-color: #ffea00; box-shadow: 0 -25px 60px rgba(255, 234, 0, 0.4); }
+}
+
+.console-toggle-tab {
+    position: absolute; right: 20px; top: -24px; 
+    background: #160401; border: 1px solid #ff4500; border-bottom: none;
+    padding: 4px 14px; font-size: 9px; font-weight: 700; letter-spacing: 1px;
+    border-radius: 6px 6px 0 0; color: #ff8c00; text-shadow: 0 0 5px rgba(255,140,0,0.5);
+}
+.console-main-row { display: flex; align-items: center; justify-content: space-between; gap: 20px; width: 100%; }
 
 .track-identity-block { display: flex; align-items: center; gap: 12px; width: 30%; }
-.shaman-rune-badge {
-    width: 32px; height: 32px; border-radius: 4px; background: #1c1008; border: 1px solid #5c3a21;
-    display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--accent); font-weight: bold;
+.shaman-fire-badge {
+    width: 34px; height: 34px; border-radius: 6px; background: #260702; border: 1px solid #ff4500;
+    display: flex; align-items: center; justify-content: center; font-size: 14px; color: #ff8c00;
+    animation: badgeBurn 1.5s infinite ease-in-out alternate;
 }
-.identity-meta { display: flex; flex-direction: column; overflow: hidden; }
-.track-title-node { color: #f1faee; font-size: 13.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.track-index-node { font-size: 10px; font-family: monospace; color: #9cbda7; opacity: 0.6; margin-top: 1px; }
+@keyframes badgeBurn { 0% { transform: scale(1); filter: brightness(1); } 100% { transform: scale(1.05); filter: brightness(1.4); box-shadow: 0 0 8px #ff4500; } }
 
-.buttons-deck { display: flex; align-items: center; gap: 4px; }
+.identity-meta { display: flex; flex-direction: column; overflow: hidden; }
+.track-title-node { color: #ffffff; font-size: 13.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.track-index-node { font-size: 10px; font-family: monospace; color: #ff8c00; opacity: 0.7; margin-top: 1px; }
+
+.buttons-deck { display: flex; align-items: center; gap: 5px; }
 .shaman-btn { 
-    background: #1c1008; border: 1px solid #5c3a21; color: #d9cbb5; 
-    padding: 6px 12px; font-size: 10px; font-weight: bold; border-radius: 4px; transition: all 0.1s;
+    background: #260702; border: 1px solid #ff4500; color: #ffbc80; 
+    padding: 7px 14px; font-size: 10px; font-weight: bold; border-radius: 6px; transition: all 0.15s;
 }
-.shaman-btn:hover { background: #3d2516; color: #ffffff; border-color: var(--accent); }
-.shaman-btn.active-status { color: var(--accent); border-color: var(--accent); box-shadow: 0 0 8px var(--accent-glow); }
+.shaman-btn:hover { background: #ff4500; color: #000; box-shadow: 0 0 10px #ff4500; }
+.shaman-btn.active-status { color: #fff; background: #e63900; border-color: #ffea00; box-shadow: 0 0 10px rgba(255,69,0,0.5); }
 
 .rail-deck { display: flex; align-items: center; gap: 12px; width: 45%; }
-.time-counter { font-family: monospace; font-size: 11px; color: #d9cbb5; opacity: 0.7; min-width: 36px; }
-.timeline-wrapper { flex-grow: 1; height: 4px; background: #1c1008; position: relative; padding: 4px 0; border-radius: 2px; }
-.timeline-rail { height: 100%; width: 100%; background: #3d2516; position: relative; border-radius: 2px; }
-.timeline-fill { height: 100%; width: 0%; background: var(--accent); position: absolute; top:0; left:0; border-radius: 2px; box-shadow: 0 0 6px var(--accent); }
+.time-counter { font-family: monospace; font-size: 11px; color: #ffbc80; opacity: 0.8; min-width: 36px; }
+.timeline-wrapper { flex-grow: 1; height: 5px; background: #000; position: relative; padding: 4px 0; border-radius: 3px; }
+.timeline-rail { height: 100%; width: 100%; background: #260702; position: relative; border-radius: 3px; }
+.timeline-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #ff4500, #ffea00); position: absolute; top:0; left:0; border-radius: 3px; box-shadow: 0 0 8px #ffea00; }
+
+
+/* ==========================================================================
+   🐦 20+ ÖZELLİKLİ YAŞAYAN MAVİ KUŞ "BONCUK" MOTORU
+   ========================================================================== */
+#boncuk-wrapper {
+    width: 85px; height: 85px; position: relative; margin-bottom: -6px; z-index: 10000; pointer-events: auto;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-origin: bottom center;
+}
+
+/* Temel SVG Yapısı */
+.boncuk-svg { width: 100%; height: 100%; overflow: visible; }
+.bird-body { fill: #1e40af; transition: fill 0.3s; }
+.bird-head { fill: #3b82f6; transition: fill 0.3s; transform-origin: 52px 48px; }
+.bird-wing { fill: #1d4ed8; transform-origin: 38px 52px; transition: all 0.2s; }
+.bird-beak { fill: #f59e0b; transform-origin: 66px 45px; transition: all 0.1s; }
+.bird-tail { fill: #1d4ed8; transform-origin: 25px 62px; }
+
+/* Göz Değişim Katmanları */
+.bird-eye-normal { fill: #000000; display: block; }
+.bird-eye-blink { fill: #000000; display: none; }
+.bird-eye-closed { stroke: #000000; stroke-width: 2.5; stroke-linecap: round; fill: none; display: none; }
+.bird-eye-wink { stroke: #000000; stroke-width: 2.5; stroke-linecap: round; fill: none; display: none; }
+
+/* Zzz ve Efekt Balonları */
+.bird-effect-text { 
+    position: absolute; top: -12px; right: -5px; font-family: monospace; font-size: 10px; 
+    font-weight: 800; color: #34d399; opacity: 0; pointer-events: none; 
+}
+
+/* --------------------------------------------------------------------------
+   KUŞUN 20 AYRI DURUM, REAKSİYON VE HAREKET ANİMASYONLARI (CSS & JS MOTORU)
+   -------------------------------------------------------------------------- */
+
+/* Özellik 1: Organik Nefes Alma (Sürekli Aktif Üst Gövde Dalgalanması) */
+@keyframes organicBreath { 0%, 100% { transform: translateY(0) scaleY(1); } 50% { transform: translateY(-2px) scaleY(1.02); } }
+#boncuk-wrapper { animation: organicBreath 3s infinite ease-in-out; }
+
+/* Özellik 2: Sürekli Kuyruk Seyirmesi (Canlı Organik Yapı) */
+@keyframes organicTail { 0%, 100% { transform: rotate(0deg); } 10%, 30% { transform: rotate(5deg); } 20% { transform: rotate(-3deg); } }
+.bird-tail { animation: organicTail 4s infinite ease-in-out; }
+
+/* Özellik 3: Rastgele Göz Kırpma Tetikleyicisi */
+#boncuk-wrapper.blinking .bird-eye-normal { display: none !important; }
+#boncuk-wrapper.blinking .bird-eye-closed { display: block !important; }
+
+/* Özellik 4: Rastgele Kafa Eğme (Canı Sıkılınca Sağa Sola Bakma) */
+#boncuk-wrapper.tilt-left .bird-head { transform: rotate(-12deg); }
+#boncuk-wrapper.tilt-right .bird-head { transform: rotate(12deg); }
+
+/* Özellik 5-6: Müzik Çalarken Coşkulu Ritmik Zıplama & Kanat Çırpma */
+#boncuk-wrapper[data-state="playing"] { animation: musicDanceJump 0.4s infinite ease-in-out alternate !important; }
+#boncuk-wrapper[data-state="playing"] .bird-wing { animation: musicWingFlap 0.2s infinite linear alternate; }
+@keyframes musicDanceJump { 0% { transform: translateY(0) scaleY(1) rotate(-2deg); } 100% { transform: translateY(-14px) scaleY(0.9) rotate(2deg); } }
+@keyframes musicWingFlap { 0% { transform: rotate(-30deg); } 100% { transform: rotate(25deg); } }
+
+/* Özellik 7: Müzik Durunca Gerinme/İç Çekme Reaksiyonu */
+#boncuk-wrapper[data-state="paused-sigh"] { animation: pauseSigh 0.6s ease-in-out; }
+@keyframes pauseSigh { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15) translateY(-4px); } }
+
+/* Özellik 8-9: Yazı Yazarken Seri Kafa Tıkırdatma & Gaga Açma */
+#boncuk-wrapper[data-state="typing"] .bird-head { animation: typingHeadPeck 0.15s infinite ease-in-out; }
+#boncuk-wrapper[data-state="typing"] .bird-beak { animation: typingBeakChirp 0.08s infinite linear; }
+@keyframes typingHeadPeck { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(10deg) translateY(1px); } }
+@keyframes typingBeakChirp { 0%, 100% { transform: scaleX(1); } 50% { transform: scaleX(1.3) translateY(1px); } }
+
+/* Özellik 10: Kopyalama Yapınca Havaya Uçarak Çılgın Sevinç Gösterisi */
+#boncuk-wrapper[data-state="copy-joy"] { animation: copyJoyLeap 0.9s cubic-bezier(0.25, 1, 0.5, 1) forwards !important; }
+#boncuk-wrapper[data-state="copy-joy"] .bird-wing { animation: musicWingFlap 0.1s infinite linear; }
+@keyframes copyJoyLeap {
+    0% { transform: translateY(0) scale(1); }
+    25% { transform: translateY(-35px) scale(1.25) rotate(-15deg); }
+    60% { transform: translateY(-35px) scale(1.25) rotate(15deg); }
+    100% { transform: translateY(0) scale(1) rotate(0deg); }
+}
+
+/* Özellik 11: Metni Tamamen Silince Korkma/Titreme Reaksiyonu */
+#boncuk-wrapper[data-state="clear-shock"] { animation: clearShockTremor 0.6s ease-in-out !important; }
+@keyframes clearShockTremor {
+    0%, 100% { transform: translateX(0) scale(1); }
+    15%, 55%, 85% { transform: translateX(-8px) scale(0.85); filter: saturate(1.5); }
+    35%, 75% { transform: translateX(8px) scale(0.85); }
+}
+
+/* Özellik 12-13-14: Sessiz Mola Esnasında Uyku Modu (Kapalı Göz, Derin Nefes, Uçan Zzz) */
+#boncuk-wrapper[data-state="sleeping"] .bird-eye-normal { display: none !important; }
+#boncuk-wrapper[data-state="sleeping"] .bird-eye-closed { display: block !important; }
+#boncuk-wrapper[data-state="sleeping"] { animation: sleepingBreath 2.5s infinite ease-in-out !important; opacity: 0.85; }
+#boncuk-wrapper[data-state="sleeping"] .bird-effect-text { animation: zzzFlyEffect 2.5s infinite linear; }
+@keyframes sleepingBreath { 0%, 100% { transform: scale(0.95); } 50% { transform: scale(1.03); } }
+@keyframes zzzFlyEffect { 0% { opacity: 0; transform: translate(0, 0) scale(0.6); } 30% { opacity: 1; } 100% { opacity: 0; transform: translate(18px, -25px) scale(1.3); } }
+
+/* Özellik 15-16-17: Fareyle Üzerine Gelince Büyüme, "boncuk" İsmi Çıkması ve Göz Kırpması */
+#boncuk-wrapper:hover { transform: scale(1.18) rotate(3deg) !important; }
+#boncuk-wrapper:hover .bird-eye-normal { display: none; }
+#boncuk-wrapper:hover .bird-eye-wink { display: block; }
+
+/* Özellik 18: Tema Değişince Kendi Etrafında Takla Atma (360 Flip) */
+#boncuk-wrapper.theme-flip { animation: spinFlip360 0.6s cubic-bezier(0.4, 0, 0.2, 1) !important; }
+@keyframes spinFlip360 { 0% { transform: rotate(0deg) scale(1); } 50% { transform: rotate(180deg) scale(1.3); } 100% { transform: rotate(360deg) scale(1); } }
+
+/* Özellik 19: Sekme Değiştirince Süzülerek Kayma Reaksiyonu */
+#boncuk-wrapper.tab-glide { animation: horizontalGlide 0.4s ease-in-out; }
+@keyframes horizontalGlide { 0%, 100% { transform: translateX(0); } 30% { transform: translateX(-15px) scaleX(0.9); } 70% { transform: translateX(15px) scaleX(0.9); } }
+
+/* Özellik 20: 100 Karakter Barajı Geçilince Havai Fişek Tepkisi (Mutluluk Cıvıltısı) */
+#boncuk-wrapper.milestone-cheer { animation: cheerBounce 0.5s ease infinite alternate; }
+@keyframes cheerBounce { 0% { transform: translateY(0) scale(1.1); } 100% { transform: translateY(-8px) scale(1.1); } }
 </style>
 </head>
 
 <body>
 
-<!-- TOP CONTROL INTERFACE -->
-<div class="top-toolbar">
+<!-- TOP CONTROL INTERFACE (GLASS) -->
+<div class="top-toolbar glass-panel">
     <div class="theme-grid">
-        <span class="theme-label">KAM SEÇİMİ (10 FARKLI RENK):</span>
-        <div class="theme-dot active" style="background: #3b82f6;" onclick="mutateRitualTheme('cyan', this)" title="Tengri Cyan"></div>
-        <div class="theme-dot" style="background: #10b981;" onclick="mutateRitualTheme('otuken', this)" title="Ötüken Emerald"></div>
-        <div class="theme-dot" style="background: #ef4444;" onclick="mutateRitualTheme('altai', this)" title="Altai Flame"></div>
-        <div class="theme-dot" style="background: #d946ef;" onclick="mutateRitualTheme('asena', this)" title="Asena Purple"></div>
-        <div class="theme-dot" style="background: #f59e0b;" onclick="mutateRitualTheme('gold', this)" title="Steppe Gold"></div>
-        <div class="theme-dot" style="background: #94a3b8;" onclick="mutateRitualTheme('ice', this)" title="Siberian Ice (Aydınlık)"></div>
-        <div class="theme-dot" style="background: #f43f5e;" onclick="mutateRitualTheme('pink', this)" title="Shamanic Pink"></div>
-        <div class="theme-dot" style="background: #06b6d4;" onclick="mutateRitualTheme('turquoise', this)" title="Kutlu Turquoise"></div>
-        <div class="theme-dot" style="background: #ea580c;" onclick="mutateRitualTheme('orange', this)" title="Nomad Orange"></div>
-        <div class="theme-dot" style="background: #39ff14;" onclick="mutateRitualTheme('void', this)" title="Obsidian Void"></div>
+        <span class="theme-label">SİBER AYİN AKIŞI (10 CAM TEMA):</span>
+        <div class="theme-dot active" style="background: #06b6d4;" onclick="mutateRitualTheme('cyan', this)" title="Neon Cyan"></div>
+        <div class="theme-dot" style="background: #a855f7;" onclick="mutateRitualTheme('amethyst', this)" title="Cosmic Amethyst"></div>
+        <div class="theme-dot" style="background: #22c55e;" onclick="mutateRitualTheme('lime', this)" title="Acid Lime"></div>
+        <div class="theme-dot" style="background: #f97316;" onclick="mutateRitualTheme('solar', this)" title="Solar Flare"></div>
+        <div class="theme-dot" style="background: #20b8a6;" onclick="mutateRitualTheme('aurora', this)" title="Frozen Aurora"></div>
+        <div class="theme-dot" style="background: #ef4444;" onclick="mutateRitualTheme('crimson', this)" title="Vampiric Crimson"></div>
+        <div class="theme-dot" style="background: #ec4899;" onclick="mutateRitualTheme('synth', this)" title="Retro Synthwave"></div>
+        <div class="theme-dot" style="background: #eab308;" onclick="mutateRitualTheme('luxury', this)" title="Luxury Midnight"></div>
+        <div class="theme-dot" style="background: #6366f1;" onclick="mutateRitualTheme('indigo', this)" title="Deep Indigo"></div>
+        <div class="theme-dot" style="background: #a3e635;" onclick="mutateRitualTheme('toxic', this)" title="Toxic Waste"></div>
     </div>
-    <button onclick="enterRitualBreak()" style="padding: 4px 10px; font-size: 9px;">SESSİZ MOLA</button>
+    <button onclick="enterRitualBreak()">SESSİZ MOLA</button>
 </div>
 
-<!-- ORACLE -->
-<div class="oracle-card">
+<!-- ORACLE CARD (GLASS) -->
+<div class="oracle-card glass-panel">
     <div class="oracle-trigger" onclick="readShamanOracle()">🔮</div>
     <div class="oracle-content">
-        <div class="oracle-tag">SİBER ŞAMAN KEHANETİ</div>
-        <div id="oracle-display-node" class="oracle-txt">Kuşun fısıltısına kulak ver, ruhunu arındır...</div>
+        <div class="oracle-tag">SİBER ŞAMAN V2 KEHANETİ</div>
+        <div id="oracle-display-node" class="oracle-txt">Cam paneller ardındaki alevi hisset, Boncuk seni izliyor...</div>
     </div>
 </div>
 
@@ -304,8 +362,8 @@ h3 { color: var(--text-heading); font-size: 11px; margin: 0 0 16px 0; letter-spa
 
 <div class="container">
     <!-- TAB 1 -->
-    <div class="tab-content active">
-        <h3>Giriş Kanalı</h3>
+    <div class="tab-content active glass-panel">
+        <h3>Giriş Kanalı - Kozmik Arındırma</h3>
         <div id="input-pane-1" class="input-area" contenteditable="true" oninput="registerWritingTrack(1)"></div>
         <div class="meta-pane">
             <span id="chars-1">Karakter: <strong>0</strong></span>
@@ -320,8 +378,8 @@ h3 { color: var(--text-heading); font-size: 11px; margin: 0 0 16px 0; letter-spa
     </div>
 
     <!-- TAB 2 -->
-    <div class="tab-content">
-        <h3>Giriş Kanalı</h3>
+    <div class="tab-content glass-panel">
+        <h3>Giriş Kanalı - Karakter Restorasyonu</h3>
         <div id="input-pane-2" class="input-area" contenteditable="true" oninput="registerWritingTrack(2)"></div>
         <div class="meta-pane">
             <span id="chars-2">Karakter: <strong>0</strong></span>
@@ -339,18 +397,18 @@ h3 { color: var(--text-heading); font-size: 11px; margin: 0 0 16px 0; letter-spa
 <!-- RITUAL BREAK SCREEN -->
 <div id="break-screen-overlay" class="coffee-overlay">
     <div class="coffee-title">Ruhani Dinlenme</div>
-    <div id="break-advice-node" class="coffee-advice">Gözlerini kapat. Boncuk da seninle beraber uykuya dalıyor...</div>
+    <div id="break-advice-node" class="coffee-advice">Boncuk gözlerini kapattı, seninle derin bir uykuya dalıyor...</div>
     <div id="break-countdown-node" class="coffee-timer">00:45</div>
-    <button onclick="exitRitualBreak()" style="padding: 6px 16px; font-size: 10px; opacity: 0.4;">MOLAYI BİTİR</button>
+    <button onclick="exitRitualBreak()" style="opacity: 0.5;">MOLAYI BİTİR</button>
 </div>
 
 
-<!-- 🎚️ SHAMANIC AUDIO STATION & ALIVE BIRD SYSTEM -->
+<!-- 🔥 SHAMANIC AUDIO STATION & LIVE BIRD -->
 <div class="shamanic-audio-station">
     
     <!-- 🐦 YAŞAYAN MAVİ KUŞ: BONCUK -->
-    <div id="boncuk-bird-container" data-state="idle" title="boncuk">
-        <div class="bird-zzz">zZz</div>
+    <div id="boncuk-wrapper" data-state="idle" title="boncuk">
+        <div id="bird-fx-text" class="bird-effect-text">zZz</div>
         <svg class="boncuk-svg" viewBox="0 0 100 100">
             <!-- Tail -->
             <path class="bird-tail" d="M15,65 L28,58 L22,70 L10,75 Z" />
@@ -358,10 +416,12 @@ h3 { color: var(--text-heading); font-size: 11px; margin: 0 0 16px 0; letter-spa
             <path class="bird-body" d="M30,65 C30,50 45,40 55,50 C65,55 60,70 48,72 C36,74 30,70 30,65 Z" />
             <!-- Head -->
             <circle class="bird-head" cx="56" cy="44" r="13" />
-            <!-- Eye (Open) -->
-            <circle class="bird-eye" cx="60" cy="41" r="2" />
-            <!-- Eye (Closed) -->
-            <path class="bird-eye-closed" d="M58,42 Q60,44 62,42" />
+            
+            <!-- Eyes (Farklı Durum Katmanları) -->
+            <circle class="bird-eye-normal" cx="60" cy="41" r="2.5" />
+            <path class="bird-eye-closed" d="M57,42 Q60,44 63,42" />
+            <path class="bird-eye-wink" d="M57,41 Q60,38 63,41" />
+            
             <!-- Beak -->
             <polygon class="bird-beak" points="68,41 77,45 67,48" />
             <!-- Wing -->
@@ -369,16 +429,16 @@ h3 { color: var(--text-heading); font-size: 11px; margin: 0 0 16px 0; letter-spa
         </svg>
     </div>
 
-    <!-- 🪵 ÖTÜKEN KONSOLU -->
+    <!-- 🔥 ATEŞLİ KONSOL -->
     <div id="shaman-console-element" class="shaman-console-box">
         <button id="console-toggle-trigger" class="console-toggle-tab" onclick="toggleConsoleHeight()">PANELİ GİZLE</button>
         
         <div class="console-main-row">
             <div class="track-identity-block">
-                <div class="shaman-rune-badge">𐰎</div>
+                <div class="shaman-fire-badge">🔥</div>
                 <div class="identity-meta">
-                    <div id="deck-track-title" class="track-title-node">Mistik Ezgi Seçilmedi</div>
-                    <div id="deck-track-meta" class="track-index-node">EZGİ: 00 / 00</div>
+                    <div id="deck-track-title" class="track-title-node">Ateşli Ezgi Seçilmedi</div>
+                    <div id="deck-track-meta" class="track-index-node">KOR: 00 / 00</div>
                 </div>
             </div>
             
@@ -406,42 +466,55 @@ h3 { color: var(--text-heading); font-size: 11px; margin: 0 0 16px 0; letter-spa
 
 <script>
 const shamanicSayings = [
-    "Zihnini sadeleştir. Gereksiz tüm yükleri Boncuk ile beraber gökyüzüne fırlat.",
-    "Doğa acele etmez, yine de her şey mükemmel bir uyumla tamamlanır.",
-    "Kelimelerin birer mühürdür. Kadim rünler gibi dikkatle kazı sayfaya.",
-    "Kuşun kanat çırpışı evrenin ritmidir. Sakinleş, odaklan ve sadece üret.",
-    "Derin bir soluk al. Şu an ürettiğin alan senin kutsal sığınağındır."
+    "Alevlerin dansına bak, Boncuk senin içindeki karmaşayı yakıp kül ediyor.",
+    "Buzlu camın ardındaki ışığı gör. Kelimelerin siber evrende parıldıyor.",
+    "Acele etme. Ritmi yakala, arkana yaslan ve Boncuk ile süzül.",
+    "Mistik ateş ruhunu beslesin, sadeleşmiş bir zihin en güçlü silahtır."
 ];
 
 const shamanicAdvices = [
-    "Gözlerini ekrandan ayır. Boncuk şu an senin yerine nöbette...",
-    "Derin ve yavaş bir nefes al. Omurganı dikleştir ve rahatla...",
-    "Ellerini klavyeden çek, parmak uçlarındaki yorgunluğu toprağa bırak...",
-    "Zihnindeki düşünce bulutlarının dağılmasına izin ver. Sadece dinginliği hisset..."
+    "Ekranın alevinden uzaklaş. Boncuk közleri nöbetleşe bekliyor...",
+    "Gözlerini kapat, derin bir nefes al ve lavların dingin sesini hayal et..."
 ];
 
 /* ==========================================================================
-   🐦 BONCUK STATE MOTORU (LIVING BIRD REACT ENGINE)
+   🐦 CANLI KUŞ BONCUK ZEKASI & BEYİN MOTORU (20 ÖZELLİK YÖNETİMİ)
    ========================================================================== */
 let writingTimeout;
+const birdWrapper = document.getElementById("boncuk-wrapper");
+const birdFxText = document.getElementById("bird-fx-text");
+
+// Sürekli Çalışan Bağımsız Organik Döngüler (Göz kırpma, kafa sallama, can sıkıntısı)
+setInterval(() => {
+    if (birdWrapper.getAttribute("data-state") === "sleeping") return;
+    
+    // Göz Kırpma Döngüsü (Özellik 3)
+    birdWrapper.classList.add("blinking");
+    setTimeout(() => birdWrapper.classList.remove("blinking"), 180);
+    
+    // Rastgele Kafa Eğme Döngüsü (Özellik 4)
+    const randHead = Math.random();
+    if (randHead < 0.25) { birdWrapper.classList.add("tilt-left"); birdWrapper.classList.remove("tilt-right"); }
+    else if (randHead < 0.5) { birdWrapper.classList.add("tilt-right"); birdWrapper.classList.remove("tilt-left"); }
+    else { birdWrapper.classList.remove("tilt-left", "tilt-right"); }
+}, 3500);
 
 function setBirdState(state) {
-    const bird = document.getElementById("boncuk-bird-container");
-    if (!bird) return;
-    
-    // Eğer mola ekranı aktifse ve dışarıdan başka durum tetiklenmeye çalışıyorsa engelle (uyku bölünmez)
-    if (document.getElementById("break-screen-overlay").classList.contains("active") && state !== 'sleeping') {
-        return;
+    if (document.getElementById("break-screen-overlay").classList.contains("active") && state !== 'sleeping') return;
+
+    birdWrapper.setAttribute("data-state", state);
+
+    if (state === 'sleeping') {
+        birdFxText.innerText = "zZz";
+        birdFxText.style.color = "#a3e635";
     }
 
-    bird.setAttribute("data-state", state);
-
-    // Kopyalama ve silme gibi anlık tepkiler belirli bir süre sonra eski ritmine dönmeli
-    if (state === 'copy' || state === 'clear') {
+    // Geçici reaksiyonlar bitince eski ritme dönüş mimarisi
+    if (['copy-joy', 'clear-shock', 'paused-sigh'].includes(state)) {
         setTimeout(() => {
             if (isAudioPlaying) { setBirdState('playing'); }
             else { setBirdState('idle'); }
-        }, 1200);
+        }, 1000);
     }
 }
 
@@ -449,111 +522,39 @@ function registerWritingTrack(tabIndex) {
     measureMetrics(tabIndex);
     triggerOrganicWoodTick(); 
     
-    setBirdState('typing');
+    setBirdState('typing'); // Yazı yazma reaksiyonu (Özellik 8-9)
     
+    // 100 Karakter Barajı Mutluluk Tepkisi (Özellik 20)
+    const txtLen = document.getElementById(`input-pane-${tabIndex}`).innerText.length;
+    if (txtLen > 0 && txtLen % 100 === 0) {
+        birdWrapper.classList.add("milestone-cheer");
+        birdFxText.innerText = "CHIRP! ♪";
+        birdFxText.style.opacity = 1;
+        setTimeout(() => {
+            birdWrapper.classList.remove("milestone-cheer");
+            birdFxText.style.opacity = 0;
+        }, 1500);
+    }
+
     clearTimeout(writingTimeout);
     writingTimeout = setTimeout(() => {
         if (isAudioPlaying) { setBirdState('playing'); } 
         else { setBirdState('idle'); }
-    }, 800);
-}
-
-/* 🪵 DOKUNSAL KLAVYE SES MOTORU */
-let audioContextInstance = null;
-function triggerOrganicWoodTick() {
-    try {
-        if (!audioContextInstance) audioContextInstance = new (window.AudioContext || window.webkitAudioContext)();
-        if (audioContextInstance.state === 'suspended') audioContextInstance.resume();
-        
-        let osc = audioContextInstance.createOscillator();
-        let gain = audioContextInstance.createGain();
-        
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(110, audioContextInstance.currentTime);
-        
-        gain.gain.setValueAtTime(0.015, audioContextInstance.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.00001, audioContextInstance.currentTime + 0.02);
-        
-        osc.connect(gain);
-        gain.connect(audioContextInstance.destination);
-        
-        osc.start();
-        osc.stop(audioContextInstance.currentTime + 0.02);
-    } catch(e){}
-}
-
-/* ☕ RİTÜEL MOLASI ENGINE */
-let breakTimerLoop;
-let breakAdviceLoop;
-
-function enterRitualBreak() {
-    const overlay = document.getElementById("break-screen-overlay");
-    const timerNode = document.getElementById("break-countdown-node");
-    const adviceNode = document.getElementById("break-advice-node");
-    
-    overlay.classList.add("active");
-    setBirdState('sleeping');
-    let secondsLeft = 45;
-    
-    let adviceIdx = 0;
-    breakAdviceLoop = setInterval(() => {
-        adviceIdx = (adviceIdx + 1) % shamanicAdvices.length;
-        adviceNode.style.opacity = 0;
-        setTimeout(() => {
-            adviceNode.innerText = shamanicAdvices[adviceIdx];
-            adviceNode.style.opacity = 1;
-        }, 350);
-    }, 7000);
-
-    breakTimerLoop = setInterval(() => {
-        secondsLeft--;
-        let m = Math.floor(secondsLeft / 60);
-        let s = secondsLeft % 60;
-        timerNode.innerText = `${m < 10 ? '0':''}${m}:${s < 10 ? '0':''}${s}`;
-        
-        if (secondsLeft <= 0) { exitRitualBreak(); }
-    }, 1000);
-}
-
-function exitRitualBreak() {
-    clearInterval(breakTimerLoop);
-    clearInterval(breakAdviceLoop);
-    document.getElementById("break-screen-overlay").classList.remove("active");
-    if (isAudioPlaying) { setBirdState('playing'); } else { setBirdState('idle'); }
+    }, 700);
 }
 
 /* ==========================================================================
-   METİN İŞLEME VE ANA MOTORLAR
+   SİTEM TETİKLEYİCİLERİ VE ETKİLEŞİM KATMANLARI
    ========================================================================== */
-function readShamanOracle() {
-    const node = document.getElementById("oracle-display-node");
-    node.style.opacity = 0.2;
-    setTimeout(() => {
-        const rand = Math.floor(Math.random() * shamanicSayings.length);
-        node.innerText = shamanicSayings[rand];
-        node.style.opacity = 1;
-    }, 200);
-}
-
 function mutateRitualTheme(name, dotEl) {
     if(name === 'cyan') { document.documentElement.removeAttribute('data-theme'); }
     else { document.documentElement.setAttribute('data-theme', name); }
     document.querySelectorAll('.theme-dot').forEach(d => d.classList.remove('active'));
     dotEl.classList.add('active');
-}
-
-function displayToast() {
-    const toast = document.getElementById("toast-message");
-    toast.classList.add("show");
-    setTimeout(() => { toast.classList.remove("show"); }, 2000);
-}
-
-function measureMetrics(index) {
-    const text = document.getElementById(`input-pane-${index}`).innerText;
-    const chars = text.length;
-    const words = text.trim() === "" ? 0 : text.trim().split(/\s+/).length;
-    document.getElementById(`chars-${index}`).innerHTML = `Karakter: <strong>${chars}</strong>`;
-    document.getElementById(`words-${index}`).innerHTML = `Kelime: <strong>${words}</strong>`;
+    
+    // Tema değişimine kuşun takla atarak tepki vermesi (Özellik 18)
+    birdWrapper.classList.add("theme-flip");
+    setTimeout(() => birdWrapper.classList.remove("theme-flip"), 600);
 }
 
 function switchPanel(idx) {
@@ -561,161 +562,164 @@ function switchPanel(idx) {
     document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
     document.querySelectorAll(".tab-content")[idx].classList.add("active");
     document.querySelectorAll(".tab-btn")[idx].classList.add("active");
+    
+    // Sekme geçişinde kuşun süzülme tepkisi (Özellik 19)
+    birdWrapper.classList.add("tab-glide");
+    setTimeout(() => birdWrapper.classList.remove("tab-glide"), 400);
+}
+
+function readShamanOracle() {
+    const node = document.getElementById("oracle-display-node");
+    node.style.opacity = 0.2;
+    // Kuşun kehanete kafa sallayarak onay vermesi
+    birdWrapper.classList.add("tilt-right");
+    setTimeout(() => {
+        const rand = Math.floor(Math.random() * shamanicSayings.length);
+        node.innerText = shamanicSayings[rand];
+        node.style.opacity = 1;
+        birdWrapper.classList.remove("tilt-right");
+    }, 250);
+}
+
+/* MOLA MOTORU */
+let breakTimerLoop, breakAdviceLoop;
+function enterRitualBreak() {
+    document.getElementById("break-screen-overlay").classList.add("active");
+    setBirdState('sleeping');
+    let secondsLeft = 45;
+    breakTimerLoop = setInterval(() => {
+        secondsLeft--;
+        let m = Math.floor(secondsLeft / 60), s = secondsLeft % 60;
+        document.getElementById("break-countdown-node").innerText = `${m < 10 ? '0':''}${m}:${s < 10 ? '0':''}${s}`;
+        if (secondsLeft <= 0) { exitRitualBreak(); }
+    }, 1000);
+}
+function exitRitualBreak() {
+    clearInterval(breakTimerLoop); clearInterval(breakAdviceLoop);
+    document.getElementById("break-screen-overlay").classList.remove("active");
+    if (isAudioPlaying) { setBirdState('playing'); } else { setBirdState('idle'); }
+}
+
+/* KLAVYE SES MOTORU */
+let audioContextInstance = null;
+function triggerOrganicWoodTick() {
+    try {
+        if (!audioContextInstance) audioContextInstance = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioContextInstance.state === 'suspended') audioContextInstance.resume();
+        let osc = audioContextInstance.createOscillator(), gain = audioContextInstance.createGain();
+        osc.type = 'triangle'; osc.frequency.setValueAtTime(125, audioContextInstance.currentTime);
+        gain.gain.setValueAtTime(0.012, audioContextInstance.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.00001, audioContextInstance.currentTime + 0.02);
+        osc.connect(gain); gain.connect(audioContextInstance.destination);
+        osc.start(); osc.stop(audioContextInstance.currentTime + 0.02);
+    } catch(e){}
+}
+
+/* METİN ENGINE KURALLARI */
+function measureMetrics(index) {
+    const text = document.getElementById(`input-pane-${index}`).innerText;
+    document.getElementById(`chars-${index}`).innerHTML = `Karakter: <strong>${text.length}</strong>`;
+    document.getElementById(`words-${index}`).innerHTML = `Kelime: <strong>${text.trim() === "" ? 0 : text.trim().split(/\s+/).length}</strong>`;
 }
 
 const bannedWords = ["yüksek kalite", "yüksek kaliteli", "hakiki deri", "gerçek deri", "%100 deri", "% 100 deri", "birinci sınıf", "1. kalite", "1. sınıf", "unisex", "1.sınıf", "1.kalite", "1.kalıte", "1. kalıte", "1.SINIF", "1. SINIF", "1.KALİTE", "1. KALİTE", "BİRİNCİ SINIF", "YÜKSEK KALİTE", "YÜKSEK KALITE"];
-function protectMarkup(str){ return str.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
-function highlightBanned(text) { bannedWords.forEach(w => { const regex = new RegExp(protectMarkup(w).replace(/\s+/g,"\\s+"),"gi"); text = text.replace(regex, m => `<span class="bad-word">${m}</span>`); }); return text; }
-function secureBoldTags(html) { if (!html) return ""; return html.replace(/<span[^>]*style="[^"]*font-weight:\s*(bold|700|600);?[^"]*"[^>]*>([\s\S]*?)<\/span>/gi, '<b>$2</b>').replace(/<strong[^>]*>([\s\S]*?)<\/strong>/gi, '<b>$1</b>'); }
-
+function highlightBanned(text) { bannedWords.forEach(w => { const regex = new RegExp(w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&').replace(/\s+/g,"\\s+"),"gi"); text = text.replace(regex, m => `<span class="bad-word">${m}</span>`); }); return text; }
 function cleanInvisibleGarbage(str, forceLower = false) {
     if (!str) return "";
-    let res = str.replace(/[\r\u200B\u200C\u200D\uFEFF]/g, "").replace(/&nbsp;/gi, " ").replace(/nbsp;/gi, " ").replace(/\u00A0/g, " ").replace(/&amp;/gi, "&").replace(/&[a-z0-9#]+;/gi, " ");
+    let res = str.replace(/[\r\u200B\u200C\u200D\uFEFF]/g, "").replace(/&nbsp;/gi, " ").replace(/\u00A0/g, " ");
     res = res.replace(/B\s*\+\s*/gi, "B+").replace(/B\s*-\s*/gi, "B-").replace(/\s{2,}/g, " ");
-    if (forceLower) { res = res.toLocaleLowerCase('tr-TR'); }
-    return res;
+    return forceLower ? res.toLocaleLowerCase('tr-TR') : res;
 }
 
 function runParsingEngine(inputId, forceLower = false) {
     const src = document.getElementById(inputId);
     if (!src || !src.innerHTML.trim()) return "";
-    let cleanHtml = secureBoldTags(src.innerHTML);
     let sandbox = document.createElement("div");
-    sandbox.innerHTML = cleanHtml;
-    sandbox.querySelectorAll('p, div, br, li, tr').forEach(node => { if (node.tagName.toLowerCase() === 'br') { node.before(document.createTextNode('\n')); } else { node.before(document.createTextNode('\n')); node.after(document.createTextNode('\n')); } });
-    let tags = sandbox.getElementsByTagName("*");
-    for (let i = tags.length - 1; i >= 0; i--) { let t = tags[i]; if (t.tagName.toLowerCase() !== 'b') { t.outerHTML = t.innerHTML; } else { t.removeAttribute('style'); t.removeAttribute('class'); t.removeAttribute('id'); } }
-    let lines = sandbox.innerHTML.split('\n');
-    let stack = [];
+    sandbox.innerHTML = src.innerHTML.replace(/<strong[^>]*>([\s\S]*?)<\/strong>/gi, '<b>$1</b>');
+    sandbox.querySelectorAll('p, div, br, li').forEach(n => n.before(document.createTextNode('\n')));
+    let lines = sandbox.innerHTML.split('\n'), stack = [];
     lines.forEach(l => {
-        let cleanL = cleanInvisibleGarbage(l, forceLower);
-        if (cleanL.replace(/<[^>]*>/g, "").replace(/\s+/g, "").trim() !== "") {
-            let fin = cleanL.trim();
-            if (forceLower) { fin = fin.replace(/(^|>|[.!?]\s+)([a-zçğıöşü])/g, (m, p1, p2) => p1 + p2.toLocaleUpperCase('tr-TR')); }
-            stack.push(fin);
+        let cleanL = cleanInvisibleGarbage(l, forceLower).trim();
+        if (cleanL.replace(/<[^>]*>/g, "").trim() !== "") {
+            if (forceLower) { cleanL = cleanL.replace(/(^|>|[.!?]\s+)([a-zçğıöşü])/g, (m, p1, p2) => p1 + p2.toLocaleUpperCase('tr-TR')); }
+            stack.push(cleanL);
         }
     });
     return highlightBanned(stack.join("<br>"));
 }
 
-function processCopyCommand(outId) {
-    const el = document.getElementById(outId);
-    const clone = el.cloneNode(true);
-    clone.querySelectorAll('.bad-word').forEach(b => { b.parentNode.replaceChild(document.createTextNode(b.innerText), b); });
-    let payloadHtml = `<span style="font-size: 14px; font-family: sans-serif; line-height: 1.6;">${clone.innerHTML}</span>`;
-    const blobHtml = new Blob([payloadHtml], { type: 'text/html' });
-    const blobText = new Blob([clone.innerText], { type: 'text/plain' });
-    navigator.clipboard.write([new ClipboardItem({ 'text/html': blobHtml, 'text/plain': blobText })]).then(() => {
-        displayToast();
-        setBirdState('copy'); // Kuş zıplama tepkisi
-    });
-}
-
 function executeSpaceClean(){ document.getElementById("output-pane-1").innerHTML = runParsingEngine("input-pane-1", false); }
 function executeTextFix(){ document.getElementById("output-pane-2").innerHTML = runParsingEngine("input-pane-2", true); }
-function interceptEnter(e) { if (e.key === "Enter") { document.execCommand('insertLineBreak', false, null); e.preventDefault(); } }
-document.getElementById("input-pane-1").addEventListener("keydown", interceptEnter);
-document.getElementById("input-pane-2").addEventListener("keydown", interceptEnter);
-function dispatchCopy(i){ processCopyCommand(`output-pane-${i}`); }
-function flushFields(i){ 
-    document.getElementById(`input-pane-${i}`).innerHTML=""; 
-    document.getElementById(`output-pane-${i}`).innerHTML=""; 
-    measureMetrics(i); 
-    setBirdState('clear'); // Kuş şaşırma tepkisi
-}
-
-window.addEventListener("DOMContentLoaded", () => {
-    buildShamanicAudio();
-});
-
-/* ==========================================================================
-   🎚️ AUDIO ARCHITECTURE (EZGİ SİSTEMİ)
-   ========================================================================== */
-const ritualTracks = [
-    { title: "Şaman Ezgisi 1", url: "./muzikler/1.mp3" }, { title: "Şaman Ezgisi 2", url: "./muzikler/12345.mp3" },
-    { title: "Şaman Ezgisi 3", url: "./muzikler/2.mp3" }, { title: "Şaman Ezgisi 4", url: "./muzikler/3.mp3" },
-    { title: "Şaman Ezgisi 5", url: "./muzikler/4.mp3" }, { title: "Şaman Ezgisi 6", url: "./muzikler/5.mp3" },
-    { title: "Şaman Ezgisi 7", url: "./muzikler/6.mp3" }, { title: "Şaman Ezgisi 8", url: "./muzikler/7.mp3" },
-    { title: "Şaman Ezgisi 9", url: "./muzikler/8.mp3" }, { title: "Şaman Ezgisi 10", url: "./muzikler/9.mp3" },
-    { title: "Şaman Ezgisi 11", url: "./muzikler/10.mp3" }, { title: "Şaman Ezgisi 12", url: "./muzikler/11.mp3" },
-    { title: "Şaman Ezgisi 13", url: "./muzikler/12.mp3" }, { title: "Şaman Ezgisi 14", url: "./muzikler/13.mp3" },
-    { title: "Şaman Ezgisi 15", url: "./muzikler/14.mp3" }, { title: "Şaman Ezgisi 16", url: "./muzikler/15.mp3" },
-    { title: "Şaman Ezgisi 17", url: "./muzikler/16.mp3" }, { title: "Şaman Ezgisi 18", url: "./muzikler/17.mp3" }
-];
-
-let trackIndex = 0;
-let isAudioPlaying = false;
-let shuffleActive = false;
-let repeatActive = false;
-let audioEngine = document.getElementById("core-audio-engine");
-
-function buildShamanicAudio() {
-    stageTrack(trackIndex);
-    audioEngine.addEventListener("ended", onTrackFinished);
-    audioEngine.addEventListener("timeupdate", onTimeTick);
-    audioEngine.addEventListener("loadedmetadata", () => {
-        document.getElementById("deck-time-total").innerText = convertTime(audioEngine.duration);
+function dispatchCopy(i){
+    const clone = document.getElementById(`output-pane-${i}`).cloneNode(true);
+    clone.querySelectorAll('.bad-word').forEach(b => b.parentNode.replaceChild(document.createTextNode(b.innerText), b));
+    navigator.clipboard.write([new ClipboardItem({
+        'text/html': new Blob([`<span style="font-size:14px;font-family:sans-serif;">${clone.innerHTML}</span>`], {type:'text/html'}),
+        'text/plain': new Blob([clone.innerText], {type:'text/plain'})
+    })]).then(() => {
+        const t = document.getElementById("toast-message"); t.classList.add("show"); setTimeout(() => t.classList.remove("show"), 2000);
+        setBirdState('copy-joy'); // Kopyalama sevinç sıçrayışı (Özellik 10)
     });
 }
+function flushFields(i){ 
+    document.getElementById(`input-pane-${i}`).innerHTML=""; document.getElementById(`output-pane-${i}`).innerHTML=""; measureMetrics(i); 
+    setBirdState('clear-shock'); // Silme korku titremesi (Özellik 11)
+}
+document.querySelectorAll(".input-area").forEach(el => el.addEventListener("keydown", e => { if (e.key === "Enter") { document.execCommand('insertLineBreak', false, null); e.preventDefault(); } }));
+
+/* ==========================================================================
+   🔥 MÜZİK MOTORU VE ALEV RİTMİK SENKRONİZASYONU
+   ========================================================================== */
+const ritualTracks = Array.from({length: 18}, (_, i) => ({ title: `Şaman Ezgisi ${i+1}`, url: `./muzikler/${i === 1 ? '12345' : i+1}.mp3` }));
+let trackIndex = 0, isAudioPlaying = false, shuffleActive = false, repeatActive = false;
+const audioEngine = document.getElementById("core-audio-engine");
+const consoleBox = document.getElementById("shaman-console-element");
+
+window.addEventListener("DOMContentLoaded", () => {
+    stageTrack(trackIndex);
+    audioEngine.addEventListener("ended", () => { if (repeatActive) { audioEngine.currentTime = 0; audioEngine.play(); } else { nextTrack(); } });
+    audioEngine.addEventListener("timeupdate", () => {
+        if (audioEngine.duration) {
+            document.getElementById("deck-timeline-fill").style.width = `${(audioEngine.currentTime / audioEngine.duration) * 100}%`;
+            const cM = Math.floor(audioEngine.currentTime / 60), cS = Math.floor(audioEngine.currentTime % 60);
+            document.getElementById("deck-time-current").innerText = `${cM < 10 ? '0':''}${cM}:${cS < 10 ? '0':''}${cS}`;
+        }
+    });
+    audioEngine.addEventListener("loadedmetadata", () => {
+        const tM = Math.floor(audioEngine.duration / 60), tS = Math.floor(audioEngine.duration % 60);
+        document.getElementById("deck-time-total").innerText = `${tM < 10 ? '0':''}${tM}:${tS < 10 ? '0':''}${tS}`;
+    });
+});
+
 function stageTrack(idx) {
     audioEngine.src = ritualTracks[idx].url;
     document.getElementById("deck-track-title").innerText = ritualTracks[idx].title;
-    document.getElementById("deck-track-meta").innerText = `EZGİ: ${idx + 1} / ${ritualTracks.length}`;
+    document.getElementById("deck-track-meta").innerText = `KOR: ${idx + 1} / ${ritualTracks.length}`;
 }
 function togglePlayback() {
-    const playBtn = document.getElementById("deck-play-btn");
+    const btn = document.getElementById("deck-play-btn");
     if (isAudioPlaying) {
-        audioEngine.pause();
-        isAudioPlaying = false;
-        playBtn.innerText = "ÇAL";
-        setBirdState('idle'); // Kuş normal ritmine döner
+        audioEngine.pause(); isAudioPlaying = false; btn.innerText = "ÇAL";
+        consoleBox.classList.remove("blazing"); // Yangın söner
+        setBirdState('paused-sigh'); // İç çekme tepkisi (Özellik 7)
     } else {
-        audioEngine.play().catch(()=>{});
-        isAudioPlaying = true;
-        playBtn.innerText = "DURDUR";
-        setBirdState('playing'); // Kuş dans etmeye başlar
+        audioEngine.play().catch(()=>{}); isAudioPlaying = true; btn.innerText = "DURDUR";
+        consoleBox.classList.add("blazing"); // Yangın harlanır
+        setBirdState('playing'); // Ritmik dans başlar (Özellik 5-6)
     }
 }
 function nextTrack() {
-    if (shuffleActive) { trackIndex = Math.floor(Math.random() * ritualTracks.length); } 
-    else { trackIndex = (trackIndex + 1) % ritualTracks.length; }
-    stageTrack(trackIndex);
-    if (isAudioPlaying) { audioEngine.play().catch(()=>{}); setBirdState('playing'); }
+    trackIndex = shuffleActive ? Math.floor(Math.random() * ritualTracks.length) : (trackIndex + 1) % ritualTracks.length;
+    stageTrack(trackIndex); if (isAudioPlaying) { audioEngine.play(); setBirdState('playing'); }
 }
 function prevTrack() {
     trackIndex = (trackIndex - 1 + ritualTracks.length) % ritualTracks.length;
-    stageTrack(trackIndex);
-    if (isAudioPlaying) { audioEngine.play().catch(()=>{}); setBirdState('playing'); }
+    stageTrack(trackIndex); if (isAudioPlaying) { audioEngine.play(); setBirdState('playing'); }
 }
-function onTrackFinished() { if (repeatActive) { audioEngine.currentTime = 0; audioEngine.play().catch(()=>{}); } else { nextTrack(); } }
 function toggleShuffleMode() { shuffleActive = !shuffleActive; document.getElementById("deck-shuf-btn").classList.toggle("active-status", shuffleActive); }
 function toggleRepeatMode() { repeatActive = !repeatActive; document.getElementById("deck-rep-btn").classList.toggle("active-status", repeatActive); }
-function onTimeTick() {
-    const progressFill = document.getElementById("deck-timeline-fill");
-    const currentLbl = document.getElementById("deck-time-current");
-    if (audioEngine.duration) {
-        const pct = (audioEngine.currentTime / audioEngine.duration) * 100;
-        progressFill.style.width = `${pct}%`;
-        currentLbl.innerText = convertTime(audioEngine.currentTime);
-    }
-}
-function seekPlayback(e) {
-    const wrapper = e.currentTarget;
-    const bounds = wrapper.getBoundingClientRect();
-    const hitX = e.clientX - bounds.left;
-    if (audioEngine.duration) { audioEngine.currentTime = (hitX / bounds.width) * audioEngine.duration; }
-}
-function convertTime(sec) {
-    if (isNaN(sec)) return "00:00";
-    const m = Math.floor(sec / 60); const s = Math.floor(sec % 60);
-    return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
-}
-function toggleConsoleHeight() {
-    const p = document.getElementById("shaman-console-element");
-    const trig = document.getElementById("console-toggle-trigger");
-    p.classList.toggle("minimized");
-    trig.innerText = p.classList.contains("minimized") ? "PANELİ AÇ" : "PANELİ GİZLE";
-}
+function seekPlayback(e) { if (audioEngine.duration) { audioEngine.currentTime = ((e.clientX - e.currentTarget.getBoundingClientRect().left) / e.currentTarget.getBoundingClientRect().width) * audioEngine.duration; } }
+function toggleConsoleHeight() { consoleBox.classList.toggle("minimized"); document.getElementById("console-toggle-trigger").innerText = consoleBox.classList.contains("minimized") ? "PANELİ AÇ" : "PANELİ GİZLE"; }
 </script>
 </body>
 </html>
