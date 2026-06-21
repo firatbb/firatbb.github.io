@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HepsiBurada Premium Panel</title>
+
+<style>
+/* ==========================================================================
+   EPIC PREMIUM COLOR THEMES (MAT, AĞIRBAŞLI VE LÜKS - 5 YENİ TEMA EKLENDİ)
+   ========================================================================== */
+
+:root {
+    --bg-main: #0a0a0c;
+    --bg-container: #111115;
+    --bg-input: #070709;
+    --bg-btn: #181823;
+    --bg-btn-hover: #222232;
+    --bg-tab-active: #222232;
+    --text-main: #9a9ab0;
+    --text-input: #f4f4f6;
+    --text-heading: #ffffff;
+    --text-btn: #a5a5b5;
+    --border-color: #262633;
+    --border-container: #1d1d26;
+    --accent-color: #e2e2e9; 
+    --accent-glow: rgba(255, 255, 255, 0.1);
+}
+
+/* MEVCUT GELİŞTİRİLMİŞ MAT TEMALAR */
+html[data-theme="crimson"] {
+    --bg-main: #0e0909; --bg-container: #181111; --bg-input: #0a0606; --bg-btn: #261a1a; --bg-btn-hover: #362525; --bg-tab-active: #362525; --text-main: #bda6a6; --text-input: #f7f0f0; --text-heading: #ffffff; --text-btn: #f07575; --border-color: #422d2d; --border-container: #302020; --accent-color: #e63946; --accent-glow: rgba(230, 57, 70, 0.3);
+}
+html[data-theme="blue"] {
+    --bg-main: #080c14; --bg-container: #101726; --bg-input: #05080f; --bg-btn: #19233c; --bg-btn-hover: #243254; --bg-tab-active: #243254; --text-main: #a2b4cd; --text-input: #f0f4f8; --text-heading: #ffffff; --text-btn: #64b5f6; --border-color: #2d3e65; --border-container: #202c49; --accent-color: #2196f3; --accent-glow: rgba(33, 150, 243, 0.3);
+}
+html[data-theme="green"] {
+    --bg-main: #060907; --bg-container: #0f1712; --bg-input: #040705; --bg-btn: #19271e; --bg-btn-hover: #243a2c; --bg-tab-active: #243a2c; --text-main: #9fbaaa; --text-input: #f0f5f2; --text-heading: #ffffff; --text-btn: #71c79b; --border-color: #2b4233; --border-container: #1e3025; --accent-color: #4caf50; --accent-glow: rgba(76, 175, 80, 0.3);
+}
+html[data-theme="purple"] {
+    --bg-main: #09070f; --bg-container: #141024; --bg-input: #050409; --bg-btn: #201938; --bg-btn-hover: #2d234f; --bg-tab-active: #2d234f; --text-main: #a69fbd; --text-input: #f3f0f6; --text-heading: #ffffff; --text-btn: #ba68c8; --border-color: #382d5e; --border-container: #282043; --accent-color: #9c27b0; --accent-glow: rgba(156, 39, 176, 0.3);
+}
+html[data-theme="pink"] {
+    --bg-main: #0f080c; --bg-container: #21111b; --bg-input: #0b0508; --bg-btn: #331b29; --bg-btn-hover: #4a273c; --bg-tab-active: #4a273c; --text-main: #caa1ba; --text-input: #fbf1f6; --text-heading: #ffffff; --text-btn: #f06292; --border-color: #542d45; --border-container: #3d2032; --accent-color: #e91e63; --accent-glow: rgba(233, 30, 99, 0.3);
+}
+html[data-theme="yellow"] {
+    --bg-main: #0c0b06; --bg-container: #1c1a10; --bg-input: #080704; --bg-btn: #2d2919; --bg-btn-hover: #423d24; --bg-tab-active: #423d24; --text-main: #c4c1aa; --text-input: #fafaf7; --text-heading: #ffffff; --text-btn: #fff176; --border-color: #4a442a; --border-container: #36321f; --accent-color: #ffeb3b; --accent-glow: rgba(255, 235, 59, 0.2);
+}
+html[data-theme="orange"] {
+    --bg-main: #0f0b08; --bg-container: #211610; --bg-input: #0a0604; --bg-btn: #332219; --bg-btn-hover: #4a3124; --bg-tab-active: #4a3124; --text-main: #caa896; --text-input: #fbf3f0; --text-heading: #ffffff; --text-btn: #ffb74d; --border-color: #543929; --border-container: #3d291e; --accent-color: #ff9800; --accent-glow: rgba(255, 152, 0, 0.3);
+}
+html[data-theme="slate"] {
+    --bg-main: #131517; --bg-container: #202328; --bg-input: #0d0e10; --bg-btn: #2f343c; --bg-btn-hover: #434a56; --bg-tab-active: #434a56; --text-main: #9da3b0; --text-input: #f4f5f7; --text-heading: #ffffff; --text-btn: #81d4fa; --border-color: #4a5260; --border-container: #353b45; --accent-color: #03a9f4; --accent-glow: rgba(3, 169, 244, 0.3);
+}
+html[data-theme="white"] {
+    --bg-main: #edf0f4; --bg-container: #ffffff; --bg-input: #f4f7fa; --bg-btn: #e2e8f0; --bg-btn-hover: #cbd5e1; --bg-tab-active: #ffffff; --text-main: #4e5d78; --text-input: #0f172a; --text-heading: #0f172a; --text-btn: #4e5d78; --border-color: #cbd5e1; --border-container: #e2e8f0; --accent-color: #334155; --accent-glow: rgba(51, 65, 85, 0.1);
+}
+
+/* 5 YENİ PREMIUM MAT TEMA */
+html[data-theme="nordic"] {
+    --bg-main: #0f1416; --bg-container: #182226; --bg-input: #0a0d0f; --bg-btn: #24333a; --bg-btn-hover: #324751; --bg-tab-active: #324751; --text-main: #9cb0b8; --text-input: #f0f5f7; --text-heading: #e2ecef; --text-btn: #a2dbdd; --border-color: #384f59; --border-container: #283940; --accent-color: #8ecae6; --accent-glow: rgba(142, 202, 230, 0.3);
+}
+html[data-theme="amber"] {
+    --bg-main: #14110f; --bg-container: #241d19; --bg-input: #0d0a08; --bg-btn: #382c25; --bg-btn-hover: #4f3e34; --bg-tab-active: #4f3e34; --text-main: #bfaea3; --text-input: #f9f5f2; --text-heading: #ffffff; --text-btn: #ddb892; --border-color: #5c473a; --border-container: #423329; --accent-color: #b7b7a4; --accent-glow: rgba(183, 183, 164, 0.3);
+}
+html[data-theme="rosegold"] {
+    --bg-main: #141011; --bg-container: #241a1d; --bg-input: #0d090a; --bg-btn: #38272d; --bg-btn-hover: #523841; --bg-tab-active: #523841; --text-main: #c4b0b5; --text-input: #faf5f6; --text-heading: #ffffff; --text-btn: #e5989b; --border-color: #5c3f49; --border-container: #422d34; --accent-color: #ffb5a7; --accent-glow: rgba(255, 181, 167, 0.3);
+}
+html[data-theme="forest"] {
+    --bg-main: #0a0d0b; --bg-container: #131c16; --bg-input: #060907; --bg-btn: #1f2e24; --bg-btn-hover: #2d4234; --bg-tab-active: #2d4234; --text-main: #a1b3a7; --text-input: #f2f7f4; --text-heading: #ffffff; --text-btn: #94d2bd; --border-color: #314a3a; --border-container: #223629; --accent-color: #52b788; --accent-glow: rgba(82, 183, 136, 0.3);
+}
+html[data-theme="neon"] {
+    --bg-main: #050508; --bg-container: #0d0d14; --bg-input: #020204; --bg-btn: #161624; --bg-btn-hover: #222238; --bg-tab-active: #222238; --text-main: #8f8fad; --text-input: #f0f0fcf; --text-heading: #ffffff; --text-btn: #00f5d4; --border-color: #27273d; --border-container: #1b1b2b; --accent-color: #7b2cbf; --accent-glow: rgba(123, 44, 191, 0.4);
+}
+
+*{box-sizing:border-box;}
+html, body, .input-area, div { cursor: default; }
+button, .tab-btn, .theme-dot, .oracle-sphere, .coffee-btn { cursor: pointer; }
+
+body {
+    margin:0;
+    padding:20px 20px 140px 20px; 
+    background: var(--bg-main) !important; 
+    color: var(--text-main) !important;
+    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+    overflow-x:hidden;
+    min-height: 100vh;
+    transition: background 0.25s ease, color 0.25s ease;
+}
+
+/* TOP HEADER VE KAHVE BUTONU */
+.top-header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto 20px auto;
+    gap: 15px;
+}
+.theme-selector { 
+    display: flex; 
+    justify-content: flex-end; 
+    gap: 8px; 
+    background: var(--bg-container); 
+    padding: 10px 14px; 
+    border-radius: 8px; 
+    border: 1px solid var(--border-container); 
+    flex-wrap: wrap;
+}
+.theme-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; color: var(--text-main); opacity: 0.8; align-self: center; margin-right: 4px;}
+.theme-dot { width: 18px; height: 18px; border-radius: 50%; border: 2px solid transparent; transition: all 0.2s ease; box-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+.theme-dot:hover { transform: scale(1.2); }
+.theme-dot.active { border-color: var(--text-heading) !important; transform: scale(1.1); box-shadow: 0 0 10px var(--accent-color); }
+
+.coffee-btn {
+    background: var(--bg-container);
+    border: 1px solid #d3a27f40;
+    color: #d3a27f;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+.coffee-btn:hover {
+    background: #d3a27f15;
+    border-color: #d3a27f;
+    color: #ffffff;
+    box-shadow: 0 0 15px rgba(211, 162, 127, 0.3);
+}
+
+/* ORACLE KEHANET KUTUSU */
+.oracle-box { max-width: 900px; margin: 0 auto 25px auto; background: var(--bg-container); border: 1px solid var(--border-container); border-radius: 10px; padding: 20px; display: flex; align-items: center; gap: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); position: relative; overflow: hidden; }
+.oracle-sphere-wrapper { position: relative; flex-shrink: 0; }
+.oracle-sphere { width: 60px; height: 60px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, var(--text-heading), var(--accent-color)); box-shadow: 0 0 20px var(--accent-glow), inset -5px -5px 15px rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; font-size: 24px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); user-select: none; }
+.oracle-sphere:hover { transform: scale(1.1) rotate(15deg); box-shadow: 0 0 30px var(--accent-color), inset -2px -2px 10px rgba(0,0,0,0.4); }
+.oracle-text-area { flex-grow: 1; }
+.oracle-title { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-color); font-weight: 700; margin-bottom: 4px; }
+.oracle-quote { font-size: 14px; color: var(--text-input); font-style: italic; line-height: 1.5; transition: opacity 0.2s ease; }
+.pulse-glow { position: absolute; width: 100%; height: 100%; border-radius: 50%; background: var(--accent-color); opacity: 0.15; animation: spherePulse 2s infinite ease-in-out; top: 0; left: 0; pointer-events: none; }
+@keyframes spherePulse { 0% { transform: scale(1); opacity: 0.2; } 50% { transform: scale(1.3); opacity: 0; } 100% { transform: scale(1); opacity: 0.2; } }
+.glitch-effect { animation: textGlitch 0.2s linear 2; }
+@keyframes textGlitch { 0% { transform: translate(2px, 1px); opacity: 0.7; } 50% { transform: translate(-1px, -1px); opacity: 0.9; } 100% { transform: translate(0, 0); opacity: 1; } }
+
+.tabs{ display:flex; justify-content:center; gap:12px; margin-bottom:25px; }
+button, .tab-btn { background: var(--bg-btn); color: var(--text-btn); border: 1px solid var(--border-color); padding: 12px 26px; font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; border-radius: 6px; transition: all 0.2s ease; }
+button:hover, .tab-btn:hover { color: var(--text-heading) !important; background: var(--bg-btn-hover); border-color: var(--accent-color); box-shadow: 0 0 12px var(--accent-glow); }
+.tab-btn.active { background: var(--bg-tab-active) !important; color: var(--text-heading) !important; border-color: var(--accent-color) !important; box-shadow: 0 0 15px var(--accent-glow); }
+
+.container{ position:relative; width:100%; max-width: 900px; margin: 0 auto; }
+.tab-content{ position:absolute; width:100%; opacity:0; transform:scale(0.99); transition: all .25s ease-in-out; pointer-events:none; background: var(--bg-container); padding: 28px; border-radius: 10px; border: 1px solid var(--border-container); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+.tab-content.active{ opacity:1; transform:scale(1); position:relative; pointer-events:auto; }
+
+h3 { color: var(--text-heading); font-size: 14px; margin-top: 0; margin-bottom: 22px; letter-spacing: 1px; text-transform: uppercase; border-left: 3px solid var(--accent-color); padding-left: 12px; font-weight: 600; }
+
+/* ==========================================================================
+   ✍️ ULTRA ESTETİK YAZIM VE ÇIKTI KUTUCUKLARI (PREMIUM RE-DESIGN)
+   ========================================================================== */
+.input-area, .output { 
+    width:100%; 
+    height:220px; 
+    background: var(--bg-input); 
+    color: var(--text-input); 
+    border: 1px solid var(--border-color); 
+    padding:20px; 
+    font-size: 14px; 
+    line-height: 1.7; 
+    border-radius: 12px; 
+    outline: none; 
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+    margin-bottom: 8px; 
+    overflow-y: auto; 
+    word-break: break-word; 
+    font-family: inherit;
+    box-shadow: inset 0 3px 10px rgba(0,0,0,0.5), 0 1px 0px rgba(255,255,255,0.02);
+}
+.input-area:focus { 
+    border-color: var(--accent-color); 
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.7), 0 0 14px var(--accent-glow);
+    background: calc(var(--bg-input) + #030303);
+}
+.output { 
+    min-height:220px; 
+    height: auto; 
+    border-style: solid;
+    border-color: calc(var(--border-color) + #080808);
+    background: linear-gradient(to bottom, var(--bg-input), rgba(0,0,0,0.2));
+    opacity: 0.95;
+}
+
+.meta-info { font-size: 11px; color: var(--text-main); margin-bottom: 18px; display: flex; gap: 18px; opacity: 0.7; letter-spacing: 0.5px; padding-left: 4px; }
+.meta-info span strong { color: var(--text-heading); }
+.action-buttons { margin-bottom: 25px; display: flex; gap: 12px; flex-wrap: wrap; }
+.bad-word{ color:#ff3366; font-weight:600; background:rgba(255, 51, 102, 0.08); border: 1px solid rgba(255, 51, 102, 0.3); padding:2px 6px; border-radius:4px; }
+.toast { position: fixed; top: -100px; right: 25px; background: var(--bg-container); border: 1px solid var(--accent-color); color: var(--text-heading); padding: 14px 28px; border-radius: 6px; font-size: 12px; font-weight: 600; letter-spacing: 1px; box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 15px var(--accent-glow); transition: top 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 10000; }
+.toast.show { top: 25px; }
+
+/* ==========================================================================
+   ☕ KAHVE MOLASI EKRANI (COFFEE BREAK MODE OVERLAY)
+   ========================================================================== */
+.coffee-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(10, 10, 12, 0.98);
+    backdrop-filter: blur(15px);
+    z-index: 100000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    padding: 20px;
+    text-align: center;
+}
+.coffee-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+.coffee-cup-anim {
+    width: 80px; height: 90px;
+    border: 5px solid #d3a27f;
+    border-radius: 0 0 40px 40px;
+    position: relative;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+.coffee-cup-anim::after {
+    content: '';
+    position: absolute;
+    right: -22px; top: 15px;
+    width: 20px; height: 40px;
+    border: 5px solid #d3a27f;
+    border-radius: 0 20px 20px 0;
+    border-left: none;
+}
+.coffee-steam {
+    position: absolute;
+    top: -25px; left: 50%;
+    transform: translateX(-50%);
+    display: flex; gap: 8px;
+}
+.steam-line {
+    width: 4px; height: 20px;
+    background: #ffffff50;
+    border-radius: 2px;
+    animation: steamUp 2s infinite ease-in-out;
+}
+.steam-line:nth-child(2) { animation-delay: 0.4s; }
+.steam-line:nth-child(3) { animation-delay: 0.8s; }
+@keyframes steamUp {
+    0% { transform: translateY(5px) scaleY(0.5); opacity: 0; }
+    50% { opacity: 0.6; }
+    100% { transform: translateY(-15px) scaleY(1.2); opacity: 0; }
+}
+.coffee-timer {
+    font-size: 72px;
+    font-weight: 800;
+    font-family: monospace;
+    color: #ffffff;
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px rgba(255,255,255,0.1);
+    margin-bottom: 10px;
+}
+.coffee-title {
+    color: #d3a27f;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+.coffee-quote {
+    font-size: 18px;
+    color: #a5a5b5;
+    max-width: 600px;
+    line-height: 1.6;
+    font-style: italic;
+    min-height: 60px;
+    margin-bottom: 40px;
+}
+.coffee-close-btn {
+    background: #d3a27f20;
+    border: 1px solid #d3a27f60;
+    color: #d3a27f;
+    font-size: 11px;
+}
+.coffee-close-btn:hover {
+    background: #d3a27f;
+    color: #000;
+}
+
+/* ==========================================================================
+   🎵 PREMIUM AUDIO PLAYER ENGINE (VOLUME SLYDER EKLENDİ)
+   ========================================================================== */
+.cyber-player {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: var(--bg-container);
+    border-top: 1px solid var(--border-container);
+    padding: 10px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.6);
+    z-index: 9999;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.2);
+}
+.cyber-player.minimized {
+    transform: translateY(100%);
+}
+.player-toggle-btn {
+    position: absolute;
+    right: 30px;
+    top: -24px;
+    background: var(--bg-container);
+    border: 1px solid var(--border-container);
+    border-bottom: none;
+    padding: 4px 14px;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-radius: 6px 6px 0 0;
+    color: var(--text-main);
+    transition: all 0.2s, top 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.2);
+}
+.cyber-player.minimized .player-toggle-btn {
+    top: -24px;
+    border: 1px solid var(--border-container);
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.3);
+}
+.player-toggle-btn:hover {
+    color: var(--text-heading);
+    background: var(--bg-btn-hover);
+}
+.player-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.player-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 30%;
+}
+.player-icon {
+    font-size: 18px;
+    animation: rotateDisc 4s linear infinite;
+    animation-play-state: paused;
+}
+.cyber-player.playing .player-icon {
+    animation-play-state: running;
+}
+@keyframes rotateDisc {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.track-details {
+    display: flex;
+    flex-direction: column;
+}
+.track-name {
+    color: var(--text-heading);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+.track-index {
+    color: var(--text-main);
+    font-size: 10px;
+    opacity: 0.5;
+    margin-top: 1px;
+}
+.player-controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.player-right-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 20%;
+    justify-content: flex-end;
+}
+.volume-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.volume-icon { font-size: 12px; opacity: 0.7; user-select: none;}
+.volume-slider {
+    width: 70px;
+    height: 3px;
+    -webkit-appearance: none;
+    background: var(--bg-input);
+    border-radius: 2px;
+    outline: none;
+    transition: all 0.2s;
+}
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    cursor: pointer;
+    box-shadow: 0 0 5px var(--accent-color);
+}
+.player-btn {
+    padding: 6px 12px;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    background: var(--bg-btn);
+    border: 1px solid var(--border-color);
+    text-transform: uppercase;
+}
+.player-btn.active-mode {
+    border-color: var(--accent-color);
+    color: var(--text-heading);
+    box-shadow: 0 0 8px var(--accent-glow);
+}
+.player-timeline-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+.time-display {
+    font-size: 11px;
+    font-family: monospace;
+    color: var(--text-main);
+    min-width: 35px;
+    opacity: 0.8;
+}
+.timeline-container {
+    flex-grow: 1;
+    height: 4px;
+    background: var(--bg-input);
+    border-radius: 2px;
+    position: relative;
+    cursor: pointer;
+}
+.timeline-progress {
+    height: 100%;
+    width: 0%;
+    background: var(--accent-color);
+    box-shadow: 0 0 6px var(--accent-color);
+    border-radius: 2px;
+    pointer-events: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="top-header-bar">
+    <div class="theme-selector">
+        <span class="theme-label">TEMA:</span>
+        <div class="theme-dot id-dark-dot active" style="background: #111115; border: 1px solid #3a3a3c;" onclick="changeTheme('dark', this)" title="Midnight OLED"></div>
+        <div class="theme-dot" style="background: #e63946;" onclick="changeTheme('crimson', this)" title="Cyber Crimson"></div>
+        <div class="theme-dot" style="background: #2196f3;" onclick="changeTheme('blue', this)" title="Deep Sapphire"></div>
+        <div class="theme-dot" style="background: #4caf50;" onclick="changeTheme('green', this)" title="Emerald Velvet"></div>
+        <div class="theme-dot" style="background: #9c27b0;" onclick="changeTheme('purple', this)" title="Amethyst Dusk"></div>
+        <div class="theme-dot" style="background: #e91e63;" onclick="changeTheme('pink', this)" title="Rose Quartz"></div>
+        <div class="theme-dot" style="background: #ffeb3b;" onclick="changeTheme('yellow', this)" title="Muted Gold"></div>
+        <div class="theme-dot" style="background: #ff9800;" onclick="changeTheme('orange', this)" title="Imperial Amber"></div>
+        <div class="theme-dot" style="background: #4a5260;" onclick="changeTheme('slate', this)" title="Titanium Slate"></div>
+        <!-- 5 Yeni Premium Mat Tema Dot'ları -->
+        <div class="theme-dot" style="background: #8ecae6;" onclick="changeTheme('nordic', this)" title="Nordic Mint"></div>
+        <div class="theme-dot" style="background: #ddb892;" onclick="changeTheme('amber', this)" title="Desert Amber"></div>
+        <div class="theme-dot" style="background: #e5989b;" onclick="changeTheme('rosegold', this)" title="Rose Gold Mat"></div>
+        <div class="theme-dot" style="background: #52b788;" onclick="changeTheme('forest', this)" title="Deep Forest"></div>
+        <div class="theme-dot" style="background: #7b2cbf;" onclick="changeTheme('neon', this)" title="Cyberpunk Neon"></div>
+        <div class="theme-dot" style="background: #ffffff; border: 1px solid #cbd5e1;" onclick="changeTheme('white', this)" title="Obsidian White"></div>
+    </div>
+    
+    <button class="coffee-btn" onclick="startCoffeeBreak()">☕ Kahve Molası</button>
+</div>
+
+<!-- KAHVE MOLASI OVERLAY EKRANI -->
+<div id="coffee-break-screen" class="coffee-overlay">
+    <div class="coffee-cup-anim">
+        <div class="coffee-steam">
+            <div class="steam-line"></div>
+            <div class="steam-line"></div>
+            <div class="steam-line"></div>
+        </div>
+    </div>
+    <div id="coffee-timer-display" class="coffee-timer">01:00</div>
+    <div class="coffee-title">SİBER KAHVE REHABİLİTASYONU</div>
+    <div id="coffee-quote-display" class="coffee-quote">Arkanıza yaslanın, derin bir nefes alın ve klavyeyi sakince serbest bırakın...</div>
+    <button class="coffee-close-btn" onclick="endCoffeeBreak()">Masaya Geri Dön</button>
+</div>
+
+<div class="oracle-box">
+    <div class="oracle-sphere-wrapper">
+        <div class="pulse-glow"></div>
+        <div class="oracle-sphere" onclick="getTengriOracle()">🔮</div>
+    </div>
+    <div class="oracle-text-area">
+        <div class="oracle-title">⚡ ORACLE / GÜNÜN SİBER KEHANETİ</div>
+        <div id="oracle-display" class="oracle-quote">Küreye tıkla ve siber kaderinle yüzleş...</div>
+    </div>
+</div>
+
+<div id="toast-notification" class="toast">⚡ METİN BAŞARIYLA KOPYALANDI!</div>
+
+<div class="tabs">
+    <button class="tab-btn active" onclick="openTab(0)">🧹 Boşluk Temizleyici</button>
+    <button class="tab-btn" onclick="openTab(1)">✍️ Yazım Düzenleyici</button>
+</div>
+
+<div class="container">
+    <div class="tab-content active">
+        <h3>Metni buraya yapıştır aslan parçası</h3>
+        <div id="input1" class="input-area" contenteditable="true" oninput="calculateMeta(1)"></div>
+        <div class="meta-info">
+            <span id="char-count-1">Karakter: <strong>0</strong></span>
+            <span id="word-count-1">Kelime: <strong>0</strong></span>
+        </div>
+        <div class="action-buttons">
+            <button onclick="cleanSpaces()">Temizle</button>
+            <button onclick="copy1()">Kopyala</button>
+            <button onclick="clear1()">Sil</button>
+        </div>
+        <div id="output1" class="output" contenteditable="true"></div>
+    </div>
+
+    <div class="tab-content">
+        <h3>Metni buraya yapıştır aslan parçası</h3>
+        <div id="input2" class="input-area" contenteditable="true" oninput="calculateMeta(2)"></div>
+        <div class="meta-info">
+            <span id="char-count-2">Karakter: <strong>0</strong></span>
+            <span id="word-count-2">Kelime: <strong>0</strong></span>
+        </div>
+        <div class="action-buttons">
+            <button onclick="fixText()">Düzelt</button>
+            <button onclick="copy2()">Kopyala</button>
+            <button onclick="clear2()">Sil</button>
+        </div>
+        <div id="output2" class="output" contenteditable="true"></div>
+    </div>
+</div>
+
+
+<div id="cyber-audio-player" class="cyber-player">
+    <button id="player-toggle" class="player-toggle-btn" onclick="togglePlayerMinimize()">▼ AŞAĞI KAYDIR</button>
+    
+    <div class="player-top-row">
+        <div class="player-info">
+            <div id="player-icon" class="player-icon">💿</div>
+            <div class="track-details">
+                <div id="track-name" class="track-name"></div>
+                <div id="track-index" class="track-index">Şarkı: 1 / 18</div>
+            </div>
+        </div>
+        <div class="player-controls">
+            <button class="player-btn" onclick="prevTrack()">⏮</button>
+            <button id="play-pause-btn" class="player-btn" onclick="togglePlay()">▶ OYNAT</button>
+            <button class="player-btn" onclick="nextTrack()">⏭</button>
+            <button id="shuffle-btn" class="player-btn" onclick="toggleShuffle()">🔀 KARIŞTIR</button>
+            <button id="repeat-btn" class="player-btn" onclick="toggleRepeat()">🔁 TEKRARLA</button>
+        </div>
+        <div class="player-right-controls">
+            <div class="volume-container">
+                <span class="volume-icon">🔊</span>
+                <input type="range" id="volume-control" class="volume-slider" min="0" max="1" step="0.05" value="0.7" oninput="changeVolume(this.value)">
+            </div>
+        </div>
+    </div>
+    
+    <div class="player-timeline-wrapper">
+        <span id="current-time" class="time-display">00:00</span>
+        <div id="timeline-container" class="timeline-container" onclick="seekTrack(event)">
+            <div id="timeline-progress" class="timeline-progress"></div>
+        </div>
+        <span id="total-duration" class="time-display">00:00</span>
+    </div>
+    
+    <audio id="main-audio" src=""></audio>
+</div>
+
+<script>
+const oracleQuotes = [
+    "Bugün metinlerden sileceğin gereksiz boşluklar gibi, hayatındaki gereksiz insanları da şak diye sileceksin. Temiz ferah gün yakın.",
+    "Yakın gelecekte senin için çok büyük bir başarı ve zenginlik görüyorum. Tabii 'yakın gelecek' siber evrende 40-50 yıl anlamına gelebilir, o yüzden sen şimdilik şu metne odaklan.",
+    "Küre diyor ki: O çok gitmek istediğin tatile daha çok var ama önündeki şu metni bitirirsen en azından masandan kalkıp tuvalete gitme hakkı kazanacaksın.",
+    "Bugün her şeyi bırakıp Ege'ye yerleşme isteğin tavan yapacak. Ama zeytin yetiştirmek de emek ister aslan parçası, gel biz önce şu metindeki çift boşlukları yetiştirelim.",
+    "Yıldız haritana göre bugün istifa dilekçeni yazmak için harika bir gün. Ama ev kiranın haritası pek öyle demiyor, gel şu metni pırıl pırıl temizleyelim.",
+    "Evren sana 'Sen çok daha iyilerine layıksın' mesajı gönderiyor ama insan kaynakları henüz o mesajı onaylamadı. Gel biz şu Excel tablosunu pırıl pırıl yapalım.",
+    "Yazının fontunu değiştirmek bir saniyeni alır; insanın rengini değiştirmesi ise sadece bir menfaatine bakar.",
+    "Senin emeğinin üzerine konmaya çalışanların mikrofonu toplantıda açık kalsın da evde arkadan gelen o dedikodu sesleri tüm şirkete yayınlansın. Amin.",
+    "Bugün işi sana kitleyip erken çıkanların bindiği metrobüs ters yöne gitsin, üstüne bir de telefonlarının şarjı yüzde 1'ken şarj aletlerini ofiste unuttuklarını fark etsinler. Amin.",
+    "Sana sürekli 'Biz bir aileyiz' deyip mesai ücretini vermeyenlerin şirket arabasının lastiği tam da sanayiye en uzak mesafede patlasın. Amin.",
+    "Bugün 'Önceliğimiz çalışan mutluluğu' sloganının aslında 'Ofise langırt koyduk ama oynarsan gözümüz üstünde olur' demek olduğunu anlayacaksınız.",
+    "Tengri Oracle görevini tamamladı. Şimdi o 'Kopyala' butonuna bas ve şovunu yap aslan parçası!"
+];
+
+const coffeeQuotes = [
+    "Müdürün Slack'ten yazıyormuş ama internetin kopmuş gibi davran. Keyfine bak, 1 dakika senin.",
+    "Şu an hiçbir revizyon seni bulamaz. Kahvenden bir yudum al, evren arka planda dikey eşitleme yapıyor.",
+    "Gelecek ayki kredi kartı ekstresini düşünmeyi bırak. Şu an sadece taze kahve kokusu var.",
+    "Bütün pikseller, kodlar ve çift boşluklar seni bekleyebilir. Sen kurumsal bir robotsun ama motorun soğuması lazım.",
+    "İçinden şirketi ateşe verme hissi geçiyorsa bu kahve molası tam zamanında geldi demektir. Sakinleş şampiyon.",
+    "CEO bile şu an senin bu molayı hak ettiğini biliyor... Yani muhtemelen bilmiyor ama bilse kesin hak verirdi."
+];
+
+let coffeeInterval;
+function startCoffeeBreak() {
+    const overlay = document.getElementById("coffee-break-screen");
+    const timerDisplay = document.getElementById("coffee-timer-display");
+    const quoteDisplay = document.getElementById("coffee-quote-display");
+    
+    // Rastgele motive edici mola sözü seç
+    const randomQuote = coffeeQuotes[Math.floor(Math.random() * coffeeQuotes.length)];
+    quoteDisplay.innerText = randomQuote;
+    
+    overlay.classList.add("active");
+    
+    let timeLeft = 60;
+    timerDisplay.innerText = "01:00";
+    
+    clearInterval(coffeeInterval);
+    coffeeInterval = setInterval(() => {
+        timeLeft--;
+        let seconds = timeLeft < 10 ? "0" + timeLeft : timeLeft;
+        timerDisplay.innerText = `00:${seconds}`;
+        
+        if (timeLeft <= 0) {
+            clearInterval(coffeeInterval);
+            endCoffeeBreak();
+        }
+    }, 1000);
+}
+
+function endCoffeeBreak() {
+    clearInterval(coffeeInterval);
+    document.getElementById("coffee-break-screen").classList.remove("active");
+}
+
+function getTengriOracle() { const display = document.getElementById("oracle-display"); display.classList.add("glitch-effect"); display.style.opacity = 0.3; setTimeout(() => { const randomIndex = Math.floor(Math.random() * oracleQuotes.length); display.innerText = oracleQuotes[randomIndex]; display.style.opacity = 1; setTimeout(() => { display.classList.remove("glitch-effect"); }, 200); }, 200); }
+function changeTheme(themeName, element) { if(themeName === 'dark') { document.documentElement.removeAttribute('data-theme'); } else { document.documentElement.setAttribute('data-theme', themeName); } document.querySelectorAll('.theme-dot').forEach(dot => dot.classList.remove('active')); element.classList.add('active'); }
+function showToast() { const toast = document.getElementById("toast-notification"); toast.classList.add("show"); setTimeout(() => { toast.classList.remove("show"); }, 2000); }
+function calculateMeta(tabIndex) { const text = document.getElementById(`input${tabIndex}`).innerText; const charCount = text.length; const wordCount = text.trim() === "" ? 0 : text.trim().split(/\s+/).length; document.getElementById(`char-count-${tabIndex}`).innerHTML = `Karakter: <strong>${charCount}</strong>`; document.getElementById(`word-count-${tabIndex}`).innerHTML = `Kelime: <strong>${wordCount}</strong>`; }
+function openTab(i){ document.querySelectorAll(".tab-content").forEach(t=>t.classList.remove("active")); document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active")); document.querySelectorAll(".tab-content")[i].classList.add("active"); document.querySelectorAll(".tab-btn")[i].classList.add("active"); }
+const bannedWords = ["yüksek kalite", "yüksek kaliteli", "hakiki deri", "gerçek deri", "%100 deri", "% 100 deri", "birinci sınıf", "1. kalite", "1. sınıf", "unisex", "1.sınıf", "1.kalite", "1.kalıte", "1. kalıte", "1.SINIF", "1. SINIF", "1.KALİTE", "1. KALİTE", "BİRİNCİ SINIF", "YÜKSEK KALİTE", "YÜKSEK KALITE"];
+function escapeRegExp(str){ return str.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+function highlight(text) { bannedWords.forEach(word => { const pattern = escapeRegExp(word).replace(/\s+/g,"\\s+"); const reg = new RegExp(pattern,"gi"); text = text.replace(reg, m => `<span class="bad-word">${m}</span>`); }); return text; }
+function hardProtectBoldStyles(rawHtml) { if (!rawHtml) return ""; let protectedHtml = rawHtml.replace(/<span[^>]*style="[^"]*font-weight:\s*bold;?[^"]*"[^>]*>([\s\S]*?)<\/span>/gi, '<b>$1</b>').replace(/<span[^>]*style="[^"]*font-weight:\s*700;?[^"]*"[^>]*>([\s\S]*?)<\/span>/gi, '<b>$1</b>').replace(/<span[^>]*style="[^"]*font-weight:\s*600;?[^"]*"[^>]*>([\s\S]*?)<\/span>/gi, '<b>$1</b>').replace(/<strong[^>]*>([\s\S]*?)<\/strong>/gi, '<b>$1</b>'); return protectedHtml; }
+
+function cleanInvisibleWebGarbage(txt, forceLowercase = false) {
+    if (!txt) return "";
+    let clean = txt.replace(/[\r\u200B\u200C\u200D\uFEFF]/g, "").replace(/&nbsp;/gi, " ").replace(/nbsp;/gi, " ").replace(/;nbsp/gi, " ").replace(/&nbsp/gi, " ").replace(/\u00A0/g, " ").replace(/&amp;;/gi, " ").replace(/&amp;/gi, " ").replace(/&[^;]+;/g, " ").replace(/&/g, " ").replace(/;/g, " ");
+    clean = clean.replace(/B\s*\+\s*/gi, "B+").replace(/B\s*-\s*/gi, "B-");
+    clean = clean.replace(/\s{2,}/g, " ");
+    if (forceLowercase) { clean = clean.toLocaleLowercase('tr-TR'); }
+    return clean;
+}
+
+function processUltraEngine(inputElementId, forceLowercase = false) {
+    const inputArea = document.getElementById(inputElementId);
+    if (!inputArea || !inputArea.innerHTML.trim()) return "";
+    let rawHtml = inputArea.innerHTML;
+    let textWithProtectedBolds = hardProtectBoldStyles(rawHtml);
+    let sandbox = document.createElement("div");
+    sandbox.innerHTML = textWithProtectedBolds;
+    let blocks = sandbox.querySelectorAll('p, div, br, li, tr');
+    blocks.forEach(el => { if (el.tagName.toLowerCase() === 'br') { el.before(document.createTextNode('\n')); } else { el.before(document.createTextNode('\n')); el.after(document.createTextNode('\n')); } });
+    let allElements = sandbox.getElementsByTagName("*");
+    for (let i = allElements.length - 1; i >= 0; i--) { let el = allElements[i]; if (el.tagName.toLowerCase() !== 'b') { el.outerHTML = el.innerHTML; } else { el.removeAttribute('style'); el.removeAttribute('class'); el.removeAttribute('id'); } }
+    let rawLines = sandbox.innerHTML.split('\n');
+    let dynamicResultLines = [];
+    rawLines.forEach(line => {
+        let cleanedLine = cleanInvisibleWebGarbage(line, forceLowercase);
+        let contentCheck = cleanedLine.replace(/<[^>]*>/g, "").replace(/\s+/g, "").trim();
+        if (contentCheck !== "") {
+            let finalizedLine = cleanedLine.trim();
+            if (forceLowercase) { finalizedLine = finalizedLine.replace(/(^|>|[.!?]\s+)([a-zçğıöşü])/g, (m, p1, p2) => p1 + p2.toLocaleUpperCase('tr-TR')); }
+            dynamicResultLines.push(finalizedLine);
+        }
+    });
+    return highlight(dynamicResultLines.join("<br>"));
+}
+
+function copyToClipboard(elementId) { const element = document.getElementById(elementId); const clone = element.cloneNode(true); clone.querySelectorAll('.bad-word').forEach(el => { const textNode = document.createTextNode(el.innerText); el.parentNode.replaceChild(textNode, el); }); let finalFormattedHTML = `<span style="font-size: 14px; font-family: sans-serif; line-height: 1.6;">${clone.innerHTML}</span>`; const blob = new Blob([finalFormattedHTML], { type: 'text/html' }); const textBlob = new Blob([clone.innerText], { type: 'text/plain' }); const data = [new ClipboardItem({ 'text/html': blob, 'text/plain': textBlob })]; navigator.clipboard.write(data).then(() => { showToast(); }); }
+function cleanSpaces(){ document.getElementById("output1").innerHTML = processUltraEngine("input1", false); }
+function fixText(){ document.getElementById("output2").innerHTML = processUltraEngine("input2", true); }
+function handleEnterKey(e) { if (e.key === "Enter") { document.execCommand('insertLineBreak', false, null); e.preventDefault(); } }
+document.getElementById("input1").addEventListener("keydown", handleEnterKey);
+document.getElementById("input2").addEventListener("keydown", handleEnterKey);
+function copy1(){ copyToClipboard("output1"); }
+function clear1(){ document.getElementById("input1").innerHTML=""; document.getElementById("output1").innerHTML=""; calculateMeta(1); }
+function copy2(){ copyToClipboard("output2"); }
+function clear2(){ document.getElementById("input2").innerHTML=""; document.getElementById("output2").innerHTML=""; calculateMeta(2); }
+
+window.addEventListener("DOMContentLoaded", function() {
+    const darkDot = document.querySelector(".id-dark-dot");
+    if (darkDot) { changeTheme('dark', darkDot); }
+    initPlayer();
+});
+
+/* ==========================================================================
+   🎵 PREMIUM AUDIO PLAYER ENGINE
+   ========================================================================== */
+
+const musicList = [
+    { title: "Siber Ritim #1", url: "./muzikler/1.mp3" },
+    { title: "Siber Ritim #12345", url: "./muzikler/12345.mp3" },
+    { title: "Siber Ritim #2", url: "./muzikler/2.mp3" },
+    { title: "Siber Ritim #3", url: "./muzikler/3.mp3" },
+    { title: "Siber Ritim #4", url: "./muzikler/4.mp3" },
+    { title: "Siber Ritim #5", url: "./muzikler/5.mp3" },
+    { title: "Siber Ritim #6", url: "./muzikler/6.mp3" },
+    { title: "Siber Ritim #7", url: "./muzikler/7.mp3" },
+    { title: "Siber Ritim #8", url: "./muzikler/8.mp3" },
+    { title: "Siber Ritim #9", url: "./muzikler/9.mp3" },
+    { title: "Siber Ritim #10", url: "./muzikler/10.mp3" },
+    { title: "Siber Ritim #11", url: "./muzikler/11.mp3" },
+    { title: "Siber Ritim #12", url: "./muzikler/12.mp3" },
+    { title: "Siber Ritim #13", url: "./muzikler/13.mp3" },
+    { title: "Siber Ritim #14", url: "./muzikler/14.mp3" },
+    { title: "Siber Ritim #15", url: "./muzikler/15.mp3" },
+    { title: "Siber Ritim #16", url: "./muzikler/16.mp3" },
+    { title: "Siber Ritim #17", url: "./muzikler/17.mp3" }
+];
+
+let currentTrackIndex = 0;
+let isPlaying = false;
+let isShuffle = false;
+let isRepeat = false;
+let audio = document.getElementById("main-audio");
+
+function initPlayer() {
+    loadTrack(currentTrackIndex);
+    // Varsayılan ses seviyesini ayarla
+    audio.volume = parseFloat(document.getElementById("volume-control").value);
+    
+    audio.addEventListener("ended", handleTrackEnded);
+    audio.addEventListener("timeupdate", updateTimeline);
+    audio.addEventListener("loadedmetadata", () => {
+        document.getElementById("total-duration").innerText = formatTime(audio.duration);
+    });
+}
+
+function loadTrack(index) {
+    audio.src = musicList[index].url;
+    document.getElementById("track-name").innerText = musicList[index].title;
+    document.getElementById("track-index").innerText = `Şarkı: ${index + 1} / ${musicList.length}`;
+}
+
+function togglePlay() {
+    const playBtn = document.getElementById("play-pause-btn");
+    const playerEl = document.getElementById("cyber-audio-player");
+    
+    if (isPlaying) {
+        audio.pause();
+        isPlaying = false;
+        playBtn.innerText = "▶ OYNAT";
+        playerEl.classList.remove("playing");
+    } else {
+        audio.play().catch(e => console.log("İlk oynatma için etkileşim gerekiyor."));
+        isPlaying = true;
+        playBtn.innerText = "⏸ DURDUR";
+        playerEl.classList.add("playing");
+    }
+}
+
+function nextTrack() {
+    if (isShuffle) {
+        currentTrackIndex = Math.floor(Math.random() * musicList.length);
+    } else {
+        currentTrackIndex = (currentTrackIndex + 1) % musicList.length;
+    }
+    loadTrack(currentTrackIndex);
+    if (isPlaying) audio.play();
+}
+
+function prevTrack() {
+    currentTrackIndex = (currentTrackIndex - 1 + musicList.length) % musicList.length;
+    loadTrack(currentTrackIndex);
+    if (isPlaying) audio.play();
+}
+
+function handleTrackEnded() {
+    if (isRepeat) {
+        audio.currentTime = 0;
+        audio.play();
+    } else {
+        nextTrack();
+    }
+}
+
+function toggleShuffle() {
+    isShuffle = !isShuffle;
+    document.getElementById("shuffle-btn").classList.toggle("active-mode", isShuffle);
+}
+
+function toggleRepeat() {
+    isRepeat = !isRepeat;
+    document.getElementById("repeat-btn").classList.toggle("active-mode", isRepeat);
+}
+
+function changeVolume(val) {
+    if(audio) {
+        audio.volume = parseFloat(val);
+    }
+}
+
+function updateTimeline() {
+    const progress = document.getElementById("timeline-progress");
+    const currentTimeEl = document.getElementById("current-time");
+    
+    if (audio.duration) {
+        const percentage = (audio.currentTime / audio.duration) * 100;
+        progress.style.width = `${percentage}%`;
+        currentTimeEl.innerText = formatTime(audio.currentTime);
+    }
+}
+
+function seekTrack(event) {
+    const container = document.getElementById("timeline-container");
+    const rect = container.getBoundingClientRect();
+    const clickX = event.clientX - rect.left;
+    const width = rect.width;
+    
+    if (audio.duration) {
+        audio.currentTime = (clickX / width) * audio.duration;
+    }
+}
+
+function formatTime(seconds) {
+    if (isNaN(seconds)) return "00:00";
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
+}
+
+function togglePlayerMinimize() {
+    const player = document.getElementById("cyber-audio-player");
+    const btn = document.getElementById("player-toggle");
+    player.classList.toggle("minimized");
+    
+    if (player.classList.contains("minimized")) {
+        btn.innerText = "▲ YUKARI KAYDIR";
+    } else {
+        btn.innerText = "▼ AŞAĞI KAYDIR";
+    }
+}
+</script>
+
+</body>
+</html>
