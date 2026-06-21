@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Mario Bros. (1985) - Orijinal NES</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #111;
+            color: #fff;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #e52521;
+            text-shadow: 2px 2px #b84418;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        /* Atari Ekran Kasası */
+        .arcade-container {
+            position: relative;
+            width: 100%;
+            max-width: 680px;
+            height: 500px;
+            border: 6px solid #444;
+            border-radius: 8px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+            background: #000;
+        }
+
+        /* 1985 Orijinal Super Mario Bros NES ROM'unu Açan Doğru Link */
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .controls-info {
+            margin-top: 15px;
+            font-size: 13px;
+            color: #bbb;
+            text-align: center;
+            line-height: 1.6;
+            background: #222;
+            padding: 10px 20px;
+            border-radius: 6px;
+            max-width: 640px;
+        }
+
+        .btn-back {
+            margin-top: 15px;
+            padding: 8px 16px;
+            background-color: #e52521;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .btn-back:hover {
+            background-color: #b84418;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>RETRO ATARİ SALONU</h1>
+    
+    <div class="arcade-container">
+        <iframe src="https://static.arcadespot.com/embed/super-mario-bros/" allowfullscreen="true" scrolling="no"></iframe>
+    </div>
+
+    <div class="controls-info">
+        <strong>🎮 OYUN KONTROLLERİ:</strong><br>
+        Oyun yüklenince ekranın ortasındaki <strong>"PLAY GAME"</strong> butonuna tıkla. <br>
+        Klavyeden <strong>ENTER</strong> tuşuna basarak oyunu ve modu (1 Player) seç.<br>
+        <strong>Yön Tuşları:</strong> Yürüme/Eğilme | <strong>Z Tuşu:</strong> Zıplama | <strong>X Tuşu:</strong> Hızlı Koşma/Ateş Etme
+    </div>
+
+    <a href="index.html" class="btn-back">Ana Sayfaya Dön</a>
+
+</body>
+</html>
