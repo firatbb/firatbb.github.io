@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Mario Bros - World 1-1</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        .arcade-cabinet {
+            border: 8px solid #333;
+            border-radius: 4px;
+            background-color: #5c94fc; /* Orijinal Mario Gökyüzü Mavisi */
+            box-shadow: 0 0 30px rgba(229, 37, 33, 0.3);
+        }
+        canvas {
+            display: block;
+        }
+        .info-panel {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 14px;
+            color: #a8a8a8;
+            line-height: 1.6;
+        }
+        .btn-back {
+            margin-top: 15px;
+            padding: 6px 12px;
+            background-color: #e52521;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 2px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="arcade-cabinet">
+        <canvas id="marioCanvas" width="760" height="440"></canvas>
+    </div>
+
+    <div class="info-panel">
+        <strong>KONTROLLER:</strong> SAĞ / SOL Yön Tuşları ile hareket et.<br>
+        <strong>Z veya YUKARI OK / SPACE:</strong> Zıplama | <strong>X:</strong> Hızlı Koşma<br>
+        <span style="color: #fcb444;">Sarı Soru İşaretli kutudan çıkan mantarı kap ve BÜYÜ!</span>
+    </div>
+
+    <a href="index.html" class="btn-back">ANA SAYFAYA DÖN</a>
+
+<script>
+const canvas = document.getElementById("marioCanvas");
+const ctx = canvas.getContext("2d");
+
+// Oyun Sabitleri (Orijinal NES Fizikleri)
+const gravity = 0.45;
+const friction = 0.85;
+let cameraX = 0;
+const levelWidth = 4500;
+let score = 0;
+let coins = 0;
+let gameOver = false;
+let gameWon = false;
+
+// Mario Tanımı
+const mario = {
+    x: 80, y: 300,
+    width: 24, height: 32, // Küçük Mario boyutu
+    vx: 0, vy: 0,
+    speed: 3.8, jumpForce: 10.5,
+    grounded: false,
+    facing: "right",
+    isBig: false, // Mantar yiyince true olacak
+    invulnerable: 0 // Hasar alınca yanıp sönme süresi
+};
+
+// Harita Nesneleri (Orijinal Dünya 1-1 Yerleşimi)
+const platforms = [
+    // Zemin Blokları (Boşluklu yapı)
+    { x: 0, y: 400, w: 1200, h: 40, type: "ground" },
+    { x: 1300, y: 400, w: 600, h: 40, type: "ground" },
+    { x: 2000, y: 400, w: 1200, h: 40, type: "ground" },
+    { x: 3350, y: 400, w: 1150, h: 40, type: "ground" },
+
+    // İlk Soru İşareti ve Tuğla Grubu (Birebir Yerleşim)
+    { x: 350, y: 272, w: 32, h: 32, type: "question", content: "coin", hit: false },
+    { x: 446, y: 272, w: 32, h: 32, type: "brick" },
+    { x: 478, y: 272, w: 32, h: 32, type: "question", content: "mushroom", hit: false }, // Gizli Efsane Mantar!
+    { x: 510, y: 272, w: 32, h: 32, type: "brick" },
+    { x: 542, y: 272, w: 32, h: 32, type: "question", content: "coin", hit: false },
+    { x: 478, y: 144, w: 32, h: 32, type: "question", content: "coin", hit: false },
+
+    // Yeşil Borular
+    { x: 750, y: 336, w: 48, h: 64, type: "pipe" },
+    { x: 1050, y: 304, w: 48, h: 96, type: "pipe" },
+    { x: 1500, y: 272, w: 48, h: 128, type: "pipe" },
+
+    // Yüksek Tuğla Dağları
+    { x: 2200, y: 272, w: 96, h: 32, type: "brick" },
+    { x: 2232, y: 144, w: 128, h: 32, type: "brick" },
+    
+    // Bitiş Merdivenleri (Piramit)
+    { x: 3800, y: 368, w: 32, h: 32, type: "brick" },
+    { x: 3832, y: 336, w: 32, h: 64, type: "brick" },
+    { x: 3864, y: 304, w: 32, h: 96, type: "brick" },
+    { x: 3896, y: 272, w: 32, h: 128, type: "brick" },
+
+    // Bitiş Direği
+    { x: 4100, y: 80, w: 10, h: 320, type: "flag" }
+];
+
+// Aktif Düşmanlar (Goomba)
+const enemies = [
+    { x: 400, y: 368, w: 32, h: 32, vx: -1.2, alive: true },
+    { x: 900, y: 368, w: 32, h: 32, vx: -1.2, alive: true },
+    { x: 1250, y: 368, w: 32, h: 32, vx: -1.2, alive: true },
+    { x: 1800, y: 368, w: 32, h: 32, vx: -1.2, alive: true },
+    { x: 2300, y: 368, w: 32, h: 32, vx: -1.2, alive: true }
+];
+
+// Hareketli Mantarlar Listesi
+const mushrooms = [];
+
+// Klavye Dinleyicisi
+const keys = {};
+window.addEventListener("keydown", e => keys[e.code] = true);
+window.addEventListener("keyup", e => keys[e.code] = false);
+
+// Dikdörtgen Çarpışma Testi
+function checkCollision(r1, r2) {
+    return r1.x < r2.x + r2.w && r1.x + r1.width > r2.x &&
+           r1.y < r2.y + r2.h && r1.y + r1.height > r2.y;
+}
+
+// Fizik ve Mantık Güncelleme
+function update() {
+    if (gameOver || gameWon) return;
+
+    if (mario.invulnerable > 0) mario.invulnerable--;
+
+    // Koşu Hızı Ayarı (X tuşuna basınca hızlanır)
+    let currentSpeed = keys["KeyX"] ? mario.speed * 1.5 : mario.speed;
+
+    if (keys["ArrowRight"] || keys["KeyD"]) {
+        if (mario.vx < currentSpeed) mario.vx += 0.4;
+        mario.facing = "right";
+    } else if (keys["ArrowLeft"] || keys["KeyA"]) {
+        if (mario.vx > -currentSpeed) mario.vx -= 0.4;
+        mario.facing = "left";
+    } else {
+        mario.vx *= friction;
+    }
+
+    // Zıplama Tetikleyici
+    if ((keys["Space"] || keys["ArrowUp"] || keys["KeyW"]) && mario.grounded) {
+        mario.vy = -mario.jumpForce;
+        mario.grounded = false;
+    }
+
+    // Yerçekimi Uygulama
+    mario.vy += gravity;
+
+    // Önce X Ekseni Hareketi ve Çarpışmaları
+    mario.x += mario.vx;
+    if (mario.x < cameraX) mario.x = cameraX;
+
+    platforms.forEach(p => {
+        if (checkCollision(mario, p)) {
+            if (p.type === "flag") { gameWon = true; return; }
+            if (mario.vx > 0) mario.x = p.x - mario.width;
+            else if (mario.vx < 0) mario.x = p.x + p.w;
+        }
+    });
+
+    // Sonra Y Ekseni Hareketi ve Çarpışmaları
+    mario.y += mario.vy;
+    mario.grounded = false;
+
+    platforms.forEach(p => {
+        if (checkCollision(mario, p)) {
+            if (p.type === "flag") { gameWon = true; return; }
+            
+            // Üstüne Düşme (Zemine Basma)
+            if (mario.vy > 0 && (mario.y + mario.height - mario.vy) <= p.y) {
+                mario.y = p.y - mario.height;
+                mario.vy = 0;
+                mario.grounded = true;
+            } 
+            // Alttan Kafa Atma (Blok Kırma / Kutu Açma)
+            else if (mario.vy < 0 && (mario.y - mario.vy) >= p.y + p.h) {
+                mario.y = p.y + p.h;
+                mario.vy = 0;
+
+                if (p.type === "question" && !p.hit) {
+                    p.hit = true;
+                    if (p.content === "mushroom") {
+                        // Süper Mantar Çıkart!
+                        mushrooms.push({ x: p.x, y: p.y - 32, w: 32, h: 32, vx: 1.5, vy: 0 });
+                    } else {
+                        score += 200; coins++;
+                    }
+                }
+            }
+        }
+    });
+
+    // Mantar Hareketleri ve Mario Tarafından Yenmesi
+    mushrooms.forEach((m, index) => {
+        m.vy += gravity;
+        m.x += m.vx;
+        
+        // Mantar zemin çarpışması
+        platforms.forEach(p => {
+            if (m.x < p.x + p.w && m.x + m.w > p.x && m.y < p.y + p.h && m.y + m.h > p.y) {
+                if (m.vy > 0) { m.y = p.y - m.h; m.vy = 0; }
+            }
+        });
+        m.y += m.vy;
+
+        // Mario mantarı yerse:
+        let mRect = { x: m.x, y: m.y, width: m.w, height: m.h };
+        if (checkCollision(mario, mRect)) {
+            mario.isBig = true;
+            mario.height = 48; // Mario büyüdü!
+            mario.y -= 16;
+            score += 1000;
+            mushrooms.splice(index, 1);
+        }
+    });
+
+    // Goomba Yapay Zekası ve Ölüm/Öldürme Dengesi
+    enemies.forEach(e => {
+        if (!e.alive) return;
+        e.x += e.vx;
+
+        // Borulara çarpınca geri dönsünler
+        platforms.forEach(p => {
+            if (p.type === "pipe" && e.x + e.w > p.x && e.x < p.x + p.w) {
+                e.vx *= -1;
+            }
+        });
+
+        // Mario ile Goomba etkileşimi
+        let eRect = { x: e.x, y: e.y, width: e.w, height: e.h };
+        if (checkCollision(mario, eRect)) {
+            // Eğer Mario yukarıdan aşağı düşerken bastıysa ezer
+            if (mario.vy > 0 && (mario.y + mario.height - mario.vy) <= e.y) {
+                e.alive = false;
+                mario.vy = -6; // Ezince yukarı seker
+                score += 100;
+            } else {
+                // Yandan çarptıysa hasar alır
+                if (mario.invulnerable === 0) {
+                    if (mario.isBig) {
+                        mario.isBig = false;
+                        mario.height = 32; // Küçül
+                        mario.invulnerable = 60; // 1 saniye dokunulmazlık
+                    } else {
+                        gameOver = true; // Küçükse ölür
+                    }
+                }
+            }
+        }
+    });
+
+    // Boşluktan Aşağı Düşme Kontrolü
+    if (mario.y > canvas.height) gameOver = true;
+
+    // Kamera Kaydırma (Akıcı ekran takibi)
+    if (mario.x > cameraX + canvas.width / 2) {
+        cameraX = mario.x - canvas.width / 2;
+    }
+}
+
+// Piksel Sanatı Çizim Dünyası
+function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    ctx.save();
+    ctx.translate(-cameraX, 0);
+
+    // Platformları Orijinal NES Tarzında Çiz
+    platforms.forEach(p => {
+        if (p.type === "ground") {
+            ctx.fillStyle = "#d88a38"; // Kızıl kahve toprak
+            ctx.fillRect(p.x, p.y, p.w, p.h);
+            // Siyah çatlak çizgileri detayı
+            ctx.fillStyle = "#000";
+            for (let i = p.x; i < p.x + p.w; i += 16) ctx.fillRect(i, p.y, 2, p.h);
+        } else if (p.type === "brick") {
+            ctx.fillStyle = "#b84418"; // Tuğla rengi
+            ctx.fillRect(p.x, p.y, p.w, p.h);
+            ctx.strokeStyle = "#000"; ctx.strokeRect(p.x, p.y, p.w, p.h);
+        } else if (p.type === "question") {
+            ctx.fillStyle = p.hit ? "#8c8c8c" : "#fcb444"; // Vurulduysa gri, aktifse altın sarısı
+            ctx.fillRect(p.x, p.y, p.w, p.h);
+            ctx.strokeStyle = "#000"; ctx.strokeRect(p.x, p.y, p.w, p.h);
+            if (!p.hit) {
+                ctx.fillStyle = "#fff"; ctx.font = "bold 18px Arial";
+                ctx.fillText("?", p.x + 10, p.y + 22);
+            }
+        } else if (p.type === "pipe") {
+            ctx.fillStyle = "#00a800"; ctx.fillRect(p.x, p.y, p.w, p.h);
+            ctx.fillStyle = "#4cd84c"; ctx.fillRect(p.x + 4, p.y, 8, p.h); // Parlama efekti
+            ctx.strokeStyle = "#000"; ctx.strokeRect(p.x, p.y, p.w, p.h);
+        } else if (p.type === "flag") {
+            ctx.fillStyle = "#ffffff"; ctx.fillRect(p.x, p.y, p.w, p.h); // Beyaz direk
+            ctx.fillStyle = "#00a800"; ctx.fillRect(p.x - 26, p.y + 10, 26, 20); // Yeşil bayrak
+        }
+    });
+
+    // Mantarları Çiz
+    mushrooms.forEach(m => {
+        ctx.fillStyle = "#e52521"; // Kırmızı Mantar Kafası
+        ctx.fillRect(m.x, m.y, m.w, m.h / 2);
+        ctx.fillStyle = "#fce4a0"; // Gövde
+        ctx.fillRect(m.x + 6, m.y + m.h / 2, m.w - 12, m.h / 2);
+    });
+
+    // Düşmanları Çiz (Goomba)
+    enemies.forEach(e => {
+        if (!e.alive) return;
+        ctx.fillStyle = "#a85400"; // Goomba kahvesi
+        ctx.fillRect(e.x, e.y, e.w, e.h);
+        ctx.fillStyle = "#000"; // Kızgın gözler
+        ctx.fillRect(e.x + 6, e.y + 6, 4, 8); ctx.fillRect(e.x + 22, e.y + 6, 4, 8);
+    });
+
+    // Orijinal Tasarımlı Mario Çizimi (Şapka, Tulum, Saç)
+    if (mario.invulnerable === 0 || Math.floor(mario.invulnerable / 4) % 2 === 0) {
+        ctx.fillStyle = "#e52521"; // Kırmızı tulum/şapka
+        ctx.fillRect(mario.x, mario.y, mario.width, mario.height);
+        
+        ctx.fillStyle = "#a85400"; // Kahverengi gömlek/bıyık
+        ctx.fillRect(mario.x + (mario.facing === "right" ? 12 : 2), mario.y + 6, 10, 6); // Bıyık bölgesi
+        ctx.fillRect(mario.x, mario.y + mario.height - 6, mario.width, 6); // Ayakkabılar
+        
+        ctx.fillStyle = "#fce4a0"; // Ten rengi yüz
+        let faceX = mario.facing === "right" ? mario.x + 8 : mario.x;
+        ctx.fillRect(faceX, mario.y + 4, 14, 10);
+    }
+
+    ctx.restore();
+
+    // HUD Göstergeleri (NES Tarzı Skor Tahtası)
+    ctx.fillStyle = "#fff"; ctx.font = "bold 18px 'Courier New'";
+    ctx.fillText(`MARIO   PARALAR`, 40, 30);
+    ctx.fillText(`${String(score).padStart(6, '0')}   🪙x${String(coins).padStart(2, '0')}`, 40, 50);
+
+    // Ekran Durumları
+    if (gameOver) {
+        ctx.fillStyle = "rgba(0,0,0,0.8)"; ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "#ff2222"; ctx.font = "bold 36px Arial"; ctx.fillText("GAME OVER 💀", 260, 210);
+    }
+    if (gameWon) {
+        ctx.fillStyle = "rgba(0,0,0,0.8)"; ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "#fcb444"; ctx.font = "bold 32px Arial"; ctx.fillText("TEBRİKLER! DÜNYA 1-1 BİTTİ 🎉👑", 140, 210);
+    }
+}
+
+function gameLoop() {
+    update();
+    draw();
+    requestAnimationFrame(gameLoop);
+}
+
+// Başlatıcı
+gameLoop();
+</script>
+
+</body>
+</html>
