@@ -621,7 +621,7 @@ const oracleQuotes = [
    "Yıldız haritana göre bugün kurumsal kölelik zincirlerini kırma günün! Ama Akbank, Garanti and Yapı Kredi el ele tutuşup kapıda seni bekleyebilir. Zincirler kalsın, biz metindeki çift boşlukları kıralım.",
    "Küre diyor ki: İstifa et, her şeyi sat, Hindistan'a git ve ruhunu arındır. Ama uçak bileti fiyatlarına baktıktan sonra bu paneldeki 'Temizle' butonu gözüne Ganj Nehri'nden daha arındırıcı gelecek.",
    "Küre diyor ki: Sen bu dünyaya her sabah 8'de uyanıp elalemin excel tablosunu, word metnini düzeltmek için gelmedin. Sen çok daha büyük şeyler için yaratıldın... Şaka şaka, tam olarak bunun için geldin. Hadi yapıştır metni, mesai akıyor.",
-   "Bugün istifa edip dünyayı gezen o cool gezginlerden olma hayalin tavan yapacak. Ama sırt çantanı hazırlarken içine koyacak lüksün sadece şirket logolu polar ve promosyon termos olduğunu fark edip masana geri çökeceksiniz. Kopyala butonuna bas ve hayalleri serbest bırak.",
+   "Bugün istifa edip dünyayı gezen o cool gezginlerden olma hayalin tavan yapacak. Ama sırt çantanı hazırlarken içine koyacak lüksün sadece şirket logolu polar and promosyon termos olduğunu fark edip masana geri çökeceksiniz. Kopyala butonuna bas and hayalleri serbest bırak.",
    "Evren bugün sana çok net bir vizyon gösteriyor: Kendi işinin patronu olmuşsun, altındaki lüks araba, arkanda korumalar... Ama vizyonun çözünürlüğü biraz artınca fark ediyorsun ki altındaki araba şirket arabası, arkandakiler de 'Şu iş ne oldu?' diye bekleyen yöneticiler. Uyan aslanım, metin temizlenecek.",
    "İçindeki o çılgın girişimci ruh 'Hemen bu akşam şirketi kuruyoruz' diye bağırıyor. Ama muhasebecinin isteyeceği stopajı, bağkuru, damga vergisini hesaplayınca, buradaki bedava, reklamsız, vergisiz mat siyah panel gözüne bir anda İsviçre Merkez Bankası gibi güvenli gelecek.",
    "Bugün şirketinin ortak platformunda yanlışlıkla 'Yetti be, ne bitmez revizyonmuş!' yazacaksın... diye korkup soğuk terler dökeceksiniz ama yerine saniyede 120 kelime hızla 'Tabii ki hemen revize edip en memnun haliyle iletiyorum, sevgiler' yazarak hayatta kalacaksın.",
@@ -672,7 +672,7 @@ const oracleQuotes = [
 
 function getTengriOracle() { const display = document.getElementById("oracle-display"); display.classList.add("glitch-effect"); display.style.opacity = 0.3; setTimeout(() => { const randomIndex = Math.floor(Math.random() * oracleQuotes.length); display.innerText = oracleQuotes[randomIndex]; display.style.opacity = 1; setTimeout(() => { display.classList.remove("glitch-effect"); }, 200); }, 200); }
 function changeTheme(themeName, element) { if(themeName === 'dark') { document.documentElement.removeAttribute('data-theme'); } else { document.documentElement.setAttribute('data-theme', themeName); } document.querySelectorAll('.theme-dot').forEach(dot => dot.classList.remove('active')); element.classList.add('active'); }
-function showToast() { const toast = document.getElementById("toast-notification"); toast.classList.add("show"); setTimeout(() => { toast.toast.classList.remove("show"); }, 2000); }
+function showToast() { const toast = document.getElementById("toast-notification"); toast.classList.add("show"); setTimeout(() => { toast.classList.remove("show"); }, 2000); }
 function calculateMeta(tabIndex) { const text = document.getElementById(`input${tabIndex}`).innerText; const charCount = text.length; const wordCount = text.trim() === "" ? 0 : text.trim().split(/\s+/).length; document.getElementById(`char-count-${tabIndex}`).innerHTML = `Karakter: <strong>${charCount}</strong>`; document.getElementById(`word-count-${tabIndex}`).innerHTML = `Kelime: <strong>${wordCount}</strong>`; }
 function openTab(i){ document.querySelectorAll(".tab-content").forEach(t=>t.classList.remove("active")); document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active")); document.querySelectorAll(".tab-content")[i].classList.add("active"); document.querySelectorAll(".tab-btn")[i].classList.add("active"); }
 const bannedWords = ["yüksek kalite", "yüksek kaliteli", "%100 hakiki", "% 100 hakiki", "%100 HAKİKİ", "% 100 HAKİKİ", "hakiki deri", "gerçek deri", "%100 deri", "% 100 deri", "birinci sınıf", "1. kalite", "1. sınıf", "unisex", "1.sınıf", "1.kalite", "1.kalıte", "1. kalıte", "1.SINIF", "1. SINIF", "1.KALİTE", "1. KALİTE", "BİRİNCİ SINIF", "YÜKSEK KALİTE", "YÜKSEK KALITE"];
@@ -692,41 +692,46 @@ function cleanInvisibleWebGarbage(txt, forceLowercase = false) {
 function processUltraEngine(inputElementId, forceLowercase = false) {
     const inputArea = document.getElementById(inputElementId);
     if (!inputArea || !inputArea.innerHTML.trim()) return "";
+    
     let rawHtml = inputArea.innerHTML;
     let textWithProtectedBolds = hardProtectBoldStyles(rawHtml);
+    
     let sandbox = document.createElement("div");
     sandbox.innerHTML = textWithProtectedBolds;
+    
+    // Satır kesmelerini korumak için yapısal bloklara işaretçiler koyuyoruz
     let blocks = sandbox.querySelectorAll('p, div, br, li, tr');
-    blocks.forEach(el => { if (el.tagName.toLowerCase() === 'br') { el.before(document.createTextNode('\n')); } else { el.before(document.createTextNode('\n')); el.after(document.createTextNode('\n')); } });
-    
-    // SABİT DETEKTÖR VE AYIKLAMA REVIZYONU: b etiketlerini silmeden sadece diğer elementlerin etiket sarmallarını güvenli bir şekilde uçurur.
-    let allElements = sandbox.getElementsByTagName("*");
-    for (let i = allElements.length - 1; i >= 0; i--) { 
-        let el = allElements[i]; 
-        if (el.tagName.toLowerCase() === 'b') { 
-            el.removeAttribute('style'); 
-            el.removeAttribute('class'); 
-            el.removeAttribute('id'); 
+    blocks.forEach(el => { 
+        if (el.tagName.toLowerCase() === 'br') { 
+            el.before(document.createTextNode('\n')); 
         } else { 
-            // b elementlerinin outerHTML değişiminden etkilenmemesi için korumalı düğüm açma yöntemi kullanıldı.
-            while (el.firstChild) {
-                el.parentNode.insertBefore(el.firstChild, el);
-            }
-            el.parentNode.removeChild(el);
+            el.before(document.createTextNode('\n')); 
+            el.after(document.createTextNode('\n')); 
         } 
-    }
+    });
     
-    let rawLines = sandbox.innerHTML.split('\n');
+    // KESİN RECOV-BOOST METODU: <b> etiketleri dışındaki tüm etiket yapısını pürüzsüzce kaldırır
+    let cleanHtmlBuffer = sandbox.innerHTML;
+    
+    // b ve /b dışındaki tüm HTML etiketlerini metin içeriğini bozmadan güvenli regex ile ayıklarız
+    cleanHtmlBuffer = cleanHtmlBuffer.replace(/<(?!b\b|\/b\b)[^>]+>/gi, '');
+    
+    let rawLines = cleanHtmlBuffer.split('\n');
     let dynamicResultLines = [];
+    
     rawLines.forEach(line => {
         let cleanedLine = cleanInvisibleWebGarbage(line, forceLowercase);
         let contentCheck = cleanedLine.replace(/<[^>]*>/g, "").replace(/\s+/g, "").trim();
+        
         if (contentCheck !== "") {
             let finalizedLine = cleanedLine.trim();
-            if (forceLowercase) { finalizedLine = finalizedLine.replace(/(^|>|[.!?]\s+)([a-zçğıöşü])/g, (m, p1, p2) => p1 + p2.toLocaleUpperCase('tr-TR')); }
+            if (forceLowercase) { 
+                finalizedLine = finalizedLine.replace(/(^|>|[.!?]\s+)([a-zçğıöşü])/g, (m, p1, p2) => p1 + p2.toLocaleUpperCase('tr-TR')); 
+            }
             dynamicResultLines.push(finalizedLine);
         }
     });
+    
     return highlight(dynamicResultLines.join("<br>"));
 }
 
@@ -949,6 +954,7 @@ const coffeeQuotes = [
     "Bugün karşına çıkan engeller, seni durdurmak için değil, stratejini güçlendirmen için varlar.",
     "Gelecekteki halin sana bakıp teşekkür edecek. Sırf bugün pes etmediğin ve akıllıca dinlendiğin için.",
     "İçindeki ışığı kimsenin söndürmesine izin verme. Onlar sadece kendi karanlıklarını yansıtıyorlar.",
+    "Bırak dışarıdaki dünya kendi telaşıyla dönsün; senin şu anki tek görevin sakince kahveni yudumlamak.",
     "Fırtınalar ağaçların köklerini derinleştirir. Yaşadığın kurumsal krizler de senin profesyonelliğini.",
     "Biraz durup dinlenmek, pes etmek demek değildir. Daha güçlü koşmak için stratejik bir geri çekilmedir.",
     "Zorlu bir sabahı geride bıraktın, harika bir öğleden sonrasına hazırsın. Kahven sana güç versin.",
