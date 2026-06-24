@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HepsiBurada Panel lo</title>
+<title>HepsiBurada Panel 11</title>
 
 <style>
 /* ==========================================================================
@@ -631,7 +631,7 @@ const oracleQuotes = [
    "Bugün istifa dilekçeni yazıp tam patronun masasına fırlatacakken, telefonuna bankadan 'Sayın müşterimiz, 120 ay vadeli konut kredinizin 3. taksiti tahsil edilememiştir' bildirimi düşecek. O fırlattığın kağıdı masadan 'Yere çöp düşmüş de efendim' diye yerleri siler gibi geri toplayacaksın.",
    "Büyük bir kurumsal kriz kapıda ama sakin ol, seninle alakası yok. Kahvenden bir yudum al ve izle.",
    "Gözüm metnindeki gizli 'Yüksek Kalite' ibarelerini arıyor... Yapma öyle şeyler, Tengri görüyor.",
-   "Bugün copy-paste yaparken elin hiç titremeyecek. Kusursuz bir CTRL+C performansı seziyorum.",
+   "Bugün copy-paste yaparken elin hiç titremeyecek. Kusursuz bir CTRL+C performanceı seziyorum.",
    "O beklediğin mail veya mesaj bugün gelecek. Gelmezse de karşı tarafın vizyonsuzluğudur, boşver.",
    "Yapay zeka senin işini elinden almayacak ama o kahveyi şimdi tazelemezsen uykun kesin alacak.",
    "Yakın zamanda bir revizyon yiyeceksin ama öyle bir düzelteceksin ki isteyen utancından istifa edecek.",
@@ -699,38 +699,69 @@ function processUltraEngine(inputElementId, forceLowercase = false) {
     let sandbox = document.createElement("div");
     sandbox.innerHTML = textWithProtectedBolds;
     
-    // Satır kesmelerini korumak için yapısal bloklara işaretçiler koyuyoruz
-    let blocks = sandbox.querySelectorAll('p, div, br, li, tr');
-    blocks.forEach(el => { 
-        if (el.tagName.toLowerCase() === 'br') { 
-            el.before(document.createTextNode('\n')); 
-        } else { 
-            el.before(document.createTextNode('\n')); 
-            el.after(document.createTextNode('\n')); 
-        } 
-    });
-    
-    // KESİN RECOV-BOOST METODU: <b> etiketleri dışındaki tüm etiket yapısını pürüzsüzce kaldırır
-    let cleanHtmlBuffer = sandbox.innerHTML;
-    
-    // b ve /b dışındaki tüm HTML etiketlerini metin içeriğini bozmadan güvenli regex ile ayıklarız
-    cleanHtmlBuffer = cleanHtmlBuffer.replace(/<(?!b\b|\/b\b)[^>]+>/gi, '');
-    
-    let rawLines = cleanHtmlBuffer.split('\n');
     let dynamicResultLines = [];
+    let currentLineBuffer = [];
     
-    rawLines.forEach(line => {
-        let cleanedLine = cleanInvisibleWebGarbage(line, forceLowercase);
-        let contentCheck = cleanedLine.replace(/<[^>]*>/g, "").replace(/\s+/g, "").trim();
-        
-        if (contentCheck !== "") {
-            let finalizedLine = cleanedLine.trim();
-            if (forceLowercase) { 
-                finalizedLine = finalizedLine.replace(/(^|>|[.!?]\s+)([a-zçğıöşü])/g, (m, p1, p2) => p1 + p2.toLocaleUpperCase('tr-TR')); 
+    // KUSURSUZ DÜĞÜM HARİTALAMA MOTORU: Elemanları tek tek gerçek DOM hiyerarşisinde gezer
+    function traverseDOMNodes(node) {
+        if (node.nodeType === Node.TEXT_NODE) {
+            let content = node.nodeValue;
+            if (content) {
+                currentLineBuffer.push(content);
             }
-            dynamicResultLines.push(finalizedLine);
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+            let tagName = node.tagName.toLowerCase();
+            
+            // Satır sonu veya yeni satır tetikleyen yapısal blok elementleri
+            if (tagName === 'br' || tagName === 'p' || tagName === 'div' || tagName === 'li' || tagName === 'tr') {
+                flushBuffer();
+                if (tagName === 'br') return; 
+            }
+            
+            if (tagName === 'b') {
+                // Kalın yazı etiketlerini iç metinleriyle birlikte mühürleyip koruyoruz
+                let boldInnerSandbox = document.createElement("div");
+                boldInnerSandbox.innerHTML = node.innerHTML;
+                let boldPlainText = boldInnerSandbox.innerText; 
+                if (boldPlainText) {
+                    currentLineBuffer.push(`<b>${boldPlainText}</b>`);
+                }
+            } else {
+                // Diğer tüm sarmalayıcı etiketlerin (span vb.) sadece içini geziyoruz
+                for (let i = 0; i < node.childNodes.length; i++) {
+                    traverseDOMNodes(node.childNodes[i]);
+                }
+            }
+            
+            if (tagName === 'p' || tagName === 'div' || tagName === 'li' || tagName === 'tr') {
+                flushBuffer();
+            }
         }
-    });
+    }
+    
+    function flushBuffer() {
+        if (currentLineBuffer.length > 0) {
+            let lineCombined = currentLineBuffer.join("");
+            let textOnlyCheck = lineCombined.replace(/<[^>]*>/g, "").replace(/\s+/g, "").trim();
+            
+            if (textOnlyCheck !== "") {
+                let cleanedLine = cleanInvisibleWebGarbage(lineCombined, forceLowercase);
+                cleanedLine = cleanedLine.trim();
+                
+                if (forceLowercase) {
+                    cleanedLine = cleanedLine.replace(/(^|>|[.!?]\s+)([a-zçğıöşü])/g, (m, p1, p2) => p1 + p2.toLocaleUpperCase('tr-TR'));
+                }
+                dynamicResultLines.push(cleanedLine);
+            }
+            currentLineBuffer = [];
+        }
+    }
+    
+    // Ağacı baştan aşağı dolaşmaya başla
+    for (let i = 0; i < sandbox.childNodes.length; i++) {
+        traverseDOMNodes(sandbox.childNodes[i]);
+    }
+    flushBuffer(); // Kalan son verileri boşalt
     
     return highlight(dynamicResultLines.join("<br>"));
 }
@@ -927,7 +958,7 @@ const coffeeQuotes = [
     "Hak ettiğin o iç huzuru hiçbir iş, hiçbir insan senden çalamaz. Kendini o güvenli, sakin limana bırak.",
     "Sırtındaki o görünmez yükleri biraz olsun yere bırak. Bu birkaç dakika, sadece senin ruhunu beslemen için var.",
     "Her şey üst üste geldiyse, durup sakince geri çekilmek pes etmek değil, en asil dinlenme şeklidir.",
-    "Ruhunun pillerini şarj etmesine izin ver. Dinlenmek de en az çalışmak kadar kutsal bir çabadır.",
+    "Ruhunun pillerini şarj etmesine izin ver. Dinlenmek de en az çalışmak kadar kutsal bir çبادır.",
     "Başkalarının ne düşündüğü ya da ne kadar hızlı koştuğu önemli değil; sen kendi yolunda, asil bir sakinlikle ilerliyorsun.",
     "Kahvenin kokusu ruhuna sızarken, içindeki o bitmeyen savaşı durdur. Hak ettiğin barış tam olarak bu anda saklı.",
     "Büyük başarılar, pes etmek yerine sadece küçük bir kahve molası verenler tarafından inşa edildi.",
