@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HepsiBurada Panel 11</title>
+<title>HepsiBurada Panel 13</title>
 
 <style>
 /* ==========================================================================
@@ -622,7 +622,7 @@ const oracleQuotes = [
    "Küre diyor ki: İstifa et, her şeyi sat, Hindistan'a git ve ruhunu arındır. Ama uçak bileti fiyatlarına baktıktan sonra bu paneldeki 'Temizle' butonu gözüne Ganj Nehri'nden daha arındırıcı gelecek.",
    "Küre diyor ki: Sen bu dünyaya her sabah 8'de uyanıp elalemin excel tablosunu, word metnini düzeltmek için gelmedin. Sen çok daha büyük şeyler için yaratıldın... Şaka şaka, tam olarak bunun için geldin. Hadi yapıştır metni, mesai akıyor.",
    "Bugün istifa edip dünyayı gezen o cool gezginlerden olma hayalin tavan yapacak. Ama sırt çantanı hazırlarken içine koyacak lüksün sadece şirket logolu polar and promosyon termos olduğunu fark edip masana geri çökeceksiniz. Kopyala butonuna bas and hayalleri serbest bırak.",
-   "Evren bugün sana çok net bir vizyon gösteriyor: Kendi işinin patronu olmuşsun, altındaki lüks araba, arkanda korumalar... Ama vizyonun çözünürlüğü biraz artınca fark ediyorsun ki altındaki araba şirket arabası, arkandakiler de 'Şu iş ne oldu?' diye bekleyen yöneticiler. Uyan aslanım, metin temizlenecek.",
+   "Evren heute sana çok net bir vizyon gösteriyor: Kendi işinin patronu olmuşsun, altındaki lüks araba, arkanda korumalar... Ama vizyonun çözünürlüğü biraz artınca fark ediyorsun ki altındaki araba şirket arabası, arkandakiler de 'Şu iş ne oldu?' diye bekleyen yöneticiler. Uyan aslanım, metin temizlenecek.",
    "İçindeki o çılgın girişimci ruh 'Hemen bu akşam şirketi kuruyoruz' diye bağırıyor. Ama muhasebecinin isteyeceği stopajı, bağkuru, damga vergisini hesaplayınca, buradaki bedava, reklamsız, vergisiz mat siyah panel gözüne bir anda İsviçre Merkez Bankası gibi güvenli gelecek.",
    "Bugün şirketinin ortak platformunda yanlışlıkla 'Yetti be, ne bitmez revizyonmuş!' yazacaksın... diye korkup soğuk terler dökeceksiniz ama yerine saniyede 120 kelime hızla 'Tabii ki hemen revize edip en memnun haliyle iletiyorum, sevgiler' yazarak hayatta kalacaksın.",
    "Gelenizde inanılmaz bir zenginlik, malikaneler, uşaklar görüyorum... Ama rüya tabirlerine göre bu rüya 'Çok yakında mesaiye kalacaksın ve akşam yemeğinde sana sadece soğuk bir dürüm ısmarlayacaklar' anlamına geliyor. Dürümün tuzu bol olsun, devam.",
@@ -678,7 +678,6 @@ function openTab(i){ document.querySelectorAll(".tab-content").forEach(t=>t.clas
 const bannedWords = ["yüksek kalite", "yüksek kaliteli", "%100 hakiki", "% 100 hakiki", "%100 HAKİKİ", "% 100 HAKİKİ", "hakiki deri", "gerçek deri", "%100 deri", "% 100 deri", "birinci sınıf", "1. kalite", "1. sınıf", "unisex", "1.sınıf", "1.kalite", "1.kalıte", "1. kalıte", "1.SINIF", "1. SINIF", "1.KALİTE", "1. KALİTE", "BİRİNCİ SINIF", "YÜKSEK KALİTE", "YÜKSEK KALITE"];
 function escapeRegExp(str){ return str.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
 function highlight(text) { bannedWords.forEach(word => { const pattern = escapeRegExp(word).replace(/\s+/g,"\\s+"); const reg = new RegExp(pattern,"gi"); text = text.replace(reg, m => `<span class="bad-word">${m}</span>`); }); return text; }
-function hardProtectBoldStyles(rawHtml) { if (!rawHtml) return ""; let protectedHtml = rawHtml.replace(/<span[^>]*style="[^"]*font-weight:\s*bold;?[^"]*"[^>]*>([\s\S]*?)<\/span>/gi, '<b>$1</b>').replace(/<span[^>]*style="[^"]*font-weight:\s*700;?[^"]*"[^>]*>([\s\S]*?)<\/span>/gi, '<b>$1</b>').replace(/<span[^>]*style="[^"]*font-weight:\s*600;?[^"]*"[^>]*>([\s\S]*?)<\/span>/gi, '<b>$1</b>').replace(/<strong[^>]*>([\s\S]*?)<\/strong>/gi, '<b>$1</b>'); return protectedHtml; }
 
 function cleanInvisibleWebGarbage(txt, forceLowercase = false) {
     if (!txt) return "";
@@ -689,50 +688,58 @@ function cleanInvisibleWebGarbage(txt, forceLowercase = false) {
     return clean;
 }
 
+// ULTRA PRECISE RECURSIVE INLINE NODE FILTER ENGINE
 function processUltraEngine(inputElementId, forceLowercase = false) {
     const inputArea = document.getElementById(inputElementId);
-    if (!inputArea || !inputArea.innerHTML.trim()) return "";
-    
-    let rawHtml = inputArea.innerHTML;
-    let textWithProtectedBolds = hardProtectBoldStyles(rawHtml);
-    
-    let sandbox = document.createElement("div");
-    sandbox.innerHTML = textWithProtectedBolds;
+    if (!inputArea) return "";
     
     let dynamicResultLines = [];
     let currentLineBuffer = [];
     
-    // KUSURSUZ DÜĞÜM HARİTALAMA MOTORU: Elemanları tek tek gerçek DOM hiyerarşisinde gezer
-    function traverseDOMNodes(node) {
-        if (node.nodeType === Node.TEXT_NODE) {
-            let content = node.nodeValue;
-            if (content) {
-                currentLineBuffer.push(content);
-            }
-        } else if (node.nodeType === Node.ELEMENT_NODE) {
+    // Satır içi metin/stil tarama ve etiket koruma motoru
+    function scanNodesRecursively(node, isInsideBoldContext = false) {
+        if (!node) return;
+        
+        // Element tipini kontrol et (b, strong veya font-weight bold stili var mı)
+        let currentBoldState = isInsideBoldContext;
+        if (node.nodeType === Node.ELEMENT_NODE) {
             let tagName = node.tagName.toLowerCase();
+            let styleAttr = node.getAttribute ? (node.getAttribute("style") || "") : "";
             
-            // Satır sonu veya yeni satır tetikleyen yapısal blok elementleri
+            if (tagName === 'b' || tagName === 'strong' || styleAttr.includes("font-weight")) {
+                currentBoldState = true;
+            }
+            
+            // Satır sonu veya blok seviyesi elementlerde tamponu yeni satıra bölüyoruz
             if (tagName === 'br' || tagName === 'p' || tagName === 'div' || tagName === 'li' || tagName === 'tr') {
                 flushBuffer();
-                if (tagName === 'br') return; 
+                if (tagName === 'br') return;
             }
-            
-            if (tagName === 'b') {
-                // Kalın yazı etiketlerini iç metinleriyle birlikte mühürleyip koruyoruz
-                let boldInnerSandbox = document.createElement("div");
-                boldInnerSandbox.innerHTML = node.innerHTML;
-                let boldPlainText = boldInnerSandbox.innerText; 
-                if (boldPlainText) {
-                    currentLineBuffer.push(`<b>${boldPlainText}</b>`);
-                }
-            } else {
-                // Diğer tüm sarmalayıcı etiketlerin (span vb.) sadece içini geziyoruz
-                for (let i = 0; i < node.childNodes.length; i++) {
-                    traverseDOMNodes(node.childNodes[i]);
+        }
+        
+        // Metin Düğümü (TEXT_NODE) ise içeriği temizleyip duruma göre kalın yapıp tampona ekle
+        if (node.nodeType === Node.TEXT_NODE) {
+            let rawText = node.nodeValue;
+            if (rawText && rawText.trim() !== "") {
+                let cleaned = cleanInvisibleWebGarbage(rawText, forceLowercase);
+                if (cleaned && cleaned.trim() !== "") {
+                    if (currentBoldState) {
+                        currentLineBuffer.push(`<b>${cleaned}</b>`);
+                    } else {
+                        currentLineBuffer.push(cleaned);
+                    }
                 }
             }
-            
+        } else {
+            // Elementin tüm alt düğümlerini tek tek hiyerarşik derinlikle tara
+            for (let i = 0; i < node.childNodes.length; i++) {
+                scanNodesRecursively(node.childNodes[i], currentBoldState);
+            }
+        }
+        
+        // Blok element çıkışında tamponu kapat
+        if (node.nodeType === Node.ELEMENT_NODE) {
+            let tagName = node.tagName.toLowerCase();
             if (tagName === 'p' || tagName === 'div' || tagName === 'li' || tagName === 'tr') {
                 flushBuffer();
             }
@@ -742,26 +749,27 @@ function processUltraEngine(inputElementId, forceLowercase = false) {
     function flushBuffer() {
         if (currentLineBuffer.length > 0) {
             let lineCombined = currentLineBuffer.join("");
-            let textOnlyCheck = lineCombined.replace(/<[^>]*>/g, "").replace(/\s+/g, "").trim();
+            // Sadece etiketlerden oluşup oluşmadığını doğrula
+            let pureTextCheck = lineCombined.replace(/<[^>]*>/g, "").trim();
             
-            if (textOnlyCheck !== "") {
-                let cleanedLine = cleanInvisibleWebGarbage(lineCombined, forceLowercase);
-                cleanedLine = cleanedLine.trim();
+            if (pureTextCheck !== "") {
+                // Çift boşlukları ve kelime arası taşmaları normalize et
+                lineCombined = lineCombined.replace(/\s{2,}/g, " ").trim();
                 
                 if (forceLowercase) {
-                    cleanedLine = cleanedLine.replace(/(^|>|[.!?]\s+)([a-zçğıöşü])/g, (m, p1, p2) => p1 + p2.toLocaleUpperCase('tr-TR'));
+                    lineCombined = lineCombined.replace(/(^|>|[.!?]\s+)([a-zçğıöşü])/g, (m, p1, p2) => p1 + p2.toLocaleUpperCase('tr-TR'));
                 }
-                dynamicResultLines.push(cleanedLine);
+                dynamicResultLines.push(lineCombined);
             }
             currentLineBuffer = [];
         }
     }
     
-    // Ağacı baştan aşağı dolaşmaya başla
-    for (let i = 0; i < sandbox.childNodes.length; i++) {
-        traverseDOMNodes(sandbox.childNodes[i]);
+    // Ağacı en tepeden okumaya başla
+    for (let i = 0; i < inputArea.childNodes.length; i++) {
+        scanNodesRecursively(inputArea.childNodes[i], false);
     }
-    flushBuffer(); // Kalan son verileri boşalt
+    flushBuffer();
     
     return highlight(dynamicResultLines.join("<br>"));
 }
@@ -958,7 +966,7 @@ const coffeeQuotes = [
     "Hak ettiğin o iç huzuru hiçbir iş, hiçbir insan senden çalamaz. Kendini o güvenli, sakin limana bırak.",
     "Sırtındaki o görünmez yükleri biraz olsun yere bırak. Bu birkaç dakika, sadece senin ruhunu beslemen için var.",
     "Her şey üst üste geldiyse, durup sakince geri çekilmek pes etmek değil, en asil dinlenme şeklidir.",
-    "Ruhunun pillerini şarj etmesine izin ver. Dinlenmek de en az çalışmak kadar kutsal bir çبادır.",
+    "Ruhunun pillerini şarj etmesine izin ver. Dinlenmek de en az çalışmak kadar kutsal bir çabadır.",
     "Başkalarının ne düşündüğü ya da ne kadar hızlı koştuğu önemli değil; sen kendi yolunda, asil bir sakinlikle ilerliyorsun.",
     "Kahvenin kokusu ruhuna sızarken, içindeki o bitmeyen savaşı durdur. Hak ettiğin barış tam olarak bu anda saklı.",
     "Büyük başarılar, pes etmek yerine sadece küçük bir kahve molası verenler tarafından inşa edildi.",
@@ -974,7 +982,7 @@ const coffeeQuotes = [
     "Dünyanın hızı seni ilgilendirmiyor. Sen kendi asil ritminde, kahvenden aldığın o ilk yudumla ilerliyorsun.",
     "Zihnindeki bildirimleri kapat. Kahvenin sıcaklığına ve şu anın dinginliğine teslim ol.",
     "Başkalarının acelesi onların sınırıdır. Sen sakince kahveni yudumla ve kendi aura alanını koru.",
-    "Gözlerini kapat, kahvenin kokusunu içine çek ve evrenin senin için fısıldadığı o sakin ritmi dinle.",
+    "Gözlerini kapat, kahvenin kokusuunu içine çek ve evrenin senin için fısıldadığı o sakin ritmi dinle.",
     "Yavaşla. Dünya sen durdun diye dönmekten vazgeçmeyecek. Kahvenin tadını çıkar, gerisi hallolur.",
     "Geçmişin stresini, geleceğin kaygısını sil at. Şu an sadece sen ve kahvenin o kusursuz dengesi varsınız.",
     "Başarmak kadar dinlenmek de bir sanattır. Şimdi arkana yaslan ve kahvenin kokusuyla zihnini özgür bırak.",
