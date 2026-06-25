@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HepsiBurada Panel</title>
+
+<style>
+/* ==========================================================================
+   EPIC PREMIUM COLOR THEMES (MAT, AĞIRBAŞLI VE LÜKS)
+   ========================================================================== */
+
+/* 1. DEFAULT: MIDNIGHT OLED (ZİFİRİ MAT DERİN SİYAH) */
+:root {
+    --bg-main: #000000;
+    --bg-container: #09090a;
+    --bg-input: #020203;
+    --bg-btn: #121214;
+    --bg-btn-hover: #1a1a1e;
+    --bg-tab-active: #1a1a1e;
+    --text-main: #8e8e93;
+    --text-input: #f2f2f7;
+    --text-heading: #ffffff;
+    --text-btn: #aeaeb2;
+    --border-color: #242426;
+    --border-container: #1c1c1e;
+    --accent-color: #f2f2f7; 
+    --accent-glow: rgba(255, 255, 255, 0.15);
+}
+
+/* TEMA RENKLERİ GERİ KALANLAR */
+html[data-theme="crimson"] {
+    --bg-main: #0c0808; --bg-container: #161010; --bg-input: #080505; --bg-btn: #241818; --bg-btn-hover: #332222; --bg-tab-active: #332222; --text-main: #b8a0a0; --text-input: #f5eded; --text-heading: #ffffff; --text-btn: #e63946; --border-color: #402b2b; --border-container: #2e1f1f; --accent-color: #d62828; --accent-glow: rgba(214, 40, 40, 0.4);
+}
+html[data-theme="blue"] {
+    --bg-main: #080c14; --bg-container: #101624; --bg-input: #05080d; --bg-btn: #182238; --bg-btn-hover: #22304f; --bg-tab-active: #22304f; --text-main: #a0b0c8; --text-input: #edf3f8; --text-heading: #ffffff; --text-btn: #4ea8de; --border-color: #2b3d61; --border-container: #1f2c47; --accent-color: #0077b6; --accent-glow: rgba(0, 119, 182, 0.4);
+}
+html[data-theme="green"] {
+    --bg-main: #060c08; --bg-container: #0d1a12; --bg-input: #040906; --bg-btn: #162e20; --bg-btn-hover: #1f422e; --bg-tab-active: #1f422e; --text-main: #9ebda8; --text-input: #ecf5ef; --text-heading: #ffffff; --text-btn: #52b788; --border-color: #275239; --border-container: #1c3b29; --accent-color: #2d6a4f; --accent-glow: rgba(45, 106, 79, 0.4);
+}
+html[data-theme="purple"] {
+    --bg-main: #0a0712; --bg-container: #151024; --bg-input: #06040d; --bg-btn: #211938; --bg-btn-hover: #2f244f; --bg-tab-active: #2f244f; --text-main: #a8a0c8; --text-input: #f0edf8; --text-heading: #ffffff; --text-btn: #b5179e; --border-color: #3b2d61; --border-container: #2a2047; --accent-color: #7209b7; --accent-glow: rgba(114, 9, 183, 0.4);
+}
+html[data-theme="pink"] {
+    --bg-main: #0f070b; --bg-container: #1f1019; --bg-input: #0a0408; --bg-btn: #331a29; --bg-btn-hover: #472439; --bg-tab-active: #472439; --text-main: #cda2bd; --text-input: #faf0f6; --text-heading: #ffffff; --text-btn: #ff758f; --border-color: #592d47; --border-container: #422135; --accent-color: #ff4d6d; --accent-glow: rgba(255, 77, 109, 0.4);
+}
+html[data-theme="yellow"] {
+    --bg-main: #0d0c04; --bg-container: #1c1a09; --bg-input: #090802; --bg-btn: #2e2a10; --bg-btn-hover: #403b16; --bg-tab-active: #403b16; --text-main: #cfcb9e; --text-input: #fbfbfa; --text-heading: #ffffff; --text-btn: #ffd166; --border-color: #524b1c; --border-container: #3d3815; --accent-color: #ffb703; --accent-glow: rgba(255, 183, 3, 0.4);
+}
+html[data-theme="orange"] {
+    --bg-main: #0d0a06; --bg-container: #1c150d; --bg-input: #080604; --bg-btn: #2b2114; --bg-btn-hover: #372d1d; --bg-tab-active: #372d1d; --text-main: #c2b29e; --text-input: #f7f3ed; --text-heading: #ffffff; --text-btn: #f3a712; --border-color: #4f3d26; --border-container: #3b2e1c; --accent-color: #e67e22; --accent-glow: rgba(230, 126, 34, 0.4);
+}
+html[data-theme="slate"] {
+    --bg-main: #121315; --bg-container: #1e2024; --bg-input: #0b0c0d; --bg-btn: #2d3138; --bg-btn-hover: #3f444f; --bg-tab-active: #3f444f; --text-main: #949a8c; --text-input: #f1f2f4; --text-heading: #ffffff; --text-btn: #90e0ef; --border-color: #474d59; --border-container: #333840; --accent-color: #00b4d8; --accent-glow: rgba(0, 180, 216, 0.3);
+}
+html[data-theme="white"] {
+    --bg-main: #f1f3f6; --bg-container: #ffffff; --bg-input: #f8fafc; --bg-btn: #e4e9f0; --bg-btn-hover: #d1d9e6; --bg-tab-active: #ffffff; --text-main: #4a5568; --text-input: #1a202c; --text-heading: #1a202c; --text-btn: #4a5568; --border-color: #cbd5e1; --border-container: #e2e8f0; --accent-color: #2d3748; --accent-glow: rgba(45, 55, 72, 0.1);
+}
+
+*{box-sizing:border-box;}
+html, body, .input-area, div { cursor: default; }
+button, .tab-btn, .theme-dot, .oracle-sphere { cursor: pointer; }
+
+body {
+    margin:0;
+    padding:20px 20px 140px 20px; 
+    background: var(--bg-main) !important; 
+    color: var(--text-main) !important;
+    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+    overflow-x:hidden;
+    min-height: 100vh;
+    position: relative;
+}
+
+.theme-selector { display: flex; justify-content: flex-end; gap: 12px; max-width: 900px; margin: 0 auto 20px auto; align-items: center; background: var(--bg-container); padding: 12px 18px; border-radius: 8px; border: 1px solid var(--border-container); }
+.theme-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; color: var(--text-main); opacity: 0.8; }
+.theme-dot { width: 22px; height: 22px; border-radius: 50%; border: 2px solid transparent; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+.theme-dot:hover { transform: scale(1.2); }
+.theme-dot.active { border-color: var(--text-heading) !important; transform: scale(1.1); box-shadow: 0 0 12px var(--accent-color); }
+
+.oracle-box { max-width: 900px; margin: 0 auto 25px auto; background: var(--bg-container); border: 1px solid var(--border-container); border-radius: 10px; padding: 20px; display: flex; align-items: center; gap: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); position: relative; overflow: hidden; }
+.oracle-sphere-wrapper { position: relative; flex-shrink: 0; }
+.oracle-sphere { width: 60px; height: 60px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, var(--text-heading), var(--accent-color)); box-shadow: 0 0 20px var(--accent-glow), inset -5px -5px 15px rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; font-size: 24px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); user-select: none; }
+.oracle-sphere:hover { transform: scale(1.1) rotate(15deg); box-shadow: 0 0 30px var(--accent-color), inset -2px -2px 10px rgba(0,0,0,0.4); }
+.oracle-sphere:active { transform: scale(0.95); }
+.oracle-text-area { flex-grow: 1; }
+.oracle-title { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-color); font-weight: 700; margin-bottom: 4px; }
+.oracle-quote { font-size: 14px; color: var(--text-input); font-style: italic; line-height: 1.5; transition: opacity 0.2s ease; }
+.pulse-glow { position: absolute; width: 100%; height: 100%; border-radius: 50%; background: var(--accent-color); opacity: 0.15; animation: spherePulse 2s infinite ease-in-out; top: 0; left: 0; pointer-events: none; }
+@keyframes spherePulse { 0% { transform: scale(1); opacity: 0.2; } 50% { transform: scale(1.3); opacity: 0; } 100% { transform: scale(1); opacity: 0.2; } }
+.glitch-effect { animation: textGlitch 0.2s linear 2; }
+@keyframes textGlitch { 0% { transform: translate(2px, 1px); opacity: 0.7; } 50% { transform: translate(-1px, -1px); opacity: 0.9; } 100% { transform: translate(0, 0); opacity: 1; } }
+
+.tabs{ display:flex; justify-content:center; gap:12px; margin-bottom:25px; }
+button, .tab-btn { background: var(--bg-btn); color: var(--text-btn); border: 1px solid var(--border-color); padding: 12px 26px; font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; border-radius: 6px; transition: all 0.2s ease; }
+button:hover, .tab-btn:hover { color: var(--text-heading) !important; background: var(--bg-btn-hover); border-color: var(--accent-color); box-shadow: 0 0 12px var(--accent-glow); }
+.tab-btn.active { background: var(--bg-tab-active) !important; color: var(--text-heading) !important; border-color: var(--accent-color) !important; box-shadow: 0 0 15px var(--accent-glow); }
+
+.container{ position:relative; width:100%; max-width: 900px; margin: 0 auto; }
+.tab-content{ position:absolute; width:100%; opacity:0; transform:scale(0.99); transition: all .25s ease-in-out; pointer-events:none; background: var(--bg-container); padding: 28px; border-radius: 10px; border: 1px solid var(--border-container); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+.tab-content.active{ opacity:1; transform:scale(1); position:relative; pointer-events:auto; }
+
+h3 { color: var(--text-heading); font-size: 14px; margin-top: 0; margin-bottom: 22px; letter-spacing: 1px; text-transform: uppercase; border-left: 3px solid var(--accent-color); padding-left: 12px; font-weight: 600; }
+.input-area, .output{ width:100%; height:220px; background: var(--bg-input); color: var(--text-input); border: 1px solid var(--border-color); padding:16px; font-size: 14px; line-height: 1.6; border-radius: 6px; outline: none; transition: all 0.2s ease; margin-bottom: 6px; overflow-y: auto; word-break: break-word; font-family: inherit; }
+.input-area:focus, .output:focus { border-color: var(--accent-color); box-shadow: 0 0 10px var(--accent-glow); }
+.output{ min-height:220px; height: auto; border-style: dashed; }
+.meta-info { font-size: 11px; color: var(--text-main); margin-bottom: 18px; display: flex; gap: 18px; opacity: 0.7; letter-spacing: 0.5px; }
+.meta-info span strong { color: var(--text-heading); }
+.action-buttons { margin-bottom: 25px; display: flex; gap: 12px; flex-wrap: wrap; }
+.bad-word{ color:#ff3366; font-weight:600; background:rgba(255, 51, 102, 0.08); border: 1px solid rgba(255, 51, 102, 0.3); padding:2px 6px; border-radius:4px; }
+.toast { position: fixed; top: -100px; right: 25px; background: var(--bg-container); border: 1px solid var(--accent-color); color: var(--text-heading); padding: 14px 28px; border-radius: 6px; font-size: 12px; font-weight: 600; letter-spacing: 1px; box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 15px var(--accent-glow); transition: top 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 10000; }
+.toast.show { top: 25px; }
+.watermark{ position:fixed; bottom:160px; left:0; width:100%; text-align:center; font-size:70px; font-weight:900; letter-spacing:25px; pointer-events:none; user-select:none; opacity: 0.015; color: var(--text-heading); animation: pulse 5s ease-in-out infinite; }
+@keyframes pulse{ 0%,100%{transform:scale(1); opacity: 0.012;} 50%{transform:scale(1.01); opacity: 0.02;} }
+
+/* ==========================================================================
+   🎵 PREMIUM CYBER AUDIO PLAYER STYLES (MINIMALIST & ADVANCED)
+   ========================================================================= */
+.cyber-player {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: var(--bg-container);
+    border-top: 1px solid var(--border-container);
+    padding: 10px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.6);
+    z-index: 9999;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.2);
+}
+.cyber-player.minimized {
+    transform: translateY(100%);
+}
+.player-toggle-btn {
+    position: absolute;
+    right: 30px;
+    top: -24px;
+    background: var(--bg-container);
+    border: 1px solid var(--border-container);
+    border-bottom: none;
+    padding: 4px 14px;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-radius: 6px 6px 0 0;
+    color: var(--text-main);
+    transition: all 0.2s, top 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.2);
+}
+.cyber-player.minimized .player-toggle-btn {
+    top: -24px;
+    border: 1px solid var(--border-container);
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.3);
+}
+.player-toggle-btn:hover {
+    color: var(--text-heading);
+    background: var(--bg-btn-hover);
+}
+.player-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.player-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 30%;
+}
+.player-icon {
+    font-size: 18px;
+    animation: rotateDisc 4s linear infinite;
+    animation-play-state: paused;
+}
+.cyber-player.playing .player-icon {
+    animation-play-state: running;
+}
+@keyframes rotateDisc {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.track-details {
+    display: flex;
+    flex-direction: column;
+}
+.track-name {
+    color: var(--text-heading);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+.track-index {
+    color: var(--text-main);
+    font-size: 10px;
+    opacity: 0.5;
+    margin-top: 1px;
+}
+.player-controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.player-btn {
+    padding: 6px 12px;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    background: var(--bg-btn);
+    border: 1px solid var(--border-color);
+    text-transform: uppercase;
+}
+.player-btn.active-mode {
+    border-color: var(--accent-color);
+    color: var(--text-heading);
+    box-shadow: 0 0 8px var(--accent-glow);
+}
+.player-timeline-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+.time-display {
+    font-size: 11px;
+    font-family: monospace;
+    color: var(--text-main);
+    min-width: 35px;
+    opacity: 0.8;
+}
+.timeline-container {
+    flex-grow: 1;
+    height: 4px;
+    background: var(--bg-input);
+    border-radius: 2px;
+    position: relative;
+    cursor: pointer;
+}
+.timeline-progress {
+    height: 100%;
+    width: 0%;
+    background: var(--accent-color);
+    box-shadow: 0 0 6px var(--accent-color);
+    border-radius: 2px;
+    pointer-events: none;
+}
+
+/* ==========================================================================
+   ☕ REVIZE KAHVE MOLASI VE ⚡ SİTE ÇAPINDA TENGRİ PANİK ANIMASYONLARI
+   ========================================================================== */
+.coffee-btn-premium {
+    margin-right: auto;
+    background: linear-gradient(135deg, rgba(230, 126, 34, 0.08), rgba(211, 84, 0, 0.14));
+    border: 1px solid rgba(230, 126, 34, 0.35);
+    color: #e67e22 !important;
+    padding: 7px 18px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(230, 126, 34, 0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+.coffee-btn-premium:hover {
+    background: #e67e22 !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 20px rgba(230, 126, 34, 0.4);
+    transform: translateY(-1px);
+}
+
+.btn-emoji-wrapper {
+    position: relative;
+    display: inline-block;
+}
+.btn-steam-box {
+    position: absolute;
+    top: -10px;
+    left: 2px;
+    display: flex;
+    gap: 2px;
+    pointer-events: none;
+}
+.btn-steam {
+    width: 1.5px;
+    height: 8px;
+    background: rgba(230, 126, 34, 0.6);
+    border-radius: 50%;
+    filter: blur(0.6px);
+    opacity: 0;
+    animation: btnSteamRise 2s infinite ease-in-out;
+}
+.coffee-btn-premium:hover .btn-steam {
+    background: rgba(255, 255, 255, 0.8);
+}
+.btn-steam:nth-child(2) { animation-delay: 0.7s; }
+@keyframes btnSteamRise {
+    0% { transform: translateY(2px) scaleX(1); opacity: 0; }
+    50% { transform: translateY(-2px) scaleX(1.4); opacity: 0.8; }
+    100% { transform: translateY(-6px) scaleX(0.5); opacity: 0; }
+}
+
+.coffee-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(4, 4, 5, 0.94); backdrop-filter: blur(25px);
+    z-index: 100000; display: none; align-items: center; justify-content: center;
+    flex-direction: column; opacity: 0; transition: opacity 0.4s ease;
+}
+.coffee-overlay.show { display: flex; opacity: 1; }
+.cup-wrapper { position: relative; display: flex; flex-direction: column; align-items: center; margin-bottom: 45px; }
+
+.glass-cup {
+    width: 110px; height: 120px; 
+    border: 2px solid rgba(255, 255, 255, 0.45); 
+    border-bottom-left-radius: 35px; border-bottom-right-radius: 35px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.02));
+    position: relative; 
+    box-shadow: inset 0 0 25px rgba(255,255,255,0.15), 0 25px 50px rgba(0,0,0,0.7);
+    backdrop-filter: blur(5px);
+    overflow: hidden;
+}
+.glass-cup::after {
+    content: '';
+    position: absolute;
+    bottom: 6px; left: 6px; right: 6px;
+    height: 72px;
+    background: linear-gradient(to top, rgba(92, 60, 42, 0.9), rgba(143, 94, 66, 0.75));
+    border-bottom-left-radius: 26px;
+    border-bottom-right-radius: 26px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    box-shadow: 0 0 15px rgba(92, 60, 42, 0.6);
+    animation: liquidWave 3.5s infinite ease-in-out;
+    transform-origin: center bottom;
+}
+@keyframes liquidWave {
+    0%, 100% { transform: rotate(0deg) scaleY(1); }
+    50% { transform: rotate(2deg) scaleY(1.02); }
+}
+.cup-ear {
+    width: 28px; height: 60px; 
+    border: 2px solid rgba(255, 255, 255, 0.45); border-left: none;
+    border-top-right-radius: 20px; border-bottom-right-radius: 20px;
+    position: absolute; right: -29px; top: 25px;
+}
+.cup-plate {
+    width: 170px; height: 3px; background: rgba(255, 255, 255, 0.4);
+    margin-top: 18px; box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+    border-radius: 2px;
+}
+.steam-box { position: absolute; top: -50px; display: flex; gap: 16px; justify-content: center; width: 100%; }
+.steam-puff {
+    width: 3px; height: 45px; 
+    background: linear-gradient(to top, rgba(255,255,255,0.45), rgba(255,255,255,0)); 
+    opacity: 0;
+    border-radius: 50%; filter: blur(3px); animation: steamRise 2.8s infinite ease-in-out;
+}
+.steam-puff:nth-child(1) { animation-delay: 0s; }
+.steam-puff:nth-child(2) { animation-delay: 0.8s; }
+.steam-puff:nth-child(3) { animation-delay: 1.6s; }
+@keyframes steamRise {
+    0% { transform: translateY(15px) scaleX(0.8); opacity: 0; }
+    40% { transform: translateY(-5px) scaleX(1.4); opacity: 0.45; }
+    80% { transform: translateY(-25px) scaleX(0.9); opacity: 0.1; }
+    100% { transform: translateY(-35px) scaleX(0.4); opacity: 0; }
+}
+
+.mola-quote { 
+    max-width: 650px; text-align: center; font-size: 16px; 
+    color: #f2f2f7 !important;
+    text-shadow: 0 2px 15px rgba(255, 255, 255, 0.1), 0 4px 30px rgba(0, 0, 0, 0.5);
+    font-style: italic; min-height: 70px; padding: 0 25px; font-weight: 300; 
+    letter-spacing: 0.8px; line-height: 1.8; opacity: 1;
+    transition: opacity 1.5s ease-in-out;
+}
+.mola-quote.fade-out {
+    opacity: 0;
+}
+
+@keyframes chaosBounce1 {
+    0% { transform: translate(0, 0); }
+    10% { transform: translate(calc(50vw - 120px), calc(-35vh + 60px)); }
+    20% { transform: translate(calc(-45vw + 60px), calc(40vh - 120px)); }
+    30% { transform: translate(calc(40vw - 60px), calc(-25vh + 110px)); }
+    40% { transform: translate(calc(-48vw + 120px), calc(-42vh + 60px)); }
+    50% { transform: translate(calc(25vw - 120px), calc(35vh - 60px)); }
+    60% { transform: translate(calc(-38vw + 90px), calc(-20vh + 50px)); }
+    70% { transform: translate(calc(48vw - 50px), calc(28vh - 90px)); }
+    80% { transform: translate(calc(-28vw + 70px), calc(38vh - 40px)); }
+    90% { transform: translate(calc(35vw - 90px), calc(-38vh + 95px)); }
+    100% { transform: translate(0, 0); }
+}
+@keyframes chaosBounce2 {
+    0% { transform: translate(0, 0); }
+    12% { transform: translate(calc(-38vw + 50px), calc(28vh - 90px)); }
+    25% { transform: translate(calc(48vw - 100px), calc(-38vh + 40px)); }
+    38% { transform: translate(calc(-25vw + 80px), calc(-48vh + 95px)); }
+    50% { transform: translate(calc(42vw - 60px), calc(42vh - 70px)); }
+    63% { transform: translate(calc(-48vw + 110px), calc(18vh - 50px)); }
+    75% { transform: translate(calc(28vw - 70px), calc(-28vh + 110px)); }
+    88% { transform: translate(calc(-35vw + 90px), calc(38vh - 60px)); }
+    100% { transform: translate(0, 0); }
+}
+.tengri-panic {
+    position: relative !important;
+    animation: chaosBounce1 0.4s infinite linear !important;
+    z-index: 999998 !important;
+}
+button.tengri-panic, .tab-btn.tengri-panic, .player-btn.tengri-panic, .coffee-btn-premium.tengri-panic {
+    animation: chaosBounce2 0.35s infinite linear !important;
+}
+
+/* ==========================================================================
+   🐱 ETKİLEŞİMLİ ULTRA GERÇEKÇİ DÖRT AYAKLI KEDİ STYLES (REVIZE POFUDUK ENGINE)
+   ========================================================================= */
+#interactive-cat-holder {
+    position: fixed;
+    width: 120px;
+    height: 120px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    z-index: 99999;
+    transform-origin: bottom center;
+}
+
+.cat-speech-bubble {
+    position: absolute;
+    top: -45px;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    background: #ffffff;
+    color: #1c1c1e;
+    padding: 6px 14px;
+    border-radius: 18px;
+    font-size: 13px;
+    font-weight: bold;
+    white-space: nowrap;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+    transform-origin: bottom center;
+}
+
+.cat-speech-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px 6px 0;
+    border-style: solid;
+    border-color: #ffffff transparent;
+    display: block;
+    width: 0;
+}
+
+.cat-speech-bubble.active {
+    transform: translateX(-50%) scale(1);
+}
+
+.cat-graphics {
+    width: 100%;
+    height: 100%;
+    transform-origin: bottom center;
+    transition: transform 0.25s ease;
+}
+
+#interactive-cat-holder.look-left .cat-graphics {
+    transform: scaleX(-1);
+}
+
+/* GÖZ YAPILARI AÇIK/KAPALI DURUMLARI */
+.cat-eye-closed { display: none; }
+#interactive-cat-holder.is-sleeping .cat-eye-normal { display: none; }
+#interactive-cat-holder.is-sleeping .cat-eye-closed { display: block; }
+
+/* DOĞAL NEFES ALMA VE APATİK DURUMLAR */
+.cat-main-body {
+    transform-origin: center bottom;
+    animation: catBreathing 3s ease-in-out infinite;
+}
+@keyframes catBreathing {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03, 0.97); }
+}
+
+/* UYKU DURUMUNDA DAHA DERİN VE YAVAŞ NEFES */
+#interactive-cat-holder.is-sleeping .cat-main-body {
+    animation: catSleepBreathing 4.5s ease-in-out infinite;
+}
+@keyframes catSleepBreathing {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.05, 0.94) rotate(1deg); }
+}
+
+.cat-tail-wrapper {
+    transform-origin: 25% 75%;
+    animation: catTailWag 3s ease-in-out infinite;
+}
+@keyframes catTailWag {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(18deg); }
+}
+
+/* YÜRÜME ANİMASYONU (SADECE YAKIN MESAFELERDE) */
+#interactive-cat-holder.is-walking .cat-graphics {
+    animation: catWalkTrotting 0.35s linear infinite;
+}
+#interactive-cat-holder.is-walking .p-left,
+#interactive-cat-holder.is-walking .p-back-right {
+    animation: catLegStepA 0.35s linear infinite;
+}
+#interactive-cat-holder.is-walking .p-right,
+#interactive-cat-holder.is-walking .p-back-left {
+    animation: catLegStepB 0.35s linear infinite;
+}
+@keyframes catWalkTrotting {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-3px) rotate(1deg); }
+}
+@keyframes catLegStepA {
+    0%, 100% { transform: translate(0, 0) rotate(-18deg); }
+    50% { transform: translate(4px, -3px) rotate(18deg); }
+}
+@keyframes catLegStepB {
+    0%, 100% { transform: translate(4px, -3px) rotate(18deg); }
+    50% { transform: translate(0, 0) rotate(-18deg); }
+}
+
+/* DÖRTNALA KOŞMA ANİMASYONU (UZAK MESAFE AGRESİF YARAMAZLIK DURUMU) */
+#interactive-cat-holder.is-running .cat-graphics {
+    animation: catRunGallop 0.16s linear infinite;
+}
+#interactive-cat-holder.is-running .cat-tail-wrapper {
+    animation: catTailRunSwing 0.08s ease-in-out infinite alternate;
+}
+#interactive-cat-holder.is-running .p-left,
+#interactive-cat-holder.is-running .p-back-right {
+    animation: catLegRunA 0.16s linear infinite;
+}
+#interactive-cat-holder.is-running .p-right,
+#interactive-cat-holder.is-running .p-back-left {
+    animation: catLegRunB 0.16s linear infinite;
+}
+@keyframes catRunGallop {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-7px) rotate(3deg); }
+}
+@keyframes catTailRunSwing {
+    0% { transform: rotate(-8deg); }
+    100% { transform: rotate(20deg); }
+}
+@keyframes catLegRunA {
+    0%, 100% { transform: translate(-4px, 2px) rotate(-35deg); }
+    50% { transform: translate(6px, -5px) rotate(35deg); }
+}
+@keyframes catLegRunB {
+    0%, 100% { transform: translate(6px, -5px) rotate(35deg); }
+    50% { transform: translate(-4px, 2px) rotate(-35deg); }
+}
+
+/* REAKSİYON SINIFLARI - YARAMAZLIK VE REAKSİYON ANİMASYONLARI */
+#interactive-cat-holder.action-clean .cat-graphics {
+    animation: catHyperSpin 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) 1;
+}
+@keyframes catHyperSpin {
+    0% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.3) rotate(180deg); }
+    100% { transform: scale(1) rotate(360deg); }
+}
+
+#interactive-cat-holder.action-fix .cat-graphics {
+    animation: catScratchFrenzy 0.15s ease-in-out 4;
+}
+@keyframes catScratchFrenzy {
+    0%, 100% { transform: translate(0, 0) scaleX(1); }
+    25% { transform: translate(-5px, -3px) scaleX(1.05); }
+    75% { transform: translate(5px, 3px) scaleX(0.95); }
+}
+
+#interactive-cat-holder.action-copy .cat-graphics {
+    animation: catBigLuxeJump 0.6s cubic-bezier(0.25, 1, 0.5, 1) 1;
+}
+@keyframes catBigLuxeJump {
+    0%, 100% { transform: translateY(0) scaleY(1); }
+    40% { transform: translateY(-45px) scaleY(1.1); box-shadow: 0 40px 20px rgba(0,0,0,0.4); }
+    70% { transform: translateY(5px) scaleY(0.9); }
+}
+
+#interactive-cat-holder.action-clear .cat-graphics {
+    animation: catScaredExplode 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.5) 1;
+}
+@keyframes catScaredExplode {
+    0%, 100% { transform: scale(1); }
+    30% { transform: scale(1.4); filter: brightness(1.2); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="theme-selector">
+    <button id="premium-mola-trigger" onclick="openCoffeeModal()" class="coffee-btn-premium">
+        <span class="btn-emoji-wrapper">☕<span class="btn-steam-box"><span class="btn-steam"></span><span class="btn-steam"></span></span></span> KAHVE MOLASI
+    </button>
+    <span class="theme-label">TEMA:</span>
+    <div class="theme-dot id-dark-dot active" style="background: #1c1c1e; border: 1px solid #3a3a3c;" onclick="changeTheme('dark', this)" title="Midnight OLED (Derin Siyah)"></div>
+    <div class="theme-dot" style="background: #d62828;" onclick="changeTheme('crimson', this)" title="Cyber Crimson (Mat Kırmızı)"></div>
+    <div class="theme-dot" style="background: #0077b6;" onclick="changeTheme('blue', this)" title="Deep Sapphire (Soylu Mavi)"></div>
+    <div class="theme-dot" style="background: #2d6a4f;" onclick="changeTheme('green', this)" title="Emerald Velvet (Zümrüt Yeşil)"></div>
+    <div class="theme-dot" style="background: #7209b7;" onclick="changeTheme('purple', this)" title="Amethyst Dusk (Asil Mor)"></div>
+    <div class="theme-dot" style="background: #ff4d6d;" onclick="changeTheme('pink', this)" title="Rose Quartz (Mat Pembe)"></div>
+    <div class="theme-dot" style="background: #ffb703;" onclick="changeTheme('yellow', this)" title="Muted Gold (Mat Asil Sarı)"></div>
+    <div class="theme-dot" style="background: #e67e22;" onclick="changeTheme('orange', this)" title="Imperial Amber (Kehribar Altın)"></div>
+    <div class="theme-dot" style="background: #474d59;" onclick="changeTheme('slate', this)" title="Titanium Slate (Gunmetal Gri)"></div>
+    <div class="theme-dot" style="background: #ffffff; border: 1px solid #cbd5e1;" onclick="changeTheme('white', this)" title="Obsidian White (Yumuşak Platin)"></div>
+</div>
+
+<div class="oracle-box">
+    <div class="oracle-sphere-wrapper">
+        <div class="pulse-glow"></div>
+        <div class="oracle-sphere" onclick="getTengriOracle()">🔮</div>
+    </div>
+    <div class="oracle-text-area">
+        <div class="oracle-title">⚡ ORACLE / GÜNÜN SİBER KEHANETİ</div>
+        <div id="oracle-display" class="oracle-quote">Küreye tıkla ve siber kaderinle yüzleş...</div>
+    </div>
+</div>
+
+<div id="toast-notification" class="toast">⚡ METİN BAŞARIYLA KOPYALANDI!</div>
+
+<div class="tabs">
+    <button class="tab-btn active" onclick="openTab(0)">🧹 Boşluk Temizleyici</button>
+    <button class="tab-btn" onclick="openTab(1)">✍️ Yazım Düzenleyici</button>
+</div>
+
+<div class="container">
+    <div class="tab-content active">
+        <h3>Metni buraya yapıştır aslan parçası</h3>
+        <div id="input1" class="input-area" contenteditable="true" oninput="calculateMeta(1)"></div>
+        <div class="meta-info">
+            <span id="char-count-1">Karakter: <strong>0</strong></span>
+            <span id="word-count-1">Kelime: <strong>0</strong></span>
+        </div>
+        <div class="action-buttons">
+            <button onclick="cleanSpaces()">Temizle</button>
+            <button onclick="copy1()">Kopyala</button>
+            <button onclick="clear1()">Sil</button>
+        </div>
+        <div id="output1" class="output" contenteditable="true"></div>
+    </div>
+
+    <div class="tab-content">
+        <h3>Metni buraya yapıştır aslan parçası</h3>
+        <div id="input2" class="input-area" contenteditable="true" oninput="calculateMeta(2)"></div>
+        <div class="meta-info">
+            <span id="char-count-2">Karakter: <strong>0</strong></span>
+            <span id="word-count-2">Kelime: <strong>0</strong></span>
+        </div>
+        <div class="action-buttons">
+            <button onclick="fixText()">Düzelt</button>
+            <button onclick="copy2()">Kopyala</button>
+            <button onclick="clear2()">Sil</button>
+        </div>
+        <div id="output2" class="output" contenteditable="true"></div>
+    </div>
+</div>
+
+<div id="interactive-cat-holder">
+    <div class="cat-speech-bubble" id="cat-speech-bubble-el">Miyav!</div>
+    
+    <svg class="cat-graphics" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path class="cat-tail-wrapper" d="M25,75 C16,71 11,53 13,42 C14,37 19,37 18,44 C16,51 21,66 28,71 Z" fill="#df8e46" />
+        <path d="M14,49 C12,50 13,53 15,52 Z" fill="#b66627" />
+        <path d="M16,59 C14,61 16,64 18,62 Z" fill="#b66627" />
+        
+        <ellipse class="p-back-left" style="transform-origin: 34px 85px;" cx="34" cy="85" rx="7" ry="5" fill="#ca7933" />
+        <ellipse class="p-back-right" style="transform-origin: 66px 85px;" cx="66" cy="85" rx="7" ry="5" fill="#ca7933" />
+        
+        <ellipse class="cat-main-body" cx="50" cy="65" rx="25" ry="21" fill="#df8e46" />
+        <path d="M26,61 Q34,63 38,61 Q34,59 26,61 Z" fill="#b66627" />
+        <path d="M74,61 Q66,63 62,61 Q66,59 74,61 Z" fill="#b66627" />
+        <ellipse cx="50" cy="68" rx="14" ry="12" fill="#f3cc9e" />
+        
+        <ellipse class="p-left" style="transform-origin: 44px 86px;" cx="44" cy="86" rx="6" ry="5" fill="#f3cc9e" />
+        <ellipse class="p-right" style="transform-origin: 56px 86px;" cx="56" cy="86" rx="6" ry="5" fill="#f3cc9e" />
+
+        <g class="cat-main-body">
+            <polygon points="30,39 18,14 38,25" fill="#df8e46" />
+            <polygon points="28,36 21,18 35,25" fill="#f3cc9e" /> 
+            
+            <polygon points="70,39 82,14 62,25" fill="#df8e46" />
+            <polygon points="72,36 79,18 65,25" fill="#f3cc9e" />
+
+            <ellipse cx="50" cy="38" rx="21" ry="16" fill="#df8e46" />
+            
+            <path d="M50,23 L50,28 M47,24 L48,27 M53,24 L52,27" stroke="#b66627" stroke-width="1.8" stroke-linecap="round" />
+            
+            <g class="cat-eye-normal">
+                <ellipse cx="40" cy="36" rx="3.5" ry="4.8" fill="#2c3e50" />
+                <circle cx="38.8" cy="34.5" r="1.1" fill="#ffffff" /> 
+                <ellipse cx="60" cy="36" rx="3.5" ry="4.8" fill="#2c3e50" />
+                <circle cx="58.8" cy="34.5" r="1.1" fill="#ffffff" />
+            </g>
+
+            <g class="cat-eye-closed">
+                <path d="M36,37 Q40,41 44,37" stroke="#2c3e50" stroke-width="2.2" fill="none" stroke-linecap="round" />
+                <path d="M56,37 Q60,41 64,37" stroke="#2c3e50" stroke-width="2.2" fill="none" stroke-linecap="round" />
+            </g>
+
+            <ellipse cx="50" cy="42" rx="5.5" ry="3.5" fill="#f3cc9e" />
+            <polygon points="50,41 48,39 52,39" fill="#e85a71" /> 
+            <path d="M47,43 Q50,45 50,43 Q50,45 53,43" stroke="#2c3e50" stroke-width="1.2" fill="none" stroke-linecap="round" />
+            
+            <line x1="31" y1="42" x2="16" y2="40" stroke="#b66627" stroke-width="1.2" stroke-linecap="round" />
+            <line x1="31" y1="45" x2="18" y2="46" stroke="#b66627" stroke-width="1.2" stroke-linecap="round" />
+            <line x1="69" y1="42" x2="84" y2="40" stroke="#b66627" stroke-width="1.2" stroke-linecap="round" />
+            <line x1="69" y1="45" x2="82" y2="46" stroke="#b66627" stroke-width="1.2" stroke-linecap="round" />
+        </g>
+    </svg>
+</div>
+
+<div id="cyber-audio-player" class="cyber-player">
+    <button id="player-toggle" class="player-toggle-btn" onclick="togglePlayerMinimize()">▼ AŞAĞI KAYDIR</button>
+    
+    <div class="player-top-row">
+        <div class="player-info">
+            <div id="player-icon" class="player-icon">💿</div>
+            <div class="track-details">
+                <div id="track-name" class="track-name"></div>
+                <div id="track-index" class="track-index">Şarkı: 1 / 18</div>
+            </div>
+        </div>
+        <div class="player-controls">
+            <button class="player-btn" onclick="prevTrack()">⏮</button>
+            <button id="play-pause-btn" class="player-btn" onclick="togglePlay()">▶ OYNAT</button>
+            <button class="player-btn" onclick="nextTrack()">⏭</button>
+            <button id="shuffle-btn" class="player-btn" onclick="toggleShuffle()">🔀 KARIŞTIR</button>
+            <button id="repeat-btn" class="player-btn" onclick="toggleRepeat()">🔁 TEKRARLA</button>
+            
+            <div style="display: inline-flex; align-items: center; gap: 6px; margin-left: 8px; background: var(--bg-input); padding: 6px 10px; border-radius: 6px; border: 1px solid var(--border-color);">
+                <span style="font-size: 10px; opacity: 0.7; color: var(--text-btn);">🔊</span>
+                <input type="range" min="0" max="1" step="0.05" value="1" oninput="changeVolume(this.value)" style="width: 55px; accent-color: var(--accent-color); background: transparent; cursor: pointer; height: 3px; border: none; outline: none; appearance: none; -webkit-appearance: none;">
+            </div>
+        </div>
+    </div>
+    
+    <div class="player-timeline-wrapper">
+        <span id="current-time" class="time-display">00:00</span>
+        <div id="timeline-container" class="timeline-container" onclick="seekTrack(event)">
+            <div id="timeline-progress" class="timeline-progress"></div>
+        </div>
+        <span id="total-duration" class="time-display">00:00</span>
+    </div>
+    
+    <audio id="main-audio" src=""></audio>
+</div>
+
+<div id="coffee-modal" class="coffee-overlay" onclick="closeCoffeeModal()">
+    <div class="cup-wrapper" onclick="event.stopPropagation()">
+        <div class="steam-box">
+            <div class="steam-puff"></div>
+            <div class="steam-puff"></div>
+            <div class="steam-puff"></div>
+        </div>
+        <div class="glass-cup">
+            <div class="cup-ear"></div>
+        </div>
+        <div class="cup-plate"></div>
+    </div>
+    <div id="mola-quote-display" class="mola-quote"></div>
+    <button onclick="closeCoffeeModal()" style="margin-top: 30px; border-color: rgba(255,255,255,0.4); color: #ffffff; background: rgba(255,255,255,0.1); font-size: 11px;">Molayı Bitir</button>
+</div>
+
+<div id="tengri-overlay" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999999; display: none; pointer-events: none;">
+    <img src="tengri.jpg" alt="Tengri" style="max-width: 85vw; max-height: 75vh; border-radius: 12px; box-shadow: 0 0 100px rgba(255, 255, 255, 0.6); border: 3px solid #ffffff; opacity: 1 !important;">
+</div>
+
+<script>
+const oracleQuotes = [
+    "Bugün metinlerden sileceğin gereksiz boşluklar gibi, hayatındaki gereksiz insanları da şak diye sileceksin. Temiz ferah gün yakın.",
+    "Yakın gelecekte senin için çok büyük bir başarı ve zenginlik görüyorum. Tabii 'yakın gelecek' siber evrende 40-50 yıl anlamına gelebilir, o yüzden sen şimdilik şu metne odaklan.",
+    "Küre diyor ki: O çok gitmek istediğin tatile daha çok var ama önündeki şu metni bitirirsen en azından masandan kalkıp tuvalete gitme hakkı kazanacaksın.",
+    "Bugün her şeyi bırakıp Ege'ye yerleşme isteğin tavan yapacak. Ama zeytin yetiştirmek de emek ister aslan parçası, gel biz önce şu metindeki çift boşlukları yetiştirelim.",
+    "Küre parlıyor! Seni çok yakında hawaii gömleğinle sahilde buzlu bir kahve içerken görüyorum... Gözümü biraz kırpınca meğer masanda klimasız çalışıyormuşsun, neyse şu işi bitirelim.",
+    "Hayatındaki karmaşayı tıpkı bir gün her şeyi geride bırakıp gidecekmiş gibi boşveriyorsun ama cüzdanın 'O metin buraya kopyalanacak' diye fısıldıyor.",
+    "Yıldız haritana göre bugün istifa dilekçeni yazmak için harika bir gün. Ama ev kiranın haritası pek öyle demiyor, gel şu metni pırıl pırıl temizleyelim.",
+   "Gezegenlerin konumuna bakılırsa bugün tam bir 'Masaya istifayı vurma' günü. Fakat doğalgaz faturanın konumuna bakılırsa bugün daha çok 'Müdüre kahve götürme' günü. Dosyayı açıyorum?",
+   "Bugün Merkür retrosu bitiyor, yani radikal kararlar almak için harika bir gün! Tabii sonraki ay taş kemirmek istemiyorsan, o radikal kararı şimdilik sadece şu metni sadeleştirerek uygulayalım.",
+   "Evren sana 'Sen çok daha iyilerine layıksın' mesajı gönderiyor ama insan kaynakları henüz o mesajı onaylamadı. Gel biz şu Excel tablosunu pırıl pırıl yapalım.",
+   "Bugün tam 'Ceketimi alır çıkarım' havası var dışarıda. Ama o ceketin taksitleri henüz bitmediği için, gel ceketimizi sandalyenin arkasına asıp şu kodları düzeltelim.",
+   "Astrologlar 'Bugün kariyerinde köklü bir değişim zamanı' diyor. Gel bu değişimi şimdilik sadece yazı tipini Arial'dan Times New Roman'a çevirerek başlatalım, riske girmeyelim.",
+   "Yükselen burcun bugün sana 'Özgürlük' vadediyor ama cüzdanındaki o tek haneli bakiye 'Esaretin bedeli'ni hatırlatıyor. Metni düzenlemeye ne dersin?",
+   "İçindeki o gizli dahi 'Bu iş senin dehanı köreltiyor' diyor ama market sepetinin toplam tutarı 'Körelmeye devam et' diye fısıldıyor. Şu raporu temize çekelim.",
+   "Bugün o 'Hayallerinin peşinden koş' günlerinden biri... Eğer hayalin bir sonraki ay kirayı geciktirmek değilse, gel şu grafiklerin üzerinden bir daha geçelim.",
+   "Doğum haritana göre bugün otorite figürleriyle yüzleşme günün. Ama cüzdanının haritasına göre müdürün her dediğine 'Çok haklısınız' deme günün. Metni pürüzsüz yapalım.",
+   "Şu an istifa etsen evren sana yeni kapılar açar elbet, ama o kapılardan içeri ev sahibi de girebilir. Gel risk almayalım, şu taslağı bir güzel toparlayalım.",
+   "Bugün tam 'Kendi hikayeni yazma' günü. Ama o hikayenin ilk bölümü 'İşsizlik Maaşı Sırasında Bir Gün' olsun istemiyorsak, gel şu metni kusursuz hale getirelim.",
+   "Şu an klavyeye çok sert basarak mail yazıyorsun, hıncını anlıyorum. Ama mekanik klavye fiyatları uçtu, tuş fırlarsa yenisini alamayız. Sakince o parmağını geri çek ve şu metni yumuşatarak düzenle.",
+   "Bugün tam patronun odasının kapısını çarparak çıkma günü! Ama o kapı hidrolikli, yavaşça kapanıp karizmanı çizecek, hiç gerek yok. Gel biz şu Excel tablosunu pürüzsüz hale getirelim.",
+   "Bugün tam şirket telefonunu sessize alıp ortadan kaybolma günü. Ama telefon şirket malı, kaybedersen maaşından keserler, durduk yere borçlanma. Gel şu metni cilalayalım.",
+   "Şu an müdüre 'Sizinle çalışmak bir kabustu' diye bağırmak istiyorsun. Ama sesin detone olur, ciddiyetin kaybolur, arkandan gülerler. Hiç o riske girmeyelim, gel şu raporu pürüzsüz yapalım.",
+   "Bugün 'Bıktım sizin vizyonunuzdan' deyip sandalyeyi tekmelemek için harika bir enerji var üstünde. Ama sandalye tekerlekli, kayar odanın öbür ucundaki çöp kovasına çarpar, durduk yere iş çıkar. Boşver, metni temizle geç.",
+   "İçinden 'Şu masadaki her şeyi yere fırlatıp istifa edeceğim' hissi geçiyor. Ama yerleri daha yeni sildiler, temizlik görevlisi ablayla arayı bozmaya değmez. Gel biz şu dosyayı toparlayalım.",
+   "Bugün tam patrona 'Ben bu şirketin kölesi değilim' diye rest çekme günü. Ama şirketin kliması çok güzel soğutuyor, dışarısı 40 derece, evde klima yok. Serin serin şu metni düzenleyelim biz.",
+   "Şu an müdürün yüzüne bakıp 'Siz ne anlarsınız bu işten' diye haykırmak istiyorsun. Ama adamın arkasında klima kumandası duruyor, kapatırsa sıcaktan pişersin. Alttan al, şu analizi bitirelim.",
+   "İçindeki o asi ruh 'Kapat laptopun kapağını çat diye, çık git' diyor. Ama kapağın arasına kalem sıkışır, ekranı patlatırsın, durduk yere 3 maaşın tamire gider. Yavaşça açık bırak o ekranı, metne odaklanalım.",
+   "Hayatındaki bazı insanlar tıpkı Ctrl + Z yapınca geri gelmeyen o 3 saatlik emek gibiler; yoklukları büyük bir travma yaratmıyor ama boşa harcanan zamana insan kahroluyor.",
+   "Bazı insanlar hayatında tıpkı Adobe programlarının o bitmek bilmeyen güncelleme uyarıları gibi; sürekli dikkatini dağıtıyorlar, vakit çalıyorlar ama açıp baksan hayatına en ufak bir yenilik katmıyorlar.",
+   "Hayatındaki bazı insanlar tıpkı masaüstünde unuttuğun 'yeni_klasör_2' gibiler; neden açtığını hatırlamazsn, içi tamamen boştur ama öylece durup arka plan resmini kapatırlar.",
+   "Bazı insanlar tıpkı her web sitesinde karşına çıkan 'Çerezleri Kabul Et' butonu gibiler; hayatına hiçbir derinlik katmıyorlar, sadece gitmek istediğin yolda sürekli önüne çıkıp duruyorlar.",
+   "Hayatındaki bazı insanlar tıpkı o 128 GB'lık flash belleğin içindeki 'Kısayol' dosyası gibiler; dışarıdan bakınca devasa bir veri taşıyor gibi görünürler, tıklarsın bomboş bir hata ekranı verirler.",
+   "Bazı insanlar tıpkı e-ticaret sitelerindeki 'Tükendi' yazan ürünler gibiler; orada durmalarının dünyaya hiçbir faydası yoktur, sadece 'Keşke zamanında baksaydım' diye insana pişmanlık verirler.",
+   "Bazı insanlar tıpkı telefonun arkasında biriken o anlamsız önbellek (cache) dosyaları gibiler; hayatında hiçbir fonksiyonları yoktur, sadece durduk yere ruhunda ağırlık yapıp enerjini tüketirler.",
+   "Hayatındaki bazı insanlar tıpkı eski sevgilinin Spotify'da hala seni takip eden gizli hesabı gibiler; orada bir yerde bir '1' rakamı olarak dururlar ama hayatına ne bir ritim katarlar ne bir melodi.",
+   "Bazı insanlar tıpkı bedava diye indirdiğin o mobil uygulamanın içindeki reklamlar gibiler; her 5 saniyede bir karşına çıkıp 'Hadi beni premium yap' diye ısrar edenler ama kendilerinde hiç premium kumaş yoktur.",
+   "Günün özlü sözü: Yanlış kod satırı Ctrl + Z ile silinir, yanlış insan hayatından Ctrl + Alt + Delete yapsan da kolay kolay temizlenmez.",
+   "Günün özlü sözü: Metindeki eksik harf hemen fark edilir and tamamlanır; insanın içindeki eksik karakteri ise yıllarca fark edemezsin.",
+   "Günün özlü sözü: Tasarımdaki pikselleri büyütüp düzeltebilirsin ama vizyonu küçük insanı ne kadar büyütürsen büyüt, sadece görüntüsü bulanıklaşır.",
+   "Günün özlü sözü: Bozuk dosya formatı dönüştürücüyle kurtarılır, bozuk karakterli insanı hangi kalıba sokarsan sok yine hata verir.",
+   "Günün özlü sözü: Yazım hatası gözden kaçar, görmezden gelinir; ama insanın hatası bir kez göze battı mı bir daha asla unutturulmaz.",
+   "Günün özlü sözü: Word belgesindeki boşluklar tek tıkla silinir; bazı insanların içindeki o devasa boşluğu ise ne yapsan dolduramazsin.",
+   "Günün özlü sözü: Fazla yazılan kelime metinden kolayca ayıklanır; hayatına fazla gelen insanı ayıklamak ise ömründen ömür alır.",
+   "Günün özlü sözü: Kötü tasarlanmış bir sayfa sıfırdan çizilir; kötü niyetli bir insanla yola çıktıysan o yolu kaç kere sıfırlarsan sıfırla hep çıkmaza girersin.",
+   "Günün özlü sözü: Yazının fontunu değiştirmek bir saniyeni alır; insanın rengini değiştirmesi ise sadece bir menfaatine bakar.",
+   "Günün özlü sözü: Formüldeki hata Excel uyarısıyla çözülür; insanın hayatına kattığı hata ise ancak yıllar sonra tecrübeyle anlaşılır.",
+   "Günün özlü sözü: Kaydedilmeyen veri için canın sıkılır ama unutulur; değer görmeyen emek için sızlayan kalbin sızısı ise kolay geçmez.",
+   "Senin emeğinin üzerine konmaya çalışanların mikrofonu toplantıda açık kalsın da evde arkadan gelen o dedikodu sesleri tüm şirkete yayınlansın. Amin.",
+   "Bugün işi sana kitleyip erken çıkanların bindiği metrobüs ters yöne gitsin, üstüne bir de telefonlarının şarjı yüzde 1'ken şarj aletlerini ofiste unuttuklarını fark etsinler. Amin.",
+   "Bugün sana durduk yere revizyon üstüne revizyon verenlerin klavyesindeki Space tuşu bozulsun, tüm mailleri bitişik yazıp rezil olsunlar. Amin.",
+   "İş yapıyormuş gibi görünüp bütün gün sosyal medyada gezenlerin, yanlışlıkla şirket sahibinin 5 yıl önceki tatil fotoğrafını beğenmesine sebocak bir parmak kayması nasip et ya Rabbim. Amin.",
+   "Toplantıda seni zor durumda bırakmak için pusuya yatanların, tam konuşmaya başladıkları an boğazına gıcık otursun da sesleri helyum gazı çekmiş gibi çıksın. Amin.",
+   "Senin başarılarını görmezden gelenlerin en sevdikleri döküman, tam 'Kaydet' tuşuna basacakken elektrik kesintisiyle uçup gitsin. Amin.",
+   "Sana sürekli 'Biz bir aileyiz' deyip mesai ücretini vermeyenlerin şirket arabasının lastiği tam da sanayiye en uzak mesafede patlasın. Amin.",
+   "Bugün 'Seni çok iyi anlıyorum' diyenlerin aslında 'Şu an seni hiç dinlemiyorum, sadece kendi konuşma sıramın gelmesini bekliyorum' demek istediğini bir kez daha anlayacaksın.",
+   "Bugün müdürün 'Bu projede senin vizyonuna güveniyorum' demesinin aslında 'Hata çıkarsa faturayı tamamen sana keseceğim' demek olduğunu acı bir tebessümle fark edeceksiniz.",
+   "Bugün 'Önceliğimiz çalışan mutluluğu' sloganının aslında 'Ofise langırt koyduk ama oynarsan gözümüz üstünde olur' demek olduğunu anlayacaksın.",
+   "Bugün 'Aramızda çok güzel bir sinerji oluştu' iltifatının aslında 'Sen ne desen onaylıyorsun, işleri de sessizce yapıyorsun, tam aradığımız kölesin' anlamına geldiğini anlayacaksın.",
+   "Bugün 'Biz burada bir aileyiz' söyleminin aslında 'Haklarını ararken fazla profesyonel düşünme, fedakarlık yaparken de sınır tanıma' anlamına geldiğini bir kez daha anlayacaksın.",
+   "İçindeki ses 'Yeter artık, fırlat klavyeyi çık git' diyor ama bankanın mobil uygulamasından gelen 'Kredi taksitiniz yaklaşmaktadır' bildirimi elini usulca klavyeye geri koyduruyor. Devam şampiyon.",
+   "Bugün istifa edip dünyayı gezecek o cesur kararı alacaksın... Tam o sırada gözün masadaki yarım kalmış sodaya takılacak, 'Neyse bunu bari bitireyim' derken mesai bitecek.",
+   "Bugün LinkedIn profilini 'Open to Work' yapasın var. Ama piyasanın durumunu hatırlayınca profili 'Gerekirse 24 Saat Çalışırım' yapmaktan son anda dönüyorsun. Kopyala butonuna bas ve sakinleş.",
+   "Evren sana fısıldıyor: 'Sen daha iyilerine layıksın.' Doğru, layıksın ama kredi kartı ekstrem de diyor ki: 'Şu an tam olarak bu masaya ve bu metinlere layıksın.' Hadi aslan parçası.",
+   "Bugün toplantıda masaya vurup 'Ben gidiyorum' demek için harika bir energy var üstünde. Ama masaya vurursan laptop ekranı kırılır, masraf çıkar. Boşver, temizle metni geç.",
+   "Kaderinde bugün çok radikal bir kariyer değişikliği görüyorum. Mesela 'Boşluk Temizleyici' sekmesinden 'Yazım Düzenleyici' sekmesine geçeceksin. Büyük devrim.",
+   "Küre diyor ki: İstifa edip bir sahil kasabasında domates yetiştirmek harika bir fikir. Ama domates tohumu fiyatlarına bakınca bu panelin siyahlığı gözüne bir tık daha güzel geliyor, değil mi?",
+   "Bugün bir delilik yapıp Slack'ten 'Ben çıkıyorum, ne haliniz varsa görün' yazasın gelecek. Ama enter tuşuna basmadan önce kıdem tazminatını hesaplayıp yerine 'Harika bir feedback, hemen ilgileniyorum' yazacaksınız.",
+   "Yıldız haritana göre bugün kurumsal kölelik zincirlerini kırma günün! Ama Akbank, Garanti and Yapı Kredi el ele tutuşup kapıda seni bekleyebilir. Zincirler kalsın, biz metindeki çift boşlukları kıralım.",
+   "Küre diyor ki: İstifa et, her şeyi sat, Hindistan'a git ve ruhunu arındır. Ama uçak bileti fiyatlarına baktıktan sonra bu paneldeki 'Temizle' butonu gözüne Ganj Nehri'nden daha arındırıcı gelecek.",
+   "Küre diyor ki: Sen bu dünyaya her sabah 8'de uyanıp elalemin excel tablosunu, word metnini düzeltmek için gelmedin. Sen çok daha büyük şeyler için yaratıldın... Şaka şaka, tam olarak bunun için geldin. Hadi yapıştır metni, mesai akıyor.",
+   "Bugün istifa edip dünyayı gezen o cool gezginlerden olma hayalin tavan yapacak. Ama sırt çantanı hazırlarken içine koyacak lüksün sadece şirket logolu polar ve promosyon termos olduğunu fark edip masana geri çökeceksiniz. Kopyala butonuna bas ve hayalleri serbest bırak.",
+   "Evren bugün sana çok net bir vizyon gösteriyor: Kendi işinin patronu olmuşsun, altındaki lüks araba, arkanda korumalar... Ama vizyonun çözünürlüğü biraz artınca fark ediyorsun ki altındaki araba şirket arabası, arkandakiler de 'Şu iş ne oldu?' diye bekleyen yöneticiler. Uyan aslanım, metin temizlenecek.",
+   "İçindeki o çılgın girişimci ruh 'Hemen bu akşam şirketi kuruyoruz' diye bağırıyor. Ama muhasebecinin isteyeceği stopajı, bağkuru, damga vergisini hesaplayınca, buradaki bedava, reklamsız, vergisiz mat siyah panel gözüne bir anda İsviçre Merkez Bankası gibi güvenli gelecek.",
+   "Bugün şirketinin ortak platformunda yanlışlıkla 'Yetti be, ne bitmez revizyonmuş!' yazacaksın... diye korkup soğuk terler dökeceksiniz ama yerine saniyede 120 kelime hızla 'Tabii ki hemen revize edip en memnun haliyle iletiyorum, sevgiler' yazarak hayatta kalacaksın.",
+   "Gelenizde inanılmaz bir zenginlik, malikaneler, uşaklar görüyorum... Ama rüya tabirlerine göre bu rüya 'Çok yakında mesaiye kalacaksın ve akşam yemeğinde sana sadece soğuk bir dürüm ısmarlayacaklar' anlamına geliyor. Dürümün tuzu bol olsun, devam.",
+   "Bugün ani bir cinnetle yöneticine Slack’ten 'Ben gidiyorum, vizyonsuz ekibiniz ve bitmeyen revizyonlarınız size kalsın' yazacaksınız. Tam gönder tuşuna basacakken kalbin sıkışacak, gözün kararacak, metni silip yerine 'Elinize sağlık, çok ufak bir sorum olacaktı :)'* yazıp arkaya gizlice ağlamaya gideceksiniz.",
+   "Küre parlıyor! Seni çok yakında business class uçuşunda şampanyanı yudumlarken görüyorum... Ama uçak modunu kapatınca uyanıyorsun ki metrobüste bir teyzenin pazar çantasıyla sol böbreğin arasında sıkışmışsın ve işe geç kalıyorsun. Yapıştır şu metni de bari primin kesilmesin.",
+   "Bugün istifa dilekçeni yazıp tam patronun masasına fırlatacakken, telefonuna bankadan 'Sayın müşterimiz, 120 ay vadeli konut kredinizin 3. taksiti tahsil edilememiştir' bildirimi düşecek. O fırlattığın kağıdı masadan 'Yere çöp düşmüş de efendim' diye yerleri siler gibi geri toplayacaksın.",
+   "Büyük bir kurumsal kriz kapıda ama sakin ol, seninle alakası yok. Kahvenden bir yudum al ve izle.",
+   "Gözüm metnindeki gizli 'Yüksek Kalite' ibarelerini arıyor... Yapma öyle şeyler, Tengri görüyor.",
+   "Bugün copy-paste yaparken elin hiç titremeyecek. Kusursuz bir CTRL+C performansı seziyorum.",
+   "O beklediğin mail veya mesaj bugün gelecek. Gelmezse de karşı tarafın vizyonsuzluğudur, boşver.",
+   "Yapay zeka senin işini elinden almayacak ama o kahveyi şimdi tazelemezsen uykun kesin alacak.",
+   "Yakın zamanda bir revizyon yiyeceksin ama öyle bir düzelteceksin ki isteyen utancından istifa edecek.",
+   "Hayatındaki bazı insanlar tıpkı '&nbsp;' gibi; varlar ama hiçbir işe yaramıyorlar, sadece yer kaplıyorlar.",
+   "Bugün şanslı günündesin. Yapıştırdığın metin tek seferde dümdüz olacak, uğraştırmayacak.",
+   "Plaza dilencilerinin attığı o anlamsız 'As per our discussion' maillerine karşı bağışıklık kazanacağın bir gün.",
+   "Bugün birisi sana 'Bakar mısın?' diyecek. Duymamazlıktan gel, iş yıkmaya çalışıyorlar.",
+   "Kaderinde yakın zamanda bir zam, terfi veya en kötü ihtimalle çok tatlı bir öğle yemeği ısmarlanması yok.",
+   "Metnini temizledin, peki ya zihnini? Bir ara arkana yaslan ve derin bir nefes al şampiyon.",
+   "Bugün kurumsal dünyayı dize getirebilecek bir energye sahipsin ama canın istemiyor, çok haklısın.",
+   "Gelecekte harika bir tatil görüyorum. Ama o geleceğe daha çok var, şimdi şu metni hallet.",
+   "Siber evren sana mesaj gönderiyor: 'Bugün o klavyeye biraz daha yumuşak bas, o da bir can.'",
+   "Seni çekemeyenlerin algoritması çöksün, tarayıcıları kapansın, ramleri yansın. Sen devam et.",
+   "Bugün yapacağın en büyük hata, biten işi teslim ettikten sonra 'Başka bir şey var mıydı?' diye sormak olur. Sorma.",
+   "Bugün karşına çıkacak saçmalıklara karşı sabrın, bu panelin siyahlığı kadar derin ve sınırsız olsun.",
+   "Metindeki çift boşlukları avladığın gibi hayattaki iki yüzlüleri de avlayacağın keskin bir gün.",
+   "Günün tavsiyesi: O sekmeyi kapat. Hangi sekme olduğunu biliyorsun. Kapat gitsin.",
+   "Küre fısıldıyor: Akşama güzel bir dizi/film patlat, bütün günün yükünü silsin süpürsün.",
+   "Yazım hatalarını düzelttiğin gibi hayatına da ince bir ayar çekiyorsun. Doğru yoldasın.",
+   "Bugün müşteriden gelen 'Elinize sağlık çok güzel olmuş' mesajını göreceksiniz. (Şaka şaka, revizyon var).",
+   "İçinden bir ses 'Bırak git' diyor ama cüzdanın 'Dur yolcu' diye fısıldıyor. Çalışmaya devam.",
+   "Birazdan kopyalayacağın metin, gideceği yerde büyük bir hayranlıkla okunacak. Gurur duy.",
+   "Bugün tarayıcında 40'tan fazla sekme açılacak. Bilgisayarına iyi davran, o senin yoldaşın.",
+   "Günün kehaneti: Bugün klavyene dökülmeyen her kahve, senin için büyük bir zaferdir.",
+   "Metninde hiç yasakli kelime çıkmadı mı? İşte profesyonelliğin saf ve temiz hali. Helal olsun.",
+   "Bugün 'Bakarız' denen her şeyin aslında 'Asla yapmayacağız' anlamına geldiğini bir kez daha anlayacaksın.",
+   "Siber kaderinde büyük bir kahve molası var. Hak ettin, hadi git doldur gel.",
+   "Hayat bazen hatalı kodlar gibi karmaşıktır, ama unutmaman gereken şey: Her zaman bir geri al (CTRL+Z) tuşu vardır.",
+   "Küreye göre bugün alacağın en iyi karar, işi tam zamanında bırakıp bilgisayarı kapatmak olacak.",
+   "Metindeki tüm pislikleri temizledin. Artık tertemiz bir sayfan var. Hayatın da böyle ferah olsun.",
+   "Kafandaki düşünceler şu an temizlenmemiş bir HTML metni gibi karmakarışık. Bi' dur, sakinleş.",
+   "Bugün arkandan konuşanların tarayıcı geçmişi yanlışlıkla patronlarına mail gitsin. Amin.",
+   "Küre parlıyor: Bugün yapacağın işler gelecekteki rahatının temel taşları olacak. Sık dişini.",
+   "Bugün kulaklığını tak ve dünyayı sessize al. Sadece sen, müziğin ve bu asil siyah panel.",
+   "Günün özlü sözü: Hatalı metin düzeltilir, hatalı insan zor. Metinlerle uğraşmaya devam.",
+   "Tengri Oracle görevini tamamladı. Şimdi o 'Kopyala' butonuna bas ve şovunu yap aslan parçası!"
+];
+
+function getTengriOracle() { const display = document.getElementById("oracle-display"); display.classList.add("glitch-effect"); display.style.opacity = 0.3; setTimeout(() => { const randomIndex = Math.floor(Math.random() * oracleQuotes.length); display.innerText = oracleQuotes[randomIndex]; display.style.opacity = 1; setTimeout(() => { display.classList.remove("glitch-effect"); }, 200); }, 200); }
+function changeTheme(themeName, element) { if(themeName === 'dark') { document.documentElement.removeAttribute('data-theme'); } else { document.documentElement.setAttribute('data-theme', themeName); } document.querySelectorAll('.theme-dot').forEach(dot => dot.classList.remove('active')); element.classList.add('active'); }
+function showToast() { const toast = document.getElementById("toast-notification"); toast.classList.add("show"); setTimeout(() => { toast.classList.remove("show"); }, 2000); }
+function calculateMeta(tabIndex) { const text = document.getElementById(`input${tabIndex}`).innerText; const charCount = text.length; const wordCount = text.trim() === "" ? 0 : text.trim().split(/\s+/).length; document.getElementById(`char-count-${tabIndex}`).innerHTML = `Karakter: <strong>${charCount}</strong>`; document.getElementById(`word-count-${tabIndex}`).innerHTML = `Kelime: <strong>${wordCount}</strong>`; }
+function openTab(i){ document.querySelectorAll(".tab-content").forEach(t=>t.classList.remove("active")); document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active")); document.querySelectorAll(".tab-content")[i].classList.add("active"); document.querySelectorAll(".tab-btn")[i].classList.add("active"); }
+const bannedWords = ["yüksek kalite", "yüksek kaliteli", "%100 hakiki", "% 100 hakiki", "%100 HAKİKİ", "% 100 HAKİKİ", "hakiki deri", "gerçek deri", "%100 deri", "% 100 deri", "birinci sınıf", "1. kalite", "1. sınıf", "unisex", "1.sınıf", "1.kalite", "1.kalıte", "1. kalıte", "1.SINIF", "1. SINIF", "1.KALİTE", "1. KALİTE", "BİRİNCİ SINIF", "YÜKSEK KALİTE", "YÜKSEK KALITE"];
+function escapeRegExp(str){ return str.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+function highlight(text) { bannedWords.forEach(word => { const pattern = escapeRegExp(word).replace(/\s+/g,"\\s+"); const reg = new RegExp(pattern,"gi"); text = text.replace(reg, m => `<span class="bad-word">${m}</span>`); }); return text; }
+function hardProtectBoldStyles(rawHtml) { if (!rawHtml) return ""; let protectedHtml = rawHtml.replace(/<span[^>]*style="[^"]*font-weight:\s*bold;?[^"]*"[^>]*>([\s\S]*?)<\/span>/gi, '<b>$1</b>').replace(/<span[^>]*style="[^"]*font-weight:\s*700;?[^"]*"[^>]*>([\s\S]*?)<\/span>/gi, '<b>$1</b>').replace(/<span[^>]*style="[^"]*font-weight:\s*600;?[^"]*"[^>]*>([\s\S]*?)<\/span>/gi, '<b>$1</b>').replace(/<strong[^>]*>([\s\S]*?)<\/strong>/gi, '<b>$1</b>'); return protectedHtml; }
+
+function cleanInvisibleWebGarbage(txt, forceLowercase = false) {
+    if (!txt) return "";
+    let clean = txt.replace(/[\r\u200B\u200C\u200D\uFEFF]/g, "").replace(/&nbsp;/gi, " ").replace(/nbsp;/gi, " ").replace(/;nbsp/gi, " ").replace(/&nbsp/gi, " ").replace(/\u00A0/g, " ").replace(/&amp;;/gi, " ").replace(/&amp;/gi, " ").replace(/&[^;]+;/g, " ").replace(/&/g, " ").replace(/;/g, " ");
+    clean = clean.replace(/B\s*\+\s*/gi, "B+").replace(/B\s*-\s*/gi, "B-");
+    clean = clean.replace(/\s{2,}/g, " ");
+    if (forceLowercase) { clean = clean.toLocaleLowerCase('tr-TR'); }
+    return clean;
+}
+
+function processUltraEngine(inputElementId, forceLowercase = false) {
+    const inputArea = document.getElementById(inputElementId);
+    if (!inputArea || !inputArea.innerHTML.trim()) return "";
+    let rawHtml = inputArea.innerHTML;
+    let textWithProtectedBolds = hardProtectBoldStyles(rawHtml);
+    let sandbox = document.createElement("div");
+    sandbox.innerHTML = textWithProtectedBolds;
+    let blocks = sandbox.querySelectorAll('p, div, br, li, tr');
+    blocks.forEach(el => { if (el.tagName.toLowerCase() === 'br') { el.before(document.createTextNode('\n')); } else { el.before(document.createTextNode('\n')); el.after(document.createTextNode('\n')); } });
+    let allElements = sandbox.getElementsByTagName("*");
+    for (let i = allElements.length - 1; i >= 0; i--) { let el = allElements[i]; if (el.tagName.toLowerCase() !== 'b') { el.outerHTML = el.innerHTML; } else { el.removeAttribute('style'); el.removeAttribute('class'); el.removeAttribute('id'); } }
+    let rawLines = sandbox.innerHTML.split('\n');
+    let dynamicResultLines = [];
+    rawLines.forEach(line => {
+        let cleanedLine = cleanInvisibleWebGarbage(line, forceLowercase);
+        let contentCheck = cleanedLine.replace(/<[^>]*>/g, "").replace(/\s+/g, "").trim();
+        if (contentCheck !== "") {
+            let finalizedLine = cleanedLine.trim();
+            if (forceLowercase) { finalizedLine = finalizedLine.replace(/(^|>|[.!?]\s+)([a-zçğıöşü])/g, (m, p1, p2) => p1 + p2.toLocaleUpperCase('tr-TR')); }
+            dynamicResultLines.push(finalizedLine);
+        }
+    });
+    return highlight(dynamicResultLines.join("<br>"));
+}
+
+function copyToClipboard(elementId) { const element = document.getElementById(elementId); const clone = element.cloneNode(true); clone.querySelectorAll('.bad-word').forEach(el => { const textNode = document.createTextNode(el.innerText); el.parentNode.replaceChild(textNode, el); }); let finalFormattedHTML = `<span style="font-size: 14px; font-family: sans-serif; line-height: 1.6;">${clone.innerHTML}</span>`; const blob = new Blob([finalFormattedHTML], { type: 'text/html' }); const textBlob = new Blob([clone.innerText], { type: 'text/plain' }); const data = [new ClipboardItem({ 'text/html': blob, 'text/plain': textBlob })]; navigator.clipboard.write(data).then(() => { showToast(); playCatReaction('Kopyaladım, kutunun içine sakladım! 📦🐾', 'action-copy', 1400); }); }
+function cleanSpaces(){ document.getElementById("output1").innerHTML = processUltraEngine("input1", false); playCatReaction('Hepsini yaladım yuttum, pırıl pırıl! 🐈‍⬛✨', 'action-clean', 1300); }
+function fixText(){ document.getElementById("output2").innerHTML = processUltraEngine("input2", true); playCatReaction('Yazım hatalarını tek tek tırmaladım! 🐾✍️', 'action-fix', 1300); }
+function handleEnterKey(e) { if (e.key === "Enter") { document.execCommand('insertLineBreak', false, null); e.preventDefault(); } }
+document.getElementById("input1").addEventListener("keydown", handleEnterKey);
+document.getElementById("input2").addEventListener("keydown", handleEnterKey);
+function copy1(){ copyToClipboard("output1"); }
+function clear1(){ document.getElementById("input1").innerHTML=""; document.getElementById("output1").innerHTML=""; calculateMeta(1); playCatReaction('Pof! Dağıttım ortalığı kaçtım! 💨😼', 'action-clear', 1200); }
+function copy2(){ copyToClipboard("output2"); }
+function clear2(){ document.getElementById("input2").innerHTML=""; document.getElementById("output2").innerHTML=""; calculateMeta(2); playCatReaction('Pof! Dağıttım ortalığı kaçtım! 💨😼', 'action-clear', 1200); }
+
+/* ==========================================================================
+   🎵 PREMIUM AUDIO PLAYER ENGINE (MİNİMALİST & YENİLENMİŞ)
+   ========================================================================== */
+
+const musicList = [
+    { title: "", url: "./muzikler/3.mp3" },
+    { title: "", url: "./muzikler/2.mp3" },
+    { title: "", url: "./muzikler/7.mp3" },
+    { title: "", url: "./muzikler/12345.mp3" },
+     { title: "", url: "./muzikler/4.mp3" },
+    { title: "", url: "./muzikler/18.mp3" },
+    { title: "", url: "./muzikler/26.mp3" },
+    { title: "", url: "./muzikler/19.mp3" },
+    { title: "", url: "./muzikler/27.mp3" },
+    { title: "", url: "./muzikler/20.mp3" },
+    { title: "", url: "./muzikler/28.mp3" },
+    { title: "", url: "./muzikler/29.mp3" },
+    { title: "", url: "./muzikler/30.mp3" },
+    { title: "", url: "./muzikler/31.mp3" },
+    { title: "", url: "./muzikler/25.mp3" },
+    { title: "", url: "./muzikler/21.mp3" },
+    { title: "", url: "./muzikler/22.mp3" },
+    { title: "", url: "./muzikler/23.mp3" },
+    { title: "", url: "./muzikler/24.mp3" },
+    { title: "", url: "./muzikler/1.mp3" },
+    { title: "", url: "./muzikler/5.mp3" },
+    { title: "", url: "./muzikler/6.mp3" },
+    { title: "", url: "./muzikler/8.mp3" },
+    { title: "", url: "./muzikler/9.mp3" },
+    { title: "", url: "./muzikler/10.mp3" },
+    { title: "", url: "./muzikler/11.mp3" },
+    { title: "", url: "./muzikler/12.mp3" },
+    { title: "", url: "./muzikler/13.mp3" },
+    { title: "", url: "./muzikler/14.mp3" },
+    { title: "", url: "./muzikler/15.mp3" },
+    { title: "", url: "./muzikler/16.mp3" },
+    { title: "", url: "./muzikler/17.mp3" }
+];
+
+let currentTrackIndex = 0;
+let isPlaying = false;
+let isShuffle = false;
+let isRepeat = false;
+let audio = document.getElementById("main-audio");
+
+function initPlayer() {
+    audio = document.getElementById("main-audio");
+    audio.addEventListener("ended", handleTrackEnded);
+    audio.addEventListener("timeupdate", updateTimeline);
+    audio.addEventListener("loadedmetadata", () => {
+        document.getElementById("total-duration").innerText = formatTime(audio.duration);
+    });
+    loadTrack(currentTrackIndex);
+}
+
+function loadTrack(index) {
+    audio.src = musicList[index].url;
+    document.getElementById("track-name").innerText = musicList[index].title;
+    document.getElementById("track-index").innerText = `Şarkı: ${index + 1} / ${musicList.length}`;
+}
+
+function togglePlay() {
+    const playBtn = document.getElementById("play-pause-btn");
+    const playerEl = document.getElementById("cyber-audio-player");
+    
+    if (isPlaying) {
+        audio.pause();
+        isPlaying = false;
+        playBtn.innerText = "▶ OYNAT";
+        playerEl.classList.remove("playing");
+    } else {
+        audio.play().catch(e => console.log("İlk oynatma için etkileşim gerekiyor."));
+        isPlaying = true;
+        playBtn.innerText = "⏸ DURDUR";
+        playerEl.classList.add("playing");
+    }
+}
+
+function nextTrack() {
+    if (isShuffle) {
+        currentTrackIndex = Math.floor(Math.random() * musicList.length);
+    } else {
+        currentTrackIndex = (currentTrackIndex + 1) % musicList.length;
+    }
+    loadTrack(currentTrackIndex);
+    if (isPlaying) audio.play();
+}
+
+function prevTrack() {
+    currentTrackIndex = (currentTrackIndex - 1 + musicList.length) % musicList.length;
+    loadTrack(currentTrackIndex);
+    if (isPlaying) audio.play();
+}
+
+function handleTrackEnded() {
+    if (isRepeat) {
+        audio.currentTime = 0;
+        audio.play();
+    } else {
+        nextTrack();
+    }
+}
+
+function toggleShuffle() {
+    isShuffle = !isShuffle;
+    document.getElementById("shuffle-btn").classList.toggle("active-mode", isShuffle);
+}
+
+function toggleRepeat() {
+    isRepeat = !isRepeat;
+    document.getElementById("repeat-btn").classList.toggle("active-mode", isRepeat);
+}
+
+function updateTimeline() {
+    const progress = document.getElementById("timeline-progress");
+    const currentTimeEl = document.getElementById("current-time");
+    
+    if (audio.duration) {
+        const percentage = (audio.currentTime / audio.duration) * 100;
+        progress.style.width = `${percentage}%`;
+        currentTimeEl.innerText = formatTime(audio.currentTime);
+    }
+}
+
+function seekTrack(event) {
+    const container = document.getElementById("timeline-container");
+    const rect = container.getBoundingClientRect();
+    const clickX = event.clientX - rect.left;
+    const width = rect.width;
+    
+    if (audio.duration) {
+        audio.currentTime = (clickX / width) * audio.duration;
+    }
+}
+
+function formatTime(seconds) {
+    if (isNaN(seconds)) return "00:00";
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
+}
+
+function togglePlayerMinimize() {
+    const player = document.getElementById("cyber-audio-player");
+    const btn = document.getElementById("player-toggle");
+    player.classList.toggle("minimized");
+    
+    if (player.classList.contains("minimized")) {
+        btn.innerText = "▲ YUKARI KAYDIR";
+    } else {
+        btn.innerText = "▼ AŞAĞI KAYDIR";
+    }
+}
+
+function changeVolume(val) {
+    audio.volume = val;
+}
+
+const coffeeQuotes = [
+    "Derin bir nefes al. Şu an her şey kontrolün altında olmasa bile, bu senin değerini eksiltmez.",
+    "Zor dökümanlar biter, bitmeyen revizyonlar son bulur ama senin iç huzurun kalıcı olmalıdır.",
+    "Elindeki fincanın sıcaklığını hisset og sadece derin bir nefes al. Şu an o yorucu dünyanın tamamen dışındasın.",
+    "Yetişmen gereken hiçbir yer, kanıtlaman gereken hiçbir şey yok. Bu an sadece senin ve hakkın olan sessizliğin.",
+    "Bırak dışarıdaki dünya kendi telaşıyla dönsün; senin şu anki tek görevin sakince kahveni yudumlamak.",
+    "Hayat bir koşturmaca değil; durduğun, nefes aldığın ve kendine döndüğün bu küçük anların toplamıdır.",
+    "Fincanından yükselen dumanı izle; tıpkı onun gibi, zihnindeki tüm o ağır düşüncelerin de uçup gitmesine izin ver.",
+    "Hak ettiğin o iç huzuru hiçbir iş, hiçbir insan senden çalamaz. Kendini o güvenli, sakin limana bırak.",
+    "Sırtındaki o görünmez yükleri biraz olsun yere bırak. Bu birkaç dakika, sadece senin ruhunu beslemen için var.",
+    "Her şey üst üste geldiyse, durup sakince geri çekilmek pes etmek değil, en asil dinlenme şeklidir.",
+    "Ruhunun pillerini şarj etmesine izin ver. Dinlenmek de en az çalışmak kadar kutsal bir çabadır.",
+    "Başkalarının ne düşündüğü ya da ne kadar hızlı koştuğu önemli değil; sen kendi yolunda, asil bir sakinlikle ilerliyorsun.",
+    "Kahvenin kokusu ruhuna sızarken, içindeki o bitmeyen savaşı durdur. Hak ettiğin barış tam olarak bu anda saklı.",
+    "Büyük başarılar, pes etmek yerine sadece küçük bir kahve molası verenler tarafından inşa edildi.",
+    "Bugün gösterdiğin sabır, yarın kuracağın o özgür dünyanın en sağlam temel taşı olacak.",
+    "Kendine haksızlık etmeyi bırak. Bugün elinden gelenin en iyisini yapıyorsun ve bu tamamen yeterli.",
+    "Yavaşla. Dünya seni bekebilir. Bu kahvenin tadı, önündeki tüm işlerden daha önemli.",
+    "Unutma: En karmaşık kodlar bile tek bir düzeltmeyle çözülür. Hayatındaki karmaşa da öyle.",
+    "Sen bir iş unvanından, bir excel tablosundan ya da revizyon raporundan çok daha fazlasısın.",
+    "Zor zamanlar güçlü insanlar yaratır. Şu an vizyonunu genişleten harika bir olgunlaşma dönemindesin.",
+    "Bugünün stresi yarının tecrübesidir. Sakince kahveni yudumla ve zihnini serbest bırak.",
+    "Şu an tam olarak olman gereken yerdesin. Adım adım, acele etmeden hedefine ilerliyorsun.",
+    "Zindirki gürültüyü kapat. Sadece kahvenin kokusuna ve aura ritmine odaklan.",
+    "Dünyanın hızı seni ilgilendirmiyor. Sen kendi asil ritminde, kahvenden aldığın o ilk yudumla ilerliyorsun.",
+    "Zihnindeki bildirimleri kapat. Kahvenin sıcaklığına ve şu anın dinginliğine teslim ol.",
+    "Başkalarının acelesi onların sınırıdır. Sen sakince kahveni yudumla ve kendi aura alanını koru.",
+    "Gözlerini kapat, kahvenin kokusunu içine çek ve evrenin senin için fısıldadığı o sakin ritmi dinle.",
+    "Yavaşla. Dünya sen durdun diye dönmekten vazgeçmeyecek. Kahvenin tadını çıkar, gerisi hallolur.",
+    "Geçmişin stresini, geleceğin kaygısını sil at. Şu an sadece sen ve kahvenin o kusursuz dengesi varsınız.",
+    "Başarmak kadar dinlenmek de bir sanattır. Şimdi arkana yaslan ve kahvenin kokusuyla zihnini özgür bırak.",
+    "Harika şeyler zaman alır. Kendine zaman tanı, acele kurulan hayaller çabuk yıkılır.",
+    "Her şey üst üste geliyorsa, belki de yön değiştirme vaktin gelmiştir. Bu mola sana rehberlik etsin.",
+    "Sen durdurulamaz bir güçsün, sadece şu an pillerini şarj etmen gerekiyor. Dinlenmek de işin parçası.",
+    "Başarı bir varış noktası değil, bu zorlu ama öğretici yolculuğun ta kendisidir. Yolun tadını çıkar.",
+    "Bugün karşına çıkan engeller, seni durdurmak için değil, stratejini güçlendirmen için varlar.",
+    "Gelecekteki halin sana bakıp teşekkür edecek. Sırf bugün pes etmediğin ve akıllıca dinlendiğin için.",
+    "İçindeki ışığı kimsenin söndürmesine izin verme. Onlar sadece kendi karanlıklarını yansıtıyorlar.",
+    "Fırtınalar ağaçların köklerini derinleştirir. Yaşadığın kurumsal krizler de senin profesyonelliğini.",
+    "Biraz durup dinlenmek, pes etmek demek değildir. Daha güçlü koşmak için stratejik bir geri çekilmedir.",
+    "Zorlu bir sabahı geride baktın, harika bir öğleden sonrasına hazırsın. Kahven sana güç versin.",
+    "Her şey bittiğinde arkana yaslanıp bu günleri tatlı bir tebessümle hatırlayacaksın. İnan bana.",
+    "Zihnini temizle, gereksiz beklentileri tıpkı metindeki çift boşluklar gibi hayatından ayıkla.",
+    "Bugün kendin için küçük bir iyilik yap og sadece bu ana odaklan. Huzur tam olarak burada saklı.",
+    "Başkalarının ne düşündüğü onların sınırıdır, senin potansiyelinin sınırı ise gökyüzüdür.",
+    "Sakin ol. Hayat bir yarış değil. Kendi ritminde, pürüzsüz og asil bir şekilde ilerliyorsun.",
+    "Bulutlar dağılır, güneş elbet doğar. Siber evrenin bu geçici yoğunluğu seni asla yıldırmasın."
+];
+
+let coffeeInterval;
+function openCoffeeModal() {
+    const modal = document.getElementById("coffee-modal");
+    modal.classList.add("show");
+    switchCoffeeQuote();
+    coffeeInterval = setInterval(switchCoffeeQuote, 7000); 
+}
+
+function closeCoffeeModal() {
+    const modal = document.getElementById("coffee-modal");
+    modal.classList.remove("show");
+    clearInterval(coffeeInterval);
+}
+
+function switchCoffeeQuote() {
+    const display = document.getElementById("mola-quote-display");
+    const randomIndex = Math.floor(Math.random() * coffeeQuotes.length);
+    display.classList.add("fade-out");
+    setTimeout(() => {
+        display.innerText = coffeeQuotes[randomIndex];
+        display.classList.remove("fade-out");
+    }, 1500); 
+}
+
+let isTengriActive = false;
+function runTengriDetector() {
+    const inputVal1 = document.getElementById("input1").innerText.toLowerCase();
+    const inputVal2 = document.getElementById("input2").innerText.toLowerCase();
+    const hasTengri = inputVal1.includes("tengri") || inputVal2.includes("tengri");
+    
+    const overlay = document.getElementById("tengri-overlay");
+    const allButtons = document.querySelectorAll("button, .tab-btn, .player-btn, .theme-dot, .oracle-sphere, .coffee-btn-premium");
+    
+    if (hasTengri && !isTengriActive) {
+        isTengriActive = true;
+        overlay.style.display = "block";
+        audio.playbackRate = 2.0;
+        allButtons.forEach(btn => btn.classList.add("tengri-panic"));
+    } else if (!hasTengri && isTengriActive) {
+        isTengriActive = false;
+        overlay.style.display = "none";
+        audio.playbackRate = 1.0;
+        allButtons.forEach(btn => btn.classList.remove("tengri-panic"));
+    }
+}
+
+/* ==========================================================================
+   🐱 POFUDUK KEDİ DOĞAL YÜRÜME, KOŞMA VE GELİŞMİŞ UYKU ENGINE LOGIC JS
+   ========================================================================== */
+const catContainer = document.getElementById('interactive-cat-holder');
+const speechBubble = document.getElementById('cat-speech-bubble-el');
+
+let movingState = false;
+let currentPosX = window.innerWidth / 2;
+let currentPosY = window.innerHeight / 2;
+let idleTimer;
+
+// Kedi Konumunu İlk Başta Merkeze Alalım
+catContainer.style.left = `${currentPosX}px`;
+catContainer.style.top = `${currentPosY}px`;
+
+window.addEventListener('click', (event) => {
+    // Panel elemanlarına tıklandığında kedinin oraya gitmesini engelleyelim
+    if (event.target.closest('.theme-selector') || event.target.closest('#interactive-cat-holder') || event.target.closest('.oracle-box') || event.target.closest('.tabs') || event.target.closest('.container') || event.target.closest('#cyber-audio-player') || event.target.closest('#coffee-modal')) {
+        return;
+    }
+
+    const destinationX = event.clientX;
+    const destinationY = event.clientY;
+
+    // Yön Tayini
+    if (destinationX < currentPosX) {
+        catContainer.classList.add('look-left');
+    } else {
+        catContainer.classList.remove('look-left');
+    }
+
+    // Mesafe ve Koşma/Yürüme Hız Hesabı
+    const dx = destinationX - currentPosX;
+    const dy = destinationY - currentPosY;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    let speed = 180; // Walk hızı (px/sn)
+    let movementClass = 'is-walking';
+
+    // Mesafe 350 pikselden büyükse kedi yaramazca koşmaya başlar
+    if (distance > 350) {
+        speed = 480; // Run hızı (px/sn)
+        movementClass = 'is-running';
+    }
+
+    const duration = distance / speed;
+    catContainer.style.transition = `left ${duration}s cubic-bezier(0.25, 1, 0.5, 1), top ${duration}s cubic-bezier(0.25, 1, 0.5, 1)`;
+
+    currentPosX = destinationX;
+    currentPosY = destinationY;
+
+    catContainer.style.left = `${destinationX}px`;
+    catContainer.style.top = `${destinationY}px`;
+    
+    catContainer.classList.remove('is-walking', 'is-running', 'is-sleeping');
+    void catContainer.offsetWidth; // Reflow tetikle
+    
+    catContainer.classList.add(movementClass);
+    movingState = true;
+});
+
+catContainer.addEventListener('transitionend', (event) => {
+    if (event.propertyName === 'left' || event.propertyName === 'top') {
+        catContainer.classList.remove('is-walking', 'is-running');
+        movingState = false;
+        resetIdleTimer();
+    }
+});
+
+// Gelişmiş Dinamik Reaksiyon Tetikleyici
+function playCatReaction(speechText, classTrigger, clearDelay = 1300) {
+    catContainer.classList.remove('is-walking', 'is-running', 'is-sleeping', 'action-clean', 'action-fix', 'action-copy', 'action-clear');
+    void catContainer.offsetWidth; 
+    
+    speechBubble.innerText = speechText;
+    speechBubble.classList.add('active');
+    catContainer.classList.add(classTrigger);
+
+    setTimeout(() => {
+        speechBubble.classList.remove('active');
+        catContainer.classList.remove(classTrigger);
+        resetIdleTimer();
+    }, clearDelay);
+}
+
+// Otomatik Uyku Modu (Idle Engine) Kontrolü
+function resetIdleTimer() {
+    if (catContainer.classList.contains('is-sleeping')) {
+        catContainer.classList.remove('is-sleeping');
+        speechBubble.classList.remove('active');
+    }
+    clearTimeout(idleTimer);
+    
+    // Eğer kedi o an hareket etmiyorsa veya bir butona reaksiyon vermiyorsa 8 saniye sonra uyur
+    idleTimer = setTimeout(() => {
+        if (!movingState && !catContainer.className.includes('action-')) {
+            catContainer.classList.add('is-sleeping');
+            speechBubble.innerText = "Zzz... 🐾";
+            speechBubble.classList.add('active');
+        }
+    }, 8000);
+}
+
+// Global Aktivite İzleyiciler (Uykudan Uyanma İçin)
+window.addEventListener('mousemove', resetIdleTimer);
+window.addEventListener('keydown', resetIdleTimer);
+
+window.addEventListener("DOMContentLoaded", function() {
+    const darkDot = document.querySelector(".id-dark-dot");
+    if (darkDot) { changeTheme('dark', darkDot); }
+    initPlayer();
+    
+    document.getElementById("input1").addEventListener("input", runTengriDetector);
+    document.getElementById("input2").addEventListener("input", runTengriDetector);
+    resetIdleTimer();
+});
+</script>
+
+</body>
+</html>
