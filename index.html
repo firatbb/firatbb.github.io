@@ -38,7 +38,7 @@ html[data-theme="white"] { --bg-main: #f1f3f6; --bg-container: #ffffff; --bg-inp
 
 *{box-sizing:border-box;}
 html, body, .input-area, div { cursor: default; }
-button, .tab-btn, .theme-dot, .oracle-sphere { cursor: pointer; }
+button, .tab-btn, .theme-dot, .oracle-sphere, .game-card { cursor: pointer; }
 
 body {
     margin:0;
@@ -250,6 +250,34 @@ h3 { color:var(--text-heading); font-size:14px; margin-top:0; margin-bottom:22px
 @keyframes chaosBounce2 { 0%{transform:translate(0,0);}12%{transform:translate(calc(-38vw + 50px),calc(28vh - 90px));}25%{transform:translate(calc(48vw - 100px),calc(-38vh + 40px));}38%{transform:translate(calc(-25vw + 80px),calc(-48vh + 95px));}50%{transform:translate(calc(42vw - 60px),calc(42vh - 70px));}63%{transform:translate(calc(-48vw + 110px),calc(18vh - 50px));}75%{transform:translate(calc(28vw - 70px),calc(-28vh + 110px));}88%{transform:translate(calc(-35vw + 90px),calc(38vh - 60px));}100%{transform:translate(0,0);} }
 .tengri-panic { position:relative!important; animation:chaosBounce1 0.4s infinite linear!important; z-index:999998!important; }
 button.tengri-panic,.tab-btn.tengri-panic,.player-btn.tengri-panic,.coffee-btn-premium.tengri-panic,.burc-btn-premium.tengri-panic { animation:chaosBounce2 0.35s infinite linear!important; }
+
+/* ========== OYUN KARTLARI STİLİ ========== */
+.game-card {
+    background: var(--bg-btn);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-btn);
+    transition: all 0.3s ease;
+    text-align: center;
+    min-width: 120px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.game-card:hover {
+    background: var(--bg-btn-hover);
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px var(--accent-glow);
+}
+.game-card.active {
+    background: var(--bg-tab-active);
+    border-color: var(--accent-color);
+    color: var(--text-heading);
+    box-shadow: 0 0 20px var(--accent-glow);
+}
 </style>
 </head>
 
@@ -283,6 +311,7 @@ button.tengri-panic,.tab-btn.tengri-panic,.player-btn.tengri-panic,.coffee-btn-p
 </div>
 
 <div class="container">
+    <!-- Tab 1: Boşluk Temizleyici -->
     <div class="tab-content active">
         <h3>Metni buraya yapıştır aslan parçası</h3>
         <div id="input1" class="input-area" contenteditable="true" oninput="calculateMeta(1)"></div>
@@ -290,6 +319,8 @@ button.tengri-panic,.tab-btn.tengri-panic,.player-btn.tengri-panic,.coffee-btn-p
         <div class="action-buttons"><button onclick="cleanSpaces()">Temizle</button><button onclick="copy1()">Kopyala</button><button onclick="clear1()">Sil</button></div>
         <div id="output1" class="output" contenteditable="true"></div>
     </div>
+    
+    <!-- Tab 2: Yazım Düzenleyici -->
     <div class="tab-content">
         <h3>Metni buraya yapıştır aslan parçası</h3>
         <div id="input2" class="input-area" contenteditable="true" oninput="calculateMeta(2)"></div>
@@ -298,24 +329,29 @@ button.tengri-panic,.tab-btn.tengri-panic,.player-btn.tengri-panic,.coffee-btn-p
         <div id="output2" class="output" contenteditable="true"></div>
     </div>
     
-    <!-- ⬇️ OYUN SEKMESİ - BÜYÜTÜLMÜŞ VE FULL EKRAN BUTONLU ⬇️ -->
+    <!-- Tab 3: Oyun - Çoklu Oyun Seçici -->
     <div class="tab-content">
-        <h3>🎮 Super Mario Bros</h3>
-        <div style="display:flex; justify-content:center; align-items:center; flex-direction:column; width:100%;">
-            <div style="position:relative; width:100%; max-width:800px;">
-                <iframe id="mario-game-iframe" src="https://23azostore.github.io/s9/super-mario-bros" 
-                        style="width:100%; aspect-ratio:480/800; height:auto; border:none; background:#000; border-radius:8px; display:block;" 
-                        scrolling="no" 
-                        frameborder="0" 
-                        allowfullscreen>
-                </iframe>
-                <!-- Full Ekran Butonu - Sağ Alt Köşede -->
-                <button onclick="document.getElementById('mario-game-iframe').requestFullscreen();" 
-                        style="position:absolute; bottom:15px; right:15px; z-index:10; background:rgba(0,0,0,0.7); color:#fff; border:2px solid #fff; border-radius:8px; padding:10px 16px; font-size:14px; font-weight:bold; cursor:pointer; backdrop-filter:blur(4px); box-shadow:0 0 15px rgba(0,0,0,0.5); transition:all 0.3s ease;">
-                    ⛶ FULL EKRAN
-                </button>
-            </div>
+        <h3>🎮 Oyun Seç ve Oyna</h3>
+        <!-- Oyun Kartları -->
+        <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-bottom:18px;">
+            <div class="game-card active" data-url="https://23azostore.github.io/s9/super-mario-bros" onclick="selectGame(this)">🍄 Super Mario</div>
+            <div class="game-card" data-url="https://23azostore.github.io/s2/flappy-bird" onclick="selectGame(this)">🐦 Flappy Bird</div>
+            <div class="game-card" data-url="https://23azostore.github.io/s2/drift-boss" onclick="selectGame(this)">🏎️ Drift Boss *</div>
         </div>
+        <!-- Oyun İframe ve Full Ekran Butonu -->
+        <div style="position:relative; width:100%; max-width:800px; margin:0 auto;">
+            <iframe id="mario-game-iframe" src="https://23azostore.github.io/s9/super-mario-bros" 
+                    style="width:100%; aspect-ratio:480/800; height:auto; border:none; background:#000; border-radius:8px; display:block;" 
+                    scrolling="no" 
+                    frameborder="0" 
+                    allowfullscreen>
+            </iframe>
+            <button onclick="document.getElementById('mario-game-iframe').requestFullscreen();" 
+                    style="position:absolute; bottom:15px; right:15px; z-index:10; background:rgba(0,0,0,0.7); color:#fff; border:2px solid #fff; border-radius:8px; padding:10px 16px; font-size:14px; font-weight:bold; cursor:pointer; backdrop-filter:blur(4px); box-shadow:0 0 15px rgba(0,0,0,0.5); transition:all 0.3s ease;">
+                ⛶ FULL EKRAN
+            </button>
+        </div>
+        <p style="font-size:11px; color:var(--text-main); opacity:0.6; text-align:center; margin-top:8px;">* Drift Boss URL'si tahminidir, çalışmazsa doğrusunu bana ilet.</p>
     </div>
 </div>
 
@@ -538,6 +574,17 @@ document.getElementById("input1").addEventListener("keydown",e=>{if(e.key==="Ent
 document.getElementById("input2").addEventListener("keydown",e=>{if(e.key==="Enter"){document.execCommand('insertLineBreak',false,null);e.preventDefault();}});
 function copy1(){copyToClipboard("output1");}function clear1(){document.getElementById("input1").innerHTML="";document.getElementById("output1").innerHTML="";calculateMeta(1);}
 function copy2(){copyToClipboard("output2");}function clear2(){document.getElementById("input2").innerHTML="";document.getElementById("output2").innerHTML="";calculateMeta(2);}
+
+// ========== OYUN SEÇİCİ ==========
+function selectGame(el) {
+    // Tüm kartlardan active sınıfını kaldır
+    document.querySelectorAll('.game-card').forEach(c => c.classList.remove('active'));
+    // Tıklanan karta active ekle
+    el.classList.add('active');
+    // iframe'in src'sini değiştir
+    const url = el.getAttribute('data-url');
+    document.getElementById('mario-game-iframe').src = url;
+}
 
 // ========== MÜZİK ==========
 const musicList=[{title:"",url:"./muzikler/3.mp3"},{title:"",url:"./muzikler/2.mp3"},{title:"",url:"./muzikler/7.mp3"},{title:"",url:"./muzikler/12345.mp3"},{title:"",url:"./muzikler/4.mp3"},{title:"",url:"./muzikler/18.mp3"},{title:"",url:"./muzikler/26.mp3"},{title:"",url:"./muzikler/19.mp3"},{title:"",url:"./muzikler/27.mp3"},{title:"",url:"./muzikler/20.mp3"},{title:"",url:"./muzikler/28.mp3"},{title:"",url:"./muzikler/29.mp3"},{title:"",url:"./muzikler/30.mp3"},{title:"",url:"./muzikler/31.mp3"},{title:"",url:"./muzikler/25.mp3"},{title:"",url:"./muzikler/21.mp3"},{title:"",url:"./muzikler/22.mp3"},{title:"",url:"./muzikler/23.mp3"},{title:"",url:"./muzikler/24.mp3"},{title:"",url:"./muzikler/1.mp3"},{title:"",url:"./muzikler/5.mp3"},{title:"",url:"./muzikler/6.mp3"},{title:"",url:"./muzikler/8.mp3"},{title:"",url:"./muzikler/9.mp3"},{title:"",url:"./muzikler/10.mp3"},{title:"",url:"./muzikler/11.mp3"},{title:"",url:"./muzikler/12.mp3"},{title:"",url:"./muzikler/13.mp3"},{title:"",url:"./muzikler/14.mp3"},{title:"",url:"./muzikler/15.mp3"},{title:"",url:"./muzikler/16.mp3"},{title:"",url:"./muzikler/17.mp3"}];
