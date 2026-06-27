@@ -72,7 +72,7 @@ body.theme-shake { animation: themeShake 0.5s ease-in-out; }
 .glitch-effect { animation:textGlitch 0.2s linear 2; }
 @keyframes textGlitch { 0%{transform:translate(2px,1px);opacity:0.7;} 50%{transform:translate(-1px,-1px);opacity:0.9;} 100%{transform:translate(0,0);opacity:1;} }
 
-.tabs{ display:flex; justify-content:center; gap:12px; margin-bottom:25px; }
+.tabs{ display:flex; justify-content:center; gap:12px; margin-bottom:25px; flex-wrap:wrap; }
 button, .tab-btn { background:var(--bg-btn); color:var(--text-btn); border:1px solid var(--border-color); padding:12px 26px; font-size:12px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; border-radius:6px; transition:all 0.2s ease; }
 button:hover, .tab-btn:hover { color:var(--text-heading)!important; background:var(--bg-btn-hover); border-color:var(--accent-color); box-shadow:0 0 12px var(--accent-glow); }
 .tab-btn.active { background:var(--bg-tab-active)!important; color:var(--text-heading)!important; border-color:var(--accent-color)!important; box-shadow:0 0 15px var(--accent-glow); }
@@ -196,11 +196,7 @@ h3 { color:var(--text-heading); font-size:14px; margin-top:0; margin-bottom:22px
 .harita-form { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:16px; }
 .harita-form label { color:rgba(255,255,255,0.6); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
 .harita-form input, .harita-form select { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:8px 12px; color:#fff; font-size:13px; width:100%; outline:none; }
-/* ======== SEÇİM MENÜSÜ DÜZELTMESİ ======== */
-.harita-form select option {
-    background: #1a1a1e;       /* koyu arka plan */
-    color: #f2f2f7;            /* açık metin */
-}
+.harita-form select option { background: #1a1a1e; color: #f2f2f7; }
 .harita-form input:focus, .harita-form select:focus { border-color:rgba(147,51,234,0.5); box-shadow:0 0 10px rgba(147,51,234,0.15); }
 .harita-sonuc { background:rgba(0,0,0,0.3); border-radius:16px; padding:18px; margin-top:12px; border:1px solid rgba(255,255,255,0.06); }
 .harita-gezegen { display:flex; align-items:center; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.04); }
@@ -210,11 +206,7 @@ h3 { color:var(--text-heading); font-size:14px; margin-top:0; margin-bottom:22px
 
 .ask-uyum-form { display:flex; gap:10px; align-items:center; justify-content:center; flex-wrap:wrap; margin-bottom:16px; }
 .ask-uyum-form select { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:8px 16px; color:#fff; font-size:13px; outline:none; }
-/* ======== AŞK UYUMU MENÜ DÜZELTMESİ ======== */
-.ask-uyum-form select option {
-    background: #1a1a1e;
-    color: #f2f2f7;
-}
+.ask-uyum-form select option { background: #1a1a1e; color: #f2f2f7; }
 .ask-uyum-form button { background:rgba(147,51,234,0.3); border:1px solid rgba(147,51,234,0.5); color:#fff; padding:8px 20px; border-radius:20px; cursor:pointer; font-weight:700; letter-spacing:0.5px; transition:all 0.3s; }
 .ask-uyum-form button:hover { background:rgba(147,51,234,0.5); box-shadow:0 0 20px rgba(147,51,234,0.3); }
 .uyum-sonuc { text-align:center; padding:20px; background:rgba(0,0,0,0.2); border-radius:16px; margin-top:10px; }
@@ -284,11 +276,39 @@ button.tengri-panic,.tab-btn.tengri-panic,.player-btn.tengri-panic,.coffee-btn-p
 <div class="oracle-box"><div class="oracle-sphere-wrapper"><div class="pulse-glow"></div><div class="oracle-sphere" onclick="getTengriOracle()">🔮</div></div><div class="oracle-text-area"><div class="oracle-title">⚡ ORACLE / GÜNÜN SİBER KEHANETİ</div><div id="oracle-display" class="oracle-quote">Küreye tıkla ve siber kaderinle yüzleş...</div></div></div>
 <div id="toast-notification" class="toast">⚡ METİN BAŞARIYLA KOPYALANDI!</div>
 
-<div class="tabs"><button class="tab-btn active" onclick="openTab(0)">🧹 Boşluk Temizleyici</button><button class="tab-btn" onclick="openTab(1)">✍️ Yazım Düzenleyici</button></div>
+<div class="tabs">
+    <button class="tab-btn active" onclick="openTab(0)">🧹 Boşluk Temizleyici</button>
+    <button class="tab-btn" onclick="openTab(1)">✍️ Yazım Düzenleyici</button>
+    <button class="tab-btn" onclick="openTab(2)">🎮 Oyun</button>
+</div>
 
 <div class="container">
-    <div class="tab-content active"><h3>Metni buraya yapıştır aslan parçası</h3><div id="input1" class="input-area" contenteditable="true" oninput="calculateMeta(1)"></div><div class="meta-info"><span id="char-count-1">Karakter: <strong>0</strong></span><span id="word-count-1">Kelime: <strong>0</strong></span></div><div class="action-buttons"><button onclick="cleanSpaces()">Temizle</button><button onclick="copy1()">Kopyala</button><button onclick="clear1()">Sil</button></div><div id="output1" class="output" contenteditable="true"></div></div>
-    <div class="tab-content"><h3>Metni buraya yapıştır aslan parçası</h3><div id="input2" class="input-area" contenteditable="true" oninput="calculateMeta(2)"></div><div class="meta-info"><span id="char-count-2">Karakter: <strong>0</strong></span><span id="word-count-2">Kelime: <strong>0</strong></span></div><div class="action-buttons"><button onclick="fixText()">Düzelt</button><button onclick="copy2()">Kopyala</button><button onclick="clear2()">Sil</button></div><div id="output2" class="output" contenteditable="true"></div></div>
+    <div class="tab-content active">
+        <h3>Metni buraya yapıştır aslan parçası</h3>
+        <div id="input1" class="input-area" contenteditable="true" oninput="calculateMeta(1)"></div>
+        <div class="meta-info"><span id="char-count-1">Karakter: <strong>0</strong></span><span id="word-count-1">Kelime: <strong>0</strong></span></div>
+        <div class="action-buttons"><button onclick="cleanSpaces()">Temizle</button><button onclick="copy1()">Kopyala</button><button onclick="clear1()">Sil</button></div>
+        <div id="output1" class="output" contenteditable="true"></div>
+    </div>
+    <div class="tab-content">
+        <h3>Metni buraya yapıştır aslan parçası</h3>
+        <div id="input2" class="input-area" contenteditable="true" oninput="calculateMeta(2)"></div>
+        <div class="meta-info"><span id="char-count-2">Karakter: <strong>0</strong></span><span id="word-count-2">Kelime: <strong>0</strong></span></div>
+        <div class="action-buttons"><button onclick="fixText()">Düzelt</button><button onclick="copy2()">Kopyala</button><button onclick="clear2()">Sil</button></div>
+        <div id="output2" class="output" contenteditable="true"></div>
+    </div>
+    <!-- OYUN SEKMESİ -->
+    <div class="tab-content">
+        <h3>🎮 Super Mario Bros</h3>
+        <div style="display:flex; justify-content:center; align-items:center; flex-direction:column; width:100%;">
+            <iframe src="https://23azostore.github.io/s9/super-mario-bros" 
+                    style="width:100%; max-width:480px; aspect-ratio:480/800; height:auto; border:none; background:#000; border-radius:8px;" 
+                    scrolling="no" 
+                    frameborder="0" 
+                    allowfullscreen>
+            </iframe>
+        </div>
+    </div>
 </div>
 
 <div id="cyber-audio-player" class="cyber-player">
