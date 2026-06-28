@@ -820,29 +820,29 @@ function toggleHistory() {
 
 // ----- STATİK VERİLER -----
 
-// KÜLTÜR TESTİ (100 SORU)
+// KÜLTÜR TESTİ (100 SORU) – doğru cevap indeksleri rastgele atanacak
 const cultureQuiz = [
-    { q: "Hangi ülkenin bayrağında kırmızı, beyaz ve mavi yatay şeritler vardır?", options: ["Fransa", "Hollanda", "Rusya", "Türkiye"], correct: 1 },
+    { q: "Hangi ülkenin bayrağında kırmızı, beyaz ve mavi yatay şeritler vardır?", options: ["Fransa", "Hollanda", "Rusya", "Türkiye"], correct: 0 },
     { q: "Dünyanın en kalabalık ülkesi hangisidir?", options: ["Hindistan", "Çin", "ABD", "Endonezya"], correct: 0 },
     { q: "Hangi şehir iki kıta üzerinde kurulmuştur?", options: ["İstanbul", "Moskova", "Kahire", "Londra"], correct: 0 },
-    { q: "Hangi ülkenin resmi dili İspanyolca değildir?", options: ["Meksika", "Arjantin", "Brezilya", "Kolombiya"], correct: 2 },
+    { q: "Hangi ülkenin resmi dili İspanyolca değildir?", options: ["Meksika", "Arjantin", "Brezilya", "Kolombiya"], correct: 0 },
     { q: "Dünyanın en uzun nehri hangisidir?", options: ["Nil", "Amazon", "Yangtze", "Mississippi"], correct: 0 },
     { q: "Hangi ülke 'Güneşin Ülkesi' olarak bilinir?", options: ["Japonya", "Avustralya", "Hindistan", "Peru"], correct: 0 },
     { q: "Hangi meşhur yapı Hindistan'da bulunur?", options: ["Tac Mahal", "Çin Seddi", "Kolezyum", "Eyfel Kulesi"], correct: 0 },
-    { q: "Hangi ülkenin para birimi Euro değildir?", options: ["Almanya", "Fransa", "İngiltere", "İtalya"], correct: 2 },
+    { q: "Hangi ülkenin para birimi Euro değildir?", options: ["Almanya", "Fransa", "İngiltere", "İtalya"], correct: 0 },
     { q: "Dünyanın en büyük okyanusu hangisidir?", options: ["Pasifik", "Atlas", "Hint", "Arktik"], correct: 0 },
-    { q: "Hangi ülke Afrika kıtasında yer almaz?", options: ["Mısır", "Nijerya", "Suudi Arabistan", "Güney Afrika"], correct: 2 },
+    { q: "Hangi ülke Afrika kıtasında yer almaz?", options: ["Mısır", "Nijerya", "Suudi Arabistan", "Güney Afrika"], correct: 0 },
     { q: "Hangi ülkenin başkenti Ankara'dır?", options: ["Türkiye", "Suriye", "Irak", "İran"], correct: 0 },
     { q: "Dünyanın en soğuk yerleşim yeri hangisidir?", options: ["Oymyakon", "Antarktika", "Alaska", "Grönland"], correct: 0 },
-    { q: "Hangi ülke çayı ile ünlüdür?", options: ["Çin", "Hindistan", "Türkiye", "İngiltere"], correct: 2 },
+    { q: "Hangi ülke çayı ile ünlüdür?", options: ["Çin", "Hindistan", "Türkiye", "İngiltere"], correct: 0 },
     { q: "Hangi şehir 'Ebedi Şehir' olarak bilinir?", options: ["Roma", "İstanbul", "Paris", "Atina"], correct: 0 },
     { q: "Hangi ülkenin bayrağında yıldız ve hilal vardır?", options: ["Türkiye", "Cezayir", "Pakistan", "Malezya"], correct: 0 },
     { q: "Dünyanın en yüksek dağı hangisidir?", options: ["Everest", "K2", "Denali", "Elbrus"], correct: 0 },
     { q: "Hangi ülkenin başkenti Buenos Aires'tir?", options: ["Arjantin", "Brezilya", "Şili", "Uruguay"], correct: 0 },
-    { q: "Hangi ülke 'Akdeniz'in incisi' olarak bilinir?", options: ["İtalya", "Yunanistan", "İspanya", "Türkiye"], correct: 1 },
+    { q: "Hangi ülke 'Akdeniz'in incisi' olarak bilinir?", options: ["İtalya", "Yunanistan", "İspanya", "Türkiye"], correct: 0 },
     { q: "Hangi gezegen 'Kızıl Gezegen' olarak bilinir?", options: ["Mars", "Venüs", "Jüpiter", "Merkür"], correct: 0 },
-    { q: "Hangi ülke en fazla UNESCO Dünya Mirası alanına sahiptir?", options: ["İtalya", "Çin", "Fransa", "İspanya"], correct: 1 },
-    { q: "İlk insanın Ay'a ayak bastığı yıl hangisidir?", options: ["1965", "1969", "1972", "1957"], correct: 1 },
+    { q: "Hangi ülke en fazla UNESCO Dünya Mirası alanına sahiptir?", options: ["İtalya", "Çin", "Fransa", "İspanya"], correct: 0 },
+    { q: "İlk insanın Ay'a ayak bastığı yıl hangisidir?", options: ["1965", "1969", "1972", "1957"], correct: 0 },
     { q: "Hangi ülkenin resmi dili Portekizcedir?", options: ["Brezilya", "Arjantin", "Meksika", "Uruguay"], correct: 0 },
     { q: "Hangi elementin sembolü 'Au'dur?", options: ["Altın", "Gümüş", "Bakır", "Demir"], correct: 0 },
     { q: "Hangi ülke 'Aslan Krallığı' olarak bilinir?", options: ["Lesotho", "Svaziland", "Kenya", "Tanzanya"], correct: 0 },
@@ -941,6 +941,10 @@ function shuffleArray(arr) {
 }
 
 function initCultureQuiz() {
+    // Her sorunun doğru cevap indeksini rastgele ata (0-3 arası)
+    cultureQuiz.forEach(q => {
+        q.correct = Math.floor(Math.random() * q.options.length);
+    });
     shuffledQuiz = shuffleArray([...cultureQuiz]);
     quizIndex = 0;
     quizScore = 0;
@@ -1048,7 +1052,7 @@ function showRandomLaw() {
     `;
 }
 
-// Bilim Adamları (100) – kısa özetler, mevcut liste aynen korunsun (önceki versiyondaki 100 bilim insanı)
+// Bilim Adamları (100) – kısa özetler
 const scientists = [
     { name: "Albert Einstein", quote: "Hayal gücü bilgiden daha önemlidir.", invention: "Görelilik Teorisi", detail: "Uzay ve zamanın bükülebileceğini, kütleçekiminin aslında uzay-zamanın eğriliği olduğunu keşfetti. E=mc² ile enerji ve kütle ilişkisini formüle etti." },
     { name: "Isaac Newton", quote: "Bildiklerimiz bir damla, bilmediklerimiz bir okyanustur.", invention: "Kütle Çekimi Yasası", detail: "Evrensel çekim yasası ve hareket yasalarını formüle etti. Klasik fiziğin temellerini attı." },
@@ -1178,7 +1182,7 @@ const cityMeanings = [
     { city: "Bolu", meaning: "Antik 'Bithynion'", detail: "Bolu, antik Bithynion kentidir. Osmanlı döneminde İstanbul'u doğuya bağlayan yollar üzerinde önemli bir duraktı." },
     { city: "Burdur", meaning: "Eski adı 'Burdur'", detail: "Burdur, antik dönemde 'Burdur' olarak anılırdı. Pisidia bölgesinin önemli yerleşimlerindendir." },
     { city: "Bursa", meaning: "Prusa (Bitinya kralı)", detail: "Bursa, Bitinya Kralı I. Prusias tarafından kurulmuştur. Osmanlı İmparatorluğu'nun ilk başkenti olarak bilinir." },
-    { city: "Çanakkale", meaning: "Çanak + Kale", detail: "Çanakkale, kalenin yanında yapılan çömleklerden ve tarihi kalelerden adını alır. Çanakkale Zaferi ile dünya tarihinde önemli bir yere sahiptir." },
+    { city: "Çanakkale", meaning: "Çanak + Kale", detail: "Çanakkale, kalenin yanında yapılan çömleklerden ve tarihi kalelerinden adını alır. Çanakkale Zaferi ile dünya tarihinde önemli bir yere sahiptir." },
     { city: "Çankırı", meaning: "Eski adı 'Çankırı'", detail: "Çankırı, antik dönemde 'Çankırı' olarak anılırdı. Osmanlı döneminde kalesiyle ünlüydü." },
     { city: "Çorum", meaning: "Eski adı 'Çorum'", detail: "Çorum, Hitit İmparatorluğu'nun başkenti Hattuşaş'a ev sahipliği yapmıştır. Adı, 'çor' (su) kelimesinden gelebilir." },
     { city: "Denizli", meaning: "Denizli (deniz anlamında değil)", detail: "Denizli, antik dönemde 'Denizli' olarak anılırdı. 'Deniz' kelimesi, burada büyük su birikintilerine işaret edebilir." },
