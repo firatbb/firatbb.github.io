@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tengri</title>
+
+<style>
+/* ==========================================================================
+   EPIC PREMIUM COLOR THEMES (MAT, AĞIRBAŞLI VE LÜKS)
+   ========================================================================== */
+:root {
+    --bg-main: #000000;
+    --bg-container: #09090a;
+    --bg-input: #020203;
+    --bg-btn: #121214;
+    --bg-btn-hover: #1a1a1e;
+    --bg-tab-active: #1a1a1e;
+    --text-main: #8e8e93;
+    --text-input: #f2f2f7;
+    --text-heading: #ffffff;
+    --text-btn: #aeaeb2;
+    --border-color: #242426;
+    --border-container: #1c1c1e;
+    --accent-color: #f2f2f7;
+    --accent-glow: rgba(255, 255, 255, 0.15);
+    --coffee-level: 72px;
+}
+html[data-theme="crimson"] { --bg-main: #0c0808; --bg-container: #161010; --bg-input: #080505; --bg-btn: #241818; --bg-btn-hover: #332222; --bg-tab-active: #332222; --text-main: #b8a0a0; --text-input: #f5eded; --text-heading: #ffffff; --text-btn: #e63946; --border-color: #402b2b; --border-container: #2e1f1f; --accent-color: #d62828; --accent-glow: rgba(214, 40, 40, 0.4); }
+html[data-theme="blue"] { --bg-main: #080c14; --bg-container: #101624; --bg-input: #05080d; --bg-btn: #182238; --bg-btn-hover: #22304f; --bg-tab-active: #22304f; --text-main: #a0b0c8; --text-input: #edf3f8; --text-heading: #ffffff; --text-btn: #4ea8de; --border-color: #2b3d61; --border-container: #1f2c47; --accent-color: #0077b6; --accent-glow: rgba(0, 119, 182, 0.4); }
+html[data-theme="green"] { --bg-main: #060c08; --bg-container: #0d1a12; --bg-input: #040906; --bg-btn: #162e20; --bg-btn-hover: #1f422e; --bg-tab-active: #1f422e; --text-main: #9ebda8; --text-input: #ecf5ef; --text-heading: #ffffff; --text-btn: #52b788; --border-color: #275239; --border-container: #1c3b29; --accent-color: #2d6a4f; --accent-glow: rgba(45, 106, 79, 0.4); }
+html[data-theme="purple"] { --bg-main: #0a0712; --bg-container: #151024; --bg-input: #06040d; --bg-btn: #211938; --bg-btn-hover: #2f244f; --bg-tab-active: #2f244f; --text-main: #a8a0c8; --text-input: #f0edf8; --text-heading: #ffffff; --text-btn: #b5179e; --border-color: #3b2d61; --border-container: #2a2047; --accent-color: #7209b7; --accent-glow: rgba(114, 9, 183, 0.4); }
+html[data-theme="pink"] { --bg-main: #0f070b; --bg-container: #1f1019; --bg-input: #0a0408; --bg-btn: #331a29; --bg-btn-hover: #472439; --bg-tab-active: #472439; --text-main: #cda2bd; --text-input: #faf0f6; --text-heading: #ffffff; --text-btn: #ff758f; --border-color: #592d47; --border-container: #422135; --accent-color: #ff4d6d; --accent-glow: rgba(255, 77, 109, 0.4); }
+html[data-theme="yellow"] { --bg-main: #0d0c04; --bg-container: #1c1a09; --bg-input: #090802; --bg-btn: #2e2a10; --bg-btn-hover: #403b16; --bg-tab-active: #403b16; --text-main: #cfcb9e; --text-input: #fbfbfa; --text-heading: #ffffff; --text-btn: #ffd166; --border-color: #524b1c; --border-container: #3d3815; --accent-color: #ffb703; --accent-glow: rgba(255, 183, 3, 0.4); }
+html[data-theme="orange"] { --bg-main: #0d0a06; --bg-container: #1c150d; --bg-input: #080604; --bg-btn: #2b2114; --bg-btn-hover: #372d1d; --bg-tab-active: #372d1d; --text-main: #c2b29e; --text-input: #f7f3ed; --text-heading: #ffffff; --text-btn: #f3a712; --border-color: #4f3d26; --border-container: #3b2e1c; --accent-color: #e67e22; --accent-glow: rgba(230, 126, 34, 0.4); }
+html[data-theme="slate"] { --bg-main: #121315; --bg-container: #1e2024; --bg-input: #0b0c0d; --bg-btn: #2d3138; --bg-btn-hover: #3f444f; --bg-tab-active: #3f444f; --text-main: #949a8c; --text-input: #f1f2f4; --text-heading: #ffffff; --text-btn: #90e0ef; --border-color: #474d59; --border-container: #333840; --accent-color: #00b4d8; --accent-glow: rgba(0, 180, 216, 0.3); }
+html[data-theme="white"] { --bg-main: #f1f3f6; --bg-container: #ffffff; --bg-input: #f8fafc; --bg-btn: #e4e9f0; --bg-btn-hover: #d1d9e6; --bg-tab-active: #ffffff; --text-main: #4a5568; --text-input: #1a202c; --text-heading: #1a202c; --text-btn: #4a5568; --border-color: #cbd5e1; --border-container: #e2e8f0; --accent-color: #2d3748; --accent-glow: rgba(45, 55, 72, 0.1); }
+
+*{box-sizing:border-box;}
+html, body, .input-area, div { cursor: default; }
+button, .tab-btn, .theme-dot, .oracle-sphere, .game-card { cursor: pointer; }
+
+body {
+    margin:0;
+    padding:20px 20px 140px 20px;
+    background: var(--bg-main) !important;
+    color: var(--text-main) !important;
+    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    overflow-x:hidden;
+    min-height: 100vh;
+    transition: background 0.25s ease, color 0.25s ease;
+}
+body.theme-shake { animation: themeShake 0.5s ease-in-out; }
+@keyframes themeShake { 0%,100%{transform:translate(0,0);}10%{transform:translate(-4px,-2px);}20%{transform:translate(4px,2px);}30%{transform:translate(-3px,1px);}40%{transform:translate(3px,-1px);}50%{transform:translate(-2px,2px);}60%{transform:translate(2px,-2px);}70%{transform:translate(-1px,1px);}80%{transform:translate(1px,-1px);}90%{transform:translate(0,0);} }
+
+.theme-selector { display:flex; justify-content:flex-end; gap:12px; max-width:900px; margin:0 auto 20px auto; align-items:center; background:var(--bg-container); padding:12px 18px; border-radius:8px; border:1px solid var(--border-container); }
+.theme-label { font-size:11px; text-transform:uppercase; letter-spacing:1.5px; font-weight:600; color:var(--text-main); opacity:0.8; }
+.theme-dot { width:22px; height:22px; border-radius:50%; border:2px solid transparent; transition:all 0.2s cubic-bezier(0.4,0,0.2,1); box-shadow:0 2px 5px rgba(0,0,0,0.5); }
+.theme-dot:hover { transform:scale(1.2); }
+.theme-dot.active { border-color:var(--text-heading)!important; transform:scale(1.1); box-shadow:0 0 12px var(--accent-color); }
+
+.oracle-box { max-width:900px; margin:0 auto 25px auto; background:var(--bg-container); border:1px solid var(--border-container); border-radius:10px; padding:20px; display:flex; align-items:center; gap:20px; box-shadow:0 10px 30px rgba(0,0,0,0.3); position:relative; overflow:hidden; }
+.oracle-sphere-wrapper { position:relative; flex-shrink:0; }
+.oracle-sphere { width:60px; height:60px; border-radius:50%; background:radial-gradient(circle at 30% 30%, var(--text-heading), var(--accent-color)); box-shadow:0 0 20px var(--accent-glow), inset -5px -5px 15px rgba(0,0,0,0.6); display:flex; align-items:center; justify-content:center; font-size:24px; transition:all 0.3s cubic-bezier(0.175,0.885,0.32,1.275); user-select:none; }
+.oracle-sphere:hover { transform:scale(1.1) rotate(15deg); box-shadow:0 0 30px var(--accent-color), inset -2px -2px 10px rgba(0,0,0,0.4); }
+.oracle-sphere:active { transform:scale(0.95); }
+.oracle-text-area { flex-grow:1; }
+.oracle-title { font-size:11px; text-transform:uppercase; letter-spacing:2px; color:var(--accent-color); font-weight:700; margin-bottom:4px; }
+.oracle-quote { font-size:14px; color:var(--text-input); font-style:italic; line-height:1.5; transition:opacity 0.2s ease; }
+.pulse-glow { position:absolute; width:100%; height:100%; border-radius:50%; background:var(--accent-color); opacity:0.15; animation:spherePulse 2s infinite ease-in-out; top:0; left:0; pointer-events:none; }
+@keyframes spherePulse { 0%{transform:scale(1);opacity:0.2;} 50%{transform:scale(1.3);opacity:0;} 100%{transform:scale(1);opacity:0.2;} }
+.glitch-effect { animation:textGlitch 0.2s linear 2; }
+@keyframes textGlitch { 0%{transform:translate(2px,1px);opacity:0.7;} 50%{transform:translate(-1px,-1px);opacity:0.9;} 100%{transform:translate(0,0);opacity:1;} }
+
+.tabs{ display:flex; justify-content:center; gap:12px; margin-bottom:25px; flex-wrap:wrap; }
+button, .tab-btn { background:var(--bg-btn); color:var(--text-btn); border:1px solid var(--border-color); padding:12px 26px; font-size:12px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; border-radius:6px; transition:all 0.2s ease; }
+button:hover, .tab-btn:hover { color:var(--text-heading)!important; background:var(--bg-btn-hover); border-color:var(--accent-color); box-shadow:0 0 12px var(--accent-glow); }
+.tab-btn.active { background:var(--bg-tab-active)!important; color:var(--text-heading)!important; border-color:var(--accent-color)!important; box-shadow:0 0 15px var(--accent-glow); }
+
+.container{ position:relative; width:100%; max-width:900px; margin:0 auto; }
+.tab-content{ position:absolute; width:100%; opacity:0; transform:scale(0.99); transition:all .25s ease-in-out; pointer-events:none; background:var(--bg-container); padding:28px; border-radius:10px; border:1px solid var(--border-container); box-shadow:0 20px 40px rgba(0,0,0,0.4); }
+.tab-content.active{ opacity:1; transform:scale(1); position:relative; pointer-events:auto; }
+
+h3 { color:var(--text-heading); font-size:14px; margin-top:0; margin-bottom:22px; letter-spacing:1px; text-transform:uppercase; border-left:3px solid var(--accent-color); padding-left:12px; font-weight:600; }
+.input-area, .output{ width:100%; height:220px; background:var(--bg-input); color:var(--text-input); border:1px solid var(--border-color); padding:16px; font-size:14px; line-height:1.6; border-radius:6px; outline:none; transition:all 0.2s ease; margin-bottom:6px; overflow-y:auto; word-break:break-word; font-family:inherit; }
+.input-area:focus, .output:focus { border-color:var(--accent-color); box-shadow:0 0 10px var(--accent-glow); }
+.output{ min-height:220px; height:auto; border-style:dashed; }
+.meta-info { font-size:11px; color:var(--text-main); margin-bottom:18px; display:flex; gap:18px; opacity:0.7; letter-spacing:0.5px; }
+.meta-info span strong { color:var(--text-heading); }
+.action-buttons { margin-bottom:25px; display:flex; gap:12px; flex-wrap:wrap; }
+.bad-word{ color:#ff3366; font-weight:600; background:rgba(255,51,102,0.08); border:1px solid rgba(255,51,102,0.3); padding:2px 6px; border-radius:4px; }
+.toast { position:fixed; top:-100px; right:25px; background:var(--bg-container); border:1px solid var(--accent-color); color:var(--text-heading); padding:14px 28px; border-radius:6px; font-size:12px; font-weight:600; letter-spacing:1px; box-shadow:0 10px 30px rgba(0,0,0,0.5),0 0 15px var(--accent-glow); transition:top 0.4s cubic-bezier(0.175,0.885,0.32,1.275); z-index:10000; }
+.toast.show { top:25px; }
+
+/* ==========================================================================
+   🎵 MÜZİK ÇALAR
+   ========================================================================= */
+.cyber-player { position:fixed; bottom:0; left:0; width:100%; background:var(--bg-container); border-top:1px solid var(--border-container); padding:10px 30px; display:flex; flex-direction:column; gap:8px; box-shadow:0 -10px 30px rgba(0,0,0,0.6); z-index:9999; transition:transform 0.4s cubic-bezier(0.175,0.885,0.32,1.2); }
+.cyber-player.minimized { transform:translateY(100%); }
+.player-toggle-btn { position:absolute; right:30px; top:-24px; background:var(--bg-container); border:1px solid var(--border-container); border-bottom:none; padding:4px 14px; font-size:10px; font-weight:bold; letter-spacing:1px; border-radius:6px 6px 0 0; color:var(--text-main); transition:all 0.2s, top 0.4s cubic-bezier(0.175,0.885,0.32,1.2); }
+.cyber-player.minimized .player-toggle-btn { top:-24px; border:1px solid var(--border-container); box-shadow:0 -5px 15px rgba(0,0,0,0.3); }
+.player-toggle-btn:hover { color:var(--text-heading); background:var(--bg-btn-hover); }
+.player-top-row { display:flex; align-items:center; justify-content:space-between; width:100%; }
+.player-info { display:flex; align-items:center; gap:12px; width:30%; }
+.player-icon { font-size:18px; animation:rotateDisc 4s linear infinite; animation-play-state:paused; }
+.cyber-player.playing .player-icon { animation-play-state:running; }
+@keyframes rotateDisc { 0%{transform:rotate(0deg);} 100%{transform:rotate(360deg);} }
+.track-details { display:flex; flex-direction:column; }
+.track-name { color:var(--text-heading); font-size:12px; font-weight:600; letter-spacing:0.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:200px; }
+.track-index { color:var(--text-main); font-size:10px; opacity:0.5; margin-top:1px; }
+.player-controls { display:flex; align-items:center; gap:6px; }
+.player-btn { padding:6px 12px; font-size:10px; letter-spacing:0.5px; background:var(--bg-btn); border:1px solid var(--border-color); text-transform:uppercase; }
+.player-btn.active-mode { border-color:var(--accent-color); color:var(--text-heading); box-shadow:0 0 8px var(--accent-glow); }
+.player-timeline-wrapper { display:flex; align-items:center; gap:10px; width:100%; }
+.time-display { font-size:11px; font-family:monospace; color:var(--text-main); min-width:35px; opacity:0.8; }
+.timeline-container { flex-grow:1; height:4px; background:var(--bg-input); border-radius:2px; position:relative; cursor:pointer; }
+.timeline-progress { height:100%; width:0%; background:var(--accent-color); box-shadow:0 0 6px var(--accent-color); border-radius:2px; pointer-events:none; }
+
+/* ==========================================================================
+   ☕ KAHVE + BURÇ BUTONLARI
+   ========================================================================= */
+.coffee-btn-premium, .burc-btn-premium { margin-right:8px; padding:7px 18px; font-size:11px; font-weight:700; letter-spacing:1px; border-radius:20px; transition:all 0.3s cubic-bezier(0.4,0,0.2,1); display:inline-flex; align-items:center; gap:4px; }
+.coffee-btn-premium { background:linear-gradient(135deg, rgba(230,126,34,0.08), rgba(211,84,0,0.14)); border:1px solid rgba(230,126,34,0.35); color:#e67e22!important; box-shadow:0 0 10px rgba(230,126,34,0.05); }
+.burc-btn-premium { background:linear-gradient(135deg, rgba(147,51,234,0.08), rgba(126,34,206,0.14)); border:1px solid rgba(147,51,234,0.35); color:#a855f7!important; box-shadow:0 0 10px rgba(147,51,234,0.05); }
+.coffee-btn-premium:hover { background:#e67e22!important; color:#fff!important; box-shadow:0 0 20px rgba(230,126,34,0.4); transform:translateY(-1px); }
+.burc-btn-premium:hover { background:#9333ea!important; color:#fff!important; box-shadow:0 0 20px rgba(147,51,234,0.5); transform:translateY(-1px); }
+.btn-emoji-wrapper { position:relative; display:inline-block; }
+.btn-steam-box { position:absolute; top:-10px; left:2px; display:flex; gap:2px; pointer-events:none; }
+.btn-steam { width:1.5px; height:8px; background:rgba(230,126,34,0.6); border-radius:50%; filter:blur(0.6px); opacity:0; animation:btnSteamRise 2s infinite ease-in-out; }
+.coffee-btn-premium:hover .btn-steam { background:rgba(255,255,255,0.8); }
+.btn-steam:nth-child(2) { animation-delay:0.7s; }
+@keyframes btnSteamRise { 0%{transform:translateY(2px)scaleX(1);opacity:0;} 50%{transform:translateY(-2px)scaleX(1.4);opacity:0.8;} 100%{transform:translateY(-6px)scaleX(0.5);opacity:0;} }
+
+.coffee-overlay, .burc-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(4,4,5,0.94); backdrop-filter:blur(25px); z-index:100000; display:none; align-items:center; justify-content:center; flex-direction:column; opacity:0; transition:opacity 0.4s ease; }
+.coffee-overlay.show, .burc-overlay.show { display:flex; opacity:1; }
+.cup-wrapper { display:flex; flex-direction:column; align-items:center; margin-bottom:45px; }
+.glass-cup { width:110px; height:120px; border:2px solid rgba(255,255,255,0.45); border-bottom-left-radius:35px; border-bottom-right-radius:35px; background:linear-gradient(135deg,rgba(255,255,255,0.12),rgba(255,255,255,0.02)); position:relative; box-shadow:inset 0 0 25px rgba(255,255,255,0.15),0 25px 50px rgba(0,0,0,0.7); backdrop-filter:blur(5px); overflow:hidden; }
+.glass-cup::after { content:''; position:absolute; bottom:6px; left:6px; right:6px; height:var(--coffee-level); background:linear-gradient(to top,rgba(92,60,42,0.9),rgba(143,94,66,0.75)); border-radius:4px 4px 26px 26px; box-shadow:0 0 15px rgba(92,60,42,0.6); animation:liquidWave 3.5s infinite ease-in-out; transform-origin:center bottom; transition:height 0.5s ease; }
+@keyframes liquidWave { 0%,100%{transform:rotate(0deg)scaleY(1);} 50%{transform:rotate(2deg)scaleY(1.02);} }
+.cup-ear { width:28px; height:60px; border:2px solid rgba(255,255,255,0.45); border-left:none; border-top-right-radius:20px; border-bottom-right-radius:20px; position:absolute; right:-29px; top:25px; }
+.cup-plate { width:170px; height:3px; background:rgba(255,255,255,0.4); margin:18px auto 0; box-shadow:0 6px 20px rgba(0,0,0,0.5); border-radius:2px; align-self:center; }
+/* Duman - yeniden aktif */
+.steam-box { position:absolute; top:-50px; display:flex; gap:16px; justify-content:center; width:100%; pointer-events:none; }
+.steam-puff { width:4px; height:50px; background:linear-gradient(to top,rgba(255,255,255,0.5),rgba(255,255,255,0)); opacity:0; border-radius:50%; filter:blur(4px); animation:steamRise 3s infinite ease-in-out; }
+.steam-puff:nth-child(1){animation-delay:0s;} .steam-puff:nth-child(2){animation-delay:1s;} .steam-puff:nth-child(3){animation-delay:2s;}
+@keyframes steamRise { 0%{transform:translateY(15px)scaleX(0.8);opacity:0;} 40%{transform:translateY(-10px)scaleX(1.6);opacity:0.5;} 80%{transform:translateY(-30px)scaleX(1);opacity:0.15;} 100%{transform:translateY(-45px)scaleX(0.5);opacity:0;} }
+
+.mola-quote { max-width:650px; text-align:center; font-size:16px; color:#f2f2f7!important; text-shadow:0 2px 15px rgba(255,255,255,0.1); font-style:italic; min-height:70px; padding:0 25px; font-weight:300; letter-spacing:0.8px; line-height:1.8; opacity:1; transition:opacity 1.5s ease-in-out; }
+.mola-quote.fade-out { opacity:0; }
+
+/* ==========================================================================
+   🔮 BURÇ MODAL - ZENGİN & İNTERAKTİF
+   ========================================================================= */
+.burc-panel { max-width:960px; width:96%; max-height:88vh; overflow-y:auto; padding:20px; background:rgba(8,8,14,0.92); border:1px solid rgba(255,255,255,0.08); border-radius:24px; box-shadow:0 30px 80px rgba(0,0,0,0.8), 0 0 80px rgba(147,51,234,0.15); color:#e0e0e0; position:relative; }
+.burc-panel::-webkit-scrollbar { width:4px; }
+.burc-panel::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.1); border-radius:4px; }
+.burc-panel h2 { color:#fff; margin:0 0 5px; text-align:center; font-size:24px; letter-spacing:2px; }
+.burc-subtitle { text-align:center; color:rgba(255,255,255,0.5); font-size:11px; margin-bottom:12px; letter-spacing:1px; }
+.burc-nav { display:flex; flex-wrap:wrap; justify-content:center; gap:6px; margin-bottom:16px; border-bottom:1px solid rgba(255,255,255,0.06); padding-bottom:12px; }
+.burc-nav-btn { background:transparent; border:1px solid rgba(255,255,255,0.08); color:rgba(255,255,255,0.6); padding:6px 14px; border-radius:18px; font-size:10px; cursor:pointer; transition:all 0.25s; letter-spacing:0.8px; font-weight:600; }
+.burc-nav-btn:hover { border-color:rgba(255,255,255,0.2); color:#fff; background:rgba(255,255,255,0.03); }
+.burc-nav-btn.active { background:rgba(147,51,234,0.2); border-color:rgba(147,51,234,0.5); color:#c084fc; box-shadow:0 0 15px rgba(147,51,234,0.2); }
+.burc-section { display:none; animation:fadeSlideIn 0.4s ease; }
+.burc-section.active { display:block; }
+@keyframes fadeSlideIn { 0%{opacity:0;transform:translateY(10px);} 100%{opacity:1;transform:translateY(0);} }
+.burc-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:20px; }
+.burc-card { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); border-radius:16px; padding:12px 8px; text-align:center; cursor:pointer; transition:all 0.35s cubic-bezier(0.4,0,0.2,1); position:relative; overflow:hidden; }
+.burc-card:hover { background:rgba(255,255,255,0.05); border-color:rgba(255,255,255,0.15); transform:translateY(-3px); box-shadow:0 8px 25px rgba(0,0,0,0.4); }
+.burc-card.selected { background:rgba(147,51,234,0.15); border-color:rgba(147,51,234,0.5); box-shadow:0 0 25px rgba(147,51,234,0.3); transform:translateY(-4px); }
+.burc-emoji { font-size:32px; display:block; margin-bottom:4px; animation:floatStar 3s ease-in-out infinite; }
+.burc-card:nth-child(odd) .burc-emoji { animation-delay:0s; }
+.burc-card:nth-child(even) .burc-emoji { animation-delay:1.5s; }
+@keyframes floatStar { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-6px);} }
+.burc-name { font-size:12px; font-weight:700; letter-spacing:0.5px; color:#fff; }
+.burc-date { font-size:9px; color:rgba(255,255,255,0.4); margin-top:2px; }
+.burc-detail-wrap { animation:fadeSlideIn 0.4s ease; }
+.burc-header { display:flex; align-items:center; gap:15px; margin-bottom:15px; padding-bottom:15px; border-bottom:1px solid rgba(255,255,255,0.06); }
+.burc-header-emoji { font-size:48px; }
+.burc-header-info h3 { color:#fff; margin:0; font-size:22px; border:none; padding:0; }
+.burc-header-info span { color:rgba(255,255,255,0.5); font-size:12px; }
+.burc-grid-info { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:15px; }
+.burc-info-box { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:12px; padding:14px; }
+.burc-info-box h4 { color:var(--accent-color); margin:0 0 8px; font-size:13px; letter-spacing:1px; }
+.burc-info-box p { margin:0; font-size:13px; line-height:1.7; color:rgba(255,255,255,0.75); }
+.burc-tags { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:15px; }
+.burc-tag { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:20px; padding:6px 14px; font-size:11px; color:rgba(255,255,255,0.7); transition:all 0.2s; }
+.burc-tag.good { border-color:rgba(52,211,153,0.3); color:#34d399; }
+.burc-tag.bad { border-color:rgba(248,113,113,0.3); color:#f87171; }
+.burc-tag:hover { background:rgba(255,255,255,0.06); }
+.gunluk-yorum-box { background:rgba(147,51,234,0.06); border:1px solid rgba(147,51,234,0.2); border-radius:14px; padding:18px; margin-top:10px; position:relative; }
+.gunluk-yorum-box::before { content:'📆'; position:absolute; top:-12px; left:16px; font-size:20px; }
+.gunluk-yorum-box strong { color:#c084fc; display:block; margin-bottom:6px; font-size:13px; }
+.gunluk-yorum-box p { margin:0; font-size:14px; line-height:1.8; color:rgba(255,255,255,0.8); font-style:italic; }
+.burc-close-btn { display:block; margin:20px auto 0; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.15); color:#fff; padding:10px 24px; border-radius:20px; font-size:12px; letter-spacing:1px; cursor:pointer; transition:all 0.3s; }
+.burc-close-btn:hover { background:rgba(255,255,255,0.1); box-shadow:0 0 20px rgba(255,255,255,0.1); }
+
+.harita-form { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:16px; }
+.harita-form label { color:rgba(255,255,255,0.6); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+.harita-form input, .harita-form select { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:8px 12px; color:#fff; font-size:13px; width:100%; outline:none; }
+.harita-form select option { background: #1a1a1e; color: #f2f2f7; }
+.harita-form input:focus, .harita-form select:focus { border-color:rgba(147,51,234,0.5); box-shadow:0 0 10px rgba(147,51,234,0.15); }
+.harita-sonuc { background:rgba(0,0,0,0.3); border-radius:16px; padding:18px; margin-top:12px; border:1px solid rgba(255,255,255,0.06); }
+.harita-gezegen { display:flex; align-items:center; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.04); }
+.harita-gezegen span:first-child { font-weight:600; color:#fff; font-size:12px; }
+.harita-gezegen span:last-child { color:rgba(255,255,255,0.6); font-size:11px; }
+.harita-aciklama { margin-top:12px; padding:12px; background:rgba(147,51,234,0.06); border-radius:10px; font-size:12px; line-height:1.8; color:rgba(255,255,255,0.7); border-left:2px solid rgba(147,51,234,0.3); }
+
+.ask-uyum-form { display:flex; gap:10px; align-items:center; justify-content:center; flex-wrap:wrap; margin-bottom:16px; }
+.ask-uyum-form select { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:8px 16px; color:#fff; font-size:13px; outline:none; }
+.ask-uyum-form select option { background: #1a1a1e; color: #f2f2f7; }
+.ask-uyum-form button { background:rgba(147,51,234,0.3); border:1px solid rgba(147,51,234,0.5); color:#fff; padding:8px 20px; border-radius:20px; cursor:pointer; font-weight:700; letter-spacing:0.5px; transition:all 0.3s; }
+.ask-uyum-form button:hover { background:rgba(147,51,234,0.5); box-shadow:0 0 20px rgba(147,51,234,0.3); }
+.uyum-sonuc { text-align:center; padding:20px; background:rgba(0,0,0,0.2); border-radius:16px; margin-top:10px; }
+.uyum-puan { font-size:48px; font-weight:900; background:linear-gradient(135deg,#c084fc,#f472b6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.uyum-detay { margin-top:12px; font-size:13px; line-height:1.9; color:rgba(255,255,255,0.7); }
+
+/* 3 KARTLI MİSTİK TAROT DÜZENİ */
+.tarot-cards-row { display:flex; gap:15px; justify-content:center; flex-wrap:wrap; margin:15px 0; }
+.tarot-card-wrap { perspective:800px; width:140px; height:220px; cursor:pointer; }
+.tarot-card { width:100%; height:100%; position:relative; transform-style:preserve-3d; transition:transform 0.8s cubic-bezier(0.4,0,0.2,1); }
+.tarot-card.flipped { transform:rotateY(180deg); }
+.tarot-card-front, .tarot-card-back { position:absolute; width:100%; height:100%; backface-visibility:hidden; border-radius:16px; }
+.tarot-card-front { background:linear-gradient(135deg,#0d0620,#1a0a2e,#0d0620); border:2px solid rgba(147,51,234,0.25); display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 0 30px rgba(0,0,0,0.5), inset 0 0 30px rgba(0,0,0,0.4); cursor:pointer; }
+.tarot-card-front .mystic-eye { font-size:40px; opacity:0.7; animation:mysticPulse 3s ease-in-out infinite; }
+.tarot-card-front .mystic-text { font-size:8px; color:rgba(192,132,252,0.5); letter-spacing:2px; margin-top:6px; }
+@keyframes mysticPulse { 0%,100%{opacity:0.5;text-shadow:0 0 8px rgba(147,51,234,0.3);} 50%{opacity:0.9;text-shadow:0 0 18px rgba(147,51,234,0.6);} }
+.tarot-card-back { background:linear-gradient(135deg,#1a0a2e,#2d1b4e,#1a0a2e); border:2px solid rgba(192,132,252,0.4); transform:rotateY(180deg); padding:14px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; box-shadow:0 0 30px rgba(147,51,234,0.3); }
+.tarot-emoji { font-size:36px; margin-bottom:4px; }
+.tarot-isim { font-size:11px; font-weight:700; color:#c084fc; margin:4px 0; }
+.tarot-anlam { font-size:9px; color:rgba(255,255,255,0.7); line-height:1.5; }
+.tarot-pozisyon { font-size:9px; color:rgba(192,132,252,0.7); margin-bottom:4px; letter-spacing:1px; font-weight:600; }
+
+.quiz-soru { font-size:15px; color:#fff; margin-bottom:12px; font-weight:600; }
+.quiz-secenekler { display:grid; gap:8px; }
+.quiz-secenek { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:10px 14px; cursor:pointer; transition:all 0.2s; font-size:12px; color:rgba(255,255,255,0.7); }
+.quiz-secenek:hover { background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.2); color:#fff; }
+.quiz-sonuc { text-align:center; padding:20px; animation:fadeSlideIn 0.5s ease; }
+.quiz-sonuc-emoji { font-size:64px; }
+.quiz-sonuc-burc { font-size:24px; font-weight:700; color:#c084fc; margin:10px 0; }
+.quiz-ilerleme { height:4px; background:rgba(255,255,255,0.06); border-radius:2px; margin-bottom:15px; }
+.quiz-ilerleme-bar { height:100%; background:linear-gradient(90deg,#c084fc,#f472b6); border-radius:2px; transition:width 0.4s ease; }
+
+.hikaye-kart { background:rgba(0,0,0,0.2); border:1px solid rgba(255,255,255,0.06); border-radius:14px; padding:16px; margin-bottom:10px; cursor:pointer; transition:all 0.3s; }
+.hikaye-kart:hover { background:rgba(255,255,255,0.03); border-color:rgba(255,255,255,0.15); box-shadow:0 5px 20px rgba(0,0,0,0.3); }
+.hikaye-baslik { font-size:14px; font-weight:700; color:#c084fc; margin-bottom:6px; }
+.hikaye-ozet { font-size:11px; color:rgba(255,255,255,0.5); line-height:1.5; }
+.hikaye-tam { display:none; margin-top:10px; font-size:12px; line-height:1.8; color:rgba(255,255,255,0.7); padding:12px; background:rgba(147,51,234,0.04); border-radius:10px; border-left:2px solid rgba(147,51,234,0.3); }
+.hikaye-kart.open .hikaye-tam { display:block; }
+
+@keyframes chaosBounce1 { 0%{transform:translate(0,0);}10%{transform:translate(calc(50vw - 120px),calc(-35vh + 60px));}20%{transform:translate(calc(-45vw + 60px),calc(40vh - 120px));}30%{transform:translate(calc(40vw - 60px),calc(-25vh + 110px));}40%{transform:translate(calc(-48vw + 120px),calc(-42vh + 60px));}50%{transform:translate(calc(25vw - 120px),calc(35vh - 60px));}60%{transform:translate(calc(-38vw + 90px),calc(-20vh + 50px));}70%{transform:translate(calc(48vw - 50px),calc(28vh - 90px));}80%{transform:translate(calc(-28vw + 70px),calc(38vh - 40px));}90%{transform:translate(calc(35vw - 90px),calc(-38vh + 95px));}100%{transform:translate(0,0);} }
+@keyframes chaosBounce2 { 0%{transform:translate(0,0);}12%{transform:translate(calc(-38vw + 50px),calc(28vh - 90px));}25%{transform:translate(calc(48vw - 100px),calc(-38vh + 40px));}38%{transform:translate(calc(-25vw + 80px),calc(-48vh + 95px));}50%{transform:translate(calc(42vw - 60px),calc(42vh - 70px));}63%{transform:translate(calc(-48vw + 110px),calc(18vh - 50px));}75%{transform:translate(calc(28vw - 70px),calc(-28vh + 110px));}88%{transform:translate(calc(-35vw + 90px),calc(38vh - 60px));}100%{transform:translate(0,0);} }
+.tengri-panic { position:relative!important; animation:chaosBounce1 0.4s infinite linear!important; z-index:999998!important; }
+button.tengri-panic,.tab-btn.tengri-panic,.player-btn.tengri-panic,.coffee-btn-premium.tengri-panic,.burc-btn-premium.tengri-panic { animation:chaosBounce2 0.35s infinite linear!important; }
+
+/* ========== OYUN KARTLARI STİLİ ========== */
+.game-card {
+    background: var(--bg-btn);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-btn);
+    transition: all 0.3s ease;
+    text-align: center;
+    min-width: 120px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.game-card:hover {
+    background: var(--bg-btn-hover);
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px var(--accent-glow);
+}
+.game-card.active {
+    background: var(--bg-tab-active);
+    border-color: var(--accent-color);
+    color: var(--text-heading);
+    box-shadow: 0 0 20px var(--accent-glow);
+}
+
+/* ========== TARİHTE BUGÜN STİLİ ========== */
+.history-box {
+    max-width:900px;
+    margin:0 auto 25px auto;
+    background:var(--bg-container);
+    border:1px solid var(--border-container);
+    border-radius:10px;
+    padding:12px 20px 14px 20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+    transition:all 0.3s ease;
+}
+.history-box .history-header {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:8px;
+}
+.history-box .history-title {
+    font-size:13px;
+    font-weight:700;
+    color:var(--text-heading);
+    letter-spacing:0.5px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+.history-box .history-title span {
+    color:var(--accent-color);
+}
+/* Daha belirgin toggle butonu */
+.history-box .history-title .toggle-btn {
+    background: var(--bg-btn);
+    border: 2px solid var(--accent-color);
+    color: var(--text-heading);
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 4px 14px;
+    border-radius: 6px;
+    transition: all 0.2s;
+    box-shadow: 0 0 10px var(--accent-glow);
+    line-height: 1.4;
+}
+.history-box .history-title .toggle-btn:hover {
+    background: var(--bg-btn-hover);
+    box-shadow: 0 0 20px var(--accent-color);
+    transform: scale(1.05);
+}
+.history-box .history-date {
+    font-size:11px;
+    color:var(--text-main);
+    opacity:0.6;
+}
+.history-content {
+    overflow:hidden;
+    transition:max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+    max-height:800px;
+    opacity:1;
+    padding-top:4px;
+}
+.history-content.minimized {
+    max-height:0;
+    opacity:0;
+    padding-top:0;
+    pointer-events:none;
+}
+.history-filters {
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:14px;
+}
+.history-filters .filter-btn {
+    background:transparent;
+    border:1px solid var(--border-color);
+    color:var(--text-main);
+    padding:4px 14px;
+    border-radius:16px;
+    font-size:10px;
+    cursor:pointer;
+    transition:all 0.25s ease;
+    font-weight:600;
+    letter-spacing:0.5px;
+}
+.history-filters .filter-btn:hover {
+    border-color:var(--accent-color);
+    color:var(--text-heading);
+    background:var(--bg-btn-hover);
+}
+.history-filters .filter-btn.active {
+    background:rgba(147,51,234,0.2);
+    border-color:rgba(147,51,234,0.5);
+    color:#c084fc;
+    box-shadow:0 0 15px rgba(147,51,234,0.15);
+}
+.history-datepicker {
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:14px;
+    flex-wrap:wrap;
+}
+.history-datepicker label {
+    font-size:11px;
+    color:var(--text-main);
+    opacity:0.7;
+}
+.history-datepicker input[type="date"] {
+    background:var(--bg-input);
+    border:1px solid var(--border-color);
+    color:var(--text-input);
+    border-radius:6px;
+    padding:4px 10px;
+    font-size:12px;
+    outline:none;
+    font-family:inherit;
+    cursor:pointer;
+}
+.history-datepicker input[type="date"]:focus {
+    border-color:var(--accent-color);
+    box-shadow:0 0 8px var(--accent-glow);
+}
+.history-datepicker input[type="date"]::-webkit-calendar-picker-indicator {
+    filter:invert(1);
+    cursor:pointer;
+}
+.history-list {
+    max-height:240px;
+    overflow-y:auto;
+    padding-right:4px;
+}
+.history-list::-webkit-scrollbar { width:3px; }
+.history-list::-webkit-scrollbar-thumb { background:var(--border-color); border-radius:4px; }
+.history-item {
+    display:flex;
+    gap:12px;
+    padding:6px 0;
+    border-bottom:1px solid rgba(255,255,255,0.03);
+    font-size:12px;
+    line-height:1.6;
+    color:var(--text-main);
+}
+.history-item .history-year {
+    font-weight:700;
+    color:var(--accent-color);
+    min-width:42px;
+    font-size:11px;
+    opacity:0.8;
+}
+.history-item .history-text {
+    color:var(--text-input);
+}
+.history-item .history-text .highlight {
+    color:var(--accent-color);
+}
+.history-empty {
+    text-align:center;
+    color:var(--text-main);
+    font-size:12px;
+    opacity:0.5;
+    padding:20px 0;
+    font-style:italic;
+}
+.history-loading {
+    text-align:center;
+    color:var(--text-main);
+    font-size:12px;
+    padding:15px 0;
+    opacity:0.6;
+}
+.history-loading::after {
+    content:'...';
+    animation:dots 1.2s infinite;
+}
+@keyframes dots {
+    0%{content:'.';}
+    33%{content:'..';}
+    66%{content:'...';}
+}
+</style>
+</head>
+
+<body>
+
+<div class="theme-selector">
+    <button id="premium-mola-trigger" onclick="openCoffeeModal()" class="coffee-btn-premium">
+        <span class="btn-emoji-wrapper">☕<span class="btn-steam-box"><span class="btn-steam"></span><span class="btn-steam"></span></span></span> KAHVE MOLASI
+    </button>
+    <button id="premium-burc-trigger" onclick="openBurcModal()" class="burc-btn-premium">🔮 BURÇLAR</button>
+    <span class="theme-label">TEMA:</span>
+    <div class="theme-dot id-dark-dot active" style="background:#1c1c1e;border:1px solid #3a3a3c;" onclick="changeTheme('dark',this)" title="Midnight OLED"></div>
+    <div class="theme-dot" style="background:#d62828;" onclick="changeTheme('crimson',this)" title="Crimson"></div>
+    <div class="theme-dot" style="background:#0077b6;" onclick="changeTheme('blue',this)" title="Blue"></div>
+    <div class="theme-dot" style="background:#2d6a4f;" onclick="changeTheme('green',this)" title="Green"></div>
+    <div class="theme-dot" style="background:#7209b7;" onclick="changeTheme('purple',this)" title="Purple"></div>
+    <div class="theme-dot" style="background:#ff4d6d;" onclick="changeTheme('pink',this)" title="Pink"></div>
+    <div class="theme-dot" style="background:#ffb703;" onclick="changeTheme('yellow',this)" title="Yellow"></div>
+    <div class="theme-dot" style="background:#e67e22;" onclick="changeTheme('orange',this)" title="Orange"></div>
+    <div class="theme-dot" style="background:#474d59;" onclick="changeTheme('slate',this)" title="Slate"></div>
+    <div class="theme-dot" style="background:#ffffff;border:1px solid #cbd5e1;" onclick="changeTheme('white',this)" title="White"></div>
+</div>
+
+<!-- ORACLE -->
+<div class="oracle-box"><div class="oracle-sphere-wrapper"><div class="pulse-glow"></div><div class="oracle-sphere" onclick="getTengriOracle()">🔮</div></div><div class="oracle-text-area"><div class="oracle-title">⚡ ORACLE / GÜNÜN SİBER KEHANETİ</div><div id="oracle-display" class="oracle-quote">Küreye tıkla ve siber kaderinle yüzleş...</div></div></div>
+
+<!-- TARİHTE BUGÜN -->
+<div class="history-box" id="history-box">
+    <div class="history-header">
+        <div class="history-title">
+            📜 Tarihte Bugün <span id="history-title-date"></span>
+            <button class="toggle-btn" id="history-toggle" title="Küçült/Büyüt">▼</button>
+        </div>
+        <div class="history-date" id="history-date-display"></div>
+    </div>
+    <div class="history-content" id="history-content">
+        <div class="history-datepicker">
+            <label for="history-date-input">📅 Tarih seç:</label>
+            <input type="date" id="history-date-input">
+        </div>
+        <div class="history-filters" id="history-filters">
+            <button class="filter-btn active" data-category="events">📜 Olaylar</button>
+            <button class="filter-btn" data-category="births">👶 Doğumlar</button>
+            <button class="filter-btn" data-category="deaths">💀 Ölümler</button>
+            <button class="filter-btn" data-category="wars">⚔️ Savaşlar</button>
+            <button class="filter-btn" data-category="science">🔬 Bilim</button>
+            <button class="filter-btn" data-category="art">🎨 Sanat</button>
+            <button class="filter-btn" data-category="politics">🏛️ Siyaset</button>
+        </div>
+        <div class="history-list" id="history-list">
+            <div class="history-loading">⏳ Yükleniyor</div>
+        </div>
+    </div>
+</div>
+
+<div id="toast-notification" class="toast">⚡ METİN BAŞARIYLA KOPYALANDI!</div>
+
+<div class="tabs">
+    <button class="tab-btn active" onclick="openTab(0)">🧹 Boşluk Temizleyici</button>
+    <button class="tab-btn" onclick="openTab(1)">✍️ Yazım Düzenleyici</button>
+    <button class="tab-btn" onclick="openTab(2)">🎮 Oyun</button>
+</div>
+
+<div class="container">
+    <!-- Tab 1: Boşluk Temizleyici -->
+    <div class="tab-content active">
+        <h3>Metni buraya yapıştır aslan parçası</h3>
+        <div id="input1" class="input-area" contenteditable="true" oninput="calculateMeta(1)"></div>
+        <div class="meta-info"><span id="char-count-1">Karakter: <strong>0</strong></span><span id="word-count-1">Kelime: <strong>0</strong></span></div>
+        <div class="action-buttons"><button onclick="cleanSpaces()">Temizle</button><button onclick="copy1()">Kopyala</button><button onclick="clear1()">Sil</button></div>
+        <div id="output1" class="output" contenteditable="true"></div>
+    </div>
+    
+    <!-- Tab 2: Yazım Düzenleyici -->
+    <div class="tab-content">
+        <h3>Metni buraya yapıştır aslan parçası</h3>
+        <div id="input2" class="input-area" contenteditable="true" oninput="calculateMeta(2)"></div>
+        <div class="meta-info"><span id="char-count-2">Karakter: <strong>0</strong></span><span id="word-count-2">Kelime: <strong>0</strong></span></div>
+        <div class="action-buttons"><button onclick="fixText()">Düzelt</button><button onclick="copy2()">Kopyala</button><button onclick="clear2()">Sil</button></div>
+        <div id="output2" class="output" contenteditable="true"></div>
+    </div>
+    
+    <!-- Tab 3: Oyun - Çoklu Oyun Seçici -->
+    <div class="tab-content">
+        <h3>🎮 Oyun Seç ve Oyna</h3>
+        <!-- Oyun Kartları -->
+        <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-bottom:18px;">
+            <div class="game-card active" data-url="https://23azostore.github.io/s9/super-mario-bros" onclick="selectGame(this)">🍄 Super Mario</div>
+            <div class="game-card" data-url="https://23azostore.github.io/s2/flappy-bird" onclick="selectGame(this)">🐦 Flappy Bird</div>
+            <div class="game-card" data-url="https://23azostore.github.io/s8/8-ball-pool" onclick="selectGame(this)">🎱 8 Ball Pool</div>
+            <div class="game-card" data-url="https://23azostore.github.io/s2/brain-test-tricky-puzzles" onclick="selectGame(this)">🧠 Brain Test</div>
+            <div class="game-card" data-url="https://23azostore.github.io/s8/subway-surfers-newyork" onclick="selectGame(this)">🚇 Subway Surfers</div>
+            <div class="game-card" data-url="https://ubgwtf.gitlab.io/snake/" onclick="selectGame(this)">🐍 Snake</div>
+            <div class="game-card" data-url="https://ubgwtf.gitlab.io/bubbles-cool/" onclick="selectGame(this)">🫧 Bubbles Cool</div>
+        </div>
+        <!-- Oyun İframe ve Full Ekran Butonu - Siyah boşluklar gizlendi -->
+        <div style="display:flex; justify-content:center; align-items:center; flex-direction:column; width:100%;">
+            <div style="position:relative; width:100%; max-width:480px; height:720px; overflow:hidden; border-radius:8px; background:#000;">
+                <iframe id="mario-game-iframe" src="https://23azostore.github.io/s9/super-mario-bros" 
+                        style="width:100%; height:800px; margin-top:-40px; border:none; display:block; background:#000;" 
+                        scrolling="no" 
+                        frameborder="0" 
+                        allowfullscreen>
+                </iframe>
+                <button onclick="document.getElementById('mario-game-iframe').requestFullscreen();" 
+                        style="position:absolute; bottom:15px; right:15px; z-index:10; background:rgba(0,0,0,0.7); color:#fff; border:2px solid #fff; border-radius:8px; padding:10px 16px; font-size:14px; font-weight:bold; cursor:pointer; backdrop-filter:blur(4px); box-shadow:0 0 15px rgba(0,0,0,0.5); transition:all 0.3s ease;">
+                    ⛶ FULL EKRAN
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="cyber-audio-player" class="cyber-player">
+    <button id="player-toggle" class="player-toggle-btn" onclick="togglePlayerMinimize()">▼ AŞAĞI KAYDIR</button>
+    <div class="player-top-row"><div class="player-info"><div id="player-icon" class="player-icon">💿</div><div class="track-details"><div id="track-name" class="track-name"></div><div id="track-index" class="track-index">Şarkı: 1 / 32</div></div></div><div class="player-controls"><button class="player-btn" onclick="prevTrack()">⏮</button><button id="play-pause-btn" class="player-btn" onclick="togglePlay()">▶ OYNAT</button><button class="player-btn" onclick="nextTrack()">⏭</button><button id="shuffle-btn" class="player-btn" onclick="toggleShuffle()">🔀</button><button id="repeat-btn" class="player-btn" onclick="toggleRepeat()">🔁</button><div style="display:inline-flex;align-items:center;gap:6px;margin-left:8px;background:var(--bg-input);padding:6px 10px;border-radius:6px;border:1px solid var(--border-color)"><span style="font-size:10px;opacity:0.7;color:var(--text-btn)">🔊</span><input type="range" min="0" max="1" step="0.05" value="1" oninput="changeVolume(this.value)" style="width:55px;accent-color:var(--accent-color);background:transparent;cursor:pointer;height:3px;border:none;outline:none;appearance:none;-webkit-appearance:none;"></div></div></div>
+    <div class="player-timeline-wrapper"><span id="current-time" class="time-display">00:00</span><div id="timeline-container" class="timeline-container" onclick="seekTrack(event)"><div id="timeline-progress" class="timeline-progress"></div></div><span id="total-duration" class="time-display">00:00</span></div>
+    <audio id="main-audio" src=""></audio>
+</div>
+
+<div id="coffee-modal" class="coffee-overlay" onclick="closeCoffeeModal()"><div class="cup-wrapper" onclick="event.stopPropagation()"><div class="steam-box"><div class="steam-puff"></div><div class="steam-puff"></div><div class="steam-puff"></div></div><div class="glass-cup"><div class="cup-ear"></div></div><div class="cup-plate"></div></div><div id="mola-quote-display" class="mola-quote"></div><button onclick="closeCoffeeModal()" style="margin-top:30px;border-color:rgba(255,255,255,0.4);color:#fff;background:rgba(255,255,255,0.1);font-size:11px;">Molayı Bitir</button></div>
+
+<div id="burc-modal" class="burc-overlay" onclick="closeBurcModal()">
+    <div class="burc-panel" onclick="event.stopPropagation()">
+        <h2>🔮 BURÇLAR EVRENİ</h2>
+        <p class="burc-subtitle">Yıldızların fısıldadığı sırları keşfet</p>
+        <div class="burc-nav" id="burc-nav">
+            <button class="burc-nav-btn active" data-section="burclar">🌟 Burçlar</button>
+            <button class="burc-nav-btn" data-section="harita">🪐 Doğum Haritası</button>
+            <button class="burc-nav-btn" data-section="ask">💕 Aşk Uyumu</button>
+            <button class="burc-nav-btn" data-section="tarot">🃏 Günlük Tarot</button>
+            <button class="burc-nav-btn" data-section="quiz">🎯 Burç Testi</button>
+            <button class="burc-nav-btn" data-section="hikayeler">📖 Burç Hikayeleri</button>
+        </div>
+
+        <div class="burc-section active" id="section-burclar">
+            <div class="burc-grid" id="burc-grid"></div>
+            <div id="burc-detail-wrap"></div>
+        </div>
+
+        <div class="burc-section" id="section-harita">
+            <h3 style="color:#c084fc;border-color:#c084fc;">🪐 Doğum Haritası Simülatörü</h3>
+            <p style="font-size:11px;color:rgba(255,255,255,0.5);margin-bottom:14px;">Doğum tarihinizi, saatinizi ve şehrinizi girerek kişisel doğum haritanızı oluşturun.</p>
+            <div class="harita-form">
+                <div><label>Adınız</label><input type="text" id="harita-isim" placeholder="Adınız"></div>
+                <div><label>Doğum Tarihi</label><input type="date" id="harita-tarih"></div>
+                <div><label>Doğum Saati</label><input type="time" id="harita-saat" value="12:00"></div>
+                <div><label>Doğum Şehri</label><select id="harita-sehir"></select></div>
+            </div>
+            <button type="button" id="harita-btn" onclick="haritaHesapla()" style="display:block;margin:8px auto;background:rgba(147,51,234,0.4);border:1px solid rgba(147,51,234,0.6);color:#fff;padding:10px 28px;border-radius:20px;cursor:pointer;font-weight:700;letter-spacing:0.5px;transition:all 0.3s;">Haritayı Hesapla ✨</button>
+            <div id="harita-sonuc"></div>
+        </div>
+
+        <div class="burc-section" id="section-ask">
+            <h3 style="color:#f472b6;border-color:#f472b6;">💕 Aşk Uyumu Hesaplayıcı</h3>
+            <p style="font-size:11px;color:rgba(255,255,255,0.5);margin-bottom:14px;">İki burcun element, gezegen ve doğa uyumunu detaylıca analiz eder.</p>
+            <div class="ask-uyum-form">
+                <select id="burc1"><option value="">Burcunuz</option></select>
+                <span style="color:#f472b6;font-size:20px;">💘</span>
+                <select id="burc2"><option value="">Partner Burcu</option></select>
+                <button onclick="askUyumuHesapla()">Hesapla</button>
+            </div>
+            <div id="ask-sonuc"></div>
+        </div>
+
+        <div class="burc-section" id="section-tarot">
+            <h3 style="color:#fbbf24;border-color:#fbbf24;">🃏 Günlük Tarot Kartları</h3>
+            <p style="font-size:11px;color:rgba(255,255,255,0.5);margin-bottom:10px;">Kartları çevirmek için üzerlerine tıkla. Evren bugün sana ne söylemek istiyor?</p>
+            <div class="tarot-cards-row" id="tarot-cards-row"></div>
+        </div>
+
+        <div class="burc-section" id="section-quiz">
+            <h3 style="color:#34d399;border-color:#34d399;">🎯 Gerçek Burcunu Keşfet</h3>
+            <p style="font-size:11px;color:rgba(255,255,255,0.5);margin-bottom:14px;">10 soruluk detaylı kişilik testiyle aslında hangi burç olduğunu öğren.</p>
+            <div class="quiz-ilerleme"><div class="quiz-ilerleme-bar" id="quiz-bar" style="width:0%;"></div></div>
+            <div id="quiz-icerik"></div>
+        </div>
+
+        <div class="burc-section" id="section-hikayeler">
+            <h3 style="color:#f97316;border-color:#f97316;">📖 Burç Uyumluluğu Hikayeleri</h3>
+            <p style="font-size:11px;color:rgba(255,255,255,0.5);margin-bottom:14px;">Her burç çiftinin kendine özgü bir hikayesi var.</p>
+            <div id="hikaye-listesi"></div>
+        </div>
+
+        <button class="burc-close-btn" onclick="closeBurcModal()">✕ Kapat</button>
+    </div>
+</div>
+
+<div id="tengri-overlay" style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9999999;display:none;pointer-events:none;">
+    <img src="tengri.jpg" alt="Tengri" style="max-width:85vw;max-height:75vh;border-radius:12px;box-shadow:0 0 100px rgba(255,255,255,0.6);border:3px solid #fff;opacity:1!important;">
+</div>
+
+<script>
+// ========== ORACLE & TEMA ==========
+const oracleQuotes = [
+    "Bugün metinlerden sileceğin gereksiz boşluklar gibi, hayatındaki gereksiz insanları da şak diye sileceksin. Temiz ferah gün yakın.",
+    "Yakın gelecekte senin için çok büyük bir başarı ve zenginlik görüyorum. Tabii 'yakın gelecek' siber evrende 40-50 yıl anlamına gelebilir, o yüzden sen şimdilik şu metne odaklan.",
+    "Küre diyor ki: O çok gitmek istediğin tatile daha çok var ama önündeki şu metni bitirirsen en azından masandan kalkıp tuvalete gitme hakkı kazanacaksın.",
+    "Bugün her şeyi bırakıp Ege'ye yerleşme isteğin tavan yapacak. Ama zeytin yetiştirmek de emek ister aslan parçası, gel biz önce şu metindeki çift boşlukları yetiştirelim.",
+    "Küre parlıyor! Seni çok yakında hawaii gömleğinle sahilde buzlu bir kahve içerken görüyorum... Gözümü biraz kırpınca meğer masanda klimasız çalışıyormuşsun, neyse şu işi bitirelim.",
+    "Hayatındaki karmaşayı tıpkı bir gün her şeyi geride bırakıp gidecekmiş gibi boşveriyorsun ama cüzdanın 'O metin buraya kopyalanacak' diye fısıldıyor.",
+    "Yıldız haritana göre bugün istifa dilekçeni yazmak için harika bir gün. Ama ev kiranın haritası pek öyle demiyor, gel şu metni pırıl pırıl temizleyelim.",
+   "Gezegenlerin konumuna bakılırsa bugün tam bir 'Masaya istifayı vurma' günü. Fakat doğalgaz faturanın konumuna bakılırsa bugün daha çok 'Müdüre kahve götürme' günü. Dosyayı açıyorum?",
+   "Bugün Merkür retrosu bitiyor, yani radikal kararlar almak için harika bir gün! Tabii sonraki ay taş kemirmek istemiyorsan, o radikal kararı şimdilik sadece şu metni sadeleştirerek uygulayalım.",
+   "Evren sana 'Sen çok daha iyilerine layıksın' mesajı gönderiyor ama insan kaynakları henüz o mesajı onaylamadı. Gel biz şu Excel tablosunu pırıl pırıl yapalım.",
+   "Bugün tam 'Ceketimi alır çıkarım' havası var dışarıda. Ama o ceketin taksitleri henüz bitmediği için, gel ceketimizi sandalyenin arkasına asıp şu kodları düzeltelim.",
+   "Astrologlar 'Bugün kariyerinde köklü bir değişim zamanı' diyor. Gel bu değişimi şimdilik sadece yazı tipini Arial'dan Times New Roman'a çevirerek başlatalım, riske girmeyelim.",
+   "Yükselen burcun bugün sana 'Özgürlük' vadediyor ama cüzdanındaki o tek haneli bakiye 'Esaretin bedeli'ni hatırlatıyor. Metni düzenlemeye ne dersin?",
+   "İçindeki o gizli dahi 'Bu iş senin dehanı köreltiyor' diyor ama market sepetinin toplam tutarı 'Körelmeye devam et' diye fısıldıyor. Şu raporu temize çekelim.",
+   "Bugün o 'Hayallerinin peşinden koş' günlerinden biri... Eğer hayalin bir sonraki ay kirayı geciktirmek değilse, gel şu grafiklerin üzerinden bir daha geçelim.",
+   "Doğum haritana göre bugün otorite figürleriyle yüzleşme günün. Ama cüzdanının haritasına göre müdürün her dediğine 'Çok haklısınız' deme günün. Metni pürüzsüz yapalım.",
+   "Şu an istifa etsen evren sana yeni kapılar açar elbet, ama o kapılardan içeri ev sahibi de girebilir. Gel risk almayalım, şu taslağı bir güzel toparlayalım.",
+   "Bugün tam 'Kendi hikayeni yazma' günü. Ama o hikayenin ilk bölümü 'İşsizlik Maaşı Sırasında Bir Gün' olsun istemiyorsak, gel şu metni kusursuz hale getirelim.",
+   "Şu an klavyeye çok sert basarak mail yazıyorsun, hıncını anlıyorum. Ama mekanik klavye fiyatları uçtu, tuş fırlarsa yenisini alamayız. Sakince o parmağını geri çek ve şu metni yumuşatarak düzenle.",
+   "Bugün tam patronun odasının kapısını çarparak çıkma günü! Ama o kapı hidrolikli, yavaşça kapanıp karizmanı çizecek, hiç gerek yok. Gel biz şu Excel tablosunu pürüzsüz hale getirelim.",
+   "Bugün tam şirket telefonunu sessize alıp ortadan kaybolma günü. Ama telefon şirket malı, kaybedersen maaşından keserler, durduk yere borçlanma. Gel şu metni cilalayalım.",
+   "Şu an müdüre 'Sizinle çalışmak bir kabustu' diye bağırmak istiyorsun. Ama sesin detone olur, ciddiyetin kaybolur, arkandan gülerler. Hiç o riske girmeyelim, gel şu raporu pürüzsüz yapalım.",
+   "Bugün 'Bıktım sizin vizyonunuzdan' deyip sandalyeyi tekmelemek için harika bir enerji var üstünde. Ama sandalye tekerlekli, kayar odanın öbür ucundaki çöp kovasına çarpar, durduk yere iş çıkar. Boşver, metni temizle geç.",
+   "İçinden 'Şu masadaki her şeyi yere fırlatıp istifa edeceğim' hissi geçiyor. Ama yerleri daha yeni sildiler, temizlik görevlisi ablayla arayı bozmaya değmez. Gel biz şu dosyayı toparlayalım.",
+   "Bugün tam patrona 'Ben bu şirketin kölesi değilim' diye rest çekme günü. Ama şirketin kliması çok güzel soğutuyor, dışarısı 40 derece, evde klima yok. Serin serin şu metni düzenleyelim biz.",
+   "Şu an müdürün yüzüne bakıp 'Siz ne anlarsınız bu işten' diye haykırmak istiyorsun. Ama adamın arkasında klima kumandası duruyor, kapatırsa sıcaktan pişersin. Alttan al, şu analizi bitirelim.",
+   "İçindeki o asi ruh 'Kapat laptopun kapağını çat diye, çık git' diyor. Ama kapağın arasına kalem sıkışır, ekranı patlatırsın, durduk yere 3 maaşın tamire gider. Yavaşça açık bırak o ekranı, metne odaklanalım.",
+   "Hayatındaki bazı insanlar tıpkı Ctrl + Z yapınca geri gelmeyen o 3 saatlik emek gibiler; yoklukları büyük bir travma yaratmıyor ama boşa harcanan zamana insan kahroluyor.",
+   "Bazı insanlar hayatında tıpkı Adobe programlarının o bitmek bilmeyen güncelleme uyarıları gibi; sürekli dikkatini dağıtıyorlar, vakit çalıyorlar ama açıp baksan hayatına en ufak bir yenilik katmıyorlar.",
+   "Hayatındaki bazı insanlar tıpkı masaüstünde unuttuğun 'yeni_klasör_2' gibiler; neden açtığını hatırlamazsn, içi tamamen boştur ama öylece durup arka plan resmini kapatırlar.",
+   "Bazı insanlar tıpkı her web sitesinde karşına çıkan 'Çerezleri Kabul Et' butonu gibiler; hayatına hiçbir derinlik katmıyorlar, sadece gitmek istediğin yolda sürekli önüne çıkıp duruyorlar.",
+   "Hayatındaki bazı insanlar tıpkı o 128 GB'lık flash belleğin içindeki 'Kısayol' dosyası gibiler; dışarıdan bakınca devasa bir veri taşıyor gibi görünürler, tıklarsın bomboş bir hata ekranı verirler.",
+   "Bazı insanlar tıpkı e-ticaret sitelerindeki 'Tükendi' yazan ürünler gibiler; orada durmalarının dünyaya hiçbir faydası yoktur, sadece 'Keşke zamanında baksaydım' diye insana pişmanlık verirler.",
+   "Bazı insanlar tıpkı telefonun arkasında biriken o anlamsız önbellek (cache) dosyaları gibiler; hayatında hiçbir fonksiyonları yoktur, sadece durduk yere ruhunda ağırlık yapıp enerjini tüketirler.",
+   "Hayatındaki bazı insanlar tıpkı eski sevgilinin Spotify'da hala seni takip eden gizli hesabı gibiler; orada bir yerde bir '1' rakamı olarak dururlar ama hayatına ne bir ritim katarlar ne bir melodi.",
+   "Bazı insanlar tıpkı bedava diye indirdiğin o mobil uygulamanın içindeki reklamlar gibiler; her 5 saniyede bir karşına çıkıp 'Hadi beni premium yap' diye ısrar edenler ama kendilerinde hiç premium kumaş yoktur.",
+   "Günün özlü sözü: Yanlış kod satırı Ctrl + Z ile silinir, yanlış insan hayatından Ctrl + Alt + Delete yapsan da kolay kolay temizlenmez.",
+   "Günün özlü sözü: Metindeki eksik harf hemen fark edilir and tamamlanır; insanın içindeki eksik karakteri ise yıllarca fark edemezsin.",
+   "Günün özlü sözü: Tasarımdaki pikselleri büyütüp düzeltebilirsin ama vizyonu küçük insanı ne kadar büyütürsen büyüt, sadece görüntüsü bulanıklaşır.",
+   "Günün özlü sözü: Bozuk dosya formatı dönüştürücüyle kurtarılır, bozuk karakterli insanı hangi kalıba sokarsan sok yine hata verir.",
+   "Günün özlü sözü: Yazım hatası gözden kaçar, görmezden gelinir; ama insanın hatası bir kez göze battı mı bir daha asla unutturulmaz.",
+   "Günün özlü sözü: Word belgesindeki boşluklar tek tıkla silinir; bazı insanların içindeki o devasa boşluğu ise ne yapsan dolduramazsin.",
+   "Günün özlü sözü: Fazla yazılan kelime metinden kolayca ayıklanır; hayatına fazla gelen insanı ayıklamak ise ömründen ömür alır.",
+   "Günün özlü sözü: Kötü tasarlanmış bir sayfa sıfırdan çizilir; kötü niyetli bir insanla yola çıktıysan o yolu kaç kere sıfırlarsan sıfırla hep çıkmaza girersin.",
+   "Günün özlü sözü: Yazının fontunu değiştirmek bir saniyeni alır; insanın rengini değiştirmesi ise sadece bir menfaatine bakar.",
+   "Günün özlü sözü: Formüldeki hata Excel uyarısıyla çözülür; insanın hayatına kattığı hata ise ancak yıllar sonra tecrübeyle anlaşılır.",
+   "Günün özlü sözü: Kaydedilmeyen veri için canın sıkılır ama unutulur; değer görmeyen emek için sızlayan kalbin sızısı ise kolay geçmez.",
+   "Senin emeğinin üzerine konmaya çalışanların mikrofonu toplantıda açık kalsın da evde arkadan gelen o dedikodu sesleri tüm şirkete yayınlansın. Amin.",
+   "Bugün işi sana kitleyip erken çıkanların bindiği metrobüs ters yöne gitsin, üstüne bir de telefonlarının şarjı yüzde 1'ken şarj aletlerini ofiste unuttuklarını fark etsinler. Amin.",
+   "Bugün sana durduk yere revizyon üstüne revizyon verenlerin klavyesindeki Space tuşu bozulsun, tüm mailleri bitişik yazıp rezil olsunlar. Amin.",
+   "İş yapıyormuş gibi görünüp bütün gün sosyal medyada gezenlerin, yanlışlıkla şirket sahibinin 5 yıl önceki tatil fotoğrafını beğenmesine sebep olacak bir parmak kayması nasip et ya Rabbim. Amin.",
+   "Toplantıda seni zor durumda bırakmak için pusuya yatanların, tam konuşmaya başladıkları an boğazına gıcık otursun da sesleri helyum gazı çekmiş gibi çıksın. Amin.",
+   "Senin başarılarını görmezden gelenlerin en sevdikleri döküman, tam 'Kaydet' tuşuna basacakken elektrik kesintisiyle uçup gitsin. Amin.",
+   "Sana sürekli 'Biz bir aileyiz' deyip mesai ücretini vermeyenlerin şirket arabasının lastiği tam da sanayiye en uzak mesafede patlasın. Amin.",
+   "Bugün 'Seni çok iyi anlıyorum' diyenlerin aslında 'Şu an seni hiç dinlemiyorum, sadece kendi konuşma sıramın gelmesini bekliyorum' demek istediğini bir kez daha anlayacaksın.",
+   "Bugün müdürün 'Bu projede senin vizyonuna güveniyorum' demesinin aslında 'Hata çıkarsa faturayı tamamen sana keseceğim' demek olduğunu acı bir tebessümle fark edeceksin.",
+   "Bugün 'Önceliğimiz çalışan mutluluğu' sloganının aslında 'Ofise langırt koyduk ama oynarsan gözümüz üstünde olur' demek olduğunu anlayacaksın.",
+   "Bugün 'Aramızda çok güzel bir sinerji oluştu' iltifatının aslında 'Sen ne desen onaylıyorsun, işleri de sessizce yapıyorsun, tam aradığımız kölesin' anlamına geldiğini anlayacaksın.",
+   "Bugün 'Biz burada bir aileyiz' söyleminin aslında 'Haklarını ararken fazla profesyonel düşünme, fedakarlık yaparken de sınır tanıma' anlamına geldiğini bir kez daha anlayacaksın.",
+   "İçindeki ses 'Yeter artık, fırlat klavyeyi çık git' diyor ama bankanın mobil uygulamasından gelen 'Kredi taksitiniz yaklaşmaktadır' bildirimi elini usulca klavyeye geri koyduruyor. Devam şampiyon.",
+   "Bugün istifa edip dünyayı gezecek o cesur kararı alacaksın... Tam o sırada gözün masadaki yarım kalmış sodaya takılacak, 'Neyse bunu bari bitireyim' derken mesai bitecek.",
+   "Bugün LinkedIn profilini 'Open to Work' yapasın var. Ama piyasanın durumunu hatırlayınca profili 'Gerekirse 24 Saat Çalışırım' yapmaktan son anda dönüyorsun. Kopyala butonuna bas ve sakinleş.",
+   "Evren sana fısıldıyor: 'Sen daha iyilerine layıksın.' Doğru, layıksın ama kredi kartı ekstrem de diyor ki: 'Şu an tam olarak bu masaya ve bu metinlere layıksın.' Hadi aslan parçası.",
+   "Bugün toplantıda masaya vurup 'Ben gidiyorum' demek için harika bir energy var üstünde. Ama masaya vurursan laptop ekranı kırılır, masraf çıkar. Boşver, temizle metni geç.",
+   "Kaderinde bugün çok radikal bir kariyer değişikliği görüyorum. Mesela 'Boşluk Temizleyici' sekmesinden 'Yazım Düzenleyici' sekmesine geçeceksin. Büyük devrim.",
+   "Küre diyor ki: İstifa edip bir sahil kasabasında domates yetiştirmek harika bir fikir. Ama domates tohumu fiyatlarına bakınca bu panelin siyahlığı gözüne bir tık daha güzel geliyor, değil mi?",
+   "Bugün bir delilik yapıp Slack'ten 'Ben çıkıyorum, ne haliniz varsa görün' yazasın gelecek. Ama enter tuşuna basmadan önce kıdem tazminatını hesaplayıp yerine 'Harika bir feedback, hemen ilgileniyorum' yazacaksınız.",
+   "Yıldız haritana göre bugün kurumsal kölelik zincirlerini kırma günün! Ama Akbank, Garanti and Yapı Kredi el ele tutuşup kapıda seni bekleyebilir. Zincirler kalsın, biz metindeki çift boşlukları kıralım.",
+   "Küre diyor ki: İstifa et, her şeyi sat, Hindistan'a git ve ruhunu arındır. Ama uçak bileti fiyatlarına baktıktan sonra bu paneldeki 'Temizle' butonu gözüne Ganj Nehri'nden daha arındırıcı gelecek.",
+   "Küre diyor ki: Sen bu dünyaya her sabah 8'de uyanıp elalemin excel tablosunu, word metnini düzeltmek için gelmedin. Sen çok daha büyük şeyler için yaratıldın... Şaka şaka, tam olarak bunun için geldin. Hadi yapıştır metni, mesai akıyor.",
+   "Bugün istifa edip dünyayı gezen o cool gezginlerden olma hayalin tavan yapacak. Ama sırt çantanı hazırlarken içine koyacak lüksün sadece şirket logolu polar ve promosyon termos olduğunu fark edip masana geri çökeceksiniz. Kopyala butonuna bas ve hayalleri serbest bırak.",
+   "Evren bugün sana çok net bir vizyon gösteriyor: Kendi işinin patronu olmuşsun, altındaki lüks araba, arkanda korumalar... Ama vizyonun çözünürlüğü biraz artınca fark ediyorsun ki altındaki araba şirket arabası, arkandakiler de 'Şu iş ne oldu?' diye bekleyen yöneticiler. Uyan aslanım, metin temizlenecek.",
+   "İçindeki o çılgın girişimci ruh 'Hemen bu akşam şirketi kuruyoruz' diye bağırıyor. Ama muhasebecinin isteyeceği stopajı, bağkuru, damga vergisini hesaplayınca, buradaki bedava, reklamsız, vergisiz mat siyah panel gözüne bir anda İsviçre Merkez Bankası gibi güvenli gelecek.",
+   "Bugün şirketinin ortak platformunda yanlışlıkla 'Yetti be, ne bitmez revizyonmuş!' yazacaksın... diye korkup soğuk terler dökeceksiniz ama yerine saniyede 120 kelime hızla 'Tabii ki hemen revize edip en memnun haliyle iletiyorum, sevgiler' yazarak hayatta kalacaksın.",
+   "Gelenizde inanılmaz bir zenginlik, malikaneler, uşaklar görüyorum... Ama rüya tabirlerine göre bu rüya 'Çok yakında mesaiye kalacaksın ve akşam yemeğinde sana sadece soğuk bir dürüm ısmarlayacaklar' anlamına geliyor. Dürümün tuzu bol olsun, devam.",
+   "Bugün ani bir cinnetle yöneticine Slack'ten 'Ben gidiyorum, vizyonsuz ekibiniz ve bitmeyen revizyonlarınız size kalsın' yazacaksınız. Tam gönder tuşuna basacakken kalbin sıkışacak, gözün kararacak, metni silip yerine 'Elinize sağlık, çok ufak bir sorum olacaktı :)'* yazıp arkaya gizlice ağlamaya gideceksiniz.",
+   "Küre parlıyor! Seni çok yakında business class uçuşunda şampanyanı yudumlarken görüyorum... Ama uçak modunu kapatınca uyanıyorsun ki metrobüste bir teyzenin pazar çantasıyla sol böbreğin arasında sıkışmışsın ve işe geç kalıyorsun. Yapıştır şu metni de bari primin kesilmesin.",
+   "Bugün istifa dilekçeni yazıp tam patronun masasına fırlatacakken, telefonuna bankadan 'Sayın müşterimiz, 120 ay vadeli konut kredinizin 3. taksiti tahsil edilememiştir' bildirimi düşecek. O fırlattığın kağıdı masadan 'Yere çöp düşmüş de efendim' diye yerleri siler gibi geri toplayacaksın.",
+   "Büyük bir kurumsal kriz kapıda ama sakin ol, seninle alakası yok. Kahvenden bir yudum al ve izle.",
+   "Gözüm metnindeki gizli 'Yüksek Kalite' ibarelerini arıyor... Yapma öyle şeyler, Tengri görüyor.",
+   "Bugün copy-paste yaparken elin hiç titremeyecek. Kusursuz bir CTRL+C performansı seziyorum.",
+   "O beklediğin mail veya mesaj bugün gelecek. Gelmezse de karşı tarafın vizyonsuzluğudur, boşver.",
+   "Yapay zeka senin işini elinden almayacak ama o kahveyi şimdi tazelemezsen uykun kesin alacak.",
+   "Yakın zamanda bir revizyon yiyeceksin ama öyle bir düzelteceksin ki isteyen utancından istifa edecek.",
+   "Hayatındaki bazı insanlar tıpkı '&nbsp;' gibi; varlar ama hiçbir işe yaramıyorlar, sadece yer kaplıyorlar.",
+   "Bugün şanslı günündesin. Yapıştırdığın metin tek seferde dümdüz olacak, uğraştırmayacak.",
+   "Plaza dilencilerinin attığı o anlamsız 'As per our discussion' maillerine karşı bağışıklık kazanacağın bir gün.",
+   "Bugün birisi sana 'Bakar mısın?' diyecek. Duymamazlıktan gel, iş yıkmaya çalışıyorlar.",
+   "Kaderinde yakın zamanda bir zam, terfi veya en kötü ihtimalle çok tatlı bir öğle yemeği ısmarlanması yok.",
+   "Metnini temizledin, peki ya zihnini? Bir ara arkana yaslan ve derin bir nefes al şampiyon.",
+   "Bugün kurumsal dünyayı dize getirebilecek bir energye sahipsin ama canın istemiyor, çok haklısın.",
+   "Gelecekte harika bir tatil görüyorum. Ama o geleceğe daha çok var, şimdi şu metni hallet.",
+   "Siber evren sana mesaj gönderiyor: 'Bugün o klavyeye biraz daha yumuşak bas, o da bir can.'",
+   "Seni çekemeyenlerin algoritması çöksün, tarayıcıları kapansın, ramleri yansın. Sen devam et.",
+   "Bugün yapacağın en büyük hata, biten işi teslim ettikten sonra 'Başka bir şey var mıydı?' diye sormak olur. Sorma.",
+   "Bugün karşına çıkacak saçmalıklara karşı sabrın, bu panelin siyahlığı kadar derin ve sınırsız olsun.",
+   "Metindeki çift boşlukları avladığın gibi hayattaki iki yüzlüleri de avlayacağın keskin bir gün.",
+   "Günün tavsiyesi: O sekmeyi kapat. Hangi sekme olduğunu biliyorsun. Kapat gitsin.",
+   "Küre fısıldıyor: Akşama güzel bir dizi/film patlat, bütün günün yükünü silsin süpürsün.",
+   "Yazım hatalarını düzelttiğin gibi hayatına da ince bir ayar çekiyorsun. Doğru yoldasın.",
+   "Bugün müşteriden gelen 'Elinize sağlık çok güzel olmuş' mesajını göreceksiniz. (Şaka şaka, revizyon var).",
+   "İçinden bir ses 'Bırak git' diyor ama cüzdanın 'Dur yolcu' diye fısıldıyor. Çalışmaya devam.",
+   "Birazdan kopyalayacağın metin, gideceği yerde büyük bir hayranlıkla okunacak. Gurur duy.",
+   "Bugün tarayıcında 40'tan fazla sekme açılacak. Bilgisayarına iyi davran, o senin yoldaşın.",
+   "Günün kehaneti: Bugün klavyene dökülmeyen her kahve, senin için büyük bir zaferdir.",
+   "Metninde hiç yasakli kelime çıkmadı mı? İşte profesyonelliğin saf ve temiz hali. Helal olsun.",
+   "Bugün 'Bakarız' denen her şeyin aslında 'Asla yapmayacağız' anlamına geldiğini bir kez daha anlayacaksın.",
+   "Siber kaderinde büyük bir kahve molası var. Hak ettin, hadi git doldur gel.",
+   "Hayat bazen hatalı kodlar gibi karmaşıktır, ama unutmaman gereken şey: Her zaman bir geri al (CTRL+Z) tuşu vardır.",
+   "Küreye göre bugün alacağın en iyi karar, işi tam zamanında bırakıp bilgisayarı kapatmak olacak.",
+   "Metindeki tüm pislikleri temizledin. Artık tertemiz bir sayfan var. Hayatın da böyle ferah olsun.",
+   "Kafandaki düşünceler şu an temizlenmemiş bir HTML metni gibi karmakarışık. Bi' dur, sakinleş.",
+   "Bugün arkandan konuşanların tarayıcı geçmişi yanlışlıkla patronlarına mail gitsin. Amin.",
+   "Küre parlıyor: Bugün yapacağın işler gelecekteki rahatının temel taşları olacak. Sık dişini.",
+   "Bugün kulaklığını tak ve dünyayı sessize al. Sadece sen, müziğin ve bu asil siyah panel.",
+   "Günün özlü sözü: Hatalı metin düzeltilir, hatalı insan zor. Metinlerle uğraşmaya devam.",
+   "Tengri Oracle görevini tamamladı. Şimdi o 'Kopyala' butonuna bas ve şovunu yap aslan parçası!"
+];
+
+function getTengriOracle(){const d=document.getElementById("oracle-display");d.classList.add("glitch-effect");d.style.opacity=0.3;setTimeout(()=>{d.innerText=oracleQuotes[Math.floor(Math.random()*oracleQuotes.length)];d.style.opacity=1;setTimeout(()=>d.classList.remove("glitch-effect"),200);},200);}
+function changeTheme(t,e){t==='dark'?document.documentElement.removeAttribute('data-theme'):document.documentElement.setAttribute('data-theme',t);document.querySelectorAll('.theme-dot').forEach(d=>d.classList.remove('active'));e.classList.add('active');document.body.classList.add('theme-shake');setTimeout(()=>document.body.classList.remove('theme-shake'),500);}
+function showToast(m="⚡ METİN BAŞARIYLA KOPYALANDI!"){const t=document.getElementById("toast-notification");t.innerText=m;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2000);}
+function calculateMeta(i){const t=document.getElementById(`input${i}`).innerText;document.getElementById(`char-count-${i}`).innerHTML=`Karakter: <strong>${t.length}</strong>`;document.getElementById(`word-count-${i}`).innerHTML=`Kelime: <strong>${t.trim()?t.trim().split(/\s+/).length:0}</strong>`;}
+function openTab(i){document.querySelectorAll(".tab-content").forEach(t=>t.classList.remove("active"));document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));document.querySelectorAll(".tab-content")[i].classList.add("active");document.querySelectorAll(".tab-btn")[i].classList.add("active");}
+const bannedWords=["yüksek kalite","yüksek kaliteli","%100 hakiki","% 100 hakiki","hakiki deri","gerçek deri","birinci sınıf","1. kalite","1. sınıf","unisex"];
+function escapeRegExp(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
+function highlight(t){bannedWords.forEach(w=>{const p=escapeRegExp(w).replace(/\s+/g,"\\s+");t=t.replace(new RegExp(p,"gi"),m=>`<span class="bad-word">${m}</span>`);});return t;}
+function hardProtectBoldStyles(r){if(!r)return"";return r.replace(/<span[^>]*style="[^"]*font-weight:\s*bold;?[^"]*"[^>]*>([\s\S]*?)<\/span>/gi,'<b>$1</b>').replace(/<strong[^>]*>([\s\S]*?)<\/strong>/gi,'<b>$1</b>');}
+function cleanInvisibleWebGarbage(t,f=false){if(!t)return"";let c=t.replace(/[\r\u200B\u200C\u200D\uFEFF]/g,"").replace(/&nbsp;/gi," ").replace(/nbsp;/gi," ").replace(/;nbsp/gi," ").replace(/&nbsp/gi," ").replace(/\u00A0/g," ").replace(/&amp;;/gi," ").replace(/&amp;/gi," ").replace(/&[^;]+;/g," ").replace(/&/g," ").replace(/;/g," ");c=c.replace(/B\s*\+\s*/gi,"B+").replace(/B\s*-\s*/gi,"B-").replace(/\s{2,}/g," ");if(f)c=c.toLocaleLowerCase('tr-TR');return c;}
+function processUltraEngine(id,f=false){const inp=document.getElementById(id);if(!inp||!inp.innerHTML.trim())return"";let raw=inp.innerHTML;let bolded=hardProtectBoldStyles(raw);let div=document.createElement("div");div.innerHTML=bolded;div.querySelectorAll('p,div,br,li,tr').forEach(el=>{if(el.tagName.toLowerCase()==='br'){el.before(document.createTextNode('\n'));}else{el.before(document.createTextNode('\n'));el.after(document.createTextNode('\n'));}});let all=div.getElementsByTagName("*");for(let i=all.length-1;i>=0;i--){let el=all[i];if(el.tagName.toLowerCase()!=='b'){el.outerHTML=el.innerHTML;}else{el.removeAttribute('style');el.removeAttribute('class');el.removeAttribute('id');}}let lines=div.innerHTML.split('\n');let res=[];lines.forEach(line=>{let cl=cleanInvisibleWebGarbage(line,f);if(cl.replace(/<[^>]*>/g,"").replace(/\s+/g,"").trim()!==""){let fin=cl.trim();if(f)fin=fin.replace(/(^|>|[.!?]\s+)([a-zçğıöşü])/g,(m,p1,p2)=>p1+p2.toLocaleUpperCase('tr-TR'));res.push(fin);}});return highlight(res.join("<br>"));}
+function copyToClipboard(id){const el=document.getElementById(id);const clone=el.cloneNode(true);clone.querySelectorAll('.bad-word').forEach(b=>{b.parentNode.replaceChild(document.createTextNode(b.innerText),b);});const htmlBlob=new Blob([`<span style="font-size:14px;font-family:sans-serif;line-height:1.6;">${clone.innerHTML}</span>`],{type:'text/html'});const textBlob=new Blob([clone.innerText],{type:'text/plain'});navigator.clipboard.write([new ClipboardItem({'text/html':htmlBlob,'text/plain':textBlob})]).then(()=>showToast());}
+function cleanSpaces(){document.getElementById("output1").innerHTML=processUltraEngine("input1",false);}
+function fixText(){document.getElementById("output2").innerHTML=processUltraEngine("input2",true);}
+document.getElementById("input1").addEventListener("keydown",e=>{if(e.key==="Enter"){document.execCommand('insertLineBreak',false,null);e.preventDefault();}});
+document.getElementById("input2").addEventListener("keydown",e=>{if(e.key==="Enter"){document.execCommand('insertLineBreak',false,null);e.preventDefault();}});
+function copy1(){copyToClipboard("output1");}function clear1(){document.getElementById("input1").innerHTML="";document.getElementById("output1").innerHTML="";calculateMeta(1);}
+function copy2(){copyToClipboard("output2");}function clear2(){document.getElementById("input2").innerHTML="";document.getElementById("output2").innerHTML="";calculateMeta(2);}
+
+// ========== OYUN SEÇİCİ ==========
+function selectGame(el) {
+    document.querySelectorAll('.game-card').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+    const url = el.getAttribute('data-url');
+    document.getElementById('mario-game-iframe').src = url;
+}
+
+// ========== TARİHTE BUGÜN ==========
+let historyMinimized = false;
+
+function toggleHistory() {
+    historyMinimized = !historyMinimized;
+    const content = document.getElementById('history-content');
+    const btn = document.getElementById('history-toggle');
+    if (historyMinimized) {
+        content.classList.add('minimized');
+        btn.textContent = '▶';
+    } else {
+        content.classList.remove('minimized');
+        btn.textContent = '▼';
+    }
+}
+
+function loadHistory(category = 'events', date = null) {
+    const listEl = document.getElementById('history-list');
+    listEl.innerHTML = '<div class="history-loading">⏳ Yükleniyor</div>';
+    
+    let now;
+    if (date) {
+        now = new Date(date);
+        if (isNaN(now.getTime())) {
+            now = new Date();
+        }
+    } else {
+        now = new Date();
+    }
+    const day = now.getDate();
+    const month = now.getMonth() + 1;
+    const year = now.getFullYear();
+    const monthNames = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
+    document.getElementById('history-title-date').textContent = `- ${day} ${monthNames[month-1]} ${year}`;
+    document.getElementById('history-date-display').textContent = `${day}.${month}.${year}`;
+
+    // Tarih seçiciyi güncelle
+    const dateInput = document.getElementById('history-date-input');
+    if (!dateInput.value) {
+        const y = now.getFullYear();
+        const m = String(month).padStart(2, '0');
+        const d = String(day).padStart(2, '0');
+        dateInput.value = `${y}-${m}-${d}`;
+    }
+
+    if (category === 'all') category = 'events';
+
+    let url = `https://api.wikimedia.org/feed/v1/wikipedia/tr/onthisday/${category}/${month}/${day}`;
+    const filterCategories = ['wars', 'science', 'art', 'politics'];
+    if (filterCategories.includes(category)) {
+        url = `https://api.wikimedia.org/feed/v1/wikipedia/tr/onthisday/events/${month}/${day}`;
+    }
+
+    fetch(url)
+        .then(res => {
+            if (!res.ok) throw new Error('API yanıt vermedi');
+            return res.json();
+        })
+        .then(data => {
+            let events = [];
+            if (filterCategories.includes(category)) {
+                events = data.events || [];
+                const filters = {
+                    wars: ['savaş', 'muharebe', 'savaşı', 'savaşında', 'çarpışma', 'işgal', 'kuşatma', 'barış antlaşması', 'ateşkes'],
+                    science: ['bilim', 'keşif', 'icat', 'buluş', 'nobel', 'fizik', 'kimya', 'biyoloji', 'astronomi', 'uzay', 'roket', 'teleskop', 'mikroskop'],
+                    art: ['sanat', 'resim', 'heykel', 'müzik', 'edebiyat', 'şair', 'yazar', 'bestekâr', 'piyano', 'keman', 'tablo', 'tiyatro', 'opera'],
+                    politics: ['siyaset', 'seçim', 'başbakan', 'cumhurbaşkanı', 'bakan', 'milletvekili', 'senato', 'meclis', 'darbe', 'devrim', 'antlaşma', 'barış']
+                };
+                const keywords = filters[category] || [];
+                events = events.filter(e => {
+                    if (!e.text) return false;
+                    const text = e.text.toLowerCase();
+                    return keywords.some(kw => text.includes(kw));
+                });
+            } else {
+                if (category === 'events') {
+                    events = data.events || [];
+                } else {
+                    events = data[category] || [];
+                }
+            }
+
+            events.sort((a, b) => b.year - a.year);
+
+            if (events.length === 0) {
+                listEl.innerHTML = `<div class="history-empty">📭 Bu kategoride veya tarihte (${day}.${month}.${year}) kayıt bulunamadı.</div>`;
+                return;
+            }
+
+            listEl.innerHTML = events.map(e => {
+                let yearText = e.year || '?';
+                let text = e.text || 'Açıklama yok';
+                text = text.replace(/ş/g, 'ş').replace(/ğ/g, 'ğ').replace(/ü/g, 'ü')
+                           .replace(/ö/g, 'ö').replace(/ç/g, 'ç').replace(/ı/g, 'ı')
+                           .replace(/Ş/g, 'Ş').replace(/Ğ/g, 'Ğ').replace(/Ü/g, 'Ü')
+                           .replace(/Ö/g, 'Ö').replace(/Ç/g, 'Ç').replace(/İ/g, 'İ');
+                const highlightWords = ['doğdu', 'öldü', 'savaş', 'antlaşma', 'imzalandı', 'kuruldu', 'keşfedildi'];
+                let highlightedText = text;
+                highlightWords.forEach(word => {
+                    const regex = new RegExp(`(${word})`, 'gi');
+                    highlightedText = highlightedText.replace(regex, '<span class="highlight">$1</span>');
+                });
+                return `<div class="history-item"><span class="history-year">${yearText}</span><span class="history-text">${highlightedText}</span></div>`;
+            }).join('');
+        })
+        .catch(err => {
+            listEl.innerHTML = `<div class="history-empty">⚠️ Veri yüklenirken hata oluştu: ${err.message}</div>`;
+        });
+}
+
+// DOM yüklendiğinde
+document.addEventListener('DOMContentLoaded', function() {
+    const dateInput = document.getElementById('history-date-input');
+    const toggleBtn = document.getElementById('history-toggle');
+
+    toggleBtn.addEventListener('click', toggleHistory);
+
+    // Bugünü varsayılan olarak ayarla
+    const today = new Date();
+    const y = today.getFullYear();
+    const m = String(today.getMonth() + 1).padStart(2, '0');
+    const d = String(today.getDate()).padStart(2, '0');
+    dateInput.value = `${y}-${m}-${d}`;
+
+    // Tarih değiştiğinde
+    dateInput.addEventListener('change', function() {
+        const selectedDate = this.value;
+        const activeBtn = document.querySelector('.filter-btn.active');
+        const category = activeBtn ? activeBtn.dataset.category : 'events';
+        loadHistory(category, selectedDate);
+    });
+
+    // Filtre butonları
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            const category = this.dataset.category;
+            const selectedDate = dateInput.value || null;
+            loadHistory(category, selectedDate);
+        });
+    });
+
+    // İlk yükleme
+    loadHistory('events', dateInput.value);
+});
+
+// ========== MÜZİK ==========
+const musicList=[{title:"",url:"./muzikler/3.mp3"},{title:"",url:"./muzikler/2.mp3"},{title:"",url:"./muzikler/7.mp3"},{title:"",url:"./muzikler/12345.mp3"},{title:"",url:"./muzikler/4.mp3"},{title:"",url:"./muzikler/18.mp3"},{title:"",url:"./muzikler/26.mp3"},{title:"",url:"./muzikler/19.mp3"},{title:"",url:"./muzikler/27.mp3"},{title:"",url:"./muzikler/20.mp3"},{title:"",url:"./muzikler/28.mp3"},{title:"",url:"./muzikler/29.mp3"},{title:"",url:"./muzikler/30.mp3"},{title:"",url:"./muzikler/31.mp3"},{title:"",url:"./muzikler/25.mp3"},{title:"",url:"./muzikler/21.mp3"},{title:"",url:"./muzikler/22.mp3"},{title:"",url:"./muzikler/23.mp3"},{title:"",url:"./muzikler/24.mp3"},{title:"",url:"./muzikler/1.mp3"},{title:"",url:"./muzikler/5.mp3"},{title:"",url:"./muzikler/6.mp3"},{title:"",url:"./muzikler/8.mp3"},{title:"",url:"./muzikler/9.mp3"},{title:"",url:"./muzikler/10.mp3"},{title:"",url:"./muzikler/11.mp3"},{title:"",url:"./muzikler/12.mp3"},{title:"",url:"./muzikler/13.mp3"},{title:"",url:"./muzikler/14.mp3"},{title:"",url:"./muzikler/15.mp3"},{title:"",url:"./muzikler/16.mp3"},{title:"",url:"./muzikler/17.mp3"}];
+let curTrack=0,isPlaying=false,isShuffle=false,isRepeat=false,audio=document.getElementById("main-audio");
+function initPlayer(){audio.addEventListener("ended",handleTrackEnded);audio.addEventListener("timeupdate",updateTimeline);audio.addEventListener("loadedmetadata",()=>{document.getElementById("total-duration").innerText=formatTime(audio.duration);});loadTrack(curTrack);}
+function loadTrack(i){audio.src=musicList[i].url;document.getElementById("track-name").innerText=musicList[i].title;document.getElementById("track-index").innerText=`Şarkı: ${i+1} / ${musicList.length}`;}
+function togglePlay(){const b=document.getElementById("play-pause-btn"),p=document.getElementById("cyber-audio-player");if(isPlaying){audio.pause();isPlaying=false;b.innerText="▶ OYNAT";p.classList.remove("playing");}else{audio.play().catch(()=>{});isPlaying=true;b.innerText="⏸ DURDUR";p.classList.add("playing");}}
+function nextTrack(){curTrack=isShuffle?Math.floor(Math.random()*musicList.length):(curTrack+1)%musicList.length;loadTrack(curTrack);if(isPlaying)audio.play();}
+function prevTrack(){curTrack=(curTrack-1+musicList.length)%musicList.length;loadTrack(curTrack);if(isPlaying)audio.play();}
+function handleTrackEnded(){if(isRepeat){audio.currentTime=0;audio.play();}else nextTrack();}
+function toggleShuffle(){isShuffle=!isShuffle;document.getElementById("shuffle-btn").classList.toggle("active-mode",isShuffle);}
+function toggleRepeat(){isRepeat=!isRepeat;document.getElementById("repeat-btn").classList.toggle("active-mode",isRepeat);}
+function updateTimeline(){if(audio.duration){const p=(audio.currentTime/audio.duration)*100;document.getElementById("timeline-progress").style.width=`${p}%`;document.getElementById("current-time").innerText=formatTime(audio.currentTime);}}
+function seekTrack(e){const c=document.getElementById("timeline-container"),r=c.getBoundingClientRect(),x=e.clientX-r.left,w=r.width;if(audio.duration)audio.currentTime=(x/w)*audio.duration;}
+function formatTime(s){if(isNaN(s))return"00:00";const m=Math.floor(s/60),sec=Math.floor(s%60);return`${m<10?'0':''}${m}:${sec<10?'0':''}${sec}`;}
+function togglePlayerMinimize(){const p=document.getElementById("cyber-audio-player"),b=document.getElementById("player-toggle");p.classList.toggle("minimized");b.innerText=p.classList.contains("minimized")?"▲ YUKARI KAYDIR":"▼ AŞAĞI KAYDIR";}
+function changeVolume(v){audio.volume=v;if(v==1)showToast("🔊 Kulaklarını seviyorsan biraz kıs aslan parçası");}
+
+// ========== KAHVE (TAM SÖZLER) ==========
+const coffeeQuotes = [
+    "Derin bir nefes al. Şu an her şey kontrolün altında olmasa bile, bu senin değerini eksiltmez.",
+    "Zor dökümanlar biter, bitmeyen revizyonlar son bulur ama senin iç huzurun kalıcı olmalıdır.",
+    "Elindeki fincanın sıcaklığını hisset ve sadece derin bir nefes al. Şu an o yorucu dünyanın tamamen dışındasın.",
+    "Yetişmen gereken hiçbir yer, kanıtlaman gereken hiçbir şey yok. Bu an sadece senin ve hakkın olan sessizliğin.",
+    "Bırak dışarıdaki dünya kendi telaşıyla dönsün; senin şu anki tek görevin sakince kahveni yudumlamak.",
+    "Hayat bir koşturmaca değil; durduğun, nefes aldığın ve kendine döndüğün bu küçük anların toplamıdır.",
+    "Fincanından yükselen dumanı izle; tıpkı onun gibi, zihnindeki tüm o ağır düşüncelerin de uçup gitmesine izin ver.",
+    "Hak ettiğin o iç huzuru hiçbir iş, hiçbir insan senden çalamaz. Kendini o güvenli, sakin limana bırak.",
+    "Sırtındaki o görünmez yükleri biraz olsun yere bırak. Bu birkaç dakika, sadece senin ruhunu beslemen için var.",
+    "Her şey üst üste geldiyse, durup sakince geri çekilmek pes etmek değil, en asil dinlenme şeklidir.",
+    "Ruhunun pillerini şarj etmesine izin ver. Dinlenmek de en az çalışmak kadar kutsal bir çabadır.",
+    "Başkalarının ne düşündüğü ya da ne kadar hızlı koştuğu önemli değil; sen kendi yolunda, asil bir sakinlikle ilerliyorsun.",
+    "Kahvenin kokusu ruhuna sızarken, içindeki o bitmeyen savaşı durdur. Hak ettiğin barış tam olarak bu anda saklı.",
+    "Büyük başarılar, pes etmek yerine sadece küçük bir kahve molası verenler tarafından inşa edildi.",
+    "Bugün gösterdiğin sabır, yarın kuracağın o özgür dünyanın en sağlam temel taşı olacak.",
+    "Kendine haksızlık etmeyi bırak. Bugün elinden gelenin en iyisini yapıyorsun ve bu tamamen yeterli.",
+    "Yavaşla. Dünya seni bekleyebilir. Bu kahvenin tadı, önündeki tüm işlerden daha önemli.",
+    "Unutma: En karmaşık kodlar bile tek bir düzeltmeyle çözülür. Hayatındaki karmaşa da öyle.",
+    "Sen bir iş unvanından, bir excel tablosundan ya da revizyon raporundan çok daha fazlasısın.",
+    "Zor zamanlar güçlü insanlar yaratır. Şu an vizyonunu genişleten harika bir olgunlaşma dönemindesin.",
+    "Bugünün stresi yarının tecrübesidir. Sakince kahveni yudumla ve zihnini serbest bırak.",
+    "Şu an tam olarak olman gereken yerdesin. Adım adım, acele etmeden hedefine ilerliyorsun.",
+    "Zihnindeki gürültüyü kapat. Sadece kahvenin kokusuna ve aura ritmine odaklan.",
+    "Dünyanın hızı seni ilgilendirmiyor. Sen kendi asil ritminde, kahvenden aldığın o ilk yudumla ilerliyorsun.",
+    "Zihnindeki bildirimleri kapat. Kahvenin sıcaklığına ve şu anın dinginliğine teslim ol.",
+    "Başkalarının acelesi onların sınırıdır. Sen sakince kahveni yudumla ve kendi aura alanını koru.",
+    "Gözlerini kapat, kahvenin kokusunu içine çek ve evrenin senin için fısıldadığı o sakin ritmi dinle.",
+    "Yavaşla. Dünya sen durdun diye dönmekten vazgeçmeyecek. Kahvenin tadını çıkar, gerisi hallolur.",
+    "Geçmişin stresini, geleceğin kaygısını sil at. Şu an sadece sen ve kahvenin o kusursuz dengesi varsınız.",
+    "Başarmak kadar dinlenmek de bir sanattır. Şimdi arkana yaslan ve kahvenin kokusuyla zihnini özgür bırak.",
+    "Harika şeyler zaman alır. Kendine zaman tanı, acele kurulan hayaller çabuk yıkılır.",
+    "Her şey üst üste geliyorsa, belki de yön değiştirme vaktin gelmiştir. Bu mola sana rehberlik etsin.",
+    "Sen durdurulamaz bir güçsün, sadece şu an pillerini şarj etmen gerekiyor. Dinlenmek de işin parçası.",
+    "Başarı bir varış noktası değil, bu zorlu ama öğretici yolculuğun ta kendisidir. Yolun tadını çıkar.",
+    "Bugün karşına çıkan engeller, seni durdurmak için değil, stratejini güçlendirmen için varlar.",
+    "Gelecekteki halin sana bakıp teşekkür edecek. Sırf bugün pes etmediğin ve akıllıca dinlendiğin için.",
+    "İçindeki ışığı kimsenin söndürmesine izin verme. Onlar sadece kendi karanlıklarını yansıtıyorlar.",
+    "Fırtınalar ağaçların köklerini derinleştirir. Yaşadığın kurumsal krizler de senin profesyonelliğini.",
+    "Biraz durup dinlenmek, pes etmek demek değildir. Daha güçlü koşmak için stratejik bir geri çekilmedir.",
+    "Zorlu bir sabahı geride bıraktın, harika bir öğleden sonrasına hazırsın. Kahven sana güç versin.",
+    "Her şey bittiğinde arkana yaslanıp bu günleri tatlı bir tebessümle hatırlayacaksın. İnan bana.",
+    "Zihnini temizle, gereksiz beklentileri tıpkı metindeki çift boşluklar gibi hayatından ayıkla.",
+    "Bugün kendin için küçük bir iyilik yap ve sadece bu ana odaklan. Huzur tam olarak burada saklı.",
+    "Başkalarının ne düşündüğü onların sınırıdır, senin potansiyelinin sınırı ise gökyüzüdür.",
+    "Sakin ol. Hayat bir yarış değil. Kendi ritminde, pürüzsüz ve asil bir şekilde ilerliyorsun.",
+    "Bulutlar dağılır, güneş elbet doğar. Siber evrenin bu geçici yoğunluğu seni asla yıldırmasın."
+];
+let coffeeInterval, coffeeDrainInterval, coffeeLevel = 72;
+
+function openCoffeeModal() {
+    document.getElementById("coffee-modal").classList.add("show");
+    coffeeLevel = 72;
+    document.documentElement.style.setProperty('--coffee-level', '72px');
+    switchCoffeeQuote();
+    coffeeInterval = setInterval(switchCoffeeQuote, 7000);
+    startCoffeeDrain();
+}
+
+function closeCoffeeModal() {
+    document.getElementById("coffee-modal").classList.remove("show");
+    clearInterval(coffeeInterval);
+    stopCoffeeDrain();
+}
+
+function startCoffeeDrain() {
+    if (coffeeDrainInterval) clearInterval(coffeeDrainInterval);
+    // Daha yumuşak azalma: her 3.5 saniyede 2px (eskiden 2 saniyede 4px)
+    coffeeDrainInterval = setInterval(() => {
+        if (coffeeLevel <= 0) {
+            stopCoffeeDrain();
+            showToast("☕ Kahven bitti, hadi işe geri dön aslan parçası!");
+            return;
+        }
+        coffeeLevel = Math.max(0, coffeeLevel - 2);
+        document.documentElement.style.setProperty('--coffee-level', coffeeLevel + 'px');
+    }, 3500);
+}
+
+function stopCoffeeDrain() {
+    if (coffeeDrainInterval) {
+        clearInterval(coffeeDrainInterval);
+        coffeeDrainInterval = null;
+    }
+}
+
+function switchCoffeeQuote() {
+    const d = document.getElementById("mola-quote-display");
+    d.classList.add("fade-out");
+    setTimeout(() => {
+        d.innerText = coffeeQuotes[Math.floor(Math.random() * coffeeQuotes.length)];
+        d.classList.remove("fade-out");
+    }, 1500);
+}
+
+// ========== BURÇ VERİLERİ (kısaltılmış) ==========
+const burcDetaylari = {
+    "koç": { emoji:"♈", element:"Ateş", tarih:"21 Mart - 19 Nisan", gezegen:"Mars", renk:"Kırmızı", tas:"Yakut, Elmas", ugurluGun:"Salı", ozellik:"Koç burcu, zodyağın ilk burcu olarak cesur, öncü ve dinamik bir yapıya sahiptir. Yönetici gezegeni Mars'ın etkisiyle savaşçı ruhlu, rekabetçi ve hırslıdır. Yeni başlangıçlara bayılır, neredeyse hiçbir şeyden korkmaz. Ancak sabırsızlığı ve düşünmeden hareket etmesi başını belaya sokabilir. Doğal bir liderdir; nereye gitse öne çıkar ve insanları peşinden sürükler. Çabuk öfkelenir ama öfkesi çabuk geçer, kin tutmaz. Macera ve heyecan onun için hayatın tuzu biberidir. Aşk hayatında tutkulu ama bir o kadar da bağımsızlığına düşkündür. Kariyerde girişimci ruhuyla kendi işini kurmaya yatkındır.", pozitif:"Cesur, kararlı, lider ruhlu, enerjik, tutkulu, girişimci, bağımsız, iyimser, rekabetçi, doğrudan.", negatif:"Sabırsız, fevri, bencil olabilir, çabuk öfkelenir, düşünmeden hareket eder, dominant, kaba.", uyumlu:["Aslan","Yay","İkizler"], uyumsuz:["Yengeç","Oğlak"] },
+    "boğa": { emoji:"♉", element:"Toprak", tarih:"20 Nisan - 20 Mayıs", gezegen:"Venüs", renk:"Yeşil, Pembe", tas:"Zümrüt, Pembe Kuvars", ugurluGun:"Cuma", ozellik:"Boğa burcu, zodyağın en güvenilir ve istikrarlı burcudur. Venüs'ün yönettiği bu burç, güzelliğe, konfora ve kaliteli yaşama düşkündür. Değişimden hoşlanmaz, rutinlerine bağlıdır. Son derece sabırlıdır ancak sabrı taştığında öfkesi şiddetli olur. Maddi güvence onun için çok önemlidir, bu yüzden iyi bir birikimci ve yatırımcı olabilir. Sanat, müzik ve lezzetli yemekler onun ruhunu besler. İnatçılığıyla ünlüdür; bir kere karar verdiyse onu döndürmek neredeyse imkansızdır. Aşkta sadık, romantik ve sahiplenicidir. Kariyerde istikrarlı tırmanışı sever.", pozitif:"Güvenilir, sadık, pratik, estetik zevkleri yüksek, istikrarlı, sabırlı, şefkatli, kararlı.", negatif:"İnatçı, materyalist, değişime kapalı, kıskanç, sahiplenici, tembel olabilir, aşırı rahatına düşkün.", uyumlu:["Başak","Oğlak","Yengeç"], uyumsuz:["Kova","Aslan"] },
+    "ikizler": { emoji:"♊", element:"Hava", tarih:"21 Mayıs - 20 Haziran", gezegen:"Merkür", renk:"Sarı", tas:"Akuamarin, Kaplan Gözü", ugurluGun:"Çarşamba", ozellik:"İkizler burcu, zodyağın en meraklı ve sosyal burcudur. Merkür'ün yönettiği bu burç, iletişim konusunda doğuştan yeteneklidir. Aynı anda birden fazla işle uğraşabilir, zihni sürekli yeni bilgiler arar. Esprili, zeki ve sohbetleriyle herkesi kendine hayran bırakabilir. Ancak kararsızlığı ve yüzeyselliği en büyük handikapıdır. Değişken ruh hali onu bir güneşli bir yağmurlu yapar. Yeni insanlar tanımaya, yeni yerler görmeye bayılır. Aşkta entelektüel uyum arar, sıkılmaya asla gelemez. Kariyerde medya, yazarlık, pazarlama gibi alanlar idealdir.", pozitif:"Zeki, esprili, iletişimci, meraklı, uyumlu, hızlı düşünür, çok yönlü, girişken.", negatif:"Kararsız, yüzeysel, güvenilmez olabilir, dedikoducu, dağınık, huzursuz, çabuk sıkılır.", uyumlu:["Terazi","Kova","Koç"], uyumsuz:["Balık","Başak"] },
+    "yengeç": { emoji:"♋", element:"Su", tarih:"21 Haziran - 22 Temmuz", gezegen:"Ay", renk:"Beyaz, Gümüş", tas:"İnci, Aytaşı", ugurluGun:"Pazartesi", ozellik:"Yengeç burcu, zodyağın en duygusal ve koruyucu burcudur. Ay'ın yönettiği bu burç, tıpkı Ay'ın evreleri gibi inişli çıkışlı duygulara sahiptir. Aile ve yuva kavramları onun için her şeyden önce gelir. Sadık, şefkatli ve anaç bir yapıya sahiptir. Sezgileri o kadar güçlüdür ki, karşısındakinin ne düşündüğünü anında hissedebilir. Geçmişe bağlıdır, anılar ve nostalji onun ruhunu besler. Kabuğuna çekilmeyi sever, duygusal yaralarını içinde saklar. Aşkta romantik ve hayalperesttir. Kariyerde hizmet, bakım ve yaratıcılık alanları idealdir.", pozitif:"Duygusal, koruyucu, sadık, sezgileri güçlü, şefkatli, anaç, yaratıcı, vefalı.", negatif:"Alıngan, huysuz, aşırı duygusal, kin tutar, pasif agresif, aşırı korumacı.", uyumlu:["Akrep","Balık","Boğa"], uyumsuz:["Koç","Terazi"] },
+    "aslan": { emoji:"♌", element:"Ateş", tarih:"23 Temmuz - 22 Ağustos", gezegen:"Güneş", renk:"Altın Sarısı", tas:"Yakut, Sitrin", ugurluGun:"Pazar", ozellik:"Aslan burcu, zodyağın tartışmasız kralıdır. Güneş tarafından yönetilmesi onu doğal bir ışık kaynağı yapar; girdiği her ortamda dikkatleri üzerine çeker. Cömert, sıcakkanlı ve neşelidir. Yaratıcı enerjisi ve sahne karizmasıyla sanatın her dalında parlayabilir. Liderlik onun kanında vardır, ancak bu liderlik bazen kibir ve dominantlığa dönüşebilir. İltifat duymaya bayılır, takdir edilmediğinde söner. Aşkta görkemli jestler yapar, sadakat bekler. Kariyerde yönetici, sanatçı veya girişimci olarak zirveyi hedefler.", pozitif:"Cömert, neşeli, yaratıcı, lider, kendine güvenir, sadık, sıcakkanlı, cesur.", negatif:"Kibirli, dominant, ilgi bağımlısı, abartılı, kıskanç, inatçı, gösteriş meraklısı.", uyumlu:["Koç","Yay","Terazi"], uyumsuz:["Boğa","Akrep"] },
+    "başak": { emoji:"♍", element:"Toprak", tarih:"23 Ağustos - 22 Eylül", gezegen:"Merkür", renk:"Lacivert, Gri", tas:"Safir, Yeşim", ugurluGun:"Çarşamba", ozellik:"Başak burcu, zodyağın en analitik ve mükemmeliyetçi burcudur. Merkür'ün yönettiği bu burç, detaylara inanılmaz derecede hakimdir. Düzen, temizlik ve organizasyon onun olmazsa olmazıdır. Çalışkandır, iş ahlakına büyük saygı duyar. Yardımseverliğiyle tanınır ama eleştirel bakışı bazen insanları kırabilir. Sağlık konusunda takıntılı olabilir. Aklı sürekli bir şeyleri iyileştirmekle meşguldür. Aşkta mesafeli başlar ama güvenince son derece sadık olur. Kariyerde sağlık, mühendislik, editörlük gibi detay odaklı alanlarda mükemmeldir.", pozitif:"Analitik, çalışkan, düzenli, yardımsever, mütevazı, pratik, güvenilir, titiz.", negatif:"Eleştirel, mükemmeliyetçi, endişeli, soğuk görünebilir, takıntılı, esnek olamaz.", uyumlu:["Boğa","Oğlak","Yengeç"], uyumsuz:["İkizler","Yay"] },
+    "terazi": { emoji:"♎", element:"Hava", tarih:"23 Eylül - 22 Ekim", gezegen:"Venüs", renk:"Pembe, Mint Yeşili", tas:"Opal, Pembe Turmalin", ugurluGun:"Cuma", ozellik:"Terazi burcu, zodyağın en zarif ve diplomatik burcudur. Venüs tarafından yönetilmesi ona estetik bir bakış açısı ve güzelliğe düşkünlük verir. Adalet duygusu çok gelişmiştir; her zaman her iki tarafı da dinlemeden karar vermez. Uyum ve denge onun hayat felsefesidir, bu yüzden çatışmadan nefret eder. Karar vermekte zorlanır çünkü her seçeneğin artısını eksisini uzun uzun tartar. Sosyal ortamlarda parlaktır, herkesle iyi geçinir. Aşkta romantizmin dibine vurur. Kariyerde hukuk, sanat, danışmanlık gibi alanlarda başarılıdır.", pozitif:"Adil, zarif, diplomatik, sosyal, estetik, işbirlikçi, romantik.", negatif:"Kararsız, yapmacık, çatışmadan kaçar, bağımlı, yüzeysel olabilir, kolay etkilenir.", uyumlu:["İkizler","Kova","Aslan"], uyumsuz:["Yengeç","Oğlak"] },
+    "akrep": { emoji:"♏", element:"Su", tarih:"23 Ekim - 21 Kasım", gezegen:"Plüton", renk:"Bordo, Siyah", tas:"Obsidyen, Lal Taşı", ugurluGun:"Salı", ozellik:"Akrep burcu, zodyağın en tutkulu ve gizemli burcudur. Plüton'un yönettiği bu burç, ölüm ve yeniden doğuşun enerjisini taşır. Son derece kararlıdır; bir şeyi kafasına koydu mu asla vazgeçmez. Sezgileri o kadar keskindir ki, yalanı anında hisseder. Sadakat onun için kutsaldır, ihaneti asla affetmez. Duygularını derinde yaşar, herkesin içinde göstermez. Kıskançlık ve sahiplenme duyguları güçlüdür. Aşkta her şeyin en yoğununu ister; ya hep ya hiç. Kariyerde araştırmacı, dedektif, cerrah gibi derinlik gerektiren işlerde parlaktır.", pozitif:"Tutkulu, sadık, sezgili, güçlü, cesur, kararlı, dönüştürücü.", negatif:"Kıskanç, kindar, gizemli, manipülatif, aşırı sahiplenici, öfkeli.", uyumlu:["Yengeç","Balık","Başak"], uyumsuz:["Aslan","Kova"] },
+    "yay": { emoji:"♐", element:"Ateş", tarih:"22 Kasım - 21 Aralık", gezegen:"Jüpiter", renk:"Mor, Turkuaz", tas:"Ametist, Turkuaz", ugurluGun:"Perşembe", ozellik:"Yay burcu, zodyağın en iyimser ve maceracı burcudur. Jüpiter'in yönettiği bu burç, şans ve büyüme enerjisini taşır. Özgürlüğüne aşırı düşkündür; kısıtlandığını hissettiği an kaçıp gider. Felsefe, din, yabancı kültürler ve seyahat onun ruhunu besler. Dürüstlüğü bazen patavatsızlığa varır. İyimserliği sayesinde her kötü durumdan bir ders çıkarır. Bağlanmaktan korkar, uzun süreli ilişkilerde özgürlüğünü kaybetme endişesi yaşar. Kariyerde akademisyen, gezgin rehber, yayıncı gibi ufuk açıcı işler idealdir.", pozitif:"İyimser, maceracı, bağımsız, esprili, açık sözlü, cömert, bilge.", negatif:"Patavatsız, sorumsuz, bağlanmaktan kaçar, aşırı iyimser, dağınık.", uyumlu:["Koç","Aslan","Kova"], uyumsuz:["Başak","Balık"] },
+    "oğlak": { emoji:"♑", element:"Toprak", tarih:"22 Aralık - 19 Ocak", gezegen:"Satürn", renk:"Kahverengi, Siyah", tas:"Granat, Oniks", ugurluGun:"Cumartesi", ozellik:"Oğlak burcu, zodyağın en disiplinli ve hırslı burcudur. Satürn'ün yönettiği bu burç, zaman ve sabır kavramlarını en iyi bilendir. Başarı onun için bir maratondur; adım adım, emin adımlarla zirveye tırmanır. Sorumluluk sahibidir, verilen görevi eksiksiz yerine getirir. Dışarıdan soğuk ve mesafeli görünebilir ancak içinde derin bir duygusal dünya saklıdır. Geleneğe ve aile değerlerine bağlıdır. Zorluklar karşısında yılmaz, aksine güçlenir. Aşkta ciddidir, uzun vadeli düşünür. Kariyerde yönetici, mimar, mühendis gibi prestijli mesleklerde zirveye oynar.", pozitif:"Disiplinli, azimli, sorumlu, güvenilir, başarı odaklı, olgun, kararlı.", negatif:"Soğuk, mesafeli, işkolik, karamsar, katı, aşırı ciddi.", uyumlu:["Boğa","Başak","Balık"], uyumsuz:["Koç","Terazi"] },
+    "kova": { emoji:"♒", element:"Hava", tarih:"20 Ocak - 18 Şubat", gezegen:"Uranüs", renk:"Elektrik Mavisi, Gümüş", tas:"Ametist, Labradorit", ugurluGun:"Cumartesi", ozellik:"Kova burcu, zodyağın en yenilikçi ve sıra dışı burcudur. Uranüs'ün yönettiği bu burç, devrimci fikirler ve gelecek vizyonuyla doludur. Geleneksel kalıplara sığmaz, kendi yolunu çizer. İnsancıldır, toplumsal eşitliğe inanır. Entelektüel sohbetlerden keyif alır, arkadaşlık onun için aşktan daha önemli olabilir. Ancak duygularını ifade etmekte zorlanır. Bağımsızlığına düşkündür. Aşkta arkadaşça bir yakınlık arar. Kariyerde teknoloji, bilim, sosyal girişimcilik gibi alanlarda öncüdür.", pozitif:"Yenilikçi, özgür, insancıl, entelektüel, arkadaş canlısı, ilerici, orijinal.", negatif:"Duygusuz, asi, tahmin edilemez, inatçı, kopuk, aşırı bağımsız.", uyumlu:["İkizler","Terazi","Yay"], uyumsuz:["Boğa","Akrep"] },
+    "balık": { emoji:"♓", element:"Su", tarih:"19 Şubat - 20 Mart", gezegen:"Neptün", renk:"Deniz Mavisi, Lavanta", tas:"Akuamarin, Ametist", ugurluGun:"Perşembe", ozellik:"Balık burcu, zodyağın en hayalperest ve fedakar burcudur. Neptün'ün yönettiği bu burç, sezgi ve ilhamın doruk noktasıdır. Empati yeteneği inanılmazdır; karşısındakinin duygularını kendi duygularıymış gibi yaşar. Sanatsal yaratıcılığı olağanüstüdür; müzik, resim, şiir onun ifade alanlarıdır. Gerçeklerden kaçma eğilimi vardır, hayal dünyasına sığınır. Fedakarlığı bazen kendini ihmal etmesine yol açar. Rüyaları ve sezgileri ona rehberlik eder. Aşkta sonsuz bir romantizm arar, masallara inanır. Kariyerde sanatçı, terapist olarak parlar.", pozitif:"Şefkatli, yaratıcı, sezgili, fedakar, uyumlu, romantik, hoşgörülü.", negatif:"Kaçak, bağımlı, aşırı duygusal, gerçeklerden kopuk, kararsız, etkilenmeye açık.", uyumlu:["Yengeç","Akrep","Oğlak"], uyumsuz:["İkizler","Yay"] }
+};
+
+const gunlukYorumHavuzu = {
+    "koç": ["Bugün enerjin tavan yapacak! Yeni bir başlangıç yapmak için mükemmel bir gün. Ancak ani çıkışların çevrendekileri kırabilir, derin bir nefes almayı unutma. İş yerinde liderlik özelliklerin öne çıkacak, fırsatları değerlendir.", "Liderlik vasfın bugün her zamankinden daha belirgin olacak. İnsanlar senden yönlendirme bekleyecek. Acele karar verme, stratejik düşün.", "Sabırsızlığın bugün başına iş açabilir. Kontrollü ol, her savaşa girme. Akşam saatlerinde güzel bir sürpriz seni bekliyor olabilir."],
+    "boğa": ["Finansal konularda bugün temkinli olman gerekiyor. Büyük harcamalardan kaçın, bütçeni gözden geçir. Doğa yürüyüşü ruhuna iyi gelecek.", "İnat ettiğin bir konuda bugün esnek olmayı dene. Karşındakinin de haklı olabileceğini kabul etmek seni rahatlatacak.", "Uzun zamandır ertelediğin bir işi bugün nihayet bitirebilirsin. Kendine küçük bir ödül vermeyi unutma."],
+    "ikizler": ["Sosyal çevrende bugün hareketlilik var. Yeni insanlarla tanışabilir, farklı fikirler edinebilirsin. İletişim becerilerinle bir sorunu kökünden çözeceksin.", "Kararsız kalabilirsin, özellikle iki seçenek arasında gidip gelmek seni yorabilir. İç sesini dinle.", "Kısa bir seyahat ya da şehir dışı planı gündeme gelebilir. Zihnini açacak bir gün seni bekliyor."],
+    "yengeç": ["Duygusal dalgalanmalar bugün seni zorlayabilir. Sevdiklerinle vakit geçirmek, evinde dinlenmek en iyisi olacak.", "Evini güzelleştirecek değişiklikler yapmak için harika bir gün. Yeni bir dekorasyon fikri aklına düşebilir.", "Anılar bugün canlanabilir, eski bir arkadaşından haber alabilirsin. Nostalji yapmak ruhunu dinlendirecek."],
+    "aslan": ["Spot ışıkları bugün senin üzerinde olacak! Yeteneklerini sergilemekten çekinme, harika geri dönüşler alacaksın.", "Cömertliğinle herkesi kendine hayran bırakacaksın. Maddi konularda şanslı bir gün.", "Yaratıcı projeler için ilham dolu bir gün. Aklındaki o fikri hayata geçirmek için ilk adımı atabilirsin."],
+    "başak": ["Detaylara takılıp büyük resmi kaçırma. Bugün biraz daha esnek olmaya çalış.", "Sağlıkla ilgili konulara odaklanmak için uygun bir gün. Ertelediğin check-up'ı yaptırabilirsin.", "Eleştirilerini yapıcı bir dille iletmeyi dene. Herkes senin kadar mükemmeliyetçi olmak zorunda değil."],
+    "terazi": ["Dengeyi bulmak için çabalayacaksın. Kendine zaman ayır, meditasyon veya sanatsal bir aktivite ruhunu besleyecek.", "Bir anlaşmazlıkta arabulucu rolü üstlenebilirsin. Adalet duygun yükselecek.", "Estetik bir dokunuş yapmak, yeni kıyafetler almak sana iyi gelecek. Bütçeni aşmamaya çalış."],
+    "akrep": ["Gizli kalmış bir konu bugün aydınlanacak. Sezgilerine güven, yanılmayacaksın.", "Tutkulu olduğun bir alanda derinleşmek için mükemmel bir gün. Araştırma yapmak, yeni şeyler öğrenmek seni canlandıracak.", "Kıskançlık duyguların bugün yükselebilir. Onları kontrol etmeyi öğrenmek seni özgürleştirecek."],
+    "yay": ["Macera arzun bugün tavan yapacak! Yeni bir hobi, seyahat planı ya da eğitim programı gündeme gelebilir.", "Açık sözlülüğün bugün başına dert açmasın. Diplomatik olmayı dene.", "Felsefi düşüncelere dalabilir, hayatın anlamını sorgulayabilirsin. Ufkunu açacak bir kitapla karşılaşabilirsin."],
+    "oğlak": ["Kariyer basamaklarını tırmanmak için önemli bir adım atabilirsin. Sorumlulukların artsa da disiplininle üstesinden geleceksin.", "Uzun vadeli hedeflerini gözden geçir. Planlarını güncellemek için uygun bir zaman.", "Bir büyüğünden alacağın tavsiye, yolunu aydınlatacak. Tecrübeye kulak ver."],
+    "kova": ["Sıra dışı fikirlerinle bugün dikkat çekeceksin. Paylaşmaktan çekinme, beklenmedik bir destek bulabilirsin.", "Arkadaş çevrende beklenmedik bir gelişme olabilir. Yeni insanlarla tanışmak ufkunu açacak.", "Özgürlüğüne düşkünlüğün bugün seni yalnızlaştırabilir. Sevdiklerine zaman ayırmayı ihmal etme."],
+    "balık": ["Sezgilerin bugün inanılmaz güçlü olacak. İç sesini dinle, doğru yolu sana gösterecek.", "Rüyaların bu gece sana önemli mesajlar taşıyabilir. Uyandığında not almayı unutma.", "Duygusal olarak hassaslaşabilirsin, kendini korumayı bil. Yardım etme isteğin başkaları tarafından suistimal edilebilir."]
+};
+
+const tarotKartlari = [
+    {emoji:"🃏",isim:"Mecnun (The Fool)",anlam:"Yeni başlangıçlar ve macera seni bekliyor."},
+    {emoji:"🧙",isim:"Büyücü (The Magician)",anlam:"Tüm yeteneklerin ve kaynakların emrinde."},
+    {emoji:"👸",isim:"Baş Rahibe (High Priestess)",anlam:"Sezgilerin bugün aşırı yüksek."},
+    {emoji:"👑",isim:"İmparatoriçe (Empress)",anlam:"Bereket, bolluk ve yaratıcılık günü."},
+    {emoji:"🤴",isim:"İmparator (Emperor)",anlam:"Otorite ve disiplin ön planda."},
+    {emoji:"⛪",isim:"Aziz (Hierophant)",anlam:"Geleneklere ve manevi değerlere dönüş zamanı."},
+    {emoji:"💑",isim:"Aşıklar (The Lovers)",anlam:"Önemli bir seçim kapıda. Kalbini dinle."},
+    {emoji:"🚗",isim:"Araba (The Chariot)",anlam:"Zafer seni bekliyor. Engelleri aşmak için irade gücünü kullan."},
+    {emoji:"🦁",isim:"Güç (Strength)",anlam:"İçsel gücün ve cesaretin yüzeye çıkıyor."},
+    {emoji:"🧙‍♂️",isim:"Ermiş (The Hermit)",anlam:"Yalnız kalma ve içe dönme zamanı."},
+    {emoji:"🎡",isim:"Kader Çarkı (Wheel of Fortune)",anlam:"Şans ve değişim rüzgarları esiyor."},
+    {emoji:"⚖️",isim:"Adalet (Justice)",anlam:"Hak ettiğin karşılığı alacaksın."},
+    {emoji:"🙃",isim:"Asılan Adam (The Hanged Man)",anlam:"Beklemeyi ve fedakarlığı öğreniyorsun."},
+    {emoji:"💀",isim:"Ölüm (Death)",anlam:"Büyük bir dönüşümün eşiğindesin."},
+    {emoji:"😇",isim:"Denge (Temperance)",anlam:"Sabır ve uyum günü."},
+    {emoji:"😈",isim:"Şeytan (The Devil)",anlam:"Bağımlılıkların ve korkularınla yüzleşme zamanı."},
+    {emoji:"🏰",isim:"Kule (The Tower)",anlam:"Ani ve sarsıcı değişimler kapıda."},
+    {emoji:"⭐",isim:"Yıldız (The Star)",anlam:"Umut ve ilham seninle."},
+    {emoji:"🌙",isim:"Ay (The Moon)",anlam:"Yanılsamalara dikkat et."},
+    {emoji:"☀️",isim:"Güneş (The Sun)",anlam:"Aydınlık ve mutluluk seni sarıyor."},
+    {emoji:"📯",isim:"Yargı (Judgement)",anlam:"Geçmişinle yüzleş ve kendini affet."},
+    {emoji:"🌍",isim:"Dünya (The World)",anlam:"Bir döngü tamamlanıyor, büyük bir başarıya imza atıyorsun."}
+];
+
+function getDailyTarotCards(){
+    const t = new Date();
+    const gun = t.getDate();
+    const ay = t.getMonth() + 1;
+    const yil = t.getFullYear();
+    const seed = yil * 10000 + ay * 100 + gun;
+    const shuffled = [...tarotKartlari];
+    let rand = seed;
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        rand = (rand * 16807 + 0) % 2147483647;
+        const j = rand % (i + 1);
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    const pozisyonlar = [{ad: "Geçmiş", ikon: "🌙"},{ad: "Bugün", ikon: "☀️"},{ad: "Gelecek", ikon: "⭐"}];
+    return pozisyonlar.map((poz, i) => ({ ...shuffled[i], pozisyon: poz.ad, pozIkon: poz.ikon }));
+}
+
+// ========== BURÇ MODAL ==========
+function openBurcModal(){ document.getElementById("burc-modal").classList.add("show"); initBurcModal(); }
+function closeBurcModal(){ document.getElementById("burc-modal").classList.remove("show"); }
+
+function initBurcModal(){
+    renderBurcGrid();
+    renderHikayeListesi();
+    initTarotCards();
+    initAskUyumuSelect();
+    initHaritaSehirSelect();
+    document.getElementById("burc-detail-wrap").innerHTML="";
+    document.getElementById("harita-sonuc").innerHTML="";
+    document.getElementById("ask-sonuc").innerHTML="";
+    document.getElementById("quiz-icerik").innerHTML="";
+    quizAdimi=0; quizPuanlar={};
+    switchBurcSection('burclar');
+    document.querySelectorAll('.burc-nav-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelector('[data-section="burclar"]').classList.add('active');
+    document.getElementById("burc-nav").onclick=function(e){
+        if(e.target.classList.contains("burc-nav-btn")){
+            document.querySelectorAll('.burc-nav-btn').forEach(b=>b.classList.remove('active'));
+            e.target.classList.add('active');
+            switchBurcSection(e.target.dataset.section);
+        }
+    };
+}
+
+function switchBurcSection(s){
+    document.querySelectorAll('.burc-section').forEach(sec=>sec.classList.remove('active'));
+    document.getElementById('section-'+s).classList.add('active');
+    if(s==='hikayeler') renderHikayeListesi();
+    if(s==='tarot') initTarotCards();
+    if(s==='quiz' && quizAdimi===0) baslatQuiz();
+    if(s==='ask') initAskUyumuSelect();
+    if(s==='harita') initHaritaSehirSelect();
+}
+
+function renderBurcGrid(){
+    const g=document.getElementById("burc-grid");
+    const keys=Object.keys(burcDetaylari);
+    g.innerHTML=keys.map(k=>{
+        const b=burcDetaylari[k];
+        return `<div class="burc-card" onclick="selectBurc('${k}')"><span class="burc-emoji">${b.emoji}</span><span class="burc-name">${k.charAt(0).toUpperCase()+k.slice(1)}</span><span class="burc-date">${b.tarih}</span></div>`;
+    }).join('');
+}
+
+function selectBurc(key){
+    const d=burcDetaylari[key];
+    if(!d) return;
+    document.querySelectorAll('.burc-card').forEach(c=>c.classList.remove('selected'));
+    document.querySelector(`.burc-card[onclick="selectBurc('${key}')"]`)?.classList.add('selected');
+    const yorum=getDailyComment(key);
+    const wrap=document.getElementById("burc-detail-wrap");
+    wrap.innerHTML=`
+    <div class="burc-detail-wrap">
+    <div class="burc-header"><span class="burc-header-emoji">${d.emoji}</span><div class="burc-header-info"><h3>${key.charAt(0).toUpperCase()+key.slice(1)} Burcu</h3><span>${d.tarih} • ${d.element} Grubu • Gezegen: ${d.gezegen}</span></div></div>
+    <div class="burc-grid-info">
+    <div class="burc-info-box"><h4>🌟 Detaylı Özellikler</h4><p>${d.ozellik}</p></div>
+    <div class="burc-info-box"><h4>✨ Pozitif Yönler</h4><p>${d.pozitif}</p><h4 style="margin-top:12px;">⚠️ Negatif Yönler</h4><p>${d.negatif}</p></div>
+    </div>
+    <div class="burc-tags"><span class="burc-tag">🎨 Renk: ${d.renk}</span><span class="burc-tag">💎 Taş: ${d.tas}</span><span class="burc-tag">📅 Uğurlu Gün: ${d.ugurluGun}</span></div>
+    <div class="burc-tags">${d.uyumlu.map(u=>`<span class="burc-tag good">💚 ${u}</span>`).join('')}${d.uyumsuz.map(u=>`<span class="burc-tag bad">💔 ${u}</span>`).join('')}</div>
+    <div class="gunluk-yorum-box"><strong>📆 Günlük Burç Yorumu (${new Date().toLocaleDateString('tr-TR')})</strong><p style="margin-top:8px;">${yorum}</p></div>
+    </div>`;
+    wrap.scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+function getDailyComment(burc){
+    const t=new Date();
+    const d=Math.floor((t-new Date(t.getFullYear(),0,0))/(1000*60*60*24));
+    const p=gunlukYorumHavuzu[burc] || ["Bugün için yorum bulunamadı."];
+    return p[d%p.length];
+}
+
+// ========== DOĞUM HARİTASI ==========
+const turkiyeSehirleri = ["Adana","Adıyaman","Afyonkarahisar","Ağrı","Aksaray","Amasya","Ankara","Antalya","Ardahan","Artvin","Aydın","Balıkesir","Bartın","Batman","Bayburt","Bilecik","Bingöl","Bitlis","Bolu","Burdur","Bursa","Çanakkale","Çankırı","Çorum","Denizli","Diyarbakır","Düzce","Edirne","Elazığ","Erzincan","Erzurum","Eskişehir","Gaziantep","Giresun","Gümüşhane","Hakkari","Hatay","Iğdır","Isparta","İstanbul","İzmir","Kahramanmaraş","Karabük","Karaman","Kars","Kastamonu","Kayseri","Kilis","Kırıkkale","Kırklareli","Kırşehir","Kocaeli","Konya","Kütahya","Malatya","Manisa","Mardin","Mersin","Muğla","Muş","Nevşehir","Niğde","Ordu","Osmaniye","Rize","Sakarya","Samsun","Şanlıurfa","Siirt","Sinop","Sivas","Şırnak","Tekirdağ","Tokat","Trabzon","Tunceli","Uşak","Van","Yalova","Yozgat","Zonguldak"];
+function initHaritaSehirSelect(){
+    const s=document.getElementById("harita-sehir");
+    s.innerHTML='<option value="">Şehir seçin</option>'+turkiyeSehirleri.map(sehir=>`<option value="${sehir.toLowerCase()}">${sehir}</option>`).join('');
+}
+function haritaHesapla(){
+    const isim=document.getElementById("harita-isim").value||"Gizemli Ziyaretçi";
+    const tarih=document.getElementById("harita-tarih").value;
+    const saat=document.getElementById("harita-saat").value||"12:00";
+    const sehir=document.getElementById("harita-sehir").value;
+    if(!tarih){ showToast("Lütfen doğum tarihinizi girin"); return; }
+    const dt=new Date(tarih+'T'+saat);
+    const j1900=new Date('1900-01-01T12:00:00Z');
+    const gunFarki=(dt.getTime()-j1900.getTime())/(1000*60*60*24);
+    const burclar=["koç","boğa","ikizler","yengeç","aslan","başak","terazi","akrep","yay","oğlak","kova","balık"];
+    const burcEmojileri=["♈","♉","♊","♋","♌","♍","♎","♏","♐","♑","♒","♓"];
+    const gezegenler=[
+        {ad:"Güneş",hiz:0.9856,baslangic:280.5},{ad:"Ay",hiz:13.176,baslangic:210.3},
+        {ad:"Merkür",hiz:4.092,baslangic:50.2},{ad:"Venüs",hiz:1.602,baslangic:310.1},
+        {ad:"Mars",hiz:0.524,baslangic:180.5},{ad:"Jüpiter",hiz:0.0831,baslangic:240.3},
+        {ad:"Satürn",hiz:0.0335,baslangic:270.8},{ad:"Uranüs",hiz:0.0117,baslangic:320.1},
+        {ad:"Neptün",hiz:0.006,baslangic:330.5},{ad:"Plüton",hiz:0.0039,baslangic:260.2}
+    ];
+    function safeMod(val, mod){ return ((val % mod) + mod) % mod; }
+    const sehirEnlemler={adana:37.0,ankara:39.9,antalya:36.9,bursa:40.2,diyarbakir:37.9,edirne:41.7,erzurum:39.9,eskişehir:39.8,gaziantep:37.1,istanbul:41.0,izmir:38.4,kayseri:38.7,konya:37.9,malatya:38.4,mersin:36.8,rize:41.0,samsun:41.3,sivas:39.8,trabzon:41.0,van:38.5};
+    const enlem=sehirEnlemler[sehir]||39.0;
+    const saatDilimi=3;
+    const yerelSaat=(parseInt(saat.split(':')[0])||12)+(parseInt(saat.split(':')[1])||0)/60-saatDilimi;
+    const yukselenDerece=safeMod(yerelSaat*15+enlem*0.8+gunFarki*0.9856, 360);
+    const yukselenBurcIndex=Math.floor(yukselenDerece/30);
+    let html=`
+    <div class="harita-sonuc">
+    <h4 style="color:#c084fc;margin:0 0 12px;">✨ ${isim} İçin Doğum Haritası</h4>
+    <p style="font-size:11px;color:rgba(255,255,255,0.5);">📍 ${sehir.charAt(0).toUpperCase()+sehir.slice(1)} • ${dt.toLocaleDateString('tr-TR')} • ${saat}</p>
+    <p style="font-size:13px;color:#c084fc;font-weight:700;">🌅 Yükselen Burç: ${burcEmojileri[yukselenBurcIndex]} ${burclar[yukselenBurcIndex].charAt(0).toUpperCase()+burclar[yukselenBurcIndex].slice(1)}</p>`;
+    gezegenler.forEach(g=>{
+        const derece=safeMod(g.baslangic+g.hiz*gunFarki, 360);
+        const burcIndex=Math.floor(derece/30);
+        html+=`<div class="harita-gezegen"><span>${g.ad}</span><span>${burcEmojileri[burcIndex]} ${burclar[burcIndex].charAt(0).toUpperCase()+burclar[burcIndex].slice(1)} (${Math.floor(derece%30)}°)</span></div>`;
+    });
+    const gunesDerece=safeMod(gezegenler[0].baslangic+gezegenler[0].hiz*gunFarki, 360);
+    const gunesBurcIndex=Math.floor(gunesDerece/30);
+    html+=`<div class="harita-aciklama">🔮 <strong>${isim}</strong>, Güneş burcun <strong>${burclar[gunesBurcIndex].charAt(0).toUpperCase()+burclar[gunesBurcIndex].slice(1)}</strong>, yükselen burcun ise <strong>${burclar[yukselenBurcIndex].charAt(0).toUpperCase()+burclar[yukselenBurcIndex].slice(1)}</strong>. Bu kombinasyon, dışarıdan ${burclar[yukselenBurcIndex].charAt(0).toUpperCase()+burclar[yukselenBurcIndex].slice(1)} gibi görünürken iç dünyanda ${burclar[gunesBurcIndex].charAt(0).toUpperCase()+burclar[gunesBurcIndex].slice(1)} gibi hissettiğini gösteriyor.</div></div>`;
+    document.getElementById("harita-sonuc").innerHTML=html;
+}
+
+// ========== AŞK UYUMU ==========
+function initAskUyumuSelect(){
+    const burclar=Object.keys(burcDetaylari);
+    const s1=document.getElementById("burc1");
+    const s2=document.getElementById("burc2");
+    s1.innerHTML='<option value="">Burcunuz</option>'+burclar.map(b=>`<option value="${b}">${burcDetaylari[b].emoji} ${b.charAt(0).toUpperCase()+b.slice(1)}</option>`).join('');
+    s2.innerHTML='<option value="">Partner Burcu</option>'+burclar.map(b=>`<option value="${b}">${burcDetaylari[b].emoji} ${b.charAt(0).toUpperCase()+b.slice(1)}</option>`).join('');
+}
+function askUyumuHesapla(){
+    const b1=document.getElementById("burc1").value;
+    const b2=document.getElementById("burc2").value;
+    if(!b1||!b2){ showToast("Lütfen iki burcu da seçin"); return; }
+    const d1=burcDetaylari[b1]; const d2=burcDetaylari[b2];
+    let puan=50;
+    if(d1.element===d2.element) puan+=20;
+    const elementUyum={Ateş:["Hava"],Hava:["Ateş"],Su:["Toprak"],Toprak:["Su"]};
+    if(elementUyum[d1.element] && elementUyum[d1.element].includes(d2.element)) puan+=15;
+    if(d1.uyumlu.includes(b2.charAt(0).toUpperCase()+b2.slice(1))) puan+=20;
+    if(d1.uyumsuz.includes(b2.charAt(0).toUpperCase()+b2.slice(1))) puan-=15;
+    if(b1===b2) puan+=10;
+    puan=Math.max(5,Math.min(98,puan));
+    let yorum="";
+    if(puan>=85) yorum="🔥 Olağanüstü uyum! Neredeyse ruh eşisiniz.";
+    else if(puan>=70) yorum="💕 Çok iyi bir uyum! Birbirinizi tamamlıyor, güçlü yanlarınızı ortaya çıkarıyorsunuz.";
+    else if(puan>=50) yorum="👍 Ortalama üstü bir uyum. Farklılıklarınız zenginlik katıyor.";
+    else if(puan>=30) yorum="🤔 Biraz zorlu bir kombinasyon. Farklı elementler ve bakış açıları çatışmaya yol açabilir.";
+    else yorum="💔 Çok zorlu bir eşleşme. Zıt kutuplar çeker derler ama burada işler biraz karışık.";
+    document.getElementById("ask-sonuc").innerHTML=`
+    <div class="uyum-sonuc">
+    <p style="color:#fff;font-size:16px;">${d1.emoji} ${b1.charAt(0).toUpperCase()+b1.slice(1)} & ${d2.emoji} ${b2.charAt(0).toUpperCase()+b2.slice(1)}</p>
+    <div class="uyum-puan">%${puan}</div>
+    <p style="font-size:12px;color:rgba(255,255,255,0.5);">Element: ${d1.element} + ${d2.element}</p>
+    <div class="uyum-detay">${yorum}</div>
+    </div>`;
+}
+
+// ========== TAROT ==========
+function initTarotCards(){
+    const container=document.getElementById("tarot-cards-row");
+    const cards=getDailyTarotCards();
+    container.innerHTML=cards.map((kart,index)=>`
+    <div class="tarot-card-wrap" onclick="flipTarotCard(this)">
+        <div class="tarot-card">
+            <div class="tarot-card-front">
+                <span class="mystic-eye">🔮</span>
+                <span class="mystic-text">${kart.pozisyon.toUpperCase()}</span>
+            </div>
+            <div class="tarot-card-back">
+                <span class="tarot-pozisyon">${kart.pozIkon} ${kart.pozisyon}</span>
+                <span class="tarot-emoji">${kart.emoji}</span>
+                <span class="tarot-isim">${kart.isim}</span>
+                <span class="tarot-anlam">${kart.anlam}</span>
+            </div>
+        </div>
+    </div>`).join('');
+}
+
+function flipTarotCard(el){ el.querySelector('.tarot-card').classList.toggle('flipped'); }
+
+// ========== BURÇ QUIZ ==========
+const quizSorulari = [
+    {soru:"Bir arkadaşın sana sorununu anlatırken ne yaparsın?",secenekler:[{metin:"Önce dinler, sonra çözüm öneririm",puan:{başak:3,terazi:2,akrep:1}},{metin:"Hemen harekete geçip yardım etmek isterim",puan:{koç:3,yay:2,aslan:1}},{metin:"Duygusal destek verir, sarılırım",puan:{yengeç:3,balık:2,boğa:1}},{metin:"Analiz eder, mantıklı tavsiye veririm",puan:{kova:3,ikizler:2,başak:1}}]},
+    {soru:"Nasıl bir tatil seni en mutlu eder?",secenekler:[{metin:"Sırt çantasıyla vahşi doğada macera",puan:{yay:3,koç:2,kova:1}},{metin:"Lüks bir otelde her şey dahil",puan:{boğa:3,aslan:2,terazi:1}},{metin:"Sessiz sakin bir sahil kasabası",puan:{balık:3,yengeç:2,başak:1}},{metin:"Kültür turu, müze ve tarihi yerler",puan:{oğlak:3,akrep:2,ikizler:1}}]},
+    {soru:"Sinirlenince ne yaparsın?",secenekler:[{metin:"Anında patlarım, sonra geçer",puan:{koç:3,aslan:2,yay:1}},{metin:"İçime atar, kin tutarım",puan:{akrep:3,yengeç:2,oğlak:1}},{metin:"Sakin kalmaya çalışır, konuşarak çözerim",puan:{terazi:3,kova:2,başak:1}},{metin:"Pasif agresif olur, surat asarım",puan:{balık:3,boğa:2,ikizler:1}}]},
+    {soru:"Hangi ortamda kendini en rahat hissedersin?",secenekler:[{metin:"Kalabalık partiler, sosyal etkinlikler",puan:{aslan:3,ikizler:2,yay:1}},{metin:"Evimde tek başıma veya ailemle",puan:{yengeç:3,boğa:2,başak:1}},{metin:"Yaratıcı bir atölyede veya doğada",puan:{balık:3,kova:2,akrep:1}},{metin:"Profesyonel bir ofiste veya kütüphanede",puan:{oğlak:3,terazi:2,başak:1}}]},
+    {soru:"Para konusunda nasılsın?",secenekler:[{metin:"Biriktiririm, yatırım yaparım",puan:{oğlak:3,boğa:2,başak:1}},{metin:"Kazandığım gibi harcarım",puan:{aslan:3,yay:2,koç:1}},{metin:"Para benim için özgürlük demek",puan:{kova:3,ikizler:2,yay:1}},{metin:"Duygusal harcamalar yaparım",puan:{yengeç:3,balık:2,terazi:1}}]},
+    {soru:"Bir projede nasıl çalışırsın?",secenekler:[{metin:"Liderlik eder, organize ederim",puan:{aslan:3,koç:2,oğlak:1}},{metin:"Detaylara odaklanır, mükemmel olmasını sağlarım",puan:{başak:3,akrep:2,boğa:1}},{metin:"Yaratıcı fikirler üretirim",puan:{kova:3,balık:2,ikizler:1}},{metin:"Takım uyumuna dikkat ederim",puan:{terazi:3,yengeç:2,yay:1}}]},
+    {soru:"Aşk senin için ne ifade eder?",secenekler:[{metin:"Tutku ve derin bağlılık",puan:{akrep:3,boğa:2,aslan:1}},{metin:"Arkadaşlık ve entelektüel uyum",puan:{ikizler:3,kova:2,terazi:1}},{metin:"Romantizm ve masalsı bir bağ",puan:{balık:3,yengeç:2,terazi:1}},{metin:"Özgürlük ve macera dolu bir yolculuk",puan:{yay:3,koç:2,kova:1}}]},
+    {soru:"Zor bir karar verirken neye güvenirsin?",secenekler:[{metin:"Mantığıma ve analizlerime",puan:{başak:3,oğlak:2,kova:1}},{metin:"İçgüdülerime ve sezgilerime",puan:{akrep:3,yengeç:2,balık:1}},{metin:"Başkalarının fikrini alırım",puan:{terazi:3,ikizler:2,yay:1}},{metin:"Hızlıca karar verir, sonucuna katlanırım",puan:{koç:3,aslan:2,yay:1}}]},
+    {soru:"Bir hayalini gerçekleştirmek için ne yaparsın?",secenekler:[{metin:"Adım adım plan yapar, sabırla ilerlerim",puan:{oğlak:3,boğa:2,başak:1}},{metin:"Cesurca adım atar, risk alırım",puan:{koç:3,aslan:2,yay:1}},{metin:"Hayal kurar, ilham beklerim",puan:{balık:3,kova:2,ikizler:1}},{metin:"Sevdiklerimle paylaşır, destek alırım",puan:{yengeç:3,terazi:2,akrep:1}}]},
+    {soru:"Başkaları seni nasıl tanımlar?",secenekler:[{metin:"Enerjik ve cesur",puan:{koç:3,aslan:2,yay:1}},{metin:"Güvenilir ve sadık",puan:{boğa:3,oğlak:2,yengeç:1}},{metin:"Zeki ve esprili",puan:{ikizler:3,kova:2,terazi:1}},{metin:"Gizemli ve derin",puan:{akrep:3,balık:2,başak:1}}]}
+];
+let quizAdimi=0, quizPuanlar={};
+function baslatQuiz(){ quizAdimi=0; quizPuanlar={}; document.getElementById("quiz-bar").style.width="0%"; gosterQuizSorusu(); }
+function gosterQuizSorusu(){
+    if(quizAdimi>=quizSorulari.length){ quizSonucuGoster(); return; }
+    const s=quizSorulari[quizAdimi];
+    document.getElementById("quiz-bar").style.width=((quizAdimi/quizSorulari.length)*100)+"%";
+    document.getElementById("quiz-icerik").innerHTML=`<p class="quiz-soru">Soru ${quizAdimi+1}/${quizSorulari.length}: ${s.soru}</p><div class="quiz-secenekler">${s.secenekler.map((sec,i)=>`<div class="quiz-secenek" onclick="quizCevapVer(${i})">${sec.metin}</div>`).join('')}</div>`;
+}
+function quizCevapVer(i){
+    const s=quizSorulari[quizAdimi];
+    const sec=s.secenekler[i];
+    Object.keys(sec.puan).forEach(k=>{ quizPuanlar[k]=(quizPuanlar[k]||0)+sec.puan[k]; });
+    quizAdimi++;
+    gosterQuizSorusu();
+}
+function quizSonucuGoster(){
+    const sirali=Object.entries(quizPuanlar).sort((a,b)=>b[1]-a[1]);
+    const kazanan=sirali[0][0];
+    const d=burcDetaylari[kazanan];
+    document.getElementById("quiz-bar").style.width="100%";
+    document.getElementById("quiz-icerik").innerHTML=`<div class="quiz-sonuc"><div class="quiz-sonuc-emoji">${d.emoji}</div><div class="quiz-sonuc-burc">${kazanan.charAt(0).toUpperCase()+kazanan.slice(1)} Burcusun!</div><p style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.8;max-width:500px;margin:0 auto;">${d.ozellik.substring(0,200)}...</p><p style="font-size:11px;color:rgba(255,255,255,0.4);margin-top:12px;">Element: ${d.element} • Gezegen: ${d.gezegen}</p><button onclick="baslatQuiz()" style="margin-top:15px;background:rgba(147,51,234,0.3);border:1px solid rgba(147,51,234,0.5);color:#fff;padding:8px 20px;border-radius:20px;cursor:pointer;font-weight:700;">🔄 Tekrar Test Yap</button></div>`;
+}
+
+// ========== BURÇ HİKAYELERİ ==========
+const burcHikayeleri = [
+    {baslik:"Koç & Aslan: Ateşin Dansı",ozet:"İki ateş burcu bir araya gelince kıvılcımlar havada uçuşur...",tam:"Koç ve Aslan... Bu ikili adeta bir volkanın içinde dans eder gibidir. Tutku, rekabet ve sonsuz bir enerji... Koç'un cesareti, Aslan'ın görkemiyle birleştiğinde ortaya efsanevi bir aşk hikayesi çıkar."},
+    {baslik:"Boğa & Yengeç: Yuvanın Bekçileri",ozet:"İkisi de güven ve sadakat arar. Yuvaları onların kalesidir...",tam:"Boğa ve Yengeç... Bu iki burç bir araya geldiğinde, dış dünyaya kapalı, sıcacık bir yuva kurarlar."},
+    {baslik:"İkizler & Kova: Zihinlerin Buluşması",ozet:"Entelektüel uyumları o kadar yüksektir ki saatlerce konuşabilirler...",tam:"İkizler ve Kova... Bu iki hava burcu, bir kafede başlayan sohbeti sabaha kadar sürdürebilecek nadir insanlardandır."},
+    {baslik:"Yengeç & Balık: Duyguların Okyanusu",ozet:"İki su burcunun aşkı, derin ve sonsuz bir deniz gibidir...",tam:"Yengeç ve Balık... Bu iki su burcu, birbirlerinin duygularını tek bakışta anlayabilir."},
+    {baslik:"Başak & Oğlak: Mükemmeliyetçilerin Aşkı",ozet:"Bu ikili bir araya geldiğinde her şey planlı ve kusursuzdur...",tam:"Başak ve Oğlak... İki toprak burcu, hayatı ciddiye alır ve ilişkilerini de öyle kurar."},
+    {baslik:"Akrep & Balık: Ruh Eşleri",ozet:"Bu iki su burcu, ruhların birleşmesi gibidir...",tam:"Akrep ve Balık... Bu iki burcun aşkı, sıradan bir aşk değil, adeta ruhsal bir deneyimdir."},
+    {baslik:"Terazi & Yay: Sosyal Kelebekler",ozet:"İkisi de sosyal ortamların yıldızıdır...",tam:"Terazi ve Yay... Bu ikili bir partiye girdiğinde herkesin gözü onlara döner."},
+    {baslik:"Koç & Terazi: Zıt Kutuplar",ozet:"Zıt kutuplar birbirini çeker derler, işte kanıtı...",tam:"Koç ve Terazi... Zodyağın en zıt iki burcudur; biri savaş tanrısı Mars, diğeri aşk tanrıçası Venüs tarafından yönetilir."}
+];
+function renderHikayeListesi(){
+    document.getElementById("hikaye-listesi").innerHTML=burcHikayeleri.map((h,i)=>`<div class="hikaye-kart" onclick="toggleHikaye(this)"><div class="hikaye-baslik">${h.baslik}</div><div class="hikaye-ozet">${h.ozet}</div><div class="hikaye-tam">${h.tam}</div></div>`).join('');
+}
+function toggleHikaye(el){ el.classList.toggle("open"); }
+
+// ========== TENGRİ ==========
+let isTengriActive=false;
+function runTengriDetector(){
+    const v1=document.getElementById("input1").innerText.toLowerCase();
+    const v2=document.getElementById("input2").innerText.toLowerCase();
+    const has=v1.includes("tengri")||v2.includes("tengri");
+    const ov=document.getElementById("tengri-overlay");
+    const btns=document.querySelectorAll("button,.tab-btn,.player-btn,.theme-dot,.oracle-sphere,.coffee-btn-premium,.burc-btn-premium");
+    if(has && !isTengriActive){
+        isTengriActive=true;
+        ov.style.display="block";
+        audio.playbackRate=2.0;
+        btns.forEach(b=>b.classList.add("tengri-panic"));
+    } else if(!has && isTengriActive){
+        isTengriActive=false;
+        ov.style.display="none";
+        audio.playbackRate=1.0;
+        btns.forEach(b=>b.classList.remove("tengri-panic"));
+    }
+}
+
+window.addEventListener("DOMContentLoaded",()=>{
+    const dd=document.querySelector(".id-dark-dot");
+    if(dd) changeTheme('dark',dd);
+    initPlayer();
+    document.getElementById("input1").addEventListener("input",runTengriDetector);
+    document.getElementById("input2").addEventListener("input",runTengriDetector);
+});
+</script>
+</body>
+</html>
