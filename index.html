@@ -279,185 +279,113 @@ button.tengri-panic,.tab-btn.tengri-panic,.player-btn.tengri-panic,.coffee-btn-p
     box-shadow: 0 0 20px var(--accent-glow);
 }
 
-/* ========== TARİHTE BUGÜN STİLİ ========== */
-.history-box {
+/* ==========================================================================
+   KEŞFET BÖLÜMÜ – KÜLTÜR TESTİ, KANUNLAR, BİLİM ADAMLARI, ŞEHİR İSİMLERİ
+   ========================================================================= */
+.discovery-section {
     max-width:900px;
-    margin:0 auto 25px auto;
+    margin:0 auto 30px auto;
     background:var(--bg-container);
     border:1px solid var(--border-container);
     border-radius:10px;
-    padding:12px 20px 14px 20px;
+    padding:20px;
     box-shadow:0 10px 30px rgba(0,0,0,0.3);
-    transition:all 0.3s ease;
 }
-.history-box .history-header {
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    flex-wrap:wrap;
-    gap:10px;
-    margin-bottom:8px;
-}
-.history-box .history-title {
-    font-size:13px;
+.discovery-section .section-title {
+    font-size:16px;
     font-weight:700;
     color:var(--text-heading);
-    letter-spacing:0.5px;
+    letter-spacing:1px;
+    margin:0 0 12px 0;
+    border-left:3px solid var(--accent-color);
+    padding-left:12px;
+}
+.discovery-buttons {
     display:flex;
-    align-items:center;
     gap:10px;
-}
-.history-box .history-title span {
-    color:var(--accent-color);
-}
-.history-box .history-title .toggle-btn {
-    background: var(--bg-btn);
-    border: 2px solid var(--accent-color);
-    color: var(--text-heading);
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    padding: 4px 14px;
-    border-radius: 6px;
-    transition: all 0.2s;
-    box-shadow: 0 0 10px var(--accent-glow);
-    line-height: 1.4;
-}
-.history-box .history-title .toggle-btn:hover {
-    background: var(--bg-btn-hover);
-    box-shadow: 0 0 20px var(--accent-color);
-    transform: scale(1.05);
-}
-.history-box .history-date {
-    font-size:11px;
-    color:var(--text-main);
-    opacity:0.6;
-}
-.history-content {
-    overflow:hidden;
-    transition:max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
-    max-height:800px;
-    opacity:1;
-    padding-top:4px;
-}
-.history-content.minimized {
-    max-height:0;
-    opacity:0;
-    padding-top:0;
-    pointer-events:none;
-}
-.history-filters {
-    display:flex;
-    gap:8px;
     flex-wrap:wrap;
-    margin-bottom:14px;
+    margin-bottom:16px;
 }
-.history-filters .filter-btn {
-    background:transparent;
+.discovery-btn {
+    background:var(--bg-btn);
+    border:1px solid var(--border-color);
+    color:var(--text-btn);
+    padding:8px 18px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:0.5px;
+    cursor:pointer;
+    transition:all 0.25s ease;
+}
+.discovery-btn:hover {
+    background:var(--bg-btn-hover);
+    border-color:var(--accent-color);
+    color:var(--text-heading);
+    box-shadow:0 0 12px var(--accent-glow);
+}
+.discovery-btn.active {
+    background:var(--bg-tab-active);
+    border-color:var(--accent-color);
+    color:var(--text-heading);
+    box-shadow:0 0 15px var(--accent-glow);
+}
+.discovery-content {
+    min-height:120px;
+    padding:4px 0;
+}
+.discovery-content .quiz-option {
+    background:var(--bg-btn);
     border:1px solid var(--border-color);
     color:var(--text-main);
-    padding:4px 14px;
+    padding:6px 12px;
+    border-radius:8px;
+    font-size:12px;
+    cursor:pointer;
+    transition:all 0.2s;
+    margin:4px 0;
+    display:block;
+    width:100%;
+    text-align:left;
+}
+.discovery-content .quiz-option:hover {
+    background:var(--bg-btn-hover);
+    border-color:var(--accent-color);
+    color:var(--text-heading);
+}
+.discovery-content .quiz-option.correct {
+    border-color:#34d399;
+    background:rgba(52,211,153,0.15);
+    color:#34d399;
+}
+.discovery-content .quiz-option.wrong {
+    border-color:#f87171;
+    background:rgba(248,113,113,0.15);
+    color:#f87171;
+}
+.discovery-content .btn-small {
+    background:var(--bg-btn);
+    border:1px solid var(--border-color);
+    color:var(--text-btn);
+    padding:4px 12px;
     border-radius:16px;
     font-size:10px;
     cursor:pointer;
-    transition:all 0.25s ease;
-    font-weight:600;
-    letter-spacing:0.5px;
+    transition:all 0.2s;
+    margin-top:8px;
 }
-.history-filters .filter-btn:hover {
+.discovery-content .btn-small:hover {
+    background:var(--bg-btn-hover);
     border-color:var(--accent-color);
     color:var(--text-heading);
-    background:var(--bg-btn-hover);
 }
-.history-filters .filter-btn.active {
-    background:rgba(147,51,234,0.2);
-    border-color:rgba(147,51,234,0.5);
-    color:#c084fc;
-    box-shadow:0 0 15px rgba(147,51,234,0.15);
-}
-.history-datepicker {
-    display:flex;
-    align-items:center;
-    gap:10px;
-    margin-bottom:14px;
-    flex-wrap:wrap;
-}
-.history-datepicker label {
-    font-size:11px;
-    color:var(--text-main);
-    opacity:0.7;
-}
-.history-datepicker input[type="date"] {
-    background:var(--bg-input);
-    border:1px solid var(--border-color);
-    color:var(--text-input);
-    border-radius:6px;
-    padding:4px 10px;
-    font-size:12px;
-    outline:none;
-    font-family:inherit;
-    cursor:pointer;
-}
-.history-datepicker input[type="date"]:focus {
-    border-color:var(--accent-color);
-    box-shadow:0 0 8px var(--accent-glow);
-}
-.history-datepicker input[type="date"]::-webkit-calendar-picker-indicator {
-    filter:invert(1);
-    cursor:pointer;
-}
-.history-list {
-    max-height:240px;
-    overflow-y:auto;
-    padding-right:4px;
-}
-.history-list::-webkit-scrollbar { width:3px; }
-.history-list::-webkit-scrollbar-thumb { background:var(--border-color); border-radius:4px; }
-.history-item {
-    display:flex;
-    gap:12px;
-    padding:6px 0;
-    border-bottom:1px solid rgba(255,255,255,0.03);
-    font-size:12px;
-    line-height:1.6;
-    color:var(--text-main);
-}
-.history-item .history-year {
-    font-weight:700;
-    color:var(--accent-color);
-    min-width:42px;
-    font-size:11px;
-    opacity:0.8;
-}
-.history-item .history-text {
-    color:var(--text-input);
-}
-.history-item .history-text .highlight {
-    color:var(--accent-color);
-}
-.history-empty {
+.discovery-empty {
     text-align:center;
     color:var(--text-main);
     font-size:12px;
     opacity:0.5;
     padding:20px 0;
     font-style:italic;
-}
-.history-loading {
-    text-align:center;
-    color:var(--text-main);
-    font-size:12px;
-    padding:15px 0;
-    opacity:0.6;
-}
-.history-loading::after {
-    content:'...';
-    animation:dots 1.2s infinite;
-}
-@keyframes dots {
-    0%{content:'.';}
-    33%{content:'..';}
-    66%{content:'...';}
 }
 </style>
 </head>
@@ -484,37 +412,6 @@ button.tengri-panic,.tab-btn.tengri-panic,.player-btn.tengri-panic,.coffee-btn-p
 
 <!-- ORACLE -->
 <div class="oracle-box"><div class="oracle-sphere-wrapper"><div class="pulse-glow"></div><div class="oracle-sphere" onclick="getTengriOracle()">🔮</div></div><div class="oracle-text-area"><div class="oracle-title">⚡ ORACLE / GÜNÜN SİBER KEHANETİ</div><div id="oracle-display" class="oracle-quote">Küreye tıkla ve siber kaderinle yüzleş...</div></div></div>
-
-<!-- TARİHTE BUGÜN -->
-<div class="history-box" id="history-box">
-    <div class="history-header">
-        <div class="history-title">
-            📜 Tarihte Bugün <span id="history-title-date"></span>
-            <button class="toggle-btn" id="history-toggle" title="Küçült/Büyüt">▶</button>
-        </div>
-        <div class="history-date" id="history-date-display"></div>
-    </div>
-    <div class="history-content minimized" id="history-content">
-        <div class="history-datepicker">
-            <label for="history-date-input">📅 Tarih seç:</label>
-            <input type="date" id="history-date-input">
-        </div>
-        <div class="history-filters" id="history-filters">
-            <button class="filter-btn active" data-category="events">📜 Olaylar</button>
-            <button class="filter-btn" data-category="births">👶 Doğumlar</button>
-            <button class="filter-btn" data-category="deaths">💀 Ölümler</button>
-            <button class="filter-btn" data-category="wars">⚔️ Savaşlar</button>
-            <button class="filter-btn" data-category="politics">🏛️ Siyaset</button>
-            <button class="filter-btn" data-category="culture">🌍 Kültür Testi</button>
-            <button class="filter-btn" data-category="laws">⚖️ Saçma Kanunlar</button>
-            <button class="filter-btn" data-category="scientists">🔬 Bilim Adamları</button>
-            <button class="filter-btn" data-category="cities">🏙️ Şehir İsimleri</button>
-        </div>
-        <div class="history-list" id="history-list">
-            <div class="history-loading">⏳ Yükleniyor</div>
-        </div>
-    </div>
-</div>
 
 <div id="toast-notification" class="toast">⚡ METİN BAŞARIYLA KOPYALANDI!</div>
 
@@ -571,6 +468,20 @@ button.tengri-panic,.tab-btn.tengri-panic,.player-btn.tengri-panic,.coffee-btn-p
                 </button>
             </div>
         </div>
+    </div>
+</div>
+
+<!-- KEŞFET BÖLÜMÜ -->
+<div class="discovery-section">
+    <div class="section-title">🌟 Keşfet – Bilgi ve Eğlence</div>
+    <div class="discovery-buttons">
+        <button class="discovery-btn active" data-target="culture">🌍 Kültür Testi</button>
+        <button class="discovery-btn" data-target="laws">⚖️ Saçma Kanunlar</button>
+        <button class="discovery-btn" data-target="scientists">🔬 Bilim Adamları</button>
+        <button class="discovery-btn" data-target="cities">🏙️ Şehir İsimleri</button>
+    </div>
+    <div class="discovery-content" id="discovery-content">
+        <div class="discovery-empty">Bir kategori seçin ve keşfetmeye başlayın.</div>
     </div>
 </div>
 
@@ -801,588 +712,6 @@ function selectGame(el) {
     const url = el.getAttribute('data-url');
     document.getElementById('mario-game-iframe').src = url;
 }
-
-// ========== TARİHTE BUGÜN ==========
-let historyMinimized = true;
-
-function toggleHistory() {
-    historyMinimized = !historyMinimized;
-    const content = document.getElementById('history-content');
-    const btn = document.getElementById('history-toggle');
-    if (historyMinimized) {
-        content.classList.add('minimized');
-        btn.textContent = '▶';
-    } else {
-        content.classList.remove('minimized');
-        btn.textContent = '▼';
-    }
-}
-
-// ----- STATİK VERİLER -----
-
-// KÜLTÜR TESTİ (100 SORU) – doğru cevap indeksleri rastgele atanacak
-const cultureQuiz = [
-    { q: "Hangi ülkenin bayrağında kırmızı, beyaz ve mavi yatay şeritler vardır?", options: ["Fransa", "Hollanda", "Rusya", "Türkiye"], correct: 0 },
-    { q: "Dünyanın en kalabalık ülkesi hangisidir?", options: ["Hindistan", "Çin", "ABD", "Endonezya"], correct: 0 },
-    { q: "Hangi şehir iki kıta üzerinde kurulmuştur?", options: ["İstanbul", "Moskova", "Kahire", "Londra"], correct: 0 },
-    { q: "Hangi ülkenin resmi dili İspanyolca değildir?", options: ["Meksika", "Arjantin", "Brezilya", "Kolombiya"], correct: 0 },
-    { q: "Dünyanın en uzun nehri hangisidir?", options: ["Nil", "Amazon", "Yangtze", "Mississippi"], correct: 0 },
-    { q: "Hangi ülke 'Güneşin Ülkesi' olarak bilinir?", options: ["Japonya", "Avustralya", "Hindistan", "Peru"], correct: 0 },
-    { q: "Hangi meşhur yapı Hindistan'da bulunur?", options: ["Tac Mahal", "Çin Seddi", "Kolezyum", "Eyfel Kulesi"], correct: 0 },
-    { q: "Hangi ülkenin para birimi Euro değildir?", options: ["Almanya", "Fransa", "İngiltere", "İtalya"], correct: 0 },
-    { q: "Dünyanın en büyük okyanusu hangisidir?", options: ["Pasifik", "Atlas", "Hint", "Arktik"], correct: 0 },
-    { q: "Hangi ülke Afrika kıtasında yer almaz?", options: ["Mısır", "Nijerya", "Suudi Arabistan", "Güney Afrika"], correct: 0 },
-    { q: "Hangi ülkenin başkenti Ankara'dır?", options: ["Türkiye", "Suriye", "Irak", "İran"], correct: 0 },
-    { q: "Dünyanın en soğuk yerleşim yeri hangisidir?", options: ["Oymyakon", "Antarktika", "Alaska", "Grönland"], correct: 0 },
-    { q: "Hangi ülke çayı ile ünlüdür?", options: ["Çin", "Hindistan", "Türkiye", "İngiltere"], correct: 0 },
-    { q: "Hangi şehir 'Ebedi Şehir' olarak bilinir?", options: ["Roma", "İstanbul", "Paris", "Atina"], correct: 0 },
-    { q: "Hangi ülkenin bayrağında yıldız ve hilal vardır?", options: ["Türkiye", "Cezayir", "Pakistan", "Malezya"], correct: 0 },
-    { q: "Dünyanın en yüksek dağı hangisidir?", options: ["Everest", "K2", "Denali", "Elbrus"], correct: 0 },
-    { q: "Hangi ülkenin başkenti Buenos Aires'tir?", options: ["Arjantin", "Brezilya", "Şili", "Uruguay"], correct: 0 },
-    { q: "Hangi ülke 'Akdeniz'in incisi' olarak bilinir?", options: ["İtalya", "Yunanistan", "İspanya", "Türkiye"], correct: 0 },
-    { q: "Hangi gezegen 'Kızıl Gezegen' olarak bilinir?", options: ["Mars", "Venüs", "Jüpiter", "Merkür"], correct: 0 },
-    { q: "Hangi ülke en fazla UNESCO Dünya Mirası alanına sahiptir?", options: ["İtalya", "Çin", "Fransa", "İspanya"], correct: 0 },
-    { q: "İlk insanın Ay'a ayak bastığı yıl hangisidir?", options: ["1965", "1969", "1972", "1957"], correct: 0 },
-    { q: "Hangi ülkenin resmi dili Portekizcedir?", options: ["Brezilya", "Arjantin", "Meksika", "Uruguay"], correct: 0 },
-    { q: "Hangi elementin sembolü 'Au'dur?", options: ["Altın", "Gümüş", "Bakır", "Demir"], correct: 0 },
-    { q: "Hangi ülke 'Aslan Krallığı' olarak bilinir?", options: ["Lesotho", "Svaziland", "Kenya", "Tanzanya"], correct: 0 },
-    { q: "Dünyanın en büyük adası hangisidir?", options: ["Grönland", "Yeni Gine", "Borneo", "Madagaskar"], correct: 0 },
-    { q: "Hangi ülkenin başkenti Ottawa'dır?", options: ["Kanada", "ABD", "Avustralya", "Yeni Zelanda"], correct: 0 },
-    { q: "Hangi okyanus en derindir?", options: ["Pasifik", "Atlantik", "Hint", "Arktik"], correct: 0 },
-    { q: "Hangi ülke 'Yeni Dünya' olarak adlandırılmıştır?", options: ["Amerika", "Avustralya", "Yeni Zelanda", "Kanada"], correct: 0 },
-    { q: "Hangi gezegen Güneş sisteminde en büyüktür?", options: ["Jüpiter", "Satürn", "Uranüs", "Neptün"], correct: 0 },
-    { q: "İlk yazılı kanunlar hangi uygarlığa aittir?", options: ["Sümerler", "Mısırlılar", "Babilliler", "Hititler"], correct: 0 },
-    { q: "Hangi ülke 'Gül Ülkesi' olarak bilinir?", options: ["Bulgaristan", "Romanya", "Türkiye", "Fransa"], correct: 0 },
-    { q: "Hangi vitaminin eksikliği gece körlüğüne neden olur?", options: ["A", "B", "C", "D"], correct: 0 },
-    { q: "Hangi ülkenin başkenti Londra'dır?", options: ["İngiltere", "Fransa", "Almanya", "İtalya"], correct: 0 },
-    { q: "Hangi ülke 'Altın Post' efsanesine ev sahipliği yapmıştır?", options: ["Yunanistan", "Türkiye", "Mısır", "İtalya"], correct: 0 },
-    { q: "Hangi dağ sırası Güney Amerika'dadır?", options: ["And Dağları", "Alpler", "Himalayalar", "Kayalık Dağlar"], correct: 0 },
-    { q: "Hangi ülke 'Tulip Ülkesi' olarak bilinir?", options: ["Hollanda", "Belçika", "Danimarka", "İsveç"], correct: 0 },
-    { q: "Hangi şehir 'Firavunların Şehri' olarak bilinir?", options: ["Kahire", "Lüksor", "Memfis", "Thebes"], correct: 0 },
-    { q: "Hangi gezegenin halkaları vardır?", options: ["Satürn", "Jüpiter", "Uranüs", "Neptün"], correct: 0 },
-    { q: "İlk denizaltı hangi ülkede icat edilmiştir?", options: ["ABD", "İngiltere", "Almanya", "Rusya"], correct: 0 },
-    { q: "Hangi ülke 'Akşam Yıldızı' olarak bilinir?", options: ["Venüs", "Mars", "Merkür", "Jüpiter"], correct: 0 },
-    { q: "Hangi element 'H' sembolü ile gösterilir?", options: ["Hidrojen", "Helyum", "Oksijen", "Azot"], correct: 0 },
-    { q: "Hangi ülkenin başkenti Madrid'dir?", options: ["İspanya", "Portekiz", "Fransa", "Almanya"], correct: 0 },
-    { q: "Hangi ülke 'Ormansız Ülke' olarak bilinir?", options: ["Suudi Arabistan", "Katar", "Umman", "BAE"], correct: 0 },
-    { q: "Hangi şehir 'Kuzeyin Venediki' olarak bilinir?", options: ["St. Petersburg", "Venedik", "Paris", "Bruges"], correct: 0 },
-    { q: "Hangi hayvanın beyni en büyüktür?", options: ["İspermeçet Balinası", "Fil", "Yunus", "İnsan"], correct: 0 },
-    { q: "Hangi ülke 'Kızılderili Ülkesi' olarak bilinir?", options: ["Hindistan", "Meksika", "Peru", "Bolivya"], correct: 0 },
-    { q: "Hangi dağ dünyanın en yüksek ikinci dağıdır?", options: ["K2", "Everest", "Lhotse", "Makalu"], correct: 0 },
-    { q: "Hangi ülke 'Kanguru Ülkesi' olarak bilinir?", options: ["Avustralya", "Yeni Zelanda", "Papua Yeni Gine", "Fiji"], correct: 0 },
-    { q: "Hangi element 'O' sembolü ile gösterilir?", options: ["Oksijen", "Osmiyum", "Oganesson", "Osmium"], correct: 0 },
-    { q: "Hangi ülkenin başkenti Moskova'dır?", options: ["Rusya", "Ukrayna", "Polonya", "Almanya"], correct: 0 },
-    { q: "Hangi ülke 'Doğanın Ülkesi' olarak bilinir?", options: ["Yeni Zelanda", "Norveç", "İsveç", "Finlandiya"], correct: 0 },
-    { q: "Hangi gezegenin atmosferi en kalındır?", options: ["Venüs", "Mars", "Jüpiter", "Dünya"], correct: 0 },
-    { q: "Hangi ülke 'Pireneler Ülkesi' olarak bilinir?", options: ["İspanya", "Fransa", "Andorra", "Portekiz"], correct: 0 },
-    { q: "İlk uçağı kim icat etmiştir?", options: ["Wright Kardeşler", "Farman", "Blériot", "Curtiss"], correct: 0 },
-    { q: "Hangi ülke 'Akdeniz'in Kalbi' olarak bilinir?", options: ["Türkiye", "Yunanistan", "İtalya", "Mısır"], correct: 0 },
-    { q: "Hangi şehir 'Kültür Başkenti' unvanını taşır?", options: ["Paris", "Londra", "New York", "Roma"], correct: 0 },
-    { q: "Hangi hayvan en uzun yaşar?", options: ["Grönland Köpekbalığı", "Dev Kaplumbağa", "İnsan", "Fil"], correct: 0 },
-    { q: "Hangi ülke 'Beyaz Altın' olarak bilinir?", options: ["Avustralya", "Güney Afrika", "Rusya", "Kanada"], correct: 0 },
-    { q: "Hangi element 'Fe' sembolü ile gösterilir?", options: ["Demir", "Fermiyum", "Fransiyum", "Fosfor"], correct: 0 },
-    { q: "Hangi ülkenin başkenti Berlin'dir?", options: ["Almanya", "Avusturya", "İsviçre", "Hollanda"], correct: 0 },
-    { q: "Hangi okyanus en sıcaktır?", options: ["Pasifik", "Atlantik", "Hint", "Arktik"], correct: 0 },
-    { q: "Hangi ülke 'Asya'nın Kalbi' olarak bilinir?", options: ["Türkiye", "İran", "Afganistan", "Pakistan"], correct: 0 },
-    { q: "Hangi şehir 'Kubbeler Şehri' olarak bilinir?", options: ["İsfahan", "İstanbul", "Tebriz", "Şiraz"], correct: 0 },
-    { q: "Hangi hayvan en hızlı koşar?", options: ["Çita", "Kara Ceylan", "At", "Tazı"], correct: 0 },
-    { q: "Hangi ülke 'Fırtınalar Ülkesi' olarak bilinir?", options: ["Japonya", "Filipinler", "Tayvan", "Malezya"], correct: 0 },
-    { q: "Hangi element 'Au' sembolü ile gösterilir?", options: ["Altın", "Gümüş", "Bakır", "Demir"], correct: 0 },
-    { q: "Hangi ülkenin başkenti Tokyo'dur?", options: ["Japonya", "Çin", "Güney Kore", "Tayvan"], correct: 0 },
-    { q: "Hangi ülke 'Güneşin Batmadığı Ülke' olarak bilinir?", options: ["İngiltere", "Fransa", "İspanya", "Portekiz"], correct: 0 },
-    { q: "Hangi dağ Avrupa'nın en yüksek dağıdır?", options: ["Elbrus", "Mont Blanc", "Alpler", "Dufourspitze"], correct: 0 },
-    { q: "Hangi ülke 'Akdeniz'in İncisi' olarak bilinir?", options: ["Yunanistan", "İtalya", "Türkiye", "Mısır"], correct: 0 },
-    { q: "Hangi şehir 'Cennet Şehri' olarak bilinir?", options: ["Cannes", "Paris", "Viyana", "Prag"], correct: 0 },
-    { q: "Hangi hayvan en büyük yumurta bırakır?", options: ["Deve Kuşu", "Fil", "Balina", "Köpekbalığı"], correct: 0 },
-    { q: "Hangi ülke 'Asya'nın Tarihi' olarak bilinir?", options: ["Çin", "Hindistan", "Japonya", "Kore"], correct: 0 },
-    { q: "Hangi element 'C' sembolü ile gösterilir?", options: ["Karbon", "Kalsiyum", "Krom", "Klor"], correct: 0 },
-    { q: "Hangi ülkenin başkenti Seul'dür?", options: ["Güney Kore", "Kuzey Kore", "Japonya", "Çin"], correct: 0 },
-    { q: "Hangi ülke 'Buz ve Ateş Ülkesi' olarak bilinir?", options: ["İzlanda", "Norveç", "İsveç", "Grönland"], correct: 0 },
-    { q: "Hangi dağ Türkiye'nin en yüksek dağıdır?", options: ["Ağrı Dağı", "Erciyes", "Süphan", "Kaçkar"], correct: 0 },
-    { q: "Hangi ülke 'Akdeniz'in Bahçesi' olarak bilinir?", options: ["Fransa", "İspanya", "İtalya", "Yunanistan"], correct: 0 },
-    { q: "Hangi şehir 'Kuzey Işıkları Şehri' olarak bilinir?", options: ["Reykjavik", "Tromsø", "Anchorage", "Yellowknife"], correct: 0 },
-    { q: "Hangi hayvan en çok uyur?", options: ["Koala", "Tembel Hayvan", "Kedi", "Yarasa"], correct: 0 },
-    { q: "Hangi ülke 'Kıbrıs'ın komşusudur?", options: ["Türkiye", "Yunanistan", "Mısır", "İsrail"], correct: 0 },
-    { q: "Hangi element 'N' sembolü ile gösterilir?", options: ["Azot", "Natrium", "Neon", "Nikel"], correct: 0 },
-    { q: "Hangi ülkenin başkenti Roma'dır?", options: ["İtalya", "Yunanistan", "Fransa", "İspanya"], correct: 0 },
-    { q: "Hangi ülke 'Güneş Doğanın Parlaklığı' olarak bilinir?", options: ["Japonya", "Çin", "Hindistan", "Endonezya"], correct: 0 },
-    { q: "Hangi dağ Güney Amerika'nın en yüksek dağıdır?", options: ["Aconcagua", "Huascarán", "Chimborazo", "Cotopaxi"], correct: 0 },
-    { q: "Hangi ülke 'Akdeniz'in Kraliçesi' olarak bilinir?", options: ["Türkiye", "Yunanistan", "İtalya", "Fransa"], correct: 0 },
-    { q: "Hangi şehir 'Kuzeyin Yıldızı' olarak bilinir?", options: ["Stockholm", "Oslo", "Helsinki", "Kopenhag"], correct: 0 },
-    { q: "Hangi hayvan en iyi koku alır?", options: ["Köpek", "Fare", "Kedi", "Fil"], correct: 0 },
-    { q: "Hangi ülke 'Kumaş Ülkesi' olarak bilinir?", options: ["Hindistan", "Çin", "Türkiye", "İtalya"], correct: 0 },
-    { q: "Hangi element 'S' sembolü ile gösterilir?", options: ["Kükürt", "Sodyum", "Stronsiyum", "Skandiyum"], correct: 0 },
-    { q: "Hangi ülkenin başkenti Stockholm'dür?", options: ["İsveç", "Norveç", "Danimarka", "Finlandiya"], correct: 0 },
-    { q: "Hangi ülke 'Aslanlar Ülkesi' olarak bilinir?", options: ["Kenya", "Tanzanya", "Güney Afrika", "Namibya"], correct: 0 },
-    { q: "Hangi dağ Asya'nın en yüksek dağıdır?", options: ["Everest", "K2", "Kangchenjunga", "Lhotse"], correct: 0 },
-    { q: "Hangi ülke 'Akdeniz'in Kapısı' olarak bilinir?", options: ["Türkiye", "Yunanistan", "Mısır", "Fransa"], correct: 0 },
-    { q: "Hangi şehir 'Rüyalar Şehri' olarak bilinir?", options: ["Paris", "Venedik", "Prag", "Budapeşte"], correct: 0 },
-    { q: "Hangi hayvan en uzun boynu vardır?", options: ["Zürafa", "Deve", "Fil", "At"], correct: 0 },
-    { q: "Hangi ülke 'Beyaz Cennet' olarak bilinir?", options: ["Yeni Zelanda", "Avustralya", "Kanada", "Norveç"], correct: 0 },
-    { q: "Hangi element 'K' sembolü ile gösterilir?", options: ["Potasyum", "Kalsiyum", "Krom", "Kobalt"], correct: 0 },
-    { q: "Hangi ülkenin başkensi Viyana'dır?", options: ["Avusturya", "Macaristan", "Çekya", "Slovakya"], correct: 0 },
-    { q: "Hangi ülke 'Asya'nın Bahçesi' olarak bilinir?", options: ["Vietnam", "Tayland", "Endonezya", "Malaysia"], correct: 0 },
-    { q: "Hangi dağ Kuzey Amerika'nın en yüksek dağıdır?", options: ["Denali", "Mount Logan", "Pico de Orizaba", "Elbrus"], correct: 0 },
-    { q: "Hangi ülke 'Akdeniz'in Zarafeti' olarak bilinir?", options: ["Fransa", "İspanya", "İtalya", "Yunanistan"], correct: 0 },
-    { q: "Hangi şehir 'Kültür ve Sanat Şehri' olarak bilinir?", options: ["Floransa", "Roma", "Paris", "Londra"], correct: 0 },
-    { q: "Hangi hayvan en hızlı yüzer?", options: ["Kılıç Balığı", "Yunus", "Orka", "Marlin"], correct: 0 },
-    { q: "Hangi ülke 'Dünyanın Çatısı' olarak bilinir?", options: ["Tibet", "Hindistan", "Çin", "Nepal"], correct: 0 },
-    { q: "Hangi element 'Mg' sembolü ile gösterilir?", options: ["Magnezyum", "Mangan", "Molibden", "Mendelevyum"], correct: 0 }
-];
-let shuffledQuiz = [];
-let quizIndex = 0, quizScore = 0, quizAnswered = false;
-
-function shuffleArray(arr) {
-    for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-    return arr;
-}
-
-function initCultureQuiz() {
-    // Her sorunun doğru cevap indeksini rastgele ata (0-3 arası)
-    cultureQuiz.forEach(q => {
-        q.correct = Math.floor(Math.random() * q.options.length);
-    });
-    shuffledQuiz = shuffleArray([...cultureQuiz]);
-    quizIndex = 0;
-    quizScore = 0;
-    showCultureQuiz();
-}
-
-function showCultureQuiz() {
-    const list = document.getElementById('history-list');
-    if (quizIndex >= shuffledQuiz.length) {
-        list.innerHTML = `
-            <div class="history-empty">🏁 Test Tamamlandı! Skorunuz: ${quizScore}/${shuffledQuiz.length}</div>
-            <button class="btn-small" onclick="initCultureQuiz()" style="margin-top:8px;background:var(--bg-btn);border:1px solid var(--border-color);color:var(--text-btn);padding:4px 12px;border-radius:16px;font-size:10px;cursor:pointer;">🔄 Tekrar Dene</button>
-        `;
-        return;
-    }
-    const q = shuffledQuiz[quizIndex];
-    let html = `<div style="font-size:13px; color:var(--text-heading); margin-bottom:8px;">${quizIndex+1}/${shuffledQuiz.length}. ${q.q}</div>`;
-    html += `<div style="display:flex; flex-direction:column; gap:6px;">`;
-    q.options.forEach((opt, idx) => {
-        html += `<button class="quiz-option" data-idx="${idx}" onclick="answerCultureQuiz(${idx})">${opt}</button>`;
-    });
-    html += `</div>`;
-    html += `<div id="quiz-feedback" style="margin-top:8px; font-size:12px;"></div>`;
-    list.innerHTML = html;
-    quizAnswered = false;
-}
-
-function answerCultureQuiz(idx) {
-    if (quizAnswered) return;
-    quizAnswered = true;
-    const q = shuffledQuiz[quizIndex];
-    const btns = document.querySelectorAll('.quiz-option');
-    btns.forEach((b, i) => {
-        b.style.pointerEvents = 'none';
-        if (i === q.correct) b.classList.add('correct');
-        else if (i === idx && idx !== q.correct) b.classList.add('wrong');
-    });
-    if (idx === q.correct) quizScore++;
-    document.getElementById('quiz-feedback').innerHTML = idx === q.correct ? '✅ Doğru!' : `❌ Yanlış. Doğru cevap: ${q.options[q.correct]}`;
-    setTimeout(() => {
-        quizIndex++;
-        showCultureQuiz();
-    }, 1800);
-}
-
-// Saçma Kanunlar (50)
-const laws = [
-    "İsviçre'de gece 22:00'den sonra sifon çekmek yasaktır.",
-    "İngiltere'de ölü balina taşımak yasadışıdır.",
-    "Fransa'da domuzlara 'Napolyon' adı vermek yasaktır.",
-    "ABD'de (Alabama) pazar günleri sakız çiğnemek yasaktır.",
-    "Avustralya'da (Victoria) akşam 6'dan sonra pembe pantolon giymek yasaktır.",
-    "Kanada'da (Montreal) açık alanda küfür etmek yasaktır.",
-    "Almanya'da (Berlin) toplu taşımada bira içmek yasak değildir.",
-    "İtalya'da (Milano) asık suratla dolaşmak cezadır.",
-    "Japonya'da (Tokyo) trenlerde yemek yemek ayıptır ama yasak değil.",
-    "Tayland'da krala hakaret etmek 15 yıl hapis cezasıdır.",
-    "Rusya'da (Moskova) araba sürerken arabanın kirli olması ceza gerektirir.",
-    "Singapur'da sakız satmak yasaktır.",
-    "İran'da kadınların futbol maçı izlemesi yasaktı (2022'de kaldırıldı).",
-    "ABD'de (Ohio) kadınların striptiz kulüplerinde çalışması için 112 pound'un altında olması gerekir.",
-    "Avustralya'da (Queensland) evde elbiseyle dolaşmak yasaktır.",
-    "Fransa'da (Paris) metroda öpüşmek yasaktır.",
-    "İtalya'da (Capri) yüksek sesle şarkı söylemek yasaktır.",
-    "ABD'de (Florida) evde uyurken kapıyı kilitlememek yasaktır.",
-    "Kanada'da (Toronto) pazar günleri alışveriş yapmak yasak değildir.",
-    "Türkiye'de (Konya) sokakta ateş yakmak yasaktır.",
-    "ABD'de (Wisconsin) peynir dışında bir şey satmak yasaktır.",
-    "Avustralya'da (Melbourne) otobüste çiçek taşımak yasaktır.",
-    "Almanya'da (Frankfurt) tamamen çıplak araba sürmek yasaktır.",
-    "İsveç'te (Stockholm) pazar günleri bahçe sulamak yasaktır.",
-    "Norveç'te (Oslo) hayvanlara işkence etmek yasaktır.",
-    "Danimarka'da (Kopenhag) sosisli sandviç yemek yasak değildir.",
-    "Yunanistan'da (Atina) güneş gözlüğüyle yürümek yasak değildir.",
-    "Hollanda'da (Amsterdam) bisikletten inmeden telefonla konuşmak yasaktır.",
-    "Çin'de (Pekin) tarihi mekanlarda yüksek topuklu ayakkabı giymek yasaktır.",
-    "Avusturya'da (Viyana) gece 22:00'den sonra çöp atmak yasaktır.",
-    "Belçika'da (Brüksel) parkta yüksek sesle müzik dinlemek yasaktır.",
-    "Brezilya'da (Rio) sahil şeridinde mayoyla banka girmek yasaktır.",
-    "Hindistan'da (Delhi) bisikletle otobanlara çıkmak yasaktır.",
-    "Mısır'da (Kahire) tarihi eserlere dokunmak 10 yıl hapis cezasıdır.",
-    "Finlandiya'da (Helsinki) trafikte yayaya yol vermemek ağır cezadır.",
-    "Meksika'da (Mexico City) açık alanda alkol almak yasaktır.",
-    "Güney Kore'de (Seul) motosikletle kaldırımda gitmek yasaktır.",
-    "İspanya'da (Barselona) çıplak güneşlenmek sadece özel plajlarda serbesttir.",
-    "Portekiz'de (Lizbon) tarihi bölgelerde araba sürmek yasaktır.",
-    "Rusya'da (St. Petersburg) müzelerde şapka giymek yasaktır.",
-    "Ukrayna'da (Kiev) gece 23:00'den sonra müzik sesi açmak yasaktır.",
-    "Polonya'da (Varşova) parklarda çimlere basmak yasaktır.",
-    "Macaristan'da (Budapeşte) yürüyüş yollarında bisiklet kullanmak yasaktır.",
-    "Romanya'da (Bükreş) kamusal alanda yüksek sesle telefon konuşmak yasaktır.",
-    "Bulgaristan'da (Sofya) pazar günleri alışveriş merkezleri açık olabilir.",
-    "Sırbistan'da (Belgrad) tarihi surlara tırmanmak yasaktır.",
-    "Hırvatistan'da (Zagreb) plajda şemsiye kullanmak serbesttir.",
-    "İsrail'de (Tel Aviv) cumartesi günleri toplu taşıma çalışmaz.",
-    "Bangladeş'te (Dakka) yağmurda açık alanda durmak yasak değildir.",
-    "Venezuela'da (Karakas) gece 21:00'den sonra çocukların dışarıda olması yasaktır."
-];
-
-function showRandomLaw() {
-    const law = laws[Math.floor(Math.random() * laws.length)];
-    document.getElementById('history-list').innerHTML = `
-        <div style="font-size:13px; color:var(--text-input); line-height:1.6; padding:4px 0;">⚖️ ${law}</div>
-        <button class="btn-small" onclick="showRandomLaw()" style="margin-top:8px;background:var(--bg-btn);border:1px solid var(--border-color);color:var(--text-btn);padding:4px 12px;border-radius:16px;font-size:10px;cursor:pointer;">🔄 Yeni Kanun</button>
-    `;
-}
-
-// Bilim Adamları (100) – kısa özetler
-const scientists = [
-    { name: "Albert Einstein", quote: "Hayal gücü bilgiden daha önemlidir.", invention: "Görelilik Teorisi", detail: "Uzay ve zamanın bükülebileceğini, kütleçekiminin aslında uzay-zamanın eğriliği olduğunu keşfetti. E=mc² ile enerji ve kütle ilişkisini formüle etti." },
-    { name: "Isaac Newton", quote: "Bildiklerimiz bir damla, bilmediklerimiz bir okyanustur.", invention: "Kütle Çekimi Yasası", detail: "Evrensel çekim yasası ve hareket yasalarını formüle etti. Klasik fiziğin temellerini attı." },
-    { name: "Marie Curie", quote: "Hiçbir şey hayattan korkmamalıyız, sadece anlamalıyız.", invention: "Radyum ve Polonyum", detail: "Radyoaktif elementleri keşfederek radyasyonun tıpta kullanımının öncüsü oldu. Nobel Ödülü alan ilk kadın." },
-    { name: "Nikola Tesla", quote: "Yalnız çalışın, büyük işler yalnızken yapılır.", invention: "Alternatif Akım", detail: "Alternatif akım (AC) motoru ve transformatörü geliştirdi. Elektrik enerjisinin uzun mesafelere taşınmasını sağladı." },
-    { name: "Charles Darwin", quote: "Türlerin kökeni, doğal seçilim.", invention: "Evrim Teorisi", detail: "Doğal seçilim yoluyla evrimi açıklayarak biyolojide devrim yarattı. Türlerin değişebilir olduğunu kanıtladı." },
-    { name: "Galileo Galilei", quote: "Yine de dönüyor.", invention: "Teleskopla Gözlem", detail: "Teleskopla Ay'ın dağlarını, Jüpiter'in uydularını ve Güneş lekelerini keşfetti. Dünya merkezli evren modelini çürüttü." },
-    { name: "Stephen Hawking", quote: "Zamanın başlangıcı yoktur.", invention: "Kara Delik Radyasyonu", detail: "Kara deliklerin Hawking radyasyonu yayarak buharlaşabileceğini teorize etti. Zaman ve kozmoloji üzerine devrimci fikirler sundu." },
-    { name: "Alexander Fleming", quote: "Tesadüfen buldum, ama sonra üzerine çalıştım.", invention: "Penisilin", detail: "Küf mantarının bakterileri öldürdüğünü fark ederek ilk antibiyotiği keşfetti. Bu buluş milyonlarca insanın hayatını kurtardı." },
-    { name: "Thomas Edison", quote: "Deha %1 ilham, %99 terdir.", invention: "Ampul (geliştirilmiş)", detail: "Uzun ömürlü ampulü geliştirdi. Gramofon, film kamerası ve elektrik dağıtım sistemleri gibi birçok icadın sahibidir." },
-    { name: "Gregor Mendel", quote: "Genetik kalıtımın temel yasaları.", invention: "Mendel Yasaları", detail: "Bezelye bitkileri üzerinde yaptığı deneylerle kalıtım yasalarını keşfetti. Modern genetiğin babası olarak kabul edilir." },
-    { name: "Louis Pasteur", quote: "Şans, hazır olan zihni sever.", invention: "Aşı ve Pastörizasyon", detail: "Mikroorganizmaların hastalıklara neden olduğunu kanıtladı. Kuduz aşısı ve pastörizasyon tekniği ile tıp ve gıda endüstrisinde devrim yarattı." },
-    { name: "Sigmund Freud", quote: "Rüyalar, bilinçaltının yoludur.", invention: "Psikanaliz", detail: "Bilinçaltı, rüyalar ve psikoseksüel gelişim teorileriyle psikolojide yeni bir çığır açtı. İd, ego ve süperego kavramlarını geliştirdi." },
-    { name: "Alan Turing", quote: "Bir makine, bir insanı taklit edebilir.", invention: "Turing Testi ve Bilgisayar", detail: "Modern bilgisayar biliminin temellerini attı. Enigma şifresini kırarak II. Dünya Savaşı'na katkı sağladı." },
-    { name: "Rosalind Franklin", quote: "Bilim, ırk ya da cinsiyet tanımaz.", invention: "DNA'nın Yapısı", detail: "X-ışını kırınımı görüntüleriyle DNA'nın çift sarmal yapısını keşfeden ekipte kritik rol oynadı." },
-    { name: "Johannes Kepler", quote: "Gezegenler elips yörüngelerde hareket eder.", invention: "Kepler Yasaları", detail: "Gezegen hareketlerini üç matematiksel yasayla açıklayarak Güneş merkezli sistemi destekledi." },
-    { name: "Dmitri Mendeleyev", quote: "Elementler periyodik tabloda düzenlenir.", invention: "Periyodik Tablo", detail: "Elementleri atom ağırlıklarına göre sıralayarak periyodik sistemi oluşturdu. Henüz keşfedilmemiş elementlerin özelliklerini tahmin etti." },
-    { name: "Michael Faraday", quote: "Elektromanyetik indüksiyon.", invention: "Elektrik Motoru ve Jeneratör", detail: "Manyetik alanın elektrik akımı oluşturabileceğini keşfederek jeneratörün temelini attı." },
-    { name: "James Clerk Maxwell", quote: "Elektrik ve manyetizma aynı fenomendir.", invention: "Maxwell Denklemleri", detail: "Elektrik ve manyetizmayı tek bir çerçevede birleştirerek elektromanyetizma teorisini kurdu." },
-    { name: "Max Planck", quote: "Enerji kuantumlardan oluşur.", invention: "Kuantum Teorisi", detail: "Enerjinin kesikli paketler (kuantum) halinde yayıldığını öne sürerek kuantum fiziğinin başlangıcı oldu." },
-    { name: "Niels Bohr", quote: "Karşıtlar birleşir.", invention: "Atom Modeli", detail: "Atomun çekirdek etrafında elektron bulutlarından oluşan modelini geliştirdi. Kuantum mekaniğinin temel taşlarından biridir." },
-    { name: "Werner Heisenberg", quote: "Belirsizlik ilkesi.", invention: "Belirsizlik İlkesi", detail: "Bir parçacığın konumu ve momentumunun aynı anda kesin olarak ölçülemeyeceğini gösterdi." },
-    { name: "Erwin Schrödinger", quote: "Kuantum kedisi.", invention: "Schrödinger Denklemi", detail: "Dalga mekaniğini kurdu ve kuantum durumlarını tanımlayan denklemi geliştirdi." },
-    { name: "Paul Dirac", quote: "Doğa matematikseldir.", invention: "Dirac Denklemi", detail: "Göreli kuantum mekaniğini formüle etti ve antimaddenin varlığını öngördü." },
-    { name: "Richard Feynman", quote: "Doğa eğlencelidir.", invention: "Kuantum Elektrodinamiği", detail: "Kuantum elektrodinamiği (QED) teorisini geliştirdi ve parçacık fiziğine katkı sağladı." },
-    { name: "Murray Gell-Mann", quote: "Kuarkları keşfettim.", invention: "Kuark Modeli", detail: "Kuarkları keşfederek temel parçacıkların yapısını açıkladı." },
-    { name: "Peter Higgs", quote: "Higgs parçacığı.", invention: "Higgs Mekanizması", detail: "Parçacıklara kütle kazandıran Higgs alanını ve Higgs bozonunu öngördü." },
-    { name: "Francis Crick", quote: "DNA'nın sırrı.", invention: "DNA Çift Sarmalı", detail: "Watson ile birlikte DNA'nın çift sarmal yapısını keşfetti." },
-    { name: "James Watson", quote: "Genlerimiz kaderimizdir.", invention: "DNA Çift Sarmalı", detail: "Crick ile DNA'nın yapısını keşfetti." },
-    { name: "Maurice Wilkins", quote: "DNA'nın görüntüsü.", invention: "DNA X-ışını Kırınımı", detail: "DNA'nın X-ışını kırınım görüntülerini elde ederek Watson ve Crick'in çalışmasına katkı sağladı." },
-    { name: "Barbara McClintock", quote: "Genler yer değiştirebilir.", invention: "Gen Atlayan Elementler", detail: "Mısır üzerinde yaptığı çalışmalarla transpozonları keşfetti." },
-    { name: "Santiago Ramón y Cajal", quote: "Beyin karmaşık.", invention: "Nöron Teorisi", detail: "Sinir sistemini oluşturan hücrelerin nöronlar olduğunu gösterdi." },
-    { name: "Ivan Pavlov", quote: "Koşullu refleks.", invention: "Koşullu Refleks", detail: "Köpekler üzerinde yaptığı deneylerle klasik koşullanmayı keşfetti." },
-    { name: "Carl Jung", quote: "Kolektif bilinçaltı.", invention: "Analitik Psikoloji", detail: "Kolektif bilinçaltı ve arketip kavramlarını geliştirdi." },
-    { name: "Erik Erikson", quote: "Psikososyal evreler.", invention: "Psikososyal Gelişim", detail: "İnsan yaşamının 8 evresini tanımlayarak psikososyal gelişim teorisini kurdu." },
-    { name: "Jean Piaget", quote: "Bilişsel gelişim.", invention: "Bilişsel Gelişim Teorisi", detail: "Çocukların bilişsel gelişim evrelerini tanımladı." },
-    { name: "Noam Chomsky", quote: "Dil edinimi doğuştandır.", invention: "Üretken Dilbilgisi", detail: "Dilin doğuştan gelen bir yeti olduğunu savundu." },
-    { name: "Edward Jenner", quote: "Aşılamanın öncüsü.", invention: "Çiçek Aşısı", detail: "Çiçek hastalığına karşı ilk aşıyı geliştirerek immünolojinin temellerini attı." },
-    { name: "Robert Koch", quote: "Mikropla savaş.", invention: "Koch Postulatları", detail: "Şarbon ve tüberküloz etkenlerini keşfederek mikrobiyolojiye büyük katkı sağladı." },
-    { name: "Paul Ehrlich", quote: "Sihirli mermi.", invention: "Kemoterapi", detail: "Frengi tedavisinde kullanılan Salvarsan ilacını geliştirdi." },
-    { name: "Alexander Graham Bell", quote: "Telefon.", invention: "Telefon", detail: "1876'da telefonu icat etti. Sesin elektrik sinyallerine dönüştürülmesi fikrini hayata geçirdi." },
-    { name: "Guglielmo Marconi", quote: "Telsiz iletişim.", invention: "Radyo", detail: "Telsiz telgrafı icat ederek radyo iletişiminin temellerini attı." },
-    { name: "John Logie Baird", quote: "Televizyon.", invention: "Televizyon", detail: "1925'te ilk mekanik televizyon sistemini sergiledi." },
-    { name: "Tim Berners-Lee", quote: "WWW.", invention: "World Wide Web", detail: "1989'da web'in temel protokollerini geliştirerek internetin yaygınlaşmasını sağladı." },
-    { name: "Bill Gates", quote: "Yazılım devrimi.", invention: "Microsoft Windows", detail: "Kişisel bilgisayar yazılım pazarını domine eden Windows işletim sistemini geliştirdi." },
-    { name: "Steve Jobs", quote: "Apple'ın vizyonu.", invention: "iPhone", detail: "Akıllı telefon dönemini başlatarak teknolojiyi yeniden tanımladı." },
-    { name: "Elon Musk", quote: "Uzay ve araba.", invention: "Tesla ve SpaceX", detail: "Elektrikli araçlar ve uzay keşifleri alanında çığır açan şirketlerin kurucusudur." },
-    { name: "Henri Becquerel", quote: "Radyasyonun keşfi.", invention: "Radyoaktivite", detail: "Uranyumun radyasyon yaydığını keşfederek radyoaktivitenin temellerini attı." },
-    { name: "Lise Meitner", quote: "Nükleer fisyon.", invention: "Nükleer Fisyon", detail: "Nükleer fisyonun açıklanmasında kritik rol oynadı." },
-    { name: "Otto Hahn", quote: "Fisyon reaksiyonu.", invention: "Nükleer Fisyon", detail: "Uranyum atomunun fisyonunu keşfederek nükleer enerjinin temelini attı." },
-    { name: "Robert Oppenheimer", quote: "Atom bombası.", invention: "Atom Bombası", detail: "Manhattan Projesi'nin lideri olarak atom bombasının geliştirilmesinde öncü rol oynadı." },
-    { name: "Enrico Fermi", quote: "Kontrollü zincirleme reaksiyon.", invention: "Nükleer Reaktör", detail: "İlk nükleer reaktörü inşa ederek nükleer enerjinin barışçıl kullanımının önünü açtı." },
-    { name: "John Bardeen", quote: "Transistör ve süperiletkenlik.", invention: "Transistör", detail: "Transistörü icat eden ekipte yer aldı. Nobel Fizik Ödülü'nü iki kez kazandı." },
-    { name: "Jack Kilby", quote: "Entegre devre.", invention: "Entegre Devre", detail: "İlk entegre devreyi icat ederek elektronik devrimini başlattı." },
-    { name: "Gordon Moore", quote: "Moore Yasası.", invention: "Moore Yasası", detail: "Entegre devrelerdeki transistör sayısının her iki yılda bir ikiye katlanacağını öngördü." },
-    { name: "Linus Pauling", quote: "Kimya ve barış.", invention: "Kuantum Kimyası", detail: "Kimyasal bağların doğasını açıklayan çalışmalarıyla Nobel Kimya ve Nobel Barış Ödülü sahibidir." },
-    { name: "Dorothy Hodgkin", quote: "Kristalografi.", invention: "X-ışını Kristalografisi", detail: "Penicilline ve vitamin B12'nin yapısını belirleyerek kristalografinin gelişmesine katkı sağladı." },
-    { name: "Ahmed Zewail", quote: "Femtosaniye kimyası.", invention: "Femtosaniye Kimyası", detail: "Kimyasal reaksiyonların ultra hızlı zaman ölçeğinde incelenmesini sağladı." },
-    { name: "Svante Arrhenius", quote: "Sera etkisi.", invention: "Arrhenius Denklemi", detail: "Kimyasal kinetik ve sera etkisi üzerine yaptığı çalışmalarla bilinir." },
-    { name: "Alfred Nobel", quote: "Dinamit ve Nobel Ödülleri.", invention: "Dinamit", detail: "Dinamiti icat eden Nobel, ölümünden sonra mal varlığıyla Nobel ödüllerini başlattı." },
-    { name: "John Dalton", quote: "Atom teorisi.", invention: "Modern Atom Teorisi", detail: "Atomların kütle ve özelliklerini belirleyerek kimyanın temellerini attı." },
-    { name: "Robert Boyle", quote: "Boyle yasası.", invention: "Gaz Yasaları", detail: "Gazların basınç-hacim ilişkisini formüle etti." },
-    { name: "Joseph Priestley", quote: "Oksijenin keşfi.", invention: "Oksijen", detail: "Oksijeni keşfederek yanma olayının anlaşılmasına katkı sağladı." },
-    { name: "Antoine Lavoisier", quote: "Modern kimya.", invention: "Kütlenin Korunumu", detail: "Kimyasal reaksiyonlarda kütlenin korunduğunu kanıtlayarak modern kimyayı kurdu." },
-    { name: "Jöns Jakob Berzelius", quote: "Kimyasal semboller.", invention: "Kimyasal Semboller", detail: "Kimya alanında sembolleri ve atom ağırlıklarını sistematik hale getirdi." },
-    { name: "Humphry Davy", quote: "Elektroliz.", invention: "Sodyum, Potasyum", detail: "Elektroliz yoluyla sodyum, potasyum gibi elementleri keşfetti." },
-    { name: "Amedeo Avogadro", quote: "Avogadro sayısı.", invention: "Molekül Teorisi", detail: "Gazların hacimlerinin molekül sayısıyla orantılı olduğunu gösterdi." },
-    { name: "Heinrich Hertz", quote: "Radyo dalgaları.", invention: "Radyo Dalgaları", detail: "Maxwell'in teorisini doğrulayarak radyo dalgalarını üretti." },
-    { name: "Gustav Kirchhoff", quote: "Spektrum analizi.", invention: "Kirchhoff Yasaları", detail: "Devre teorisi ve spektral analizde önemli katkılar sağladı." },
-    { name: "Robert Bunsen", quote: "Bunsen beki.", invention: "Bunsen Beki", detail: "Kimyada kullanılan Bunsen beki ve spektrum analizinin öncüsüdür." },
-    { name: "Friedrich Wöhler", quote: "Organik sentez.", invention: "Üre Sentezi", detail: "Üre sentezleyerek organik kimyanın temellerini attı." },
-    { name: "Hermann von Helmholtz", quote: "Enerjinin korunumu.", invention: "Enerji Korunumu", detail: "Termodinamiğin ilk yasasına katkı sağladı." },
-    { name: "James Joule", quote: "Isı ve enerji.", invention: "Joule Yasası", detail: "Isı ve iş arasındaki ilişkiyi gösterdi." },
-    { name: "William Thomson (Lord Kelvin)", quote: "Mutlak sıfır.", invention: "Kelvin Skalası", detail: "Mutlak sıcaklık skalasını geliştirdi." },
-    { name: "Rudolf Clausius", quote: "Termodinamik.", invention: "Entropi Kavramı", detail: "Termodinamiğin ikinci yasasını formüle etti." },
-    { name: "Ludwig Boltzmann", quote: "Entropi ve olasılık.", invention: "İstatistiksel Mekanik", detail: "Entropiyi olasılıkla ilişkilendirdi." },
-    { name: "Edwin Hubble", quote: "Genişleyen evren.", invention: "Hubble Yasası", detail: "Galaksilerin uzaklaştığını keşfederek evrenin genişlediğini gösterdi." },
-    { name: "Frederick Banting", quote: "İnsülin.", invention: "İnsülin Tedavisi", detail: "İnsülin keşfederek diyabet tedavisinde devrim yarattı." },
-    { name: "Howard Florey", quote: "Penisilinin üretimi.", invention: "Penisilin Üretimi", detail: "Penisilini seri üretime hazırlayarak tıpta kullanımını sağladı." },
-    { name: "Ernst Chain", quote: "Penisilinin işlevi.", invention: "Penisilin", detail: "Fleming ve Florey ile birlikte penisilin üzerine çalıştı." },
-    { name: "Thomas H. Morgan", quote: "Genler kromozomlarda.", invention: "Gen Haritaları", detail: "Meyve sinekleri üzerinde yaptığı çalışmalarla genlerin kromozomlarda olduğunu gösterdi." },
-    { name: "Hermann Muller", quote: "Radyasyon ve genetik.", invention: "Mutajenez", detail: "Radyasyonun genetik mutasyona neden olduğunu keşfetti." },
-    { name: "Selman Waksman", quote: "Streptomisin.", invention: "Streptomisin", detail: "Tüberküloz tedavisinde kullanılan streptomisini keşfetti." },
-    { name: "Tu Youyou", quote: "Artemisinin.", invention: "Sıtma Tedavisi", detail: "Sıtma tedavisinde kullanılan artemisinin'i keşfetti." },
-    { name: "Barry Marshall", quote: "Helikobakter.", invention: "Helikobakter Pylori", detail: "Mide ülserinin bakteriden kaynaklandığını kanıtladı." },
-    { name: "Robin Warren", quote: "Helikobakter işbirliği.", invention: "Helikobakter Pylori", detail: "Marshall ile birlikte çalışarak ülserin bakteriyel nedenini gösterdi." },
-    { name: "Harvey Alter", quote: "Hepatit C virüsü.", invention: "Hepatit C", detail: "Hepatit C virüsünü keşfederek kan testlerinin gelişmesini sağladı." },
-    { name: "Baruch Blumberg", quote: "Hepatit B virüsü.", invention: "Hepatit B", detail: "Hepatit B virüsünü keşfederek aşı geliştirilmesine öncü oldu." },
-    { name: "Michael S. Brown", quote: "Kolesterol metabolizması.", invention: "LDL Reseptörü", detail: "Kolesterol düzenlemesiyle ilgili keşifleriyle tanınır." },
-    { name: "Joseph L. Goldstein", quote: "Kolesterol metabolizması.", invention: "LDL Reseptörü", detail: "Brown ile birlikte kolesterol metabolizmasını aydınlattı." },
-    { name: "Mae Jemison", quote: "Uzayda siyahi kadın.", invention: "Uzay Misyonu", detail: "Uzaya çıkan ilk siyahi kadın astronot olarak NASA'da görev aldı." },
-    { name: "Neil Armstrong", quote: "İnsanlık için küçük bir adım.", invention: "Ay'a Ayak Basma", detail: "1969'da Ay'a ayak basan ilk insan olarak tarihe geçti." },
-    { name: "Buzz Aldrin", quote: "Ay'da yürüdük.", invention: "Ay Misyonu", detail: "Apollo 11 ile Ay'a inen ekipte ikinci insan olarak yer aldı." }
-];
-
-function showRandomScientist() {
-    const s = scientists[Math.floor(Math.random() * scientists.length)];
-    document.getElementById('history-list').innerHTML = `
-        <div style="font-size:14px; font-weight:600; color:var(--text-heading);">🧪 ${s.name}</div>
-        <div style="font-style:italic; margin:4px 0 8px 0; color:var(--text-main);">“${s.quote}”</div>
-        <div style="font-size:13px; color:var(--accent-color); font-weight:600;">🔬 Buluş: ${s.invention}</div>
-        <div style="font-size:12px; color:var(--text-main); margin-top:4px; line-height:1.6;">${s.detail}</div>
-        <button class="btn-small" onclick="showRandomScientist()" style="margin-top:8px;background:var(--bg-btn);border:1px solid var(--border-color);color:var(--text-btn);padding:4px 12px;border-radius:16px;font-size:10px;cursor:pointer;">🔄 Başka Bir Bilim İnsanı</button>
-    `;
-}
-
-// ŞEHİR İSİMLERİ (81 İL) – GERÇEK VE DETAYLI AÇIKLAMALAR
-const cityMeanings = [
-    { city: "Adana", meaning: "Hitit tanrısı Adanus", detail: "Adana'nın adı, Hitit döneminde 'Uru Adaniya' olarak geçer. Bu isim, Hitit tanrısı Adanus'tan türemiştir. Çukurova'nın verimli toprakları üzerinde kurulan kent, tarih boyunca önemli bir tarım ve ticaret merkezi olmuştur." },
-    { city: "Adıyaman", meaning: "Arapça 'Adı' (ada) + 'yaman' (sağlam)", detail: "Adıyaman, tarihi kaleleriyle ünlüdür. Şehrin adı, Arapça 'ada' ve 'sağlam' kelimelerinden oluşur ve buradaki kalenin sağlamlığına işaret eder. Kommagene Krallığı'na ev sahipliği yapmıştır." },
-    { city: "Afyonkarahisar", meaning: "Afyon (haşhaş) + kara (siyah) + hisar (kale)", detail: "Bölgede yetişen haşhaş bitkisinden dolayı 'afyon' adını almış, kale ise siyah taşlı bir hisardır. Osmanlı döneminde önemli bir afyon üretim merkeziydi." },
-    { city: "Ağrı", meaning: "Ağrı Dağı (Ararat)", detail: "Ağrı, adını dünyaca ünlü Ağrı Dağı'ndan alır. Dağın adı Sümerce 'Aratta' kelimesinden gelir. İncil'de Nuh'un Gemisi'nin bu dağa oturduğu inancı yaygındır." },
-    { city: "Aksaray", meaning: "Ak (beyaz) + saray", detail: "Aksaray, Selçuklu döneminde inşa edilen beyaz renkli saraydan dolayı bu adı almıştır. İpekyolu üzerinde önemli bir konaklama noktasıydı." },
-    { city: "Amasya", meaning: "Amasya (Amasis)", detail: "Antik dönemde 'Amaseia' olarak bilinen şehir, Pontus Kralı Mithridates tarafından kurulmuştur. Ferhat ile Şirin aşkının mekanı olarak da ünlüdür." },
-    { city: "Ankara", meaning: "Ancyra (Frigya tanrıçası)", detail: "Ankara'nın eski adı Ancyra'dır ve Frigya tanrıçası Kybele'ye atfen verilmiştir. Hitit, Frig, Roma ve Osmanlı medeniyetlerine ev sahipliği yapmıştır." },
-    { city: "Antalya", meaning: "Attaleia (Bergama kralı)", detail: "Bergama Kralı II. Attalos tarafından kurulan kent, onun adıyla anılmıştır. Akdeniz'in incisi olarak bilinir ve Roma döneminde önemli bir liman kentiydi." },
-    { city: "Ardahan", meaning: "Gürcüce 'Artaani'", detail: "Ardahan, Gürcüce 'Artaani' veya Ermenice 'Ardahan' isimleriyle bilinir. Tarihi boyunca Gürcü, Ermeni ve Türk medeniyetlerinin kesişim noktası olmuştur." },
-    { city: "Artvin", meaning: "Eski Gürcüce 'Artvin'", detail: "Artvin, eski Gürcüce bir isimdir. Bölge, Gürcü Krallığı'nın önemli merkezlerinden biriydi ve Karadeniz'in doğusunda stratejik bir konuma sahiptir." },
-    { city: "Aydın", meaning: "Aydın (parlak, aydınlık)", detail: "Antik dönemde 'Tralles' olarak bilinen şehir, Osmanlı döneminde Aydın adını almıştır. Adını, bölgenin verimli ve aydınlık doğasından alır." },
-    { city: "Balıkesir", meaning: "Eski adı 'Balıkesir'", detail: "Balıkesir, 'bal' ve 'kesir' (yarmak) kelimelerinden türemiştir. Antik dönemde 'Mysia' olarak bilinirdi." },
-    { city: "Bartın", meaning: "Antik 'Parthenios'", detail: "Bartın, antik dönemde 'Parthenios' olarak bilinir. Bartın Çayı, bu dönemde önemli bir su yoluydu." },
-    { city: "Batman", meaning: "Eski adı 'Batman'", detail: "Batman, adını Batman Çayı'ndan alır. Bölge, tarih boyunca Asur ve Urartu medeniyetlerine ev sahipliği yapmıştır." },
-    { city: "Bayburt", meaning: "Eski adı 'Bayburt'", detail: "Bayburt, antik çağda 'Bayburt' olarak anılırdı. Selçuklu ve Osmanlı dönemlerinde Doğu Anadolu'nun önemli savunma kalelerinden biriydi." },
-    { city: "Bilecik", meaning: "Eski adı 'Bilecik'", detail: "Bilecik, Osmanlı İmparatorluğu'nun kuruluş topraklarındandır. Şehrin adı, 'bile' (belki) ve 'cik' (küçük) kelimelerinden türemiş olabilir." },
-    { city: "Bingöl", meaning: "Bin göl", detail: "Bingöl, bölgedeki çok sayıda gölden dolayı bu adı almıştır. Şehir, Doğu Anadolu'nun yüksek platolarında yer alır." },
-    { city: "Bitlis", meaning: "Eski adı 'Bitlis'", detail: "Bitlis, antik dönemde 'Bitlis' olarak anılırdı. Urartu Krallığı'na ev sahipliği yapmış olan şehir, tarihi evleri ve kaleleriyle bilinir." },
-    { city: "Bolu", meaning: "Antik 'Bithynion'", detail: "Bolu, antik Bithynion kentidir. Osmanlı döneminde İstanbul'u doğuya bağlayan yollar üzerinde önemli bir duraktı." },
-    { city: "Burdur", meaning: "Eski adı 'Burdur'", detail: "Burdur, antik dönemde 'Burdur' olarak anılırdı. Pisidia bölgesinin önemli yerleşimlerindendir." },
-    { city: "Bursa", meaning: "Prusa (Bitinya kralı)", detail: "Bursa, Bitinya Kralı I. Prusias tarafından kurulmuştur. Osmanlı İmparatorluğu'nun ilk başkenti olarak bilinir." },
-    { city: "Çanakkale", meaning: "Çanak + Kale", detail: "Çanakkale, kalenin yanında yapılan çömleklerden ve tarihi kalelerinden adını alır. Çanakkale Zaferi ile dünya tarihinde önemli bir yere sahiptir." },
-    { city: "Çankırı", meaning: "Eski adı 'Çankırı'", detail: "Çankırı, antik dönemde 'Çankırı' olarak anılırdı. Osmanlı döneminde kalesiyle ünlüydü." },
-    { city: "Çorum", meaning: "Eski adı 'Çorum'", detail: "Çorum, Hitit İmparatorluğu'nun başkenti Hattuşaş'a ev sahipliği yapmıştır. Adı, 'çor' (su) kelimesinden gelebilir." },
-    { city: "Denizli", meaning: "Denizli (deniz anlamında değil)", detail: "Denizli, antik dönemde 'Denizli' olarak anılırdı. 'Deniz' kelimesi, burada büyük su birikintilerine işaret edebilir." },
-    { city: "Diyarbakır", meaning: "Diyar-ı Bekir (Bekir'in diyarı)", detail: "Diyarbakır, Arapça 'Diyar-ı Bekir' (Bekir aşiretinin diyarı) tamlamasından türemiştir. Tarihi surları UNESCO Dünya Mirası'dır." },
-    { city: "Düzce", meaning: "Düz + ce (düz arazi)", detail: "Düzce, düz arazisi nedeniyle bu adı almıştır. Karadeniz'e yakın verimli bir ovadır." },
-    { city: "Edirne", meaning: "Eski adı 'Edirne'", detail: "Edirne, antik dönemde 'Orestias' olarak bilinirken, Osmanlı döneminde Edirne adını almıştır. Osmanlı'nın ikinci başkentidir." },
-    { city: "Elazığ", meaning: "Eski adı 'Elazığ'", detail: "Elazığ, tarihi Harput şehrinin yakınında kurulmuştur. 'Elazığ' adı, 'el' (etraf) ve 'azığ' (azık) kelimelerinden gelebilir." },
-    { city: "Erzincan", meaning: "Eski adı 'Erzincan'", detail: "Erzincan, antik dönemde 'Erzincan' olarak anılırdı. Tarihi ipek yolu üzerinde önemli bir duraktı." },
-    { city: "Erzurum", meaning: "Arz-ı Rum (Rumların yeri)", detail: "Erzurum, Arapça 'Arz-ı Rum' (Rum diyarı) tamlamasından türemiştir. Selçuklu ve Osmanlı dönemlerinde Doğu Anadolu'nun en önemli merkeziydi." },
-    { city: "Eskişehir", meaning: "Eski + Şehir", detail: "Eskişehir, antik Dorylaion kentinin kalıntıları üzerine kurulduğu için bu adı almıştır. Hitit, Frig ve Roma dönemlerinde yerleşim görmüştür." },
-    { city: "Gaziantep", meaning: "Gazi + Antep", detail: "Gaziantep, Kurtuluş Savaşı'ndaki kahramanlığından dolayı 'Gazi' unvanını almıştır. 'Antep' ise Arapça 'antab' (güzel su) kelimesinden gelir." },
-    { city: "Giresun", meaning: "Antik 'Cerasus'", detail: "Giresun, antik dönemde 'Cerasus' olarak bilinir. Kirazın anavatanı olarak kabul edilir." },
-    { city: "Gümüşhane", meaning: "Gümüş + hane", detail: "Gümüşhane, bölgede bulunan gümüş madenlerinden dolayı bu adı almıştır. Osmanlı döneminde önemli bir maden şehriydi." },
-    { city: "Hakkâri", meaning: "Eski adı 'Hakkâri'", detail: "Hakkâri, dağlık bir bölge olup, adının Süryanice 'Hakar' (dağ) kelimesinden geldiği düşünülür." },
-    { city: "Hatay", meaning: "Eski adı 'Hatay'", detail: "Hatay, tarihi boyunca birçok medeniyete ev sahipliği yapmıştır. Adı, Türkiye'ye katıldığı 1939'dan sonra 'Hatay' olarak kalmıştır." },
-    { city: "Iğdır", meaning: "Eski adı 'Iğdır'", detail: "Iğdır, Oğuz Türkleri'nin Iğdır boyundan adını alır. Ağrı Dağı'nın eteklerinde yer alır." },
-    { city: "Isparta", meaning: "Antik 'Sparta'", detail: "Isparta, antik dönemde 'Sparta' ile ilişkilendirilir. Gül yetiştiriciliği ve gül suyu ile ünlüdür." },
-    { city: "İstanbul", meaning: "Eis tin polin (şehre doğru)", detail: "İstanbul, Yunanca 'eis tin polin' (şehre doğru) ifadesinden türemiştir. Tarih boyunca Byzantion, Konstantinopolis gibi isimler almıştır." },
-    { city: "İzmir", meaning: "Smyrna (Amazon kraliçesi)", detail: "İzmir, antik Smyrna kentinden gelir. Bir Amazon kraliçesi veya 'myrrha' (mür) kelimesiyle ilişkilendirilir." },
-    { city: "Kahramanmaraş", meaning: "Kahraman + Maraş", detail: "Kahramanmaraş, Kurtuluş Savaşı'ndaki kahramanlığından dolayı 'Kahraman' unvanını almıştır. 'Maraş' Arapça 'maraş' (bataklık) anlamına gelir." },
-    { city: "Karabük", meaning: "Kara + bük (vadi)", detail: "Karabük, 'kara' (siyah) ve 'bük' (vadi) kelimelerinden oluşur. Demir-çelik endüstrisiyle bilinir." },
-    { city: "Karaman", meaning: "Eski adı 'Karaman'", detail: "Karaman, Karamanoğulları Beyliği'ne başkentlik yapmıştır. Adını, beylik kurucusu Kerimüddin Karaman Bey'den alır." },
-    { city: "Kars", meaning: "Eski adı 'Kars'", detail: "Kars, tarihi boyunca birçok medeniyete ev sahipliği yapmıştır. Kalesi ve Ani Harabeleri ile ünlüdür." },
-    { city: "Kastamonu", meaning: "Eski adı 'Kastamonu'", detail: "Kastamonu, antik dönemde 'Castamon' olarak bilinir. Türk-İslam eserleri ve tarihi evleriyle tanınır." },
-    { city: "Kayseri", meaning: "Caesarea (Sezar'a ait)", detail: "Kayseri, antik dönemde Caesar (Sezar) onuruna Caesarea olarak adlandırılmıştır. Kapadokya bölgesinin önemli merkezlerinden biridir." },
-    { city: "Kırıkkale", meaning: "Kırık + Kale", detail: "Kırıkkale, şehirdeki kırık (harabe) kaleye atfen verilmiştir. Sanayi ve silah üretimiyle bilinir." },
-    { city: "Kırklareli", meaning: "Kırklar Eli", detail: "Kırklareli, adını 'kırklar' (40 kişi) ve 'eli' (yer) kelimelerinden alır. Balkanlar'da stratejik bir konuma sahiptir." },
-    { city: "Kırşehir", meaning: "Kır + Şehir", detail: "Kırşehir, adını 'kır' (step) ve 'şehir' kelimelerinden alır. Ahi Evran'ın türbesi burada bulunur." },
-    { city: "Kocaeli", meaning: "Koca + Eli (büyük il)", detail: "Kocaeli, Osmanlı döneminde 'Koca İli' (büyük il) olarak adlandırılmış, zamanla Kocaeli'ye dönüşmüştür." },
-    { city: "Konya", meaning: "Iconium (ikon)", detail: "Konya, antik Iconium kentidir. 'İkon' kelimesinden gelir ve Selçuklu başkenti olarak önemli bir dini merkez olmuştur." },
-    { city: "Kütahya", meaning: "Eski adı 'Kütahya'", detail: "Kütahya, Osmanlı döneminde çini ve seramikleriyle ünlüydü. Adı, 'Kütahya' olarak anılmıştır." },
-    { city: "Malatya", meaning: "Eski adı 'Malatya'", detail: "Malatya, Hitit ve Asur dönemlerinde önemli bir yerleşimdi. Kayısı üretimiyle bilinir." },
-    { city: "Manisa", meaning: "Magnesia (Magnes)", detail: "Manisa, antik Magnesia kentidir. Osmanlı şehzadelerinin sancak merkezi olmuştur." },
-    { city: "Mardin", meaning: "Süryanice 'Marda'", detail: "Mardin, Süryanice 'Marda' (kale) kelimesinden gelir. Tarihi konakları ve camileriyle ünlüdür." },
-    { city: "Mersin", meaning: "Mersin (mersin bitkisi)", detail: "Mersin, adını çevrede bolca yetişen mersin ağaçlarından (Myrtus communis) alır. Akdeniz'in önemli liman kentlerindendir." },
-    { city: "Muğla", meaning: "Eski adı 'Muğla'", detail: "Muğla, adını 'Mogola' veya 'Mugla' gibi eski isimlerden alır. Tarihi ve doğal güzellikleriyle ünlüdür." },
-    { city: "Muş", meaning: "Eski adı 'Muş'", detail: "Muş, adını 'Muş' olarak anılan antik yerleşimden alır. Malazgirt Savaşı bu yakınlarda gerçekleşmiştir." },
-    { city: "Nevşehir", meaning: "Nev + Şehir (yeni şehir)", detail: "Nevşehir, Farsça 'nev' (yeni) ve 'şehir' kelimelerinden oluşur. Kapadokya bölgesinde yer alır." },
-    { city: "Niğde", meaning: "Eski adı 'Niğde'", detail: "Niğde, antik dönemde 'Nakita' veya 'Niğde' olarak bilinir. Aladağlar ve tarihi kaleleriyle meşhurdur." },
-    { city: "Ordu", meaning: "Ordu (askeri birlik)", detail: "Ordu, adını Osmanlı döneminde burada konaklayan ordu birliklerinden alır. Karadeniz'in önemli şehirlerindendir." },
-    { city: "Osmaniye", meaning: "Osman + iye", detail: "Osmaniye, Osman Gazi'ye ithafen adlandırılmıştır. Çukurova'nın doğusunda yer alır." },
-    { city: "Rize", meaning: "Eski adı 'Rize'", detail: "Rize, adını 'Rize' olarak anılan antik yerleşimden alır. Çay yetiştiriciliğiyle ünlüdür." },
-    { city: "Sakarya", meaning: "Sakarya Nehri", detail: "Sakarya, adını ülkenin en uzun nehirlerinden biri olan Sakarya Nehri'nden alır. Osmanlı ve Cumhuriyet döneminde önemli bir merkezdir." },
-    { city: "Samsun", meaning: "Amisos'tan türeme", detail: "Samsun, antik Amisos kentinin adından evrilmiştir. Mustafa Kemal Atatürk'ün Samsun'a çıkışı ile Kurtuluş Savaşı'nın başlangıcı olmuştur." },
-    { city: "Siirt", meaning: "Eski adı 'Siirt'", detail: "Siirt, adını 'Siirt' olarak anılan antik yerleşimden alır. Tarihi evleri ve camileriyle bilinir." },
-    { city: "Sinop", meaning: "Eski adı 'Sinop'", detail: "Sinop, antik dönemde 'Sinope' olarak bilinir. Karadeniz'in en eski liman şehirlerinden biridir." },
-    { city: "Sivas", meaning: "Eski adı 'Sivas'", detail: "Sivas, antik dönemde 'Sebastea' olarak bilinir. Selçuklu ve Osmanlı dönemlerinde önemli bir ticaret merkeziydi." },
-    { city: "Şanlıurfa", meaning: "Şanlı + Urfa", detail: "Şanlıurfa, Kurtuluş Savaşı'ndaki kahramanlığından dolayı 'Şanlı' unvanını almıştır. 'Urfa' Süryanice 'Ur' (şehir) + 'fa' (su) kelimelerinden gelir." },
-    { city: "Şırnak", meaning: "Eski adı 'Şırnak'", detail: "Şırnak, adını 'Şırnak' olarak anılan antik yerleşimden alır. Dağlık bölgeleriyle bilinir." },
-    { city: "Tekirdağ", meaning: "Tekir (benekli) + dağ", detail: "Tekirdağ, adını 'tekir' (benekli) ve 'dağ' kelimelerinden alır. Trakya bölgesinin önemli şehirlerindendir." },
-    { city: "Tokat", meaning: "Eski adı 'Tokat'", detail: "Tokat, adını 'Tokat' olarak anılan antik yerleşimden alır. Tarihi camileri ve hanlarıyla ünlüdür." },
-    { city: "Trabzon", meaning: "Trapezus (masa)", detail: "Trabzon, antik Yunanca 'trapeza' (masa) kelimesinden gelir. Şehrin bir masa gibi düzlükte kurulduğu düşünülür." },
-    { city: "Tunceli", meaning: "Eski adı 'Tunceli'", detail: "Tunceli, adını 'tunceli' (beyaz) kelimesinden alır. Munzur Vadisi ve doğal güzellikleriyle bilinir." },
-    { city: "Uşak", meaning: "Eski adı 'Uşak'", detail: "Uşak, adını 'Uşak' olarak anılan antik yerleşimden alır. Halı ve kilim dokumacılığıyla ünlüdür." },
-    { city: "Van", meaning: "Bianili (Urartu)", detail: "Van, Urartu döneminde Bianili olarak bilinir. Van Gölü ile özdeşleşmiş ve tarihi Urartu kaleleriyle ünlüdür." },
-    { city: "Yalova", meaning: "Eski adı 'Yalova'", detail: "Yalova, adını 'yalova' (güzel) kelimesinden alır. Kaplıcaları ve termal kaynaklarıyla bilinir." },
-    { city: "Yozgat", meaning: "Eski adı 'Yozgat'", detail: "Yozgat, adını 'Yozgat' olarak anılan antik yerleşimden alır. Osmanlı döneminde bir sancak merkeziydi." },
-    { city: "Zonguldak", meaning: "Eski adı 'Zonguldak'", detail: "Zonguldak, adını 'Zonguldak' olarak anılan antik yerleşimden alır. Türkiye'nin önemli kömür madenlerine ev sahipliği yapar." }
-];
-
-function showRandomCity() {
-    const c = cityMeanings[Math.floor(Math.random() * cityMeanings.length)];
-    document.getElementById('history-list').innerHTML = `
-        <div style="font-size:14px; font-weight:600; color:var(--text-heading);">🏙️ ${c.city}</div>
-        <div style="font-size:13px; color:var(--accent-color); margin:4px 0;">Anlamı: ${c.meaning}</div>
-        <div style="font-size:12px; color:var(--text-main); line-height:1.6;">${c.detail}</div>
-        <button class="btn-small" onclick="showRandomCity()" style="margin-top:8px;background:var(--bg-btn);border:1px solid var(--border-color);color:var(--text-btn);padding:4px 12px;border-radius:16px;font-size:10px;cursor:pointer;">🔄 Başka Şehir</button>
-    `;
-}
-
-// ========== loadHistory ==========
-function loadHistory(category = 'events', date = null) {
-    const listEl = document.getElementById('history-list');
-    listEl.innerHTML = '<div class="history-loading">⏳ Yükleniyor</div>';
-    
-    if (category === 'culture') {
-        initCultureQuiz();
-        return;
-    }
-    if (category === 'laws') {
-        showRandomLaw();
-        return;
-    }
-    if (category === 'scientists') {
-        showRandomScientist();
-        return;
-    }
-    if (category === 'cities') {
-        showRandomCity();
-        return;
-    }
-
-    let now;
-    if (date) {
-        now = new Date(date);
-        if (isNaN(now.getTime())) now = new Date();
-    } else now = new Date();
-    const day = now.getDate();
-    const month = now.getMonth() + 1;
-    const year = now.getFullYear();
-    const monthNames = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
-    document.getElementById('history-title-date').textContent = `- ${day} ${monthNames[month-1]} ${year}`;
-    document.getElementById('history-date-display').textContent = `${day}.${month}.${year}`;
-
-    const dateInput = document.getElementById('history-date-input');
-    if (!dateInput.value) {
-        const y = now.getFullYear();
-        const m = String(month).padStart(2, '0');
-        const d = String(day).padStart(2, '0');
-        dateInput.value = `${y}-${m}-${d}`;
-    }
-
-    if (category === 'all') category = 'events';
-    let url = `https://api.wikimedia.org/feed/v1/wikipedia/tr/onthisday/${category}/${month}/${day}`;
-    const filterCategories = ['wars', 'politics'];
-    if (filterCategories.includes(category)) {
-        url = `https://api.wikimedia.org/feed/v1/wikipedia/tr/onthisday/events/${month}/${day}`;
-    }
-
-    fetch(url)
-        .then(res => {
-            if (!res.ok) throw new Error('API yanıt vermedi');
-            return res.json();
-        })
-        .then(data => {
-            let events = [];
-            if (filterCategories.includes(category)) {
-                events = data.events || [];
-                const filters = {
-                    wars: ['savaş', 'muharebe', 'savaşı', 'savaşında', 'çarpışma', 'işgal', 'kuşatma', 'barış antlaşması', 'ateşkes'],
-                    politics: ['siyaset', 'seçim', 'başbakan', 'cumhurbaşkanı', 'bakan', 'milletvekili', 'senato', 'meclis', 'darbe', 'devrim', 'antlaşma', 'barış']
-                };
-                const keywords = filters[category] || [];
-                events = events.filter(e => {
-                    if (!e.text) return false;
-                    const text = e.text.toLowerCase();
-                    return keywords.some(kw => text.includes(kw));
-                });
-            } else {
-                if (category === 'events') events = data.events || [];
-                else events = data[category] || [];
-            }
-
-            events.sort((a, b) => b.year - a.year);
-            if (events.length === 0) {
-                listEl.innerHTML = `<div class="history-empty">📭 Bu kategoride veya tarihte (${day}.${month}.${year}) kayıt bulunamadı.</div>`;
-                return;
-            }
-
-            listEl.innerHTML = events.map(e => {
-                let yearText = e.year || '?';
-                let text = e.text || 'Açıklama yok';
-                text = text.replace(/ş/g, 'ş').replace(/ğ/g, 'ğ').replace(/ü/g, 'ü')
-                           .replace(/ö/g, 'ö').replace(/ç/g, 'ç').replace(/ı/g, 'ı')
-                           .replace(/Ş/g, 'Ş').replace(/Ğ/g, 'Ğ').replace(/Ü/g, 'Ü')
-                           .replace(/Ö/g, 'Ö').replace(/Ç/g, 'Ç').replace(/İ/g, 'İ');
-                const highlightWords = ['doğdu', 'öldü', 'savaş', 'antlaşma', 'imzalandı', 'kuruldu', 'keşfedildi'];
-                let highlightedText = text;
-                highlightWords.forEach(word => {
-                    const regex = new RegExp(`(${word})`, 'gi');
-                    highlightedText = highlightedText.replace(regex, '<span class="highlight">$1</span>');
-                });
-                return `<div class="history-item"><span class="history-year">${yearText}</span><span class="history-text">${highlightedText}</span></div>`;
-            }).join('');
-        })
-        .catch(err => {
-            listEl.innerHTML = `<div class="history-empty">⚠️ Veri yüklenirken hata oluştu: ${err.message}</div>`;
-        });
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    const dateInput = document.getElementById('history-date-input');
-    const toggleBtn = document.getElementById('history-toggle');
-    toggleBtn.addEventListener('click', toggleHistory);
-
-    const today = new Date();
-    const y = today.getFullYear();
-    const m = String(today.getMonth() + 1).padStart(2, '0');
-    const d = String(today.getDate()).padStart(2, '0');
-    dateInput.value = `${y}-${m}-${d}`;
-
-    dateInput.addEventListener('change', function() {
-        const selectedDate = this.value;
-        const activeBtn = document.querySelector('.filter-btn.active');
-        const category = activeBtn ? activeBtn.dataset.category : 'events';
-        loadHistory(category, selectedDate);
-    });
-
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-            const category = this.dataset.category;
-            const selectedDate = dateInput.value || null;
-            loadHistory(category, selectedDate);
-        });
-    });
-
-    loadHistory('events', dateInput.value);
-});
 
 // ========== MÜZİK ==========
 const musicList=[{title:"",url:"./muzikler/3.mp3"},{title:"",url:"./muzikler/2.mp3"},{title:"",url:"./muzikler/7.mp3"},{title:"",url:"./muzikler/12345.mp3"},{title:"",url:"./muzikler/4.mp3"},{title:"",url:"./muzikler/18.mp3"},{title:"",url:"./muzikler/26.mp3"},{title:"",url:"./muzikler/19.mp3"},{title:"",url:"./muzikler/27.mp3"},{title:"",url:"./muzikler/20.mp3"},{title:"",url:"./muzikler/28.mp3"},{title:"",url:"./muzikler/29.mp3"},{title:"",url:"./muzikler/30.mp3"},{title:"",url:"./muzikler/31.mp3"},{title:"",url:"./muzikler/25.mp3"},{title:"",url:"./muzikler/21.mp3"},{title:"",url:"./muzikler/22.mp3"},{title:"",url:"./muzikler/23.mp3"},{title:"",url:"./muzikler/24.mp3"},{title:"",url:"./muzikler/1.mp3"},{title:"",url:"./muzikler/5.mp3"},{title:"",url:"./muzikler/6.mp3"},{title:"",url:"./muzikler/8.mp3"},{title:"",url:"./muzikler/9.mp3"},{title:"",url:"./muzikler/10.mp3"},{title:"",url:"./muzikler/11.mp3"},{title:"",url:"./muzikler/12.mp3"},{title:"",url:"./muzikler/13.mp3"},{title:"",url:"./muzikler/14.mp3"},{title:"",url:"./muzikler/15.mp3"},{title:"",url:"./muzikler/16.mp3"},{title:"",url:"./muzikler/17.mp3"}];
@@ -1817,12 +1146,482 @@ function runTengriDetector(){
     }
 }
 
-window.addEventListener("DOMContentLoaded",()=>{
-    const dd=document.querySelector(".id-dark-dot");
-    if(dd) changeTheme('dark',dd);
+// ========== KEŞFET BÖLÜMÜ (Kültür Testi, Kanunlar, Bilim Adamları, Şehir İsimleri) ==========
+// KÜLTÜR TESTİ (100 SORU)
+const cultureQuiz = [
+    { q: "Hangi ülkenin bayrağında kırmızı, beyaz ve mavi yatay şeritler vardır?", options: ["Fransa", "Hollanda", "Rusya", "Türkiye"], correct: 0 },
+    { q: "Dünyanın en kalabalık ülkesi hangisidir?", options: ["Hindistan", "Çin", "ABD", "Endonezya"], correct: 0 },
+    { q: "Hangi şehir iki kıta üzerinde kurulmuştur?", options: ["İstanbul", "Moskova", "Kahire", "Londra"], correct: 0 },
+    { q: "Hangi ülkenin resmi dili İspanyolca değildir?", options: ["Meksika", "Arjantin", "Brezilya", "Kolombiya"], correct: 0 },
+    { q: "Dünyanın en uzun nehri hangisidir?", options: ["Nil", "Amazon", "Yangtze", "Mississippi"], correct: 0 },
+    { q: "Hangi ülke 'Güneşin Ülkesi' olarak bilinir?", options: ["Japonya", "Avustralya", "Hindistan", "Peru"], correct: 0 },
+    { q: "Hangi meşhur yapı Hindistan'da bulunur?", options: ["Tac Mahal", "Çin Seddi", "Kolezyum", "Eyfel Kulesi"], correct: 0 },
+    { q: "Hangi ülkenin para birimi Euro değildir?", options: ["Almanya", "Fransa", "İngiltere", "İtalya"], correct: 0 },
+    { q: "Dünyanın en büyük okyanusu hangisidir?", options: ["Pasifik", "Atlas", "Hint", "Arktik"], correct: 0 },
+    { q: "Hangi ülke Afrika kıtasında yer almaz?", options: ["Mısır", "Nijerya", "Suudi Arabistan", "Güney Afrika"], correct: 0 },
+    { q: "Hangi ülkenin başkenti Ankara'dır?", options: ["Türkiye", "Suriye", "Irak", "İran"], correct: 0 },
+    { q: "Dünyanın en soğuk yerleşim yeri hangisidir?", options: ["Oymyakon", "Antarktika", "Alaska", "Grönland"], correct: 0 },
+    { q: "Hangi ülke çayı ile ünlüdür?", options: ["Çin", "Hindistan", "Türkiye", "İngiltere"], correct: 0 },
+    { q: "Hangi şehir 'Ebedi Şehir' olarak bilinir?", options: ["Roma", "İstanbul", "Paris", "Atina"], correct: 0 },
+    { q: "Hangi ülkenin bayrağında yıldız ve hilal vardır?", options: ["Türkiye", "Cezayir", "Pakistan", "Malezya"], correct: 0 },
+    { q: "Dünyanın en yüksek dağı hangisidir?", options: ["Everest", "K2", "Denali", "Elbrus"], correct: 0 },
+    { q: "Hangi ülkenin başkenti Buenos Aires'tir?", options: ["Arjantin", "Brezilya", "Şili", "Uruguay"], correct: 0 },
+    { q: "Hangi ülke 'Akdeniz'in incisi' olarak bilinir?", options: ["İtalya", "Yunanistan", "İspanya", "Türkiye"], correct: 0 },
+    { q: "Hangi gezegen 'Kızıl Gezegen' olarak bilinir?", options: ["Mars", "Venüs", "Jüpiter", "Merkür"], correct: 0 },
+    { q: "Hangi ülke en fazla UNESCO Dünya Mirası alanına sahiptir?", options: ["İtalya", "Çin", "Fransa", "İspanya"], correct: 0 },
+    { q: "İlk insanın Ay'a ayak bastığı yıl hangisidir?", options: ["1965", "1969", "1972", "1957"], correct: 0 },
+    { q: "Hangi ülkenin resmi dili Portekizcedir?", options: ["Brezilya", "Arjantin", "Meksika", "Uruguay"], correct: 0 },
+    { q: "Hangi elementin sembolü 'Au'dur?", options: ["Altın", "Gümüş", "Bakır", "Demir"], correct: 0 },
+    { q: "Hangi ülke 'Aslan Krallığı' olarak bilinir?", options: ["Lesotho", "Svaziland", "Kenya", "Tanzanya"], correct: 0 },
+    { q: "Dünyanın en büyük adası hangisidir?", options: ["Grönland", "Yeni Gine", "Borneo", "Madagaskar"], correct: 0 },
+    { q: "Hangi ülkenin başkenti Ottawa'dır?", options: ["Kanada", "ABD", "Avustralya", "Yeni Zelanda"], correct: 0 },
+    { q: "Hangi okyanus en derindir?", options: ["Pasifik", "Atlantik", "Hint", "Arktik"], correct: 0 },
+    { q: "Hangi ülke 'Yeni Dünya' olarak adlandırılmıştır?", options: ["Amerika", "Avustralya", "Yeni Zelanda", "Kanada"], correct: 0 },
+    { q: "Hangi gezegen Güneş sisteminde en büyüktür?", options: ["Jüpiter", "Satürn", "Uranüs", "Neptün"], correct: 0 },
+    { q: "İlk yazılı kanunlar hangi uygarlığa aittir?", options: ["Sümerler", "Mısırlılar", "Babilliler", "Hititler"], correct: 0 },
+    { q: "Hangi ülke 'Gül Ülkesi' olarak bilinir?", options: ["Bulgaristan", "Romanya", "Türkiye", "Fransa"], correct: 0 },
+    { q: "Hangi vitaminin eksikliği gece körlüğüne neden olur?", options: ["A", "B", "C", "D"], correct: 0 },
+    { q: "Hangi ülkenin başkenti Londra'dır?", options: ["İngiltere", "Fransa", "Almanya", "İtalya"], correct: 0 },
+    { q: "Hangi ülke 'Altın Post' efsanesine ev sahipliği yapmıştır?", options: ["Yunanistan", "Türkiye", "Mısır", "İtalya"], correct: 0 },
+    { q: "Hangi dağ sırası Güney Amerika'dadır?", options: ["And Dağları", "Alpler", "Himalayalar", "Kayalık Dağlar"], correct: 0 },
+    { q: "Hangi ülke 'Tulip Ülkesi' olarak bilinir?", options: ["Hollanda", "Belçika", "Danimarka", "İsveç"], correct: 0 },
+    { q: "Hangi şehir 'Firavunların Şehri' olarak bilinir?", options: ["Kahire", "Lüksor", "Memfis", "Thebes"], correct: 0 },
+    { q: "Hangi gezegenin halkaları vardır?", options: ["Satürn", "Jüpiter", "Uranüs", "Neptün"], correct: 0 },
+    { q: "İlk denizaltı hangi ülkede icat edilmiştir?", options: ["ABD", "İngiltere", "Almanya", "Rusya"], correct: 0 },
+    { q: "Hangi ülke 'Akşam Yıldızı' olarak bilinir?", options: ["Venüs", "Mars", "Merkür", "Jüpiter"], correct: 0 },
+    { q: "Hangi element 'H' sembolü ile gösterilir?", options: ["Hidrojen", "Helyum", "Oksijen", "Azot"], correct: 0 },
+    { q: "Hangi ülkenin başkenti Madrid'dir?", options: ["İspanya", "Portekiz", "Fransa", "Almanya"], correct: 0 },
+    { q: "Hangi ülke 'Ormansız Ülke' olarak bilinir?", options: ["Suudi Arabistan", "Katar", "Umman", "BAE"], correct: 0 },
+    { q: "Hangi şehir 'Kuzeyin Venediki' olarak bilinir?", options: ["St. Petersburg", "Venedik", "Paris", "Bruges"], correct: 0 },
+    { q: "Hangi hayvanın beyni en büyüktür?", options: ["İspermeçet Balinası", "Fil", "Yunus", "İnsan"], correct: 0 },
+    { q: "Hangi ülke 'Kızılderili Ülkesi' olarak bilinir?", options: ["Hindistan", "Meksika", "Peru", "Bolivya"], correct: 0 },
+    { q: "Hangi dağ dünyanın en yüksek ikinci dağıdır?", options: ["K2", "Everest", "Lhotse", "Makalu"], correct: 0 },
+    { q: "Hangi ülke 'Kanguru Ülkesi' olarak bilinir?", options: ["Avustralya", "Yeni Zelanda", "Papua Yeni Gine", "Fiji"], correct: 0 },
+    { q: "Hangi element 'O' sembolü ile gösterilir?", options: ["Oksijen", "Osmiyum", "Oganesson", "Osmium"], correct: 0 },
+    { q: "Hangi ülkenin başkenti Moskova'dır?", options: ["Rusya", "Ukrayna", "Polonya", "Almanya"], correct: 0 },
+    { q: "Hangi ülke 'Doğanın Ülkesi' olarak bilinir?", options: ["Yeni Zelanda", "Norveç", "İsveç", "Finlandiya"], correct: 0 },
+    { q: "Hangi gezegenin atmosferi en kalındır?", options: ["Venüs", "Mars", "Jüpiter", "Dünya"], correct: 0 },
+    { q: "Hangi ülke 'Pireneler Ülkesi' olarak bilinir?", options: ["İspanya", "Fransa", "Andorra", "Portekiz"], correct: 0 },
+    { q: "İlk uçağı kim icat etmiştir?", options: ["Wright Kardeşler", "Farman", "Blériot", "Curtiss"], correct: 0 },
+    { q: "Hangi ülke 'Akdeniz'in Kalbi' olarak bilinir?", options: ["Türkiye", "Yunanistan", "İtalya", "Mısır"], correct: 0 },
+    { q: "Hangi şehir 'Kültür Başkenti' unvanını taşır?", options: ["Paris", "Londra", "New York", "Roma"], correct: 0 },
+    { q: "Hangi hayvan en uzun yaşar?", options: ["Grönland Köpekbalığı", "Dev Kaplumbağa", "İnsan", "Fil"], correct: 0 },
+    { q: "Hangi ülke 'Beyaz Altın' olarak bilinir?", options: ["Avustralya", "Güney Afrika", "Rusya", "Kanada"], correct: 0 },
+    { q: "Hangi element 'Fe' sembolü ile gösterilir?", options: ["Demir", "Fermiyum", "Fransiyum", "Fosfor"], correct: 0 },
+    { q: "Hangi ülkenin başkenti Berlin'dir?", options: ["Almanya", "Avusturya", "İsviçre", "Hollanda"], correct: 0 },
+    { q: "Hangi okyanus en sıcaktır?", options: ["Pasifik", "Atlantik", "Hint", "Arktik"], correct: 0 },
+    { q: "Hangi ülke 'Asya'nın Kalbi' olarak bilinir?", options: ["Türkiye", "İran", "Afganistan", "Pakistan"], correct: 0 },
+    { q: "Hangi şehir 'Kubbeler Şehri' olarak bilinir?", options: ["İsfahan", "İstanbul", "Tebriz", "Şiraz"], correct: 0 },
+    { q: "Hangi hayvan en hızlı koşar?", options: ["Çita", "Kara Ceylan", "At", "Tazı"], correct: 0 },
+    { q: "Hangi ülke 'Fırtınalar Ülkesi' olarak bilinir?", options: ["Japonya", "Filipinler", "Tayvan", "Malezya"], correct: 0 },
+    { q: "Hangi element 'Au' sembolü ile gösterilir?", options: ["Altın", "Gümüş", "Bakır", "Demir"], correct: 0 },
+    { q: "Hangi ülkenin başkenti Tokyo'dur?", options: ["Japonya", "Çin", "Güney Kore", "Tayvan"], correct: 0 },
+    { q: "Hangi ülke 'Güneşin Batmadığı Ülke' olarak bilinir?", options: ["İngiltere", "Fransa", "İspanya", "Portekiz"], correct: 0 },
+    { q: "Hangi dağ Avrupa'nın en yüksek dağıdır?", options: ["Elbrus", "Mont Blanc", "Alpler", "Dufourspitze"], correct: 0 },
+    { q: "Hangi ülke 'Akdeniz'in İncisi' olarak bilinir?", options: ["Yunanistan", "İtalya", "Türkiye", "Mısır"], correct: 0 },
+    { q: "Hangi şehir 'Cennet Şehri' olarak bilinir?", options: ["Cannes", "Paris", "Viyana", "Prag"], correct: 0 },
+    { q: "Hangi hayvan en büyük yumurta bırakır?", options: ["Deve Kuşu", "Fil", "Balina", "Köpekbalığı"], correct: 0 },
+    { q: "Hangi ülke 'Asya'nın Tarihi' olarak bilinir?", options: ["Çin", "Hindistan", "Japonya", "Kore"], correct: 0 },
+    { q: "Hangi element 'C' sembolü ile gösterilir?", options: ["Karbon", "Kalsiyum", "Krom", "Klor"], correct: 0 },
+    { q: "Hangi ülkenin başkenti Seul'dür?", options: ["Güney Kore", "Kuzey Kore", "Japonya", "Çin"], correct: 0 },
+    { q: "Hangi ülke 'Buz ve Ateş Ülkesi' olarak bilinir?", options: ["İzlanda", "Norveç", "İsveç", "Grönland"], correct: 0 },
+    { q: "Hangi dağ Türkiye'nin en yüksek dağıdır?", options: ["Ağrı Dağı", "Erciyes", "Süphan", "Kaçkar"], correct: 0 },
+    { q: "Hangi ülke 'Akdeniz'in Bahçesi' olarak bilinir?", options: ["Fransa", "İspanya", "İtalya", "Yunanistan"], correct: 0 },
+    { q: "Hangi şehir 'Kuzey Işıkları Şehri' olarak bilinir?", options: ["Reykjavik", "Tromsø", "Anchorage", "Yellowknife"], correct: 0 },
+    { q: "Hangi hayvan en çok uyur?", options: ["Koala", "Tembel Hayvan", "Kedi", "Yarasa"], correct: 0 },
+    { q: "Hangi ülke 'Kıbrıs'ın komşusudur?", options: ["Türkiye", "Yunanistan", "Mısır", "İsrail"], correct: 0 },
+    { q: "Hangi element 'N' sembolü ile gösterilir?", options: ["Azot", "Natrium", "Neon", "Nikel"], correct: 0 },
+    { q: "Hangi ülkenin başkenti Roma'dır?", options: ["İtalya", "Yunanistan", "Fransa", "İspanya"], correct: 0 },
+    { q: "Hangi ülke 'Güneş Doğanın Parlaklığı' olarak bilinir?", options: ["Japonya", "Çin", "Hindistan", "Endonezya"], correct: 0 },
+    { q: "Hangi dağ Güney Amerika'nın en yüksek dağıdır?", options: ["Aconcagua", "Huascarán", "Chimborazo", "Cotopaxi"], correct: 0 },
+    { q: "Hangi ülke 'Akdeniz'in Kraliçesi' olarak bilinir?", options: ["Türkiye", "Yunanistan", "İtalya", "Fransa"], correct: 0 },
+    { q: "Hangi şehir 'Kuzeyin Yıldızı' olarak bilinir?", options: ["Stockholm", "Oslo", "Helsinki", "Kopenhag"], correct: 0 },
+    { q: "Hangi hayvan en iyi koku alır?", options: ["Köpek", "Fare", "Kedi", "Fil"], correct: 0 },
+    { q: "Hangi ülke 'Kumaş Ülkesi' olarak bilinir?", options: ["Hindistan", "Çin", "Türkiye", "İtalya"], correct: 0 },
+    { q: "Hangi element 'S' sembolü ile gösterilir?", options: ["Kükürt", "Sodyum", "Stronsiyum", "Skandiyum"], correct: 0 },
+    { q: "Hangi ülkenin başkenti Stockholm'dür?", options: ["İsveç", "Norveç", "Danimarka", "Finlandiya"], correct: 0 },
+    { q: "Hangi ülke 'Aslanlar Ülkesi' olarak bilinir?", options: ["Kenya", "Tanzanya", "Güney Afrika", "Namibya"], correct: 0 },
+    { q: "Hangi dağ Asya'nın en yüksek dağıdır?", options: ["Everest", "K2", "Kangchenjunga", "Lhotse"], correct: 0 },
+    { q: "Hangi ülke 'Akdeniz'in Kapısı' olarak bilinir?", options: ["Türkiye", "Yunanistan", "Mısır", "Fransa"], correct: 0 },
+    { q: "Hangi şehir 'Rüyalar Şehri' olarak bilinir?", options: ["Paris", "Venedik", "Prag", "Budapeşte"], correct: 0 },
+    { q: "Hangi hayvan en uzun boynu vardır?", options: ["Zürafa", "Deve", "Fil", "At"], correct: 0 },
+    { q: "Hangi ülke 'Beyaz Cennet' olarak bilinir?", options: ["Yeni Zelanda", "Avustralya", "Kanada", "Norveç"], correct: 0 },
+    { q: "Hangi element 'K' sembolü ile gösterilir?", options: ["Potasyum", "Kalsiyum", "Krom", "Kobalt"], correct: 0 },
+    { q: "Hangi ülkenin başkensi Viyana'dır?", options: ["Avusturya", "Macaristan", "Çekya", "Slovakya"], correct: 0 },
+    { q: "Hangi ülke 'Asya'nın Bahçesi' olarak bilinir?", options: ["Vietnam", "Tayland", "Endonezya", "Malaysia"], correct: 0 },
+    { q: "Hangi dağ Kuzey Amerika'nın en yüksek dağıdır?", options: ["Denali", "Mount Logan", "Pico de Orizaba", "Elbrus"], correct: 0 },
+    { q: "Hangi ülke 'Akdeniz'in Zarafeti' olarak bilinir?", options: ["Fransa", "İspanya", "İtalya", "Yunanistan"], correct: 0 },
+    { q: "Hangi şehir 'Kültür ve Sanat Şehri' olarak bilinir?", options: ["Floransa", "Roma", "Paris", "Londra"], correct: 0 },
+    { q: "Hangi hayvan en hızlı yüzer?", options: ["Kılıç Balığı", "Yunus", "Orka", "Marlin"], correct: 0 },
+    { q: "Hangi ülke 'Dünyanın Çatısı' olarak bilinir?", options: ["Tibet", "Hindistan", "Çin", "Nepal"], correct: 0 },
+    { q: "Hangi element 'Mg' sembolü ile gösterilir?", options: ["Magnezyum", "Mangan", "Molibden", "Mendelevyum"], correct: 0 }
+];
+
+let shuffledQuiz = [];
+let quizIndex_culture = 0, quizScore_culture = 0, quizAnswered_culture = false;
+
+function shuffleArray(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
+function initCultureQuiz() {
+    cultureQuiz.forEach(q => {
+        q.correct = Math.floor(Math.random() * q.options.length);
+    });
+    shuffledQuiz = shuffleArray([...cultureQuiz]);
+    quizIndex_culture = 0;
+    quizScore_culture = 0;
+    showCultureQuiz();
+}
+
+function showCultureQuiz() {
+    const container = document.getElementById('discovery-content');
+    if (quizIndex_culture >= shuffledQuiz.length) {
+        container.innerHTML = `
+            <div class="discovery-empty">🏁 Test Tamamlandı! Skorunuz: ${quizScore_culture}/${shuffledQuiz.length}</div>
+            <button class="btn-small" onclick="initCultureQuiz()" style="margin-top:8px;">🔄 Tekrar Dene</button>
+        `;
+        return;
+    }
+    const q = shuffledQuiz[quizIndex_culture];
+    let html = `<div style="font-size:13px; color:var(--text-heading); margin-bottom:8px;">${quizIndex_culture+1}/${shuffledQuiz.length}. ${q.q}</div>`;
+    html += `<div style="display:flex; flex-direction:column; gap:6px;">`;
+    q.options.forEach((opt, idx) => {
+        html += `<button class="quiz-option" data-idx="${idx}" onclick="answerCultureQuiz(${idx})">${opt}</button>`;
+    });
+    html += `</div>`;
+    html += `<div id="quiz-feedback" style="margin-top:8px; font-size:12px;"></div>`;
+    container.innerHTML = html;
+    quizAnswered_culture = false;
+}
+
+function answerCultureQuiz(idx) {
+    if (quizAnswered_culture) return;
+    quizAnswered_culture = true;
+    const q = shuffledQuiz[quizIndex_culture];
+    const btns = document.querySelectorAll('.quiz-option');
+    btns.forEach((b, i) => {
+        b.style.pointerEvents = 'none';
+        if (i === q.correct) b.classList.add('correct');
+        else if (i === idx && idx !== q.correct) b.classList.add('wrong');
+    });
+    if (idx === q.correct) quizScore_culture++;
+    document.getElementById('quiz-feedback').innerHTML = idx === q.correct ? '✅ Doğru!' : `❌ Yanlış. Doğru cevap: ${q.options[q.correct]}`;
+    setTimeout(() => {
+        quizIndex_culture++;
+        showCultureQuiz();
+    }, 1800);
+}
+
+// Saçma Kanunlar (50)
+const laws = [
+    "İsviçre'de gece 22:00'den sonra sifon çekmek yasaktır.",
+    "İngiltere'de ölü balina taşımak yasadışıdır.",
+    "Fransa'da domuzlara 'Napolyon' adı vermek yasaktır.",
+    "ABD'de (Alabama) pazar günleri sakız çiğnemek yasaktır.",
+    "Avustralya'da (Victoria) akşam 6'dan sonra pembe pantolon giymek yasaktır.",
+    "Kanada'da (Montreal) açık alanda küfür etmek yasaktır.",
+    "Almanya'da (Berlin) toplu taşımada bira içmek yasak değildir.",
+    "İtalya'da (Milano) asık suratla dolaşmak cezadır.",
+    "Japonya'da (Tokyo) trenlerde yemek yemek ayıptır ama yasak değil.",
+    "Tayland'da krala hakaret etmek 15 yıl hapis cezasıdır.",
+    "Rusya'da (Moskova) araba sürerken arabanın kirli olması ceza gerektirir.",
+    "Singapur'da sakız satmak yasaktır.",
+    "İran'da kadınların futbol maçı izlemesi yasaktı (2022'de kaldırıldı).",
+    "ABD'de (Ohio) kadınların striptiz kulüplerinde çalışması için 112 pound'un altında olması gerekir.",
+    "Avustralya'da (Queensland) evde elbiseyle dolaşmak yasaktır.",
+    "Fransa'da (Paris) metroda öpüşmek yasaktır.",
+    "İtalya'da (Capri) yüksek sesle şarkı söylemek yasaktır.",
+    "ABD'de (Florida) evde uyurken kapıyı kilitlememek yasaktır.",
+    "Kanada'da (Toronto) pazar günleri alışveriş yapmak yasak değildir.",
+    "Türkiye'de (Konya) sokakta ateş yakmak yasaktır.",
+    "ABD'de (Wisconsin) peynir dışında bir şey satmak yasaktır.",
+    "Avustralya'da (Melbourne) otobüste çiçek taşımak yasaktır.",
+    "Almanya'da (Frankfurt) tamamen çıplak araba sürmek yasaktır.",
+    "İsveç'te (Stockholm) pazar günleri bahçe sulamak yasaktır.",
+    "Norveç'te (Oslo) hayvanlara işkence etmek yasaktır.",
+    "Danimarka'da (Kopenhag) sosisli sandviç yemek yasak değildir.",
+    "Yunanistan'da (Atina) güneş gözlüğüyle yürümek yasak değildir.",
+    "Hollanda'da (Amsterdam) bisikletten inmeden telefonla konuşmak yasaktır.",
+    "Çin'de (Pekin) tarihi mekanlarda yüksek topuklu ayakkabı giymek yasaktır.",
+    "Avusturya'da (Viyana) gece 22:00'den sonra çöp atmak yasaktır.",
+    "Belçika'da (Brüksel) parkta yüksek sesle müzik dinlemek yasaktır.",
+    "Brezilya'da (Rio) sahil şeridinde mayoyla banka girmek yasaktır.",
+    "Hindistan'da (Delhi) bisikletle otobanlara çıkmak yasaktır.",
+    "Mısır'da (Kahire) tarihi eserlere dokunmak 10 yıl hapis cezasıdır.",
+    "Finlandiya'da (Helsinki) trafikte yayaya yol vermemek ağır cezadır.",
+    "Meksika'da (Mexico City) açık alanda alkol almak yasaktır.",
+    "Güney Kore'de (Seul) motosikletle kaldırımda gitmek yasaktır.",
+    "İspanya'da (Barselona) çıplak güneşlenmek sadece özel plajlarda serbesttir.",
+    "Portekiz'de (Lizbon) tarihi bölgelerde araba sürmek yasaktır.",
+    "Rusya'da (St. Petersburg) müzelerde şapka giymek yasaktır.",
+    "Ukrayna'da (Kiev) gece 23:00'den sonra müzik sesi açmak yasaktır.",
+    "Polonya'da (Varşova) parklarda çimlere basmak yasaktır.",
+    "Macaristan'da (Budapeşte) yürüyüş yollarında bisiklet kullanmak yasaktır.",
+    "Romanya'da (Bükreş) kamusal alanda yüksek sesle telefon konuşmak yasaktır.",
+    "Bulgaristan'da (Sofya) pazar günleri alışveriş merkezleri açık olabilir.",
+    "Sırbistan'da (Belgrad) tarihi surlara tırmanmak yasaktır.",
+    "Hırvatistan'da (Zagreb) plajda şemsiye kullanmak serbesttir.",
+    "İsrail'de (Tel Aviv) cumartesi günleri toplu taşıma çalışmaz.",
+    "Bangladeş'te (Dakka) yağmurda açık alanda durmak yasak değildir.",
+    "Venezuela'da (Karakas) gece 21:00'den sonra çocukların dışarıda olması yasaktır."
+];
+
+function showRandomLaw() {
+    const law = laws[Math.floor(Math.random() * laws.length)];
+    document.getElementById('discovery-content').innerHTML = `
+        <div style="font-size:13px; color:var(--text-input); line-height:1.6; padding:4px 0;">⚖️ ${law}</div>
+        <button class="btn-small" onclick="showRandomLaw()" style="margin-top:8px;">🔄 Yeni Kanun</button>
+    `;
+}
+
+// Bilim Adamları (100)
+const scientists = [
+    { name: "Albert Einstein", quote: "Hayal gücü bilgiden daha önemlidir.", invention: "Görelilik Teorisi", detail: "Uzay ve zamanın bükülebileceğini, kütleçekiminin aslında uzay-zamanın eğriliği olduğunu keşfetti. E=mc² ile enerji ve kütle ilişkisini formüle etti." },
+    { name: "Isaac Newton", quote: "Bildiklerimiz bir damla, bilmediklerimiz bir okyanustur.", invention: "Kütle Çekimi Yasası", detail: "Evrensel çekim yasası ve hareket yasalarını formüle etti. Klasik fiziğin temellerini attı." },
+    { name: "Marie Curie", quote: "Hiçbir şey hayattan korkmamalıyız, sadece anlamalıyız.", invention: "Radyum ve Polonyum", detail: "Radyoaktif elementleri keşfederek radyasyonun tıpta kullanımının öncüsü oldu. Nobel Ödülü alan ilk kadın." },
+    { name: "Nikola Tesla", quote: "Yalnız çalışın, büyük işler yalnızken yapılır.", invention: "Alternatif Akım", detail: "Alternatif akım (AC) motoru ve transformatörü geliştirdi. Elektrik enerjisinin uzun mesafelere taşınmasını sağladı." },
+    { name: "Charles Darwin", quote: "Türlerin kökeni, doğal seçilim.", invention: "Evrim Teorisi", detail: "Doğal seçilim yoluyla evrimi açıklayarak biyolojide devrim yarattı. Türlerin değişebilir olduğunu kanıtladı." },
+    { name: "Galileo Galilei", quote: "Yine de dönüyor.", invention: "Teleskopla Gözlem", detail: "Teleskopla Ay'ın dağlarını, Jüpiter'in uydularını ve Güneş lekelerini keşfetti. Dünya merkezli evren modelini çürüttü." },
+    { name: "Stephen Hawking", quote: "Zamanın başlangıcı yoktur.", invention: "Kara Delik Radyasyonu", detail: "Kara deliklerin Hawking radyasyonu yayarak buharlaşabileceğini teorize etti. Zaman ve kozmoloji üzerine devrimci fikirler sundu." },
+    { name: "Alexander Fleming", quote: "Tesadüfen buldum, ama sonra üzerine çalıştım.", invention: "Penisilin", detail: "Küf mantarının bakterileri öldürdüğünü fark ederek ilk antibiyotiği keşfetti. Bu buluş milyonlarca insanın hayatını kurtardı." },
+    { name: "Thomas Edison", quote: "Deha %1 ilham, %99 terdir.", invention: "Ampul (geliştirilmiş)", detail: "Uzun ömürlü ampulü geliştirdi. Gramofon, film kamerası ve elektrik dağıtım sistemleri gibi birçok icadın sahibidir." },
+    { name: "Gregor Mendel", quote: "Genetik kalıtımın temel yasaları.", invention: "Mendel Yasaları", detail: "Bezelye bitkileri üzerinde yaptığı deneylerle kalıtım yasalarını keşfetti. Modern genetiğin babası olarak kabul edilir." },
+    { name: "Louis Pasteur", quote: "Şans, hazır olan zihni sever.", invention: "Aşı ve Pastörizasyon", detail: "Mikroorganizmaların hastalıklara neden olduğunu kanıtladı. Kuduz aşısı ve pastörizasyon tekniği ile tıp ve gıda endüstrisinde devrim yarattı." },
+    { name: "Sigmund Freud", quote: "Rüyalar, bilinçaltının yoludur.", invention: "Psikanaliz", detail: "Bilinçaltı, rüyalar ve psikoseksüel gelişim teorileriyle psikolojide yeni bir çığır açtı. İd, ego ve süperego kavramlarını geliştirdi." },
+    { name: "Alan Turing", quote: "Bir makine, bir insanı taklit edebilir.", invention: "Turing Testi ve Bilgisayar", detail: "Modern bilgisayar biliminin temellerini attı. Enigma şifresini kırarak II. Dünya Savaşı'na katkı sağladı." },
+    { name: "Rosalind Franklin", quote: "Bilim, ırk ya da cinsiyet tanımaz.", invention: "DNA'nın Yapısı", detail: "X-ışını kırınımı görüntüleriyle DNA'nın çift sarmal yapısını keşfeden ekipte kritik rol oynadı." },
+    { name: "Johannes Kepler", quote: "Gezegenler elips yörüngelerde hareket eder.", invention: "Kepler Yasaları", detail: "Gezegen hareketlerini üç matematiksel yasayla açıklayarak Güneş merkezli sistemi destekledi." },
+    { name: "Dmitri Mendeleyev", quote: "Elementler periyodik tabloda düzenlenir.", invention: "Periyodik Tablo", detail: "Elementleri atom ağırlıklarına göre sıralayarak periyodik sistemi oluşturdu. Henüz keşfedilmemiş elementlerin özelliklerini tahmin etti." },
+    { name: "Michael Faraday", quote: "Elektromanyetik indüksiyon.", invention: "Elektrik Motoru ve Jeneratör", detail: "Manyetik alanın elektrik akımı oluşturabileceğini keşfederek jeneratörün temelini attı." },
+    { name: "James Clerk Maxwell", quote: "Elektrik ve manyetizma aynı fenomendir.", invention: "Maxwell Denklemleri", detail: "Elektrik ve manyetizmayı tek bir çerçevede birleştirerek elektromanyetizma teorisini kurdu." },
+    { name: "Max Planck", quote: "Enerji kuantumlardan oluşur.", invention: "Kuantum Teorisi", detail: "Enerjinin kesikli paketler (kuantum) halinde yayıldığını öne sürerek kuantum fiziğinin başlangıcı oldu." },
+    { name: "Niels Bohr", quote: "Karşıtlar birleşir.", invention: "Atom Modeli", detail: "Atomun çekirdek etrafında elektron bulutlarından oluşan modelini geliştirdi. Kuantum mekaniğinin temel taşlarından biridir." },
+    { name: "Werner Heisenberg", quote: "Belirsizlik ilkesi.", invention: "Belirsizlik İlkesi", detail: "Bir parçacığın konumu ve momentumunun aynı anda kesin olarak ölçülemeyeceğini gösterdi." },
+    { name: "Erwin Schrödinger", quote: "Kuantum kedisi.", invention: "Schrödinger Denklemi", detail: "Dalga mekaniğini kurdu ve kuantum durumlarını tanımlayan denklemi geliştirdi." },
+    { name: "Paul Dirac", quote: "Doğa matematikseldir.", invention: "Dirac Denklemi", detail: "Göreli kuantum mekaniğini formüle etti ve antimaddenin varlığını öngördü." },
+    { name: "Richard Feynman", quote: "Doğa eğlencelidir.", invention: "Kuantum Elektrodinamiği", detail: "Kuantum elektrodinamiği (QED) teorisini geliştirdi ve parçacık fiziğine katkı sağladı." },
+    { name: "Murray Gell-Mann", quote: "Kuarkları keşfettim.", invention: "Kuark Modeli", detail: "Kuarkları keşfederek temel parçacıkların yapısını açıkladı." },
+    { name: "Peter Higgs", quote: "Higgs parçacığı.", invention: "Higgs Mekanizması", detail: "Parçacıklara kütle kazandıran Higgs alanını ve Higgs bozonunu öngördü." },
+    { name: "Francis Crick", quote: "DNA'nın sırrı.", invention: "DNA Çift Sarmalı", detail: "Watson ile birlikte DNA'nın çift sarmal yapısını keşfetti." },
+    { name: "James Watson", quote: "Genlerimiz kaderimizdir.", invention: "DNA Çift Sarmalı", detail: "Crick ile DNA'nın yapısını keşfetti." },
+    { name: "Maurice Wilkins", quote: "DNA'nın görüntüsü.", invention: "DNA X-ışını Kırınımı", detail: "DNA'nın X-ışını kırınım görüntülerini elde ederek Watson ve Crick'in çalışmasına katkı sağladı." },
+    { name: "Barbara McClintock", quote: "Genler yer değiştirebilir.", invention: "Gen Atlayan Elementler", detail: "Mısır üzerinde yaptığı çalışmalarla transpozonları keşfetti." },
+    { name: "Santiago Ramón y Cajal", quote: "Beyin karmaşık.", invention: "Nöron Teorisi", detail: "Sinir sistemini oluşturan hücrelerin nöronlar olduğunu gösterdi." },
+    { name: "Ivan Pavlov", quote: "Koşullu refleks.", invention: "Koşullu Refleks", detail: "Köpekler üzerinde yaptığı deneylerle klasik koşullanmayı keşfetti." },
+    { name: "Carl Jung", quote: "Kolektif bilinçaltı.", invention: "Analitik Psikoloji", detail: "Kolektif bilinçaltı ve arketip kavramlarını geliştirdi." },
+    { name: "Erik Erikson", quote: "Psikososyal evreler.", invention: "Psikososyal Gelişim", detail: "İnsan yaşamının 8 evresini tanımlayarak psikososyal gelişim teorisini kurdu." },
+    { name: "Jean Piaget", quote: "Bilişsel gelişim.", invention: "Bilişsel Gelişim Teorisi", detail: "Çocukların bilişsel gelişim evrelerini tanımladı." },
+    { name: "Noam Chomsky", quote: "Dil edinimi doğuştandır.", invention: "Üretken Dilbilgisi", detail: "Dilin doğuştan gelen bir yeti olduğunu savundu." },
+    { name: "Edward Jenner", quote: "Aşılamanın öncüsü.", invention: "Çiçek Aşısı", detail: "Çiçek hastalığına karşı ilk aşıyı geliştirerek immünolojinin temellerini attı." },
+    { name: "Robert Koch", quote: "Mikropla savaş.", invention: "Koch Postulatları", detail: "Şarbon ve tüberküloz etkenlerini keşfederek mikrobiyolojiye büyük katkı sağladı." },
+    { name: "Paul Ehrlich", quote: "Sihirli mermi.", invention: "Kemoterapi", detail: "Frengi tedavisinde kullanılan Salvarsan ilacını geliştirdi." },
+    { name: "Alexander Graham Bell", quote: "Telefon.", invention: "Telefon", detail: "1876'da telefonu icat etti. Sesin elektrik sinyallerine dönüştürülmesi fikrini hayata geçirdi." },
+    { name: "Guglielmo Marconi", quote: "Telsiz iletişim.", invention: "Radyo", detail: "Telsiz telgrafı icat ederek radyo iletişiminin temellerini attı." },
+    { name: "John Logie Baird", quote: "Televizyon.", invention: "Televizyon", detail: "1925'te ilk mekanik televizyon sistemini sergiledi." },
+    { name: "Tim Berners-Lee", quote: "WWW.", invention: "World Wide Web", detail: "1989'da web'in temel protokollerini geliştirerek internetin yaygınlaşmasını sağladı." },
+    { name: "Bill Gates", quote: "Yazılım devrimi.", invention: "Microsoft Windows", detail: "Kişisel bilgisayar yazılım pazarını domine eden Windows işletim sistemini geliştirdi." },
+    { name: "Steve Jobs", quote: "Apple'ın vizyonu.", invention: "iPhone", detail: "Akıllı telefon dönemini başlatarak teknolojiyi yeniden tanımladı." },
+    { name: "Elon Musk", quote: "Uzay ve araba.", invention: "Tesla ve SpaceX", detail: "Elektrikli araçlar ve uzay keşifleri alanında çığır açan şirketlerin kurucusudur." },
+    { name: "Henri Becquerel", quote: "Radyasyonun keşfi.", invention: "Radyoaktivite", detail: "Uranyumun radyasyon yaydığını keşfederek radyoaktivitenin temellerini attı." },
+    { name: "Lise Meitner", quote: "Nükleer fisyon.", invention: "Nükleer Fisyon", detail: "Nükleer fisyonun açıklanmasında kritik rol oynadı." },
+    { name: "Otto Hahn", quote: "Fisyon reaksiyonu.", invention: "Nükleer Fisyon", detail: "Uranyum atomunun fisyonunu keşfederek nükleer enerjinin temelini attı." },
+    { name: "Robert Oppenheimer", quote: "Atom bombası.", invention: "Atom Bombası", detail: "Manhattan Projesi'nin lideri olarak atom bombasının geliştirilmesinde öncü rol oynadı." },
+    { name: "Enrico Fermi", quote: "Kontrollü zincirleme reaksiyon.", invention: "Nükleer Reaktör", detail: "İlk nükleer reaktörü inşa ederek nükleer enerjinin barışçıl kullanımının önünü açtı." },
+    { name: "John Bardeen", quote: "Transistör ve süperiletkenlik.", invention: "Transistör", detail: "Transistörü icat eden ekipte yer aldı. Nobel Fizik Ödülü'nü iki kez kazandı." },
+    { name: "Jack Kilby", quote: "Entegre devre.", invention: "Entegre Devre", detail: "İlk entegre devreyi icat ederek elektronik devrimini başlattı." },
+    { name: "Gordon Moore", quote: "Moore Yasası.", invention: "Moore Yasası", detail: "Entegre devrelerdeki transistör sayısının her iki yılda bir ikiye katlanacağını öngördü." },
+    { name: "Linus Pauling", quote: "Kimya ve barış.", invention: "Kuantum Kimyası", detail: "Kimyasal bağların doğasını açıklayan çalışmalarıyla Nobel Kimya ve Nobel Barış Ödülü sahibidir." },
+    { name: "Dorothy Hodgkin", quote: "Kristalografi.", invention: "X-ışını Kristalografisi", detail: "Penicilline ve vitamin B12'nin yapısını belirleyerek kristalografinin gelişmesine katkı sağladı." },
+    { name: "Ahmed Zewail", quote: "Femtosaniye kimyası.", invention: "Femtosaniye Kimyası", detail: "Kimyasal reaksiyonların ultra hızlı zaman ölçeğinde incelenmesini sağladı." },
+    { name: "Svante Arrhenius", quote: "Sera etkisi.", invention: "Arrhenius Denklemi", detail: "Kimyasal kinetik ve sera etkisi üzerine yaptığı çalışmalarla bilinir." },
+    { name: "Alfred Nobel", quote: "Dinamit ve Nobel Ödülleri.", invention: "Dinamit", detail: "Dinamiti icat eden Nobel, ölümünden sonra mal varlığıyla Nobel ödüllerini başlattı." },
+    { name: "John Dalton", quote: "Atom teorisi.", invention: "Modern Atom Teorisi", detail: "Atomların kütle ve özelliklerini belirleyerek kimyanın temellerini attı." },
+    { name: "Robert Boyle", quote: "Boyle yasası.", invention: "Gaz Yasaları", detail: "Gazların basınç-hacim ilişkisini formüle etti." },
+    { name: "Joseph Priestley", quote: "Oksijenin keşfi.", invention: "Oksijen", detail: "Oksijeni keşfederek yanma olayının anlaşılmasına katkı sağladı." },
+    { name: "Antoine Lavoisier", quote: "Modern kimya.", invention: "Kütlenin Korunumu", detail: "Kimyasal reaksiyonlarda kütlenin korunduğunu kanıtlayarak modern kimyayı kurdu." },
+    { name: "Jöns Jakob Berzelius", quote: "Kimyasal semboller.", invention: "Kimyasal Semboller", detail: "Kimya alanında sembolleri ve atom ağırlıklarını sistematik hale getirdi." },
+    { name: "Humphry Davy", quote: "Elektroliz.", invention: "Sodyum, Potasyum", detail: "Elektroliz yoluyla sodyum, potasyum gibi elementleri keşfetti." },
+    { name: "Amedeo Avogadro", quote: "Avogadro sayısı.", invention: "Molekül Teorisi", detail: "Gazların hacimlerinin molekül sayısıyla orantılı olduğunu gösterdi." },
+    { name: "Heinrich Hertz", quote: "Radyo dalgaları.", invention: "Radyo Dalgaları", detail: "Maxwell'in teorisini doğrulayarak radyo dalgalarını üretti." },
+    { name: "Gustav Kirchhoff", quote: "Spektrum analizi.", invention: "Kirchhoff Yasaları", detail: "Devre teorisi ve spektral analizde önemli katkılar sağladı." },
+    { name: "Robert Bunsen", quote: "Bunsen beki.", invention: "Bunsen Beki", detail: "Kimyada kullanılan Bunsen beki ve spektrum analizinin öncüsüdür." },
+    { name: "Friedrich Wöhler", quote: "Organik sentez.", invention: "Üre Sentezi", detail: "Üre sentezleyerek organik kimyanın temellerini attı." },
+    { name: "Hermann von Helmholtz", quote: "Enerjinin korunumu.", invention: "Enerji Korunumu", detail: "Termodinamiğin ilk yasasına katkı sağladı." },
+    { name: "James Joule", quote: "Isı ve enerji.", invention: "Joule Yasası", detail: "Isı ve iş arasındaki ilişkiyi gösterdi." },
+    { name: "William Thomson (Lord Kelvin)", quote: "Mutlak sıfır.", invention: "Kelvin Skalası", detail: "Mutlak sıcaklık skalasını geliştirdi." },
+    { name: "Rudolf Clausius", quote: "Termodinamik.", invention: "Entropi Kavramı", detail: "Termodinamiğin ikinci yasasını formüle etti." },
+    { name: "Ludwig Boltzmann", quote: "Entropi ve olasılık.", invention: "İstatistiksel Mekanik", detail: "Entropiyi olasılıkla ilişkilendirdi." },
+    { name: "Edwin Hubble", quote: "Genişleyen evren.", invention: "Hubble Yasası", detail: "Galaksilerin uzaklaştığını keşfederek evrenin genişlediğini gösterdi." },
+    { name: "Frederick Banting", quote: "İnsülin.", invention: "İnsülin Tedavisi", detail: "İnsülin keşfederek diyabet tedavisinde devrim yarattı." },
+    { name: "Howard Florey", quote: "Penisilinin üretimi.", invention: "Penisilin Üretimi", detail: "Penisilini seri üretime hazırlayarak tıpta kullanımını sağladı." },
+    { name: "Ernst Chain", quote: "Penisilinin işlevi.", invention: "Penisilin", detail: "Fleming ve Florey ile birlikte penisilin üzerine çalıştı." },
+    { name: "Thomas H. Morgan", quote: "Genler kromozomlarda.", invention: "Gen Haritaları", detail: "Meyve sinekleri üzerinde yaptığı çalışmalarla genlerin kromozomlarda olduğunu gösterdi." },
+    { name: "Hermann Muller", quote: "Radyasyon ve genetik.", invention: "Mutajenez", detail: "Radyasyonun genetik mutasyona neden olduğunu keşfetti." },
+    { name: "Selman Waksman", quote: "Streptomisin.", invention: "Streptomisin", detail: "Tüberküloz tedavisinde kullanılan streptomisini keşfetti." },
+    { name: "Tu Youyou", quote: "Artemisinin.", invention: "Sıtma Tedavisi", detail: "Sıtma tedavisinde kullanılan artemisinin'i keşfetti." },
+    { name: "Barry Marshall", quote: "Helikobakter.", invention: "Helikobakter Pylori", detail: "Mide ülserinin bakteriden kaynaklandığını kanıtladı." },
+    { name: "Robin Warren", quote: "Helikobakter işbirliği.", invention: "Helikobakter Pylori", detail: "Marshall ile birlikte çalışarak ülserin bakteriyel nedenini gösterdi." },
+    { name: "Harvey Alter", quote: "Hepatit C virüsü.", invention: "Hepatit C", detail: "Hepatit C virüsünü keşfederek kan testlerinin gelişmesini sağladı." },
+    { name: "Baruch Blumberg", quote: "Hepatit B virüsü.", invention: "Hepatit B", detail: "Hepatit B virüsünü keşfederek aşı geliştirilmesine öncü oldu." },
+    { name: "Michael S. Brown", quote: "Kolesterol metabolizması.", invention: "LDL Reseptörü", detail: "Kolesterol düzenlemesiyle ilgili keşifleriyle tanınır." },
+    { name: "Joseph L. Goldstein", quote: "Kolesterol metabolizması.", invention: "LDL Reseptörü", detail: "Brown ile birlikte kolesterol metabolizmasını aydınlattı." },
+    { name: "Mae Jemison", quote: "Uzayda siyahi kadın.", invention: "Uzay Misyonu", detail: "Uzaya çıkan ilk siyahi kadın astronot olarak NASA'da görev aldı." },
+    { name: "Neil Armstrong", quote: "İnsanlık için küçük bir adım.", invention: "Ay'a Ayak Basma", detail: "1969'da Ay'a ayak basan ilk insan olarak tarihe geçti." },
+    { name: "Buzz Aldrin", quote: "Ay'da yürüdük.", invention: "Ay Misyonu", detail: "Apollo 11 ile Ay'a inen ekipte ikinci insan olarak yer aldı." }
+];
+
+function showRandomScientist() {
+    const s = scientists[Math.floor(Math.random() * scientists.length)];
+    document.getElementById('discovery-content').innerHTML = `
+        <div style="font-size:14px; font-weight:600; color:var(--text-heading);">🧪 ${s.name}</div>
+        <div style="font-style:italic; margin:4px 0 8px 0; color:var(--text-main);">“${s.quote}”</div>
+        <div style="font-size:13px; color:var(--accent-color); font-weight:600;">🔬 Buluş: ${s.invention}</div>
+        <div style="font-size:12px; color:var(--text-main); margin-top:4px; line-height:1.6;">${s.detail}</div>
+        <button class="btn-small" onclick="showRandomScientist()" style="margin-top:8px;">🔄 Başka Bir Bilim İnsanı</button>
+    `;
+}
+
+// Şehir İsimleri (81 il) – detaylı
+const cityMeanings = [
+    { city: "Adana", meaning: "Hitit tanrısı Adanus", detail: "Adana'nın adı, Hitit döneminde 'Uru Adaniya' olarak geçer. Bu isim, Hitit tanrısı Adanus'tan türemiştir. Çukurova'nın verimli toprakları üzerinde kurulan kent, tarih boyunca önemli bir tarım ve ticaret merkezi olmuştur." },
+    { city: "Adıyaman", meaning: "Arapça 'Adı' (ada) + 'yaman' (sağlam)", detail: "Adıyaman, tarihi kaleleriyle ünlüdür. Şehrin adı, Arapça 'ada' ve 'sağlam' kelimelerinden oluşur ve buradaki kalenin sağlamlığına işaret eder. Kommagene Krallığı'na ev sahipliği yapmıştır." },
+    { city: "Afyonkarahisar", meaning: "Afyon (haşhaş) + kara (siyah) + hisar (kale)", detail: "Bölgede yetişen haşhaş bitkisinden dolayı 'afyon' adını almış, kale ise siyah taşlı bir hisardır. Osmanlı döneminde önemli bir afyon üretim merkeziydi." },
+    { city: "Ağrı", meaning: "Ağrı Dağı (Ararat)", detail: "Ağrı, adını dünyaca ünlü Ağrı Dağı'ndan alır. Dağın adı Sümerce 'Aratta' kelimesinden gelir. İncil'de Nuh'un Gemisi'nin bu dağa oturduğu inancı yaygındır." },
+    { city: "Aksaray", meaning: "Ak (beyaz) + saray", detail: "Aksaray, Selçuklu döneminde inşa edilen beyaz renkli saraydan dolayı bu adı almıştır. İpekyolu üzerinde önemli bir konaklama noktasıydı." },
+    { city: "Amasya", meaning: "Amasya (Amasis)", detail: "Antik dönemde 'Amaseia' olarak bilinen şehir, Pontus Kralı Mithridates tarafından kurulmuştur. Ferhat ile Şirin aşkının mekanı olarak da ünlüdür." },
+    { city: "Ankara", meaning: "Ancyra (Frigya tanrıçası)", detail: "Ankara'nın eski adı Ancyra'dır ve Frigya tanrıçası Kybele'ye atfen verilmiştir. Hitit, Frig, Roma ve Osmanlı medeniyetlerine ev sahipliği yapmıştır." },
+    { city: "Antalya", meaning: "Attaleia (Bergama kralı)", detail: "Bergama Kralı II. Attalos tarafından kurulan kent, onun adıyla anılmıştır. Akdeniz'in incisi olarak bilinir ve Roma döneminde önemli bir liman kentiydi." },
+    { city: "Ardahan", meaning: "Gürcüce 'Artaani'", detail: "Ardahan, Gürcüce 'Artaani' veya Ermenice 'Ardahan' isimleriyle bilinir. Tarihi boyunca Gürcü, Ermeni ve Türk medeniyetlerinin kesişim noktası olmuştur." },
+    { city: "Artvin", meaning: "Eski Gürcüce 'Artvin'", detail: "Artvin, eski Gürcüce bir isimdir. Bölge, Gürcü Krallığı'nın önemli merkezlerinden biriydi ve Karadeniz'in doğusunda stratejik bir konuma sahiptir." },
+    { city: "Aydın", meaning: "Aydın (parlak, aydınlık)", detail: "Antik dönemde 'Tralles' olarak bilinen şehir, Osmanlı döneminde Aydın adını almıştır. Adını, bölgenin verimli ve aydınlık doğasından alır." },
+    { city: "Balıkesir", meaning: "Eski adı 'Balıkesir'", detail: "Balıkesir, 'bal' ve 'kesir' (yarmak) kelimelerinden türemiştir. Antik dönemde 'Mysia' olarak bilinirdi." },
+    { city: "Bartın", meaning: "Antik 'Parthenios'", detail: "Bartın, antik dönemde 'Parthenios' olarak bilinir. Bartın Çayı, bu dönemde önemli bir su yoluydu." },
+    { city: "Batman", meaning: "Eski adı 'Batman'", detail: "Batman, adını Batman Çayı'ndan alır. Bölge, tarih boyunca Asur ve Urartu medeniyetlerine ev sahipliği yapmıştır." },
+    { city: "Bayburt", meaning: "Eski adı 'Bayburt'", detail: "Bayburt, antik çağda 'Bayburt' olarak anılırdı. Selçuklu ve Osmanlı dönemlerinde Doğu Anadolu'nun önemli savunma kalelerinden biriydi." },
+    { city: "Bilecik", meaning: "Eski adı 'Bilecik'", detail: "Bilecik, Osmanlı İmparatorluğu'nun kuruluş topraklarındandır. Şehrin adı, 'bile' (belki) ve 'cik' (küçük) kelimelerinden türemiş olabilir." },
+    { city: "Bingöl", meaning: "Bin göl", detail: "Bingöl, bölgedeki çok sayıda gölden dolayı bu adı almıştır. Şehir, Doğu Anadolu'nun yüksek platolarında yer alır." },
+    { city: "Bitlis", meaning: "Eski adı 'Bitlis'", detail: "Bitlis, antik dönemde 'Bitlis' olarak anılırdı. Urartu Krallığı'na ev sahipliği yapmış olan şehir, tarihi evleri ve kaleleriyle bilinir." },
+    { city: "Bolu", meaning: "Antik 'Bithynion'", detail: "Bolu, antik Bithynion kentidir. Osmanlı döneminde İstanbul'u doğuya bağlayan yollar üzerinde önemli bir duraktı." },
+    { city: "Burdur", meaning: "Eski adı 'Burdur'", detail: "Burdur, antik dönemde 'Burdur' olarak anılırdı. Pisidia bölgesinin önemli yerleşimlerindendir." },
+    { city: "Bursa", meaning: "Prusa (Bitinya kralı)", detail: "Bursa, Bitinya Kralı I. Prusias tarafından kurulmuştur. Osmanlı İmparatorluğu'nun ilk başkenti olarak bilinir." },
+    { city: "Çanakkale", meaning: "Çanak + Kale", detail: "Çanakkale, kalenin yanında yapılan çömleklerden ve tarihi kalelerinden adını alır. Çanakkale Zaferi ile dünya tarihinde önemli bir yere sahiptir." },
+    { city: "Çankırı", meaning: "Eski adı 'Çankırı'", detail: "Çankırı, antik dönemde 'Çankırı' olarak anılırdı. Osmanlı döneminde kalesiyle ünlüydü." },
+    { city: "Çorum", meaning: "Eski adı 'Çorum'", detail: "Çorum, Hitit İmparatorluğu'nun başkenti Hattuşaş'a ev sahipliği yapmıştır. Adı, 'çor' (su) kelimesinden gelebilir." },
+    { city: "Denizli", meaning: "Denizli (deniz anlamında değil)", detail: "Denizli, antik dönemde 'Denizli' olarak anılırdı. 'Deniz' kelimesi, burada büyük su birikintilerine işaret edebilir." },
+    { city: "Diyarbakır", meaning: "Diyar-ı Bekir (Bekir'in diyarı)", detail: "Diyarbakır, Arapça 'Diyar-ı Bekir' (Bekir aşiretinin diyarı) tamlamasından türemiştir. Tarihi surları UNESCO Dünya Mirası'dır." },
+    { city: "Düzce", meaning: "Düz + ce (düz arazi)", detail: "Düzce, düz arazisi nedeniyle bu adı almıştır. Karadeniz'e yakın verimli bir ovadır." },
+    { city: "Edirne", meaning: "Eski adı 'Edirne'", detail: "Edirne, antik dönemde 'Orestias' olarak bilinirken, Osmanlı döneminde Edirne adını almıştır. Osmanlı'nın ikinci başkentidir." },
+    { city: "Elazığ", meaning: "Eski adı 'Elazığ'", detail: "Elazığ, tarihi Harput şehrinin yakınında kurulmuştur. 'Elazığ' adı, 'el' (etraf) ve 'azığ' (azık) kelimelerinden gelebilir." },
+    { city: "Erzincan", meaning: "Eski adı 'Erzincan'", detail: "Erzincan, antik dönemde 'Erzincan' olarak anılırdı. Tarihi ipek yolu üzerinde önemli bir duraktı." },
+    { city: "Erzurum", meaning: "Arz-ı Rum (Rumların yeri)", detail: "Erzurum, Arapça 'Arz-ı Rum' (Rum diyarı) tamlamasından türemiştir. Selçuklu ve Osmanlı dönemlerinde Doğu Anadolu'nun en önemli merkeziydi." },
+    { city: "Eskişehir", meaning: "Eski + Şehir", detail: "Eskişehir, antik Dorylaion kentinin kalıntıları üzerine kurulduğu için bu adı almıştır. Hitit, Frig ve Roma dönemlerinde yerleşim görmüştür." },
+    { city: "Gaziantep", meaning: "Gazi + Antep", detail: "Gaziantep, Kurtuluş Savaşı'ndaki kahramanlığından dolayı 'Gazi' unvanını almıştır. 'Antep' ise Arapça 'antab' (güzel su) kelimesinden gelir." },
+    { city: "Giresun", meaning: "Antik 'Cerasus'", detail: "Giresun, antik dönemde 'Cerasus' olarak bilinir. Kirazın anavatanı olarak kabul edilir." },
+    { city: "Gümüşhane", meaning: "Gümüş + hane", detail: "Gümüşhane, bölgede bulunan gümüş madenlerinden dolayı bu adı almıştır. Osmanlı döneminde önemli bir maden şehriydi." },
+    { city: "Hakkâri", meaning: "Eski adı 'Hakkâri'", detail: "Hakkâri, dağlık bir bölge olup, adının Süryanice 'Hakar' (dağ) kelimesinden geldiği düşünülür." },
+    { city: "Hatay", meaning: "Eski adı 'Hatay'", detail: "Hatay, tarihi boyunca birçok medeniyete ev sahipliği yapmıştır. Adı, Türkiye'ye katıldığı 1939'dan sonra 'Hatay' olarak kalmıştır." },
+    { city: "Iğdır", meaning: "Eski adı 'Iğdır'", detail: "Iğdır, Oğuz Türkleri'nin Iğdır boyundan adını alır. Ağrı Dağı'nın eteklerinde yer alır." },
+    { city: "Isparta", meaning: "Antik 'Sparta'", detail: "Isparta, antik dönemde 'Sparta' ile ilişkilendirilir. Gül yetiştiriciliği ve gül suyu ile ünlüdür." },
+    { city: "İstanbul", meaning: "Eis tin polin (şehre doğru)", detail: "İstanbul, Yunanca 'eis tin polin' (şehre doğru) ifadesinden türemiştir. Tarih boyunca Byzantion, Konstantinopolis gibi isimler almıştır." },
+    { city: "İzmir", meaning: "Smyrna (Amazon kraliçesi)", detail: "İzmir, antik Smyrna kentinden gelir. Bir Amazon kraliçesi veya 'myrrha' (mür) kelimesiyle ilişkilendirilir." },
+    { city: "Kahramanmaraş", meaning: "Kahraman + Maraş", detail: "Kahramanmaraş, Kurtuluş Savaşı'ndaki kahramanlığından dolayı 'Kahraman' unvanını almıştır. 'Maraş' Arapça 'maraş' (bataklık) anlamına gelir." },
+    { city: "Karabük", meaning: "Kara + bük (vadi)", detail: "Karabük, 'kara' (siyah) ve 'bük' (vadi) kelimelerinden oluşur. Demir-çelik endüstrisiyle bilinir." },
+    { city: "Karaman", meaning: "Eski adı 'Karaman'", detail: "Karaman, Karamanoğulları Beyliği'ne başkentlik yapmıştır. Adını, beylik kurucusu Kerimüddin Karaman Bey'den alır." },
+    { city: "Kars", meaning: "Eski adı 'Kars'", detail: "Kars, tarihi boyunca birçok medeniyete ev sahipliği yapmıştır. Kalesi ve Ani Harabeleri ile ünlüdür." },
+    { city: "Kastamonu", meaning: "Eski adı 'Kastamonu'", detail: "Kastamonu, antik dönemde 'Castamon' olarak bilinir. Türk-İslam eserleri ve tarihi evleriyle tanınır." },
+    { city: "Kayseri", meaning: "Caesarea (Sezar'a ait)", detail: "Kayseri, antik dönemde Caesar (Sezar) onuruna Caesarea olarak adlandırılmıştır. Kapadokya bölgesinin önemli merkezlerinden biridir." },
+    { city: "Kırıkkale", meaning: "Kırık + Kale", detail: "Kırıkkale, şehirdeki kırık (harabe) kaleye atfen verilmiştir. Sanayi ve silah üretimiyle bilinir." },
+    { city: "Kırklareli", meaning: "Kırklar Eli", detail: "Kırklareli, adını 'kırklar' (40 kişi) ve 'eli' (yer) kelimelerinden alır. Balkanlar'da stratejik bir konuma sahiptir." },
+    { city: "Kırşehir", meaning: "Kır + Şehir", detail: "Kırşehir, adını 'kır' (step) ve 'şehir' kelimelerinden alır. Ahi Evran'ın türbesi burada bulunur." },
+    { city: "Kocaeli", meaning: "Koca + Eli (büyük il)", detail: "Kocaeli, Osmanlı döneminde 'Koca İli' (büyük il) olarak adlandırılmış, zamanla Kocaeli'ye dönüşmüştür." },
+    { city: "Konya", meaning: "Iconium (ikon)", detail: "Konya, antik Iconium kentidir. 'İkon' kelimesinden gelir ve Selçuklu başkenti olarak önemli bir dini merkez olmuştur." },
+    { city: "Kütahya", meaning: "Eski adı 'Kütahya'", detail: "Kütahya, Osmanlı döneminde çini ve seramikleriyle ünlüydü. Adı, 'Kütahya' olarak anılmıştır." },
+    { city: "Malatya", meaning: "Eski adı 'Malatya'", detail: "Malatya, Hitit ve Asur dönemlerinde önemli bir yerleşimdi. Kayısı üretimiyle bilinir." },
+    { city: "Manisa", meaning: "Magnesia (Magnes)", detail: "Manisa, antik Magnesia kentidir. Osmanlı şehzadelerinin sancak merkezi olmuştur." },
+    { city: "Mardin", meaning: "Süryanice 'Marda'", detail: "Mardin, Süryanice 'Marda' (kale) kelimesinden gelir. Tarihi konakları ve camileriyle ünlüdür." },
+    { city: "Mersin", meaning: "Mersin (mersin bitkisi)", detail: "Mersin, adını çevrede bolca yetişen mersin ağaçlarından (Myrtus communis) alır. Akdeniz'in önemli liman kentlerindendir." },
+    { city: "Muğla", meaning: "Eski adı 'Muğla'", detail: "Muğla, adını 'Mogola' veya 'Mugla' gibi eski isimlerden alır. Tarihi ve doğal güzellikleriyle ünlüdür." },
+    { city: "Muş", meaning: "Eski adı 'Muş'", detail: "Muş, adını 'Muş' olarak anılan antik yerleşimden alır. Malazgirt Savaşı bu yakınlarda gerçekleşmiştir." },
+    { city: "Nevşehir", meaning: "Nev + Şehir (yeni şehir)", detail: "Nevşehir, Farsça 'nev' (yeni) ve 'şehir' kelimelerinden oluşur. Kapadokya bölgesinde yer alır." },
+    { city: "Niğde", meaning: "Eski adı 'Niğde'", detail: "Niğde, antik dönemde 'Nakita' veya 'Niğde' olarak bilinir. Aladağlar ve tarihi kaleleriyle meşhurdur." },
+    { city: "Ordu", meaning: "Ordu (askeri birlik)", detail: "Ordu, adını Osmanlı döneminde burada konaklayan ordu birliklerinden alır. Karadeniz'in önemli şehirlerindendir." },
+    { city: "Osmaniye", meaning: "Osman + iye", detail: "Osmaniye, Osman Gazi'ye ithafen adlandırılmıştır. Çukurova'nın doğusunda yer alır." },
+    { city: "Rize", meaning: "Eski adı 'Rize'", detail: "Rize, adını 'Rize' olarak anılan antik yerleşimden alır. Çay yetiştiriciliğiyle ünlüdür." },
+    { city: "Sakarya", meaning: "Sakarya Nehri", detail: "Sakarya, adını ülkenin en uzun nehirlerinden biri olan Sakarya Nehri'nden alır. Osmanlı ve Cumhuriyet döneminde önemli bir merkezdir." },
+    { city: "Samsun", meaning: "Amisos'tan türeme", detail: "Samsun, antik Amisos kentinin adından evrilmiştir. Mustafa Kemal Atatürk'ün Samsun'a çıkışı ile Kurtuluş Savaşı'nın başlangıcı olmuştur." },
+    { city: "Siirt", meaning: "Eski adı 'Siirt'", detail: "Siirt, adını 'Siirt' olarak anılan antik yerleşimden alır. Tarihi evleri ve camileriyle bilinir." },
+    { city: "Sinop", meaning: "Eski adı 'Sinop'", detail: "Sinop, antik dönemde 'Sinope' olarak bilinir. Karadeniz'in en eski liman şehirlerinden biridir." },
+    { city: "Sivas", meaning: "Eski adı 'Sivas'", detail: "Sivas, antik dönemde 'Sebastea' olarak bilinir. Selçuklu ve Osmanlı dönemlerinde önemli bir ticaret merkeziydi." },
+    { city: "Şanlıurfa", meaning: "Şanlı + Urfa", detail: "Şanlıurfa, Kurtuluş Savaşı'ndaki kahramanlığından dolayı 'Şanlı' unvanını almıştır. 'Urfa' Süryanice 'Ur' (şehir) + 'fa' (su) kelimelerinden gelir." },
+    { city: "Şırnak", meaning: "Eski adı 'Şırnak'", detail: "Şırnak, adını 'Şırnak' olarak anılan antik yerleşimden alır. Dağlık bölgeleriyle bilinir." },
+    { city: "Tekirdağ", meaning: "Tekir (benekli) + dağ", detail: "Tekirdağ, adını 'tekir' (benekli) ve 'dağ' kelimelerinden alır. Trakya bölgesinin önemli şehirlerindendir." },
+    { city: "Tokat", meaning: "Eski adı 'Tokat'", detail: "Tokat, adını 'Tokat' olarak anılan antik yerleşimden alır. Tarihi camileri ve hanlarıyla ünlüdür." },
+    { city: "Trabzon", meaning: "Trapezus (masa)", detail: "Trabzon, antik Yunanca 'trapeza' (masa) kelimesinden gelir. Şehrin bir masa gibi düzlükte kurulduğu düşünülür." },
+    { city: "Tunceli", meaning: "Eski adı 'Tunceli'", detail: "Tunceli, adını 'tunceli' (beyaz) kelimesinden alır. Munzur Vadisi ve doğal güzellikleriyle bilinir." },
+    { city: "Uşak", meaning: "Eski adı 'Uşak'", detail: "Uşak, adını 'Uşak' olarak anılan antik yerleşimden alır. Halı ve kilim dokumacılığıyla ünlüdür." },
+    { city: "Van", meaning: "Bianili (Urartu)", detail: "Van, Urartu döneminde Bianili olarak bilinir. Van Gölü ile özdeşleşmiş ve tarihi Urartu kaleleriyle ünlüdür." },
+    { city: "Yalova", meaning: "Eski adı 'Yalova'", detail: "Yalova, adını 'yalova' (güzel) kelimesinden alır. Kaplıcaları ve termal kaynaklarıyla bilinir." },
+    { city: "Yozgat", meaning: "Eski adı 'Yozgat'", detail: "Yozgat, adını 'Yozgat' olarak anılan antik yerleşimden alır. Osmanlı döneminde bir sancak merkeziydi." },
+    { city: "Zonguldak", meaning: "Eski adı 'Zonguldak'", detail: "Zonguldak, adını 'Zonguldak' olarak anılan antik yerleşimden alır. Türkiye'nin önemli kömür madenlerine ev sahipliği yapar." }
+];
+
+function showRandomCity() {
+    const c = cityMeanings[Math.floor(Math.random() * cityMeanings.length)];
+    document.getElementById('discovery-content').innerHTML = `
+        <div style="font-size:14px; font-weight:600; color:var(--text-heading);">🏙️ ${c.city}</div>
+        <div style="font-size:13px; color:var(--accent-color); margin:4px 0;">Anlamı: ${c.meaning}</div>
+        <div style="font-size:12px; color:var(--text-main); line-height:1.6;">${c.detail}</div>
+        <button class="btn-small" onclick="showRandomCity()" style="margin-top:8px;">🔄 Başka Şehir</button>
+    `;
+}
+
+// ========== KEŞFET BÖLÜMÜ BUTON OLAYLARI ==========
+document.addEventListener('DOMContentLoaded', function() {
+    // İlk açılışta kültür testini göster
+    initCultureQuiz();
+
+    // Butonlara tıklama olayları
+    document.querySelectorAll('.discovery-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.discovery-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            const target = this.dataset.target;
+            switch(target) {
+                case 'culture':
+                    initCultureQuiz();
+                    break;
+                case 'laws':
+                    showRandomLaw();
+                    break;
+                case 'scientists':
+                    showRandomScientist();
+                    break;
+                case 'cities':
+                    showRandomCity();
+                    break;
+            }
+        });
+    });
+
+    // Müzik oynatıcıyı başlat
     initPlayer();
-    document.getElementById("input1").addEventListener("input",runTengriDetector);
-    document.getElementById("input2").addEventListener("input",runTengriDetector);
+
+    // Tengri dedektörü
+    document.getElementById("input1").addEventListener("input", runTengriDetector);
+    document.getElementById("input2").addEventListener("input", runTengriDetector);
+
+    // Tema
+    const dd = document.querySelector(".id-dark-dot");
+    if(dd) changeTheme('dark', dd);
+});
+
+window.addEventListener("DOMContentLoaded", () => {
+    // Yukarıdaki DOMContentLoaded içinde zaten yapıldı, tekrar etmeye gerek yok.
 });
 </script>
 </body>
