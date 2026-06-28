@@ -499,7 +499,7 @@ button.tengri-panic,.tab-btn.tengri-panic,.player-btn.tengri-panic,.coffee-btn-p
 </div>
 
 <!-- ORACLE -->
-<div class="oracle-box"><div class="oracle-sphere-wrapper"><div class="pulse-glow"></div><div class="oracle-sphere" onclick="getTengriOracle()">🔮</div></div><div class="oracle-text-area"><div class="oracle-title">⚡ SİBER KAHİN (YAPAY ZEKA)</div><div id="oracle-display" class="oracle-quote">🔮 Küreye tıkla, yapay zeka sana cevap versin...</div></div></div>
+<div class="oracle-box"><div class="oracle-sphere-wrapper"><div class="pulse-glow"></div><div class="oracle-sphere" onclick="getTengriOracle()">🔮</div></div><div class="oracle-text-area"><div class="oracle-title">⚡ ORACLE / GÜNÜN SİBER KEHANETİ</div><div id="oracle-display" class="oracle-quote">Küreye tıkla ve siber kaderinle yüzleş...</div></div></div>
 
 <div id="toast-notification" class="toast">⚡ METİN BAŞARIYLA KOPYALANDI!</div>
 
@@ -656,52 +656,130 @@ button.tengri-panic,.tab-btn.tengri-panic,.player-btn.tengri-panic,.coffee-btn-p
 </div>
 
 <script>
-// ========== ORACLE AI (Cloudflare Worker Üzerinden) ==========
-async function getTengriOracle() {
-    const display = document.getElementById("oracle-display");
-    display.innerText = "🤔 Yapay zeka düşünüyor...";
-    display.style.opacity = 0.7;
+// ========== ORACLE & TEMA ==========
+const oracleQuotes = [
+    "Bugün metinlerden sileceğin gereksiz boşluklar gibi, hayatındaki gereksiz insanları da şak diye sileceksin. Temiz ferah gün yakın.",
+    "Yakın gelecekte senin için çok büyük bir başarı ve zenginlik görüyorum. Tabii 'yakın gelecek' siber evrende 40-50 yıl anlamına gelebilir, o yüzden sen şimdilik şu metne odaklan.",
+    "Küre diyor ki: O çok gitmek istediğin tatile daha çok var ama önündeki şu metni bitirirsen en azından masandan kalkıp tuvalete gitme hakkı kazanacaksın.",
+    "Bugün her şeyi bırakıp Ege'ye yerleşme isteğin tavan yapacak. Ama zeytin yetiştirmek de emek ister aslan parçası, gel biz önce şu metindeki çift boşlukları yetiştirelim.",
+    "Küre parlıyor! Seni çok yakında hawaii gömleğinle sahilde buzlu bir kahve içerken görüyorum... Gözümü biraz kırpınca meğer masanda klimasız çalışıyormuşsun, neyse şu işi bitirelim.",
+    "Hayatındaki karmaşayı tıpkı bir gün her şeyi geride bırakıp gidecekmiş gibi boşveriyorsun ama cüzdanın 'O metin buraya kopyalanacak' diye fısıldıyor.",
+    "Yıldız haritana göre bugün istifa dilekçeni yazmak için harika bir gün. Ama ev kiranın haritası pek öyle demiyor, gel şu metni pırıl pırıl temizleyelim.",
+   "Gezegenlerin konumuna bakılırsa bugün tam bir 'Masaya istifayı vurma' günü. Fakat doğalgaz faturanın konumuna bakılırsa bugün daha çok 'Müdüre kahve götürme' günü. Dosyayı açıyorum?",
+   "Bugün Merkür retrosu bitiyor, yani radikal kararlar almak için harika bir gün! Tabii sonraki ay taş kemirmek istemiyorsan, o radikal kararı şimdilik sadece şu metni sadeleştirerek uygulayalım.",
+   "Evren sana 'Sen çok daha iyilerine layıksın' mesajı gönderiyor ama insan kaynakları henüz o mesajı onaylamadı. Gel biz şu Excel tablosunu pırıl pırıl yapalım.",
+   "Bugün tam 'Ceketimi alır çıkarım' havası var dışarıda. Ama o ceketin taksitleri henüz bitmediği için, gel ceketimizi sandalyenin arkasına asıp şu kodları düzeltelim.",
+   "Astrologlar 'Bugün kariyerinde köklü bir değişim zamanı' diyor. Gel bu değişimi şimdilik sadece yazı tipini Arial'dan Times New Roman'a çevirerek başlatalım, riske girmeyelim.",
+   "Yükselen burcun bugün sana 'Özgürlük' vadediyor ama cüzdanındaki o tek haneli bakiye 'Esaretin bedeli'ni hatırlatıyor. Metni düzenlemeye ne dersin?",
+   "İçindeki o gizli dahi 'Bu iş senin dehanı köreltiyor' diyor ama market sepetinin toplam tutarı 'Körelmeye devam et' diye fısıldıyor. Şu raporu temize çekelim.",
+   "Bugün o 'Hayallerinin peşinden koş' günlerinden biri... Eğer hayalin bir sonraki ay kirayı geciktirmek değilse, gel şu grafiklerin üzerinden bir daha geçelim.",
+   "Doğum haritana göre bugün otorite figürleriyle yüzleşme günün. Ama cüzdanının haritasına göre müdürün her dediğine 'Çok haklısınız' deme günün. Metni pürüzsüz yapalım.",
+   "Şu an istifa etsen evren sana yeni kapılar açar elbet, ama o kapılardan içeri ev sahibi de girebilir. Gel risk almayalım, şu taslağı bir güzel toparlayalım.",
+   "Bugün tam 'Kendi hikayeni yazma' günü. Ama o hikayenin ilk bölümü 'İşsizlik Maaşı Sırasında Bir Gün' olsun istemiyorsak, gel şu metni kusursuz hale getirelim.",
+   "Şu an klavyeye çok sert basarak mail yazıyorsun, hıncını anlıyorum. Ama mekanik klavye fiyatları uçtu, tuş fırlarsa yenisini alamayız. Sakince o parmağını geri çek ve şu metni yumuşatarak düzenle.",
+   "Bugün tam patronun odasının kapısını çarparak çıkma günü! Ama o kapı hidrolikli, yavaşça kapanıp karizmanı çizecek, hiç gerek yok. Gel biz şu Excel tablosunu pürüzsüz hale getirelim.",
+   "Bugün tam şirket telefonunu sessize alıp ortadan kaybolma günü. Ama telefon şirket malı, kaybedersen maaşından keserler, durduk yere borçlanma. Gel şu metni cilalayalım.",
+   "Şu an müdüre 'Sizinle çalışmak bir kabustu' diye bağırmak istiyorsun. Ama sesin detone olur, ciddiyetin kaybolur, arkandan gülerler. Hiç o riske girmeyelim, gel şu raporu pürüzsüz yapalım.",
+   "Bugün 'Bıktım sizin vizyonunuzdan' deyip sandalyeyi tekmelemek için harika bir enerji var üstünde. Ama sandalye tekerlekli, kayar odanın öbür ucundaki çöp kovasına çarpar, durduk yere iş çıkar. Boşver, metni temizle geç.",
+   "İçinden 'Şu masadaki her şeyi yere fırlatıp istifa edeceğim' hissi geçiyor. Ama yerleri daha yeni sildiler, temizlik görevlisi ablayla arayı bozmaya değmez. Gel biz şu dosyayı toparlayalım.",
+   "Bugün tam patrona 'Ben bu şirketin kölesi değilim' diye rest çekme günü. Ama şirketin kliması çok güzel soğutuyor, dışarısı 40 derece, evde klima yok. Serin serin şu metni düzenleyelim biz.",
+   "Şu an müdürün yüzüne bakıp 'Siz ne anlarsınız bu işten' diye haykırmak istiyorsun. Ama adamın arkasında klima kumandası duruyor, kapatırsa sıcaktan pişersin. Alttan al, şu analizi bitirelim.",
+   "İçindeki o asi ruh 'Kapat laptopun kapağını çat diye, çık git' diyor. Ama kapağın arasına kalem sıkışır, ekranı patlatırsın, durduk yere 3 maaşın tamire gider. Yavaşça açık bırak o ekranı, metne odaklanalım.",
+   "Hayatındaki bazı insanlar tıpkı Ctrl + Z yapınca geri gelmeyen o 3 saatlik emek gibiler; yoklukları büyük bir travma yaratmıyor ama boşa harcanan zamana insan kahroluyor.",
+   "Bazı insanlar hayatında tıpkı Adobe programlarının o bitmek bilmeyen güncelleme uyarıları gibi; sürekli dikkatini dağıtıyorlar, vakit çalıyorlar ama açıp baksan hayatına en ufak bir yenilik katmıyorlar.",
+   "Hayatındaki bazı insanlar tıpkı masaüstünde unuttuğun 'yeni_klasör_2' gibiler; neden açtığını hatırlamazsn, içi tamamen boştur ama öylece durup arka plan resmini kapatırlar.",
+   "Bazı insanlar tıpkı her web sitesinde karşına çıkan 'Çerezleri Kabul Et' butonu gibiler; hayatına hiçbir derinlik katmıyorlar, sadece gitmek istediğin yolda sürekli önüne çıkıp duruyorlar.",
+   "Hayatındaki bazı insanlar tıpkı o 128 GB'lık flash belleğin içindeki 'Kısayol' dosyası gibiler; dışarıdan bakınca devasa bir veri taşıyor gibi görünürler, tıklarsın bomboş bir hata ekranı verirler.",
+   "Bazı insanlar tıpkı e-ticaret sitelerindeki 'Tükendi' yazan ürünler gibiler; orada durmalarının dünyaya hiçbir faydası yoktur, sadece 'Keşke zamanında baksaydım' diye insana pişmanlık verirler.",
+   "Bazı insanlar tıpkı telefonun arkasında biriken o anlamsız önbellek (cache) dosyaları gibiler; hayatında hiçbir fonksiyonları yoktur, sadece durduk yere ruhunda ağırlık yapıp enerjini tüketirler.",
+   "Hayatındaki bazı insanlar tıpkı eski sevgilinin Spotify'da hala seni takip eden gizli hesabı gibiler; orada bir yerde bir '1' rakamı olarak dururlar ama hayatına ne bir ritim katarlar ne bir melodi.",
+   "Bazı insanlar tıpkı bedava diye indirdiğin o mobil uygulamanın içindeki reklamlar gibiler; her 5 saniyede bir karşına çıkıp 'Hadi beni premium yap' diye ısrar edenler ama kendilerinde hiç premium kumaş yoktur.",
+   "Günün özlü sözü: Yanlış kod satırı Ctrl + Z ile silinir, yanlış insan hayatından Ctrl + Alt + Delete yapsan da kolay kolay temizlenmez.",
+   "Günün özlü sözü: Metindeki eksik harf hemen fark edilir and tamamlanır; insanın içindeki eksik karakteri ise yıllarca fark edemezsin.",
+   "Günün özlü sözü: Tasarımdaki pikselleri büyütüp düzeltebilirsin ama vizyonu küçük insanı ne kadar büyütürsen büyüt, sadece görüntüsü bulanıklaşır.",
+   "Günün özlü sözü: Bozuk dosya formatı dönüştürücüyle kurtarılır, bozuk karakterli insanı hangi kalıba sokarsan sok yine hata verir.",
+   "Günün özlü sözü: Yazım hatası gözden kaçar, görmezden gelinir; ama insanın hatası bir kez göze battı mı bir daha asla unutturulmaz.",
+   "Günün özlü sözü: Word belgesindeki boşluklar tek tıkla silinir; bazı insanların içindeki o devasa boşluğu ise ne yapsan dolduramazsin.",
+   "Günün özlü sözü: Fazla yazılan kelime metinden kolayca ayıklanır; hayatına fazla gelen insanı ayıklamak ise ömründen ömür alır.",
+   "Günün özlü sözü: Kötü tasarlanmış bir sayfa sıfırdan çizilir; kötü niyetli bir insanla yola çıktıysan o yolu kaç kere sıfırlarsan sıfırla hep çıkmaza girersin.",
+   "Günün özlü sözü: Yazının fontunu değiştirmek bir saniyeni alır; insanın rengini değiştirmesi ise sadece bir menfaatine bakar.",
+   "Günün özlü sözü: Formüldeki hata Excel uyarısıyla çözülür; insanın hayatına kattığı hata ise ancak yıllar sonra tecrübeyle anlaşılır.",
+   "Günün özlü sözü: Kaydedilmeyen veri için canın sıkılır ama unutulur; değer görmeyen emek için sızlayan kalbin sızısı ise kolay geçmez.",
+   "Senin emeğinin üzerine konmaya çalışanların mikrofonu toplantıda açık kalsın da evde arkadan gelen o dedikodu sesleri tüm şirkete yayınlansın. Amin.",
+   "Bugün işi sana kitleyip erken çıkanların bindiği metrobüs ters yöne gitsin, üstüne bir de telefonlarının şarjı yüzde 1'ken şarj aletlerini ofiste unuttuklarını fark etsinler. Amin.",
+   "Bugün sana durduk yere revizyon üstüne revizyon verenlerin klavyesindeki Space tuşu bozulsun, tüm mailleri bitişik yazıp rezil olsunlar. Amin.",
+   "İş yapıyormuş gibi görünüp bütün gün sosyal medyada gezenlerin, yanlışlıkla şirket sahibinin 5 yıl önceki tatil fotoğrafını beğenmesine sebep olacak bir parmak kayması nasip et ya Rabbim. Amin.",
+   "Toplantıda seni zor durumda bırakmak için pusuya yatanların, tam konuşmaya başladıkları an boğazına gıcık otursun da sesleri helyum gazı çekmiş gibi çıksın. Amin.",
+   "Senin başarılarını görmezden gelenlerin en sevdikleri döküman, tam 'Kaydet' tuşuna basacakken elektrik kesintisiyle uçup gitsin. Amin.",
+   "Sana sürekli 'Biz bir aileyiz' deyip mesai ücretini vermeyenlerin şirket arabasının lastiği tam da sanayiye en uzak mesafede patlasın. Amin.",
+   "Bugün 'Seni çok iyi anlıyorum' diyenlerin aslında 'Şu an seni hiç dinlemiyorum, sadece kendi konuşma sıramın gelmesini bekliyorum' demek istediğini bir kez daha anlayacaksın.",
+   "Bugün müdürün 'Bu projede senin vizyonuna güveniyorum' demesinin aslında 'Hata çıkarsa faturayı tamamen sana keseceğim' demek olduğunu acı bir tebessümle fark edeceksin.",
+   "Bugün 'Önceliğimiz çalışan mutluluğu' sloganının aslında 'Ofise langırt koyduk ama oynarsan gözümüz üstünde olur' demek olduğunu anlayacaksın.",
+   "Bugün 'Aramızda çok güzel bir sinerji oluştu' iltifatının aslında 'Sen ne desen onaylıyorsun, işleri de sessizce yapıyorsun, tam aradığımız kölesin' anlamına geldiğini anlayacaksın.",
+   "Bugün 'Biz burada bir aileyiz' söyleminin aslında 'Haklarını ararken fazla profesyonel düşünme, fedakarlık yaparken de sınır tanıma' anlamına geldiğini bir kez daha anlayacaksın.",
+   "İçindeki ses 'Yeter artık, fırlat klavyeyi çık git' diyor ama bankanın mobil uygulamasından gelen 'Kredi taksitiniz yaklaşmaktadır' bildirimi elini usulca klavyeye geri koyduruyor. Devam şampiyon.",
+   "Bugün istifa edip dünyayı gezecek o cesur kararı alacaksın... Tam o sırada gözün masadaki yarım kalmış sodaya takılacak, 'Neyse bunu bari bitireyim' derken mesai bitecek.",
+   "Bugün LinkedIn profilini 'Open to Work' yapasın var. Ama piyasanın durumunu hatırlayınca profili 'Gerekirse 24 Saat Çalışırım' yapmaktan son anda dönüyorsun. Kopyala butonuna bas ve sakinleş.",
+   "Evren sana fısıldıyor: 'Sen daha iyilerine layıksın.' Doğru, layıksın ama kredi kartı ekstrem de diyor ki: 'Şu an tam olarak bu masaya ve bu metinlere layıksın.' Hadi aslan parçası.",
+   "Bugün toplantıda masaya vurup 'Ben gidiyorum' demek için harika bir energy var üstünde. Ama masaya vurursan laptop ekranı kırılır, masraf çıkar. Boşver, temizle metni geç.",
+   "Kaderinde bugün çok radikal bir kariyer değişikliği görüyorum. Mesela 'Boşluk Temizleyici' sekmesinden 'Yazım Düzenleyici' sekmesine geçeceksin. Büyük devrim.",
+   "Küre diyor ki: İstifa edip bir sahil kasabasında domates yetiştirmek harika bir fikir. Ama domates tohumu fiyatlarına bakınca bu panelin siyahlığı gözüne bir tık daha güzel geliyor, değil mi?",
+   "Bugün bir delilik yapıp Slack'ten 'Ben çıkıyorum, ne haliniz varsa görün' yazasın gelecek. Ama enter tuşuna basmadan önce kıdem tazminatını hesaplayıp yerine 'Harika bir feedback, hemen ilgileniyorum' yazacaksınız.",
+   "Yıldız haritana göre bugün kurumsal kölelik zincirlerini kırma günün! Ama Akbank, Garanti and Yapı Kredi el ele tutuşup kapıda seni bekleyebilir. Zincirler kalsın, biz metindeki çift boşlukları kıralım.",
+   "Küre diyor ki: İstifa et, her şeyi sat, Hindistan'a git ve ruhunu arındır. Ama uçak bileti fiyatlarına baktıktan sonra bu paneldeki 'Temizle' butonu gözüne Ganj Nehri'nden daha arındırıcı gelecek.",
+   "Küre diyor ki: Sen bu dünyaya her sabah 8'de uyanıp elalemin excel tablosunu, word metnini düzeltmek için gelmedin. Sen çok daha büyük şeyler için yaratıldın... Şaka şaka, tam olarak bunun için geldin. Hadi yapıştır metni, mesai akıyor.",
+   "Bugün istifa edip dünyayı gezen o cool gezginlerden olma hayalin tavan yapacak. Ama sırt çantanı hazırlarken içine koyacak lüksün sadece şirket logolu polar ve promosyon termos olduğunu fark edip masana geri çökeceksiniz. Kopyala butonuna bas ve hayalleri serbest bırak.",
+   "Evren bugün sana çok net bir vizyon gösteriyor: Kendi işinin patronu olmuşsun, altındaki lüks araba, arkanda korumalar... Ama vizyonun çözünürlüğü biraz artınca fark ediyorsun ki altındaki araba şirket arabası, arkandakiler de 'Şu iş ne oldu?' diye bekleyen yöneticiler. Uyan aslanım, metin temizlenecek.",
+   "İçindeki o çılgın girişimci ruh 'Hemen bu akşam şirketi kuruyoruz' diye bağırıyor. Ama muhasebecinin isteyeceği stopajı, bağkuru, damga vergisini hesaplayınca, buradaki bedava, reklamsız, vergisiz mat siyah panel gözüne bir anda İsviçre Merkez Bankası gibi güvenli gelecek.",
+   "Bugün şirketinin ortak platformunda yanlışlıkla 'Yetti be, ne bitmez revizyonmuş!' yazacaksın... diye korkup soğuk terler dökeceksiniz ama yerine saniyede 120 kelime hızla 'Tabii ki hemen revize edip en memnun haliyle iletiyorum, sevgiler' yazarak hayatta kalacaksın.",
+   "Gelenizde inanılmaz bir zenginlik, malikaneler, uşaklar görüyorum... Ama rüya tabirlerine göre bu rüya 'Çok yakında mesaiye kalacaksın ve akşam yemeğinde sana sadece soğuk bir dürüm ısmarlayacaklar' anlamına geliyor. Dürümün tuzu bol olsun, devam.",
+   "Bugün ani bir cinnetle yöneticine Slack'ten 'Ben gidiyorum, vizyonsuz ekibiniz ve bitmeyen revizyonlarınız size kalsın' yazacaksınız. Tam gönder tuşuna basacakken kalbin sıkışacak, gözün kararacak, metni silip yerine 'Elinize sağlık, çok ufak bir sorum olacaktı :)'* yazıp arkaya gizlice ağlamaya gideceksiniz.",
+   "Küre parlıyor! Seni çok yakında business class uçuşunda şampanyanı yudumlarken görüyorum... Ama uçak modunu kapatınca uyanıyorsun ki metrobüste bir teyzenin pazar çantasıyla sol böbreğin arasında sıkışmışsın ve işe geç kalıyorsun. Yapıştır şu metni de bari primin kesilmesin.",
+   "Bugün istifa dilekçeni yazıp tam patronun masasına fırlatacakken, telefonuna bankadan 'Sayın müşterimiz, 120 ay vadeli konut kredinizin 3. taksiti tahsil edilememiştir' bildirimi düşecek. O fırlattığın kağıdı masadan 'Yere çöp düşmüş de efendim' diye yerleri siler gibi geri toplayacaksın.",
+   "Büyük bir kurumsal kriz kapıda ama sakin ol, seninle alakası yok. Kahvenden bir yudum al ve izle.",
+   "Gözüm metnindeki gizli 'Yüksek Kalite' ibarelerini arıyor... Yapma öyle şeyler, Tengri görüyor.",
+   "Bugün copy-paste yaparken elin hiç titremeyecek. Kusursuz bir CTRL+C performansı seziyorum.",
+   "O beklediğin mail veya mesaj bugün gelecek. Gelmezse de karşı tarafın vizyonsuzluğudur, boşver.",
+   "Yapay zeka senin işini elinden almayacak ama o kahveyi şimdi tazelemezsen uykun kesin alacak.",
+   "Yakın zamanda bir revizyon yiyeceksin ama öyle bir düzelteceksin ki isteyen utancından istifa edecek.",
+   "Hayatındaki bazı insanlar tıpkı '&nbsp;' gibi; varlar ama hiçbir işe yaramıyorlar, sadece yer kaplıyorlar.",
+   "Bugün şanslı günündesin. Yapıştırdığın metin tek seferde dümdüz olacak, uğraştırmayacak.",
+   "Plaza dilencilerinin attığı o anlamsız 'As per our discussion' maillerine karşı bağışıklık kazanacağın bir gün.",
+   "Bugün birisi sana 'Bakar mısın?' diyecek. Duymamazlıktan gel, iş yıkmaya çalışıyorlar.",
+   "Kaderinde yakın zamanda bir zam, terfi veya en kötü ihtimalle çok tatlı bir öğle yemeği ısmarlanması yok.",
+   "Metnini temizledin, peki ya zihnini? Bir ara arkana yaslan ve derin bir nefes al şampiyon.",
+   "Bugün kurumsal dünyayı dize getirebilecek bir energye sahipsin ama canın istemiyor, çok haklısın.",
+   "Gelecekte harika bir tatil görüyorum. Ama o geleceğe daha çok var, şimdi şu metni hallet.",
+   "Siber evren sana mesaj gönderiyor: 'Bugün o klavyeye biraz daha yumuşak bas, o da bir can.'",
+   "Seni çekemeyenlerin algoritması çöksün, tarayıcıları kapansın, ramleri yansın. Sen devam et.",
+   "Bugün yapacağın en büyük hata, biten işi teslim ettikten sonra 'Başka bir şey var mıydı?' diye sormak olur. Sorma.",
+   "Bugün karşına çıkacak saçmalıklara karşı sabrın, bu panelin siyahlığı kadar derin ve sınırsız olsun.",
+   "Metindeki çift boşlukları avladığın gibi hayattaki iki yüzlüleri de avlayacağın keskin bir gün.",
+   "Günün tavsiyesi: O sekmeyi kapat. Hangi sekme olduğunu biliyorsun. Kapat gitsin.",
+   "Küre fısıldıyor: Akşama güzel bir dizi/film patlat, bütün günün yükünü silsin süpürsün.",
+   "Yazım hatalarını düzelttiğin gibi hayatına da ince bir ayar çekiyorsun. Doğru yoldasın.",
+   "Bugün müşteriden gelen 'Elinize sağlık çok güzel olmuş' mesajını göreceksiniz. (Şaka şaka, revizyon var).",
+   "İçinden bir ses 'Bırak git' diyor ama cüzdanın 'Dur yolcu' diye fısıldıyor. Çalışmaya devam.",
+   "Birazdan kopyalayacağın metin, gideceği yerde büyük bir hayranlıkla okunacak. Gurur duy.",
+   "Bugün tarayıcında 40'tan fazla sekme açılacak. Bilgisayarına iyi davran, o senin yoldaşın.",
+   "Günün kehaneti: Bugün klavyene dökülmeyen her kahve, senin için büyük bir zaferdir.",
+   "Metninde hiç yasakli kelime çıkmadı mı? İşte profesyonelliğin saf ve temiz hali. Helal olsun.",
+   "Bugün 'Bakarız' denen her şeyin aslında 'Asla yapmayacağız' anlamına geldiğini bir kez daha anlayacaksın.",
+   "Siber kaderinde büyük bir kahve molası var. Hak ettin, hadi git doldur gel.",
+   "Hayat bazen hatalı kodlar gibi karmaşıktır, ama unutmaman gereken şey: Her zaman bir geri al (CTRL+Z) tuşu vardır.",
+   "Küreye göre bugün alacağın en iyi karar, işi tam zamanında bırakıp bilgisayarı kapatmak olacak.",
+   "Metindeki tüm pislikleri temizledin. Artık tertemiz bir sayfan var. Hayatın da böyle ferah olsun.",
+   "Kafandaki düşünceler şu an temizlenmemiş bir HTML metni gibi karmakarışık. Bi' dur, sakinleş.",
+   "Bugün arkandan konuşanların tarayıcı geçmişi yanlışlıkla patronlarına mail gitsin. Amin.",
+   "Küre parlıyor: Bugün yapacağın işler gelecekteki rahatının temel taşları olacak. Sık dişini.",
+   "Bugün kulaklığını tak ve dünyayı sessize al. Sadece sen, müziğin ve bu asil siyah panel.",
+   "Günün özlü sözü: Hatalı metin düzeltilir, hatalı insan zor. Metinlerle uğraşmaya devam.",
+   "Tengri Oracle görevini tamamladı. Şimdi o 'Kopyala' butonuna bas ve şovunu yap aslan parçası!"
+];
 
-    // Worker URL'in (API anahtarı burada gizli)
-    const WORKER_URL = "https://tengri-kahin.alesseapl000.workers.dev/";
-
-    try {
-        const response = await fetch(WORKER_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ message: "Bugün için bir kehanet ver." })
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP Hatası: ${response.status}`);
-        }
-
-        const data = await response.json();
-        
-        if (data.reply) {
-            display.innerText = data.reply;
-        } else {
-            display.innerText = "⚠️ Beklenmeyen bir yanıt geldi.";
-        }
-        
-        display.style.opacity = 1;
-        display.classList.add("glitch-effect");
-        setTimeout(() => display.classList.remove("glitch-effect"), 300);
-
-    } catch (error) {
-        console.error("Bağlantı Hatası:", error);
-        display.innerText = "⚠️ Bağlantı hatası! Lütfen tekrar dene.";
-        display.style.opacity = 1;
-    }
-}
-
-// ========== TEMA ==========
+function getTengriOracle(){const d=document.getElementById("oracle-display");d.classList.add("glitch-effect");d.style.opacity=0.3;setTimeout(()=>{d.innerText=oracleQuotes[Math.floor(Math.random()*oracleQuotes.length)];d.style.opacity=1;setTimeout(()=>d.classList.remove("glitch-effect"),200);},200);}
 function changeTheme(t,e){t==='dark'?document.documentElement.removeAttribute('data-theme'):document.documentElement.setAttribute('data-theme',t);document.querySelectorAll('.theme-dot').forEach(d=>d.classList.remove('active'));e.classList.add('active');document.body.classList.add('theme-shake');setTimeout(()=>document.body.classList.remove('theme-shake'),500);}
-
-// ========== TOAST ==========
 function showToast(m="⚡ METİN BAŞARIYLA KOPYALANDI!"){const t=document.getElementById("toast-notification");t.innerText=m;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2000);}
-
-// ========== METİN ARAÇLARI ==========
 function calculateMeta(i){const t=document.getElementById(`input${i}`).innerText;document.getElementById(`char-count-${i}`).innerHTML=`Karakter: <strong>${t.length}</strong>`;document.getElementById(`word-count-${i}`).innerHTML=`Kelime: <strong>${t.trim()?t.trim().split(/\s+/).length:0}</strong>`;}
 function openTab(i){document.querySelectorAll(".tab-content").forEach(t=>t.classList.remove("active"));document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));document.querySelectorAll(".tab-content")[i].classList.add("active");document.querySelectorAll(".tab-btn")[i].classList.add("active");}
 const bannedWords=["yüksek kalite","yüksek kaliteli","%100 hakiki","% 100 hakiki","hakiki deri","gerçek deri","birinci sınıf","1. kalite","1. sınıf","unisex"];
@@ -833,7 +911,7 @@ function switchCoffeeQuote() {
     }, 1500);
 }
 
-// ========== BURÇ VERİLERİ ==========
+// ========== BURÇ VERİLERİ (kısaltılmış) ==========
 const burcDetaylari = {
     "koç": { emoji:"♈", element:"Ateş", tarih:"21 Mart - 19 Nisan", gezegen:"Mars", renk:"Kırmızı", tas:"Yakut, Elmas", ugurluGun:"Salı", ozellik:"Koç burcu, zodyağın ilk burcu olarak cesur, öncü ve dinamik bir yapıya sahiptir. Yönetici gezegeni Mars'ın etkisiyle savaşçı ruhlu, rekabetçi ve hırslıdır. Yeni başlangıçlara bayılır, neredeyse hiçbir şeyden korkmaz. Ancak sabırsızlığı ve düşünmeden hareket etmesi başını belaya sokabilir. Doğal bir liderdir; nereye gitse öne çıkar ve insanları peşinden sürükler. Çabuk öfkelenir ama öfkesi çabuk geçer, kin tutmaz. Macera ve heyecan onun için hayatın tuzu biberidir. Aşk hayatında tutkulu ama bir o kadar da bağımsızlığına düşkündür. Kariyerde girişimci ruhuyla kendi işini kurmaya yatkındır.", pozitif:"Cesur, kararlı, lider ruhlu, enerjik, tutkulu, girişimci, bağımsız, iyimser, rekabetçi, doğrudan.", negatif:"Sabırsız, fevri, bencil olabilir, çabuk öfkelenir, düşünmeden hareket eder, dominant, kaba.", uyumlu:["Aslan","Yay","İkizler"], uyumsuz:["Yengeç","Oğlak"] },
     "boğa": { emoji:"♉", element:"Toprak", tarih:"20 Nisan - 20 Mayıs", gezegen:"Venüs", renk:"Yeşil, Pembe", tas:"Zümrüt, Pembe Kuvars", ugurluGun:"Cuma", ozellik:"Boğa burcu, zodyağın en güvenilir ve istikrarlı burcudur. Venüs'ün yönettiği bu burç, güzelliğe, konfora ve kaliteli yaşama düşkündür. Değişimden hoşlanmaz, rutinlerine bağlıdır. Son derece sabırlıdır ancak sabrı taştığında öfkesi şiddetli olur. Maddi güvence onun için çok önemlidir, bu yüzden iyi bir birikimci ve yatırımcı olabilir. Sanat, müzik ve lezzetli yemekler onun ruhunu besler. İnatçılığıyla ünlüdür; bir kere karar verdiyse onu döndürmek neredeyse imkansızdır. Aşkta sadık, romantik ve sahiplenicidir. Kariyerde istikrarlı tırmanışı sever.", pozitif:"Güvenilir, sadık, pratik, estetik zevkleri yüksek, istikrarlı, sabırlı, şefkatli, kararlı.", negatif:"İnatçı, materyalist, değişime kapalı, kıskanç, sahiplenici, tembel olabilir, aşırı rahatına düşkün.", uyumlu:["Başak","Oğlak","Yengeç"], uyumsuz:["Kova","Aslan"] },
@@ -1175,7 +1253,7 @@ function toggleDiscovery() {
     }
 }
 
-// ========== ŞEHİR İSİMLERİ ==========
+// ========== ŞEHİR İSİMLERİ (81 İL) ==========
 const cityMeanings = [
     { city: "Adana", meaning: "Hitit tanrısı Adanus'a ithafen verilmiştir.", bolge: "Akdeniz", tarihi: "Roma döneminde taş köprü ve ulu camisiyle önemli bir ticaret merkezi olan Adana, Çukurova'nın verimli topraklarıyla tarih boyunca tarımın kalbi olmuştur.", ilginc: "Dünyanın en büyük mozaik müzelerinden biri olan Adana Mozaik Müzesi burada yer alır.", meshur: "Adana kebabı, şalgam suyu" },
     { city: "Adıyaman", meaning: "Arapça 'ada' (ada) ve 'yaman' (sağlam) kelimelerinden oluşur; kalenin sağlamlığına işaret eder.", bolge: "Güneydoğu Anadolu", tarihi: "Kommagene Krallığı'nın başkenti olan Adıyaman, Nemrut Dağı'ndaki dev heykellerle tarihe damga vurmuştur.", ilginc: "Nemrut Dağı'ndaki heykeller UNESCO Dünya Mirası listesindedir.", meshur: "Adıyaman çiğ köftesi, iskender kebabı" },
@@ -1274,7 +1352,7 @@ function showRandomCity() {
     `;
 }
 
-// ========== BİLİM ADAMLARI ==========
+// ========== BİLİM ADAMLARI – ZENGİNLEŞTİRİLMİŞ ==========
 const scientists = [
     { name: "Albert Einstein", quote: "Hayal gücü bilgiden daha önemlidir.", invention: "Görelilik Teorisi", detail: "Uzay ve zamanın bükülebileceğini, kütleçekiminin aslında uzay-zamanın eğriliği olduğunu keşfetti. E=mc² ile enerji ve kütle ilişkisini formüle etti.", dogum: "1879", olum: "1955", ulke: "Almanya/ABD", alan: "Fizik", oduller: "Nobel Fizik Ödülü (1921)", onemliEserler: "Genel Görelilik Kuramı, Özel Görelilik Kuramı" },
     { name: "Isaac Newton", quote: "Bildiklerimiz bir damla, bilmediklerimiz bir okyanustur.", invention: "Kütle Çekimi Yasası", detail: "Evrensel çekim yasası ve hareket yasalarını formüle etti. Klasik fiziğin temellerini attı.", dogum: "1643", olum: "1727", ulke: "İngiltere", alan: "Fizik, Matematik", oduller: "Londra Kraliyet Cemiyeti Başkanı", onemliEserler: "Philosophiæ Naturalis Principia Mathematica" },
@@ -1308,7 +1386,66 @@ const scientists = [
     { name: "Barbara McClintock", quote: "Genler yer değiştirebilir.", invention: "Gen Atlayan Elementler", detail: "Mısır üzerinde yaptığı çalışmalarla transpozonları keşfetti.", dogum: "1902", olum: "1992", ulke: "ABD", alan: "Genetik", oduller: "Nobel Fizyoloji veya Tıp (1983)", onemliEserler: "Transpozonlar" },
     { name: "Santiago Ramón y Cajal", quote: "Beyin karmaşık.", invention: "Nöron Teorisi", detail: "Sinir sistemini oluşturan hücrelerin nöronlar olduğunu gösterdi.", dogum: "1852", olum: "1934", ulke: "İspanya", alan: "Nörobilim", oduller: "Nobel Fizyoloji veya Tıp (1906)", onemliEserler: "Nöron Teorisi" },
     { name: "Ivan Pavlov", quote: "Koşullu refleks.", invention: "Koşullu Refleks", detail: "Köpekler üzerinde yaptığı deneylerle klasik koşullanmayı keşfetti.", dogum: "1849", olum: "1936", ulke: "Rusya", alan: "Psikoloji, Fizyoloji", oduller: "Nobel Fizyoloji veya Tıp (1904)", onemliEserler: "Koşullu Refleksler" },
-    { name: "Carl Jung", quote: "Kolektif bilinçaltı.", invention: "Analitik Psikoloji", detail: "Kolektif bilinçaltı ve arketip kavramlarını geliştirdi.", dogum: "1875", olum: "1961", ulke: "İsviçre", alan: "Psikoloji", oduller: "–", onemliEserler: "İnsan ve Sembolleri" }
+    { name: "Carl Jung", quote: "Kolektif bilinçaltı.", invention: "Analitik Psikoloji", detail: "Kolektif bilinçaltı ve arketip kavramlarını geliştirdi.", dogum: "1875", olum: "1961", ulke: "İsviçre", alan: "Psikoloji", oduller: "–", onemliEserler: "İnsan ve Sembolleri" },
+    { name: "Erik Erikson", quote: "Psikososyal evreler.", invention: "Psikososyal Gelişim", detail: "İnsan yaşamının 8 evresini tanımlayarak psikososyal gelişim teorisini kurdu.", dogum: "1902", olum: "1994", ulke: "Almanya/ABD", alan: "Psikoloji", oduller: "–", onemliEserler: "Psikososyal Gelişim Evreleri" },
+    { name: "Jean Piaget", quote: "Bilişsel gelişim.", invention: "Bilişsel Gelişim Teorisi", detail: "Çocukların bilişsel gelişim evrelerini tanımladı.", dogum: "1896", olum: "1980", ulke: "İsviçre", alan: "Psikoloji", oduller: "–", onemliEserler: "Çocuğun Bilişsel Gelişimi" },
+    { name: "Noam Chomsky", quote: "Dil edinimi doğuştandır.", invention: "Üretken Dilbilgisi", detail: "Dilin doğuştan gelen bir yeti olduğunu savundu.", dogum: "1928", olum: "", ulke: "ABD", alan: "Dilbilim", oduller: "Kyoto Ödülü", onemliEserler: "Üretken Dilbilgisi" },
+    { name: "Edward Jenner", quote: "Aşılamanın öncüsü.", invention: "Çiçek Aşısı", detail: "Çiçek hastalığına karşı ilk aşıyı geliştirerek immünolojinin temellerini attı.", dogum: "1749", olum: "1823", ulke: "İngiltere", alan: "Tıp", oduller: "–", onemliEserler: "Çiçek Aşısı" },
+    { name: "Robert Koch", quote: "Mikropla savaş.", invention: "Koch Postulatları", detail: "Şarbon ve tüberküloz etkenlerini keşfederek mikrobiyolojiye büyük katkı sağladı.", dogum: "1843", olum: "1910", ulke: "Almanya", alan: "Mikrobiyoloji", oduller: "Nobel Fizyoloji veya Tıp (1905)", onemliEserler: "Koch Postulatları" },
+    { name: "Paul Ehrlich", quote: "Sihirli mermi.", invention: "Kemoterapi", detail: "Frengi tedavisinde kullanılan Salvarsan ilacını geliştirdi.", dogum: "1854", olum: "1915", ulke: "Almanya", alan: "Tıp", oduller: "Nobel Fizyoloji veya Tıp (1908)", onemliEserler: "Salvarsan" },
+    { name: "Alexander Graham Bell", quote: "Telefon.", invention: "Telefon", detail: "1876'da telefonu icat etti. Sesin elektrik sinyallerine dönüştürülmesi fikrini hayata geçirdi.", dogum: "1847", olum: "1922", ulke: "İskoçya/ABD", alan: "Telekomünikasyon", oduller: "–", onemliEserler: "Telefon" },
+    { name: "Guglielmo Marconi", quote: "Telsiz iletişim.", invention: "Radyo", detail: "Telsiz telgrafı icat ederek radyo iletişiminin temellerini attı.", dogum: "1874", olum: "1937", ulke: "İtalya", alan: "Elektrik Mühendisliği", oduller: "Nobel Fizik (1909)", onemliEserler: "Radyo" },
+    { name: "John Logie Baird", quote: "Televizyon.", invention: "Televizyon", detail: "1925'te ilk mekanik televizyon sistemini sergiledi.", dogum: "1888", olum: "1946", ulke: "İskoçya", alan: "Mühendislik", oduller: "–", onemliEserler: "Mekanik Televizyon" },
+    { name: "Tim Berners-Lee", quote: "WWW.", invention: "World Wide Web", detail: "1989'da web'in temel protokollerini geliştirerek internetin yaygınlaşmasını sağladı.", dogum: "1955", olum: "", ulke: "İngiltere", alan: "Bilgisayar Bilimi", oduller: "Turing Ödülü", onemliEserler: "WWW" },
+    { name: "Bill Gates", quote: "Yazılım devrimi.", invention: "Microsoft Windows", detail: "Kişisel bilgisayar yazılım pazarını domine eden Windows işletim sistemini geliştirdi.", dogum: "1955", olum: "", ulke: "ABD", alan: "Bilgisayar Bilimi", oduller: "–", onemliEserler: "Windows" },
+    { name: "Steve Jobs", quote: "Apple'ın vizyonu.", invention: "iPhone", detail: "Akıllı telefon dönemini başlatarak teknolojiyi yeniden tanımladı.", dogum: "1955", olum: "2011", ulke: "ABD", alan: "Teknoloji", oduller: "–", onemliEserler: "iPhone, Mac" },
+    { name: "Elon Musk", quote: "Uzay ve araba.", invention: "Tesla ve SpaceX", detail: "Elektrikli araçlar ve uzay keşifleri alanında çığır açan şirketlerin kurucusudur.", dogum: "1971", olum: "", ulke: "Güney Afrika/ABD", alan: "Mühendislik", oduller: "–", onemliEserler: "Tesla, SpaceX" },
+    { name: "Henri Becquerel", quote: "Radyasyonun keşfi.", invention: "Radyoaktivite", detail: "Uranyumun radyasyon yaydığını keşfederek radyoaktivitenin temellerini attı.", dogum: "1852", olum: "1908", ulke: "Fransa", alan: "Fizik", oduller: "Nobel Fizik (1903)", onemliEserler: "Radyoaktivite" },
+    { name: "Lise Meitner", quote: "Nükleer fisyon.", invention: "Nükleer Fisyon", detail: "Nükleer fisyonun açıklanmasında kritik rol oynadı.", dogum: "1878", olum: "1968", ulke: "Avusturya/İsveç", alan: "Fizik", oduller: "–", onemliEserler: "Nükleer Fisyon" },
+    { name: "Otto Hahn", quote: "Fisyon reaksiyonu.", invention: "Nükleer Fisyon", detail: "Uranyum atomunun fisyonunu keşfederek nükleer enerjinin temelini attı.", dogum: "1879", olum: "1968", ulke: "Almanya", alan: "Kimya", oduller: "Nobel Kimya (1944)", onemliEserler: "Nükleer Fisyon" },
+    { name: "Robert Oppenheimer", quote: "Atom bombası.", invention: "Atom Bombası", detail: "Manhattan Projesi'nin lideri olarak atom bombasının geliştirilmesinde öncü rol oynadı.", dogum: "1904", olum: "1967", ulke: "ABD", alan: "Fizik", oduller: "–", onemliEserler: "Manhattan Projesi" },
+    { name: "Enrico Fermi", quote: "Kontrollü zincirleme reaksiyon.", invention: "Nükleer Reaktör", detail: "İlk nükleer reaktörü inşa ederek nükleer enerjinin barışçıl kullanımının önünü açtı.", dogum: "1901", olum: "1954", ulke: "İtalya/ABD", alan: "Fizik", oduller: "Nobel Fizik (1938)", onemliEserler: "Nükleer Reaktör" },
+    { name: "John Bardeen", quote: "Transistör ve süperiletkenlik.", invention: "Transistör", detail: "Transistörü icat eden ekipte yer aldı. Nobel Fizik Ödülü'nü iki kez kazandı.", dogum: "1908", olum: "1991", ulke: "ABD", alan: "Fizik", oduller: "Nobel Fizik (1956, 1972)", onemliEserler: "Transistör" },
+    { name: "Jack Kilby", quote: "Entegre devre.", invention: "Entegre Devre", detail: "İlk entegre devreyi icat ederek elektronik devrimini başlattı.", dogum: "1923", olum: "2005", ulke: "ABD", alan: "Elektrik Mühendisliği", oduller: "Nobel Fizik (2000)", onemliEserler: "Entegre Devre" },
+    { name: "Gordon Moore", quote: "Moore Yasası.", invention: "Moore Yasası", detail: "Entegre devrelerdeki transistör sayısının her iki yılda bir ikiye katlanacağını öngördü.", dogum: "1929", olum: "2023", ulke: "ABD", alan: "Teknoloji", oduller: "–", onemliEserler: "Moore Yasası" },
+    { name: "Linus Pauling", quote: "Kimya ve barış.", invention: "Kuantum Kimyası", detail: "Kimyasal bağların doğasını açıklayan çalışmalarıyla Nobel Kimya ve Nobel Barış Ödülü sahibidir.", dogum: "1901", olum: "1994", ulke: "ABD", alan: "Kimya", oduller: "Nobel Kimya (1954), Nobel Barış (1962)", onemliEserler: "Kuantum Kimyası" },
+    { name: "Dorothy Hodgkin", quote: "Kristalografi.", invention: "X-ışını Kristalografisi", detail: "Penicilline ve vitamin B12'nin yapısını belirleyerek kristalografinin gelişmesine katkı sağladı.", dogum: "1910", olum: "1994", ulke: "İngiltere", alan: "Kimya", oduller: "Nobel Kimya (1964)", onemliEserler: "Kristalografi" },
+    { name: "Ahmed Zewail", quote: "Femtosaniye kimyası.", invention: "Femtosaniye Kimyası", detail: "Kimyasal reaksiyonların ultra hızlı zaman ölçeğinde incelenmesini sağladı.", dogum: "1946", olum: "2016", ulke: "Mısır/ABD", alan: "Kimya", oduller: "Nobel Kimya (1999)", onemliEserler: "Femtosaniye Spektroskopisi" },
+    { name: "Svante Arrhenius", quote: "Sera etkisi.", invention: "Arrhenius Denklemi", detail: "Kimyasal kinetik ve sera etkisi üzerine yaptığı çalışmalarla bilinir.", dogum: "1859", olum: "1927", ulke: "İsveç", alan: "Kimya", oduller: "Nobel Kimya (1903)", onemliEserler: "Arrhenius Denklemi" },
+    { name: "Alfred Nobel", quote: "Dinamit ve Nobel Ödülleri.", invention: "Dinamit", detail: "Dinamiti icat eden Nobel, ölümünden sonra mal varlığıyla Nobel ödüllerini başlattı.", dogum: "1833", olum: "1896", ulke: "İsveç", alan: "Kimya, Mühendislik", oduller: "–", onemliEserler: "Dinamit" },
+    { name: "John Dalton", quote: "Atom teorisi.", invention: "Modern Atom Teorisi", detail: "Atomların kütle ve özelliklerini belirleyerek kimyanın temellerini attı.", dogum: "1766", olum: "1844", ulke: "İngiltere", alan: "Kimya", oduller: "–", onemliEserler: "Atom Teorisi" },
+    { name: "Robert Boyle", quote: "Boyle yasası.", invention: "Gaz Yasaları", detail: "Gazların basınç-hacim ilişkisini formüle etti.", dogum: "1627", olum: "1691", ulke: "İrlanda", alan: "Kimya, Fizik", oduller: "–", onemliEserler: "Boyle Yasası" },
+    { name: "Joseph Priestley", quote: "Oksijenin keşfi.", invention: "Oksijen", detail: "Oksijeni keşfederek yanma olayının anlaşılmasına katkı sağladı.", dogum: "1733", olum: "1804", ulke: "İngiltere", alan: "Kimya", oduller: "–", onemliEserler: "Oksijen" },
+    { name: "Antoine Lavoisier", quote: "Modern kimya.", invention: "Kütlenin Korunumu", detail: "Kimyasal reaksiyonlarda kütlenin korunduğunu kanıtlayarak modern kimyayı kurdu.", dogum: "1743", olum: "1794", ulke: "Fransa", alan: "Kimya", oduller: "–", onemliEserler: "Kütlenin Korunumu" },
+    { name: "Jöns Jakob Berzelius", quote: "Kimyasal semboller.", invention: "Kimyasal Semboller", detail: "Kimya alanında sembolleri ve atom ağırlıklarını sistematik hale getirdi.", dogum: "1779", olum: "1848", ulke: "İsveç", alan: "Kimya", oduller: "–", onemliEserler: "Kimyasal Semboller" },
+    { name: "Humphry Davy", quote: "Elektroliz.", invention: "Sodyum, Potasyum", detail: "Elektroliz yoluyla sodyum, potasyum gibi elementleri keşfetti.", dogum: "1778", olum: "1829", ulke: "İngiltere", alan: "Kimya", oduller: "–", onemliEserler: "Elektroliz" },
+    { name: "Amedeo Avogadro", quote: "Avogadro sayısı.", invention: "Molekül Teorisi", detail: "Gazların hacimlerinin molekül sayısıyla orantılı olduğunu gösterdi.", dogum: "1776", olum: "1856", ulke: "İtalya", alan: "Kimya", oduller: "–", onemliEserler: "Avogadro Sayısı" },
+    { name: "Heinrich Hertz", quote: "Radyo dalgaları.", invention: "Radyo Dalgaları", detail: "Maxwell'in teorisini doğrulayarak radyo dalgalarını üretti.", dogum: "1857", olum: "1894", ulke: "Almanya", alan: "Fizik", oduller: "–", onemliEserler: "Radyo Dalgaları" },
+    { name: "Gustav Kirchhoff", quote: "Spektrum analizi.", invention: "Kirchhoff Yasaları", detail: "Devre teorisi ve spektral analizde önemli katkılar sağladı.", dogum: "1824", olum: "1887", ulke: "Almanya", alan: "Fizik", oduller: "–", onemliEserler: "Kirchhoff Yasaları" },
+    { name: "Robert Bunsen", quote: "Bunsen beki.", invention: "Bunsen Beki", detail: "Kimyada kullanılan Bunsen beki ve spektrum analizinin öncüsüdür.", dogum: "1811", olum: "1899", ulke: "Almanya", alan: "Kimya", oduller: "–", onemliEserler: "Bunsen Beki" },
+    { name: "Friedrich Wöhler", quote: "Organik sentez.", invention: "Üre Sentezi", detail: "Üre sentezleyerek organik kimyanın temellerini attı.", dogum: "1800", olum: "1882", ulke: "Almanya", alan: "Kimya", oduller: "–", onemliEserler: "Üre Sentezi" },
+    { name: "Hermann von Helmholtz", quote: "Enerjinin korunumu.", invention: "Enerji Korunumu", detail: "Termodinamiğin ilk yasasına katkı sağladı.", dogum: "1821", olum: "1894", ulke: "Almanya", alan: "Fizik", oduller: "–", onemliEserler: "Enerji Korunumu" },
+    { name: "James Joule", quote: "Isı ve enerji.", invention: "Joule Yasası", detail: "Isı ve iş arasındaki ilişkiyi gösterdi.", dogum: "1818", olum: "1889", ulke: "İngiltere", alan: "Fizik", oduller: "–", onemliEserler: "Joule Yasası" },
+    { name: "William Thomson (Lord Kelvin)", quote: "Mutlak sıfır.", invention: "Kelvin Skalası", detail: "Mutlak sıcaklık skalasını geliştirdi.", dogum: "1824", olum: "1907", ulke: "İngiltere", alan: "Fizik", oduller: "–", onemliEserler: "Kelvin Skalası" },
+    { name: "Rudolf Clausius", quote: "Termodinamik.", invention: "Entropi Kavramı", detail: "Termodinamiğin ikinci yasasını formüle etti.", dogum: "1822", olum: "1888", ulke: "Almanya", alan: "Fizik", oduller: "–", onemliEserler: "Entropi" },
+    { name: "Ludwig Boltzmann", quote: "Entropi ve olasılık.", invention: "İstatistiksel Mekanik", detail: "Entropiyi olasılıkla ilişkilendirdi.", dogum: "1844", olum: "1906", ulke: "Avusturya", alan: "Fizik", oduller: "–", onemliEserler: "İstatistiksel Mekanik" },
+    { name: "Edwin Hubble", quote: "Genişleyen evren.", invention: "Hubble Yasası", detail: "Galaksilerin uzaklaştığını keşfederek evrenin genişlediğini gösterdi.", dogum: "1889", olum: "1953", ulke: "ABD", alan: "Astronomi", oduller: "–", onemliEserler: "Hubble Yasası" },
+    { name: "Frederick Banting", quote: "İnsülin.", invention: "İnsülin Tedavisi", detail: "İnsülin keşfederek diyabet tedavisinde devrim yarattı.", dogum: "1891", olum: "1941", ulke: "Kanada", alan: "Tıp", oduller: "Nobel Fizyoloji veya Tıp (1923)", onemliEserler: "İnsülin" },
+    { name: "Howard Florey", quote: "Penisilinin üretimi.", invention: "Penisilin Üretimi", detail: "Penisilini seri üretime hazırlayarak tıpta kullanımını sağladı.", dogum: "1898", olum: "1968", ulke: "Avustralya/İngiltere", alan: "Tıp", oduller: "Nobel Fizyoloji veya Tıp (1945)", onemliEserler: "Penisilin" },
+    { name: "Ernst Chain", quote: "Penisilinin işlevi.", invention: "Penisilin", detail: "Fleming ve Florey ile birlikte penisilin üzerine çalıştı.", dogum: "1906", olum: "1979", ulke: "Almanya/İngiltere", alan: "Tıp", oduller: "Nobel Fizyoloji veya Tıp (1945)", onemliEserler: "Penisilin" },
+    { name: "Thomas H. Morgan", quote: "Genler kromozomlarda.", invention: "Gen Haritaları", detail: "Meyve sinekleri üzerinde yaptığı çalışmalarla genlerin kromozomlarda olduğunu gösterdi.", dogum: "1866", olum: "1945", ulke: "ABD", alan: "Genetik", oduller: "Nobel Fizyoloji veya Tıp (1933)", onemliEserler: "Gen Haritaları" },
+    { name: "Hermann Muller", quote: "Radyasyon ve genetik.", invention: "Mutajenez", detail: "Radyasyonun genetik mutasyona neden olduğunu keşfetti.", dogum: "1890", olum: "1967", ulke: "ABD", alan: "Genetik", oduller: "Nobel Fizyoloji veya Tıp (1946)", onemliEserler: "Mutajenez" },
+    { name: "Selman Waksman", quote: "Streptomisin.", invention: "Streptomisin", detail: "Tüberküloz tedavisinde kullanılan streptomisini keşfetti.", dogum: "1888", olum: "1973", ulke: "Ukrayna/ABD", alan: "Mikrobiyoloji", oduller: "Nobel Fizyoloji veya Tıp (1952)", onemliEserler: "Streptomisin" },
+    { name: "Tu Youyou", quote: "Artemisinin.", invention: "Sıtma Tedavisi", detail: "Sıtma tedavisinde kullanılan artemisinin'i keşfetti.", dogum: "1930", olum: "", ulke: "Çin", alan: "Tıp", oduller: "Nobel Fizyoloji veya Tıp (2015)", onemliEserler: "Artemisinin" },
+    { name: "Barry Marshall", quote: "Helikobakter.", invention: "Helikobakter Pylori", detail: "Mide ülserinin bakteriden kaynaklandığını kanıtladı.", dogum: "1951", olum: "", ulke: "Avustralya", alan: "Tıp", oduller: "Nobel Fizyoloji veya Tıp (2005)", onemliEserler: "Helikobakter Pylori" },
+    { name: "Robin Warren", quote: "Helikobakter işbirliği.", invention: "Helikobakter Pylori", detail: "Marshall ile birlikte çalışarak ülserin bakteriyel nedenini gösterdi.", dogum: "1937", olum: "", ulke: "Avustralya", alan: "Tıp", oduller: "Nobel Fizyoloji veya Tıp (2005)", onemliEserler: "Helikobakter Pylori" },
+    { name: "Harvey Alter", quote: "Hepatit C virüsü.", invention: "Hepatit C", detail: "Hepatit C virüsünü keşfederek kan testlerinin gelişmesini sağladı.", dogum: "1935", olum: "", ulke: "ABD", alan: "Tıp", oduller: "Nobel Fizyoloji veya Tıp (2020)", onemliEserler: "Hepatit C" },
+    { name: "Baruch Blumberg", quote: "Hepatit B virüsü.", invention: "Hepatit B", detail: "Hepatit B virüsünü keşfederek aşı geliştirilmesine öncü oldu.", dogum: "1925", olum: "2011", ulke: "ABD", alan: "Tıp", oduller: "Nobel Fizyoloji veya Tıp (1976)", onemliEserler: "Hepatit B" },
+    { name: "Michael S. Brown", quote: "Kolesterol metabolizması.", invention: "LDL Reseptörü", detail: "Kolesterol düzenlemesiyle ilgili keşifleriyle tanınır.", dogum: "1941", olum: "", ulke: "ABD", alan: "Tıp", oduller: "Nobel Fizyoloji veya Tıp (1985)", onemliEserler: "LDL Reseptörü" },
+    { name: "Joseph L. Goldstein", quote: "Kolesterol metabolizması.", invention: "LDL Reseptörü", detail: "Brown ile birlikte kolesterol metabolizmasını aydınlattı.", dogum: "1940", olum: "", ulke: "ABD", alan: "Tıp", oduller: "Nobel Fizyoloji veya Tıp (1985)", onemliEserler: "LDL Reseptörü" },
+    { name: "Mae Jemison", quote: "Uzayda siyahi kadın.", invention: "Uzay Misyonu", detail: "Uzaya çıkan ilk siyahi kadın astronot olarak NASA'da görev aldı.", dogum: "1956", olum: "", ulke: "ABD", alan: "Astronot", oduller: "–", onemliEserler: "STS-47" },
+    { name: "Neil Armstrong", quote: "İnsanlık için küçük bir adım.", invention: "Ay'a Ayak Basma", detail: "1969'da Ay'a ayak basan ilk insan olarak tarihe geçti.", dogum: "1930", olum: "2012", ulke: "ABD", alan: "Astronot", oduller: "–", onemliEserler: "Apollo 11" },
+    { name: "Buzz Aldrin", quote: "Ay'da yürüdük.", invention: "Ay Misyonu", detail: "Apollo 11 ile Ay'a inen ekipte ikinci insan olarak yer aldı.", dogum: "1930", olum: "", ulke: "ABD", alan: "Astronot", oduller: "–", onemliEserler: "Apollo 11" }
 ];
 
 function showRandomScientist() {
@@ -1334,10 +1471,15 @@ function showRandomScientist() {
     `;
 }
 
-// ========== KEŞFET BÖLÜMÜ OLAYLARI ==========
+// ========== KEŞFET BÖLÜMÜ BUTON OLAYLARI ==========
 document.addEventListener('DOMContentLoaded', function() {
+    // Toggle butonu
     document.getElementById('discovery-toggle').addEventListener('click', toggleDiscovery);
+
+    // İlk açılışta şehir göster
     showRandomCity();
+
+    // Butonlara tıklama olayları
     document.querySelectorAll('.discovery-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             document.querySelectorAll('.discovery-btn').forEach(b => b.classList.remove('active'));
@@ -1350,9 +1492,15 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // Müzik oynatıcıyı başlat
     initPlayer();
+
+    // Tengri dedektörü
     document.getElementById("input1").addEventListener("input", runTengriDetector);
     document.getElementById("input2").addEventListener("input", runTengriDetector);
+
+    // Tema
     const dd = document.querySelector(".id-dark-dot");
     if(dd) changeTheme('dark', dd);
 });
