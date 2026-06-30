@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tengri2</title>
+    <title>Tengri</title>
 
     <style>
         /* ==========================================================================
@@ -365,12 +365,6 @@
         .tengri-panic { position:relative!important; animation:chaosBounce1 0.4s infinite linear!important; z-index:999998!important; }
         button.tengri-panic,.tab-btn.tengri-panic,.player-btn.tengri-panic,.coffee-btn-premium.tengri-panic,.burc-btn-premium.tengri-panic { animation:chaosBounce2 0.35s infinite linear!important; }
 
-        /* Çıktı alanında kalın yazımı garanti et */
-        .output b,
-        .output strong {
-            font-weight: bold !important;
-        }
-
         @media (max-width: 600px) {
             .burc-grid { grid-template-columns: repeat(2,1fr); }
             .game-iframe-wrapper .iframe-container { height:400px; }
@@ -716,7 +710,7 @@
             if (f) c = c.toLocaleLowerCase('tr-TR');
             return c; }
 
-        // DÜZELTİLMİŞ processUltraEngine – strong ve b korunuyor, font-weight doğrudan ekleniyor
+        // DÜZELTİLMİŞ processUltraEngine – sadece blok etiketleri işlenir, inline'lar korunur, font-size 14px sabit
         function processUltraEngine(id, f = false) {
             const inp = document.getElementById(id);
             if (!inp || !inp.innerHTML.trim()) return "";
@@ -725,7 +719,7 @@
             let div = document.createElement("div");
             div.innerHTML = bolded;
 
-            // Sadece gerçek blok etiketlerine satır sonu ekle
+            // Sadece gerçek blok etiketlerine satır sonu ekle (font, strong vb. inline'lar eklenmedi)
             const blockSelectors = 'p,div,br,li,tr,ul,ol,h1,h2,h3,h4,h5,h6,table,tbody,td,th,pre,blockquote,section,article,header,footer,main,aside,figure,figcaption,address,dl,dt,dd,form,fieldset,legend';
             div.querySelectorAll(blockSelectors).forEach(el => {
                 if (el.tagName.toLowerCase() === 'br') {
@@ -736,17 +730,17 @@
                 }
             });
 
-            // Tüm elementleri dolaş, b ve strong'u koru, diğerlerini kaldır
+            // Tüm elementleri dolaş, sadece <b> etiketlerini koru, diğerlerini kaldır
             let all = div.getElementsByTagName("*");
             for (let i = all.length - 1; i >= 0; i--) {
                 let el = all[i];
-                if (el.tagName.toLowerCase() !== 'b' && el.tagName.toLowerCase() !== 'strong') {
+                if (el.tagName.toLowerCase() !== 'b') {
                     el.outerHTML = el.innerHTML;
                 } else {
+                    // <b> etiketlerinden gereksiz atributları temizle
                     el.removeAttribute('style');
                     el.removeAttribute('class');
                     el.removeAttribute('id');
-                    el.style.fontWeight = 'bold'; // ← KALINLIĞI KESİNLEŞTİREN SATIR
                 }
             }
 
@@ -755,6 +749,7 @@
             let res = [];
             lines.forEach(line => {
                 let cl = cleanInvisibleWebGarbage(line, f);
+                // Satırda sadece boşluk veya boş HTML varsa atla
                 if (cl.replace(/<[^>]*>/g, "").replace(/\s+/g, "").trim() !== "") {
                     let fin = cl.trim();
                     if (f) fin = fin.replace(/(^|>|[.!?]\s+)([a-zçğıöşü])/g, (m, p1, p2) => p1 + p2.toLocaleUpperCase('tr-TR'));
@@ -762,7 +757,7 @@
                 }
             });
 
-            // Yasaklı kelimeleri işaretle ve span içine al
+            // Yasaklı kelimeleri işaretle ve 14px span ile sar
             let result = highlight(res.join("<br>"));
             return `<span style="font-size:14px; font-family: inherit; line-height: 1.6;">${result}</span>`;
         }
