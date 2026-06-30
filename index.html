@@ -700,6 +700,7 @@
                 /<span[^>]*style="[^"]*font-weight:\s*bold;?[^"]*"[^>]*>([\s\S]*?)<\/span>/gi, '<b>$1</b>').replace(
                 /<strong[^>]*>([\s\S]*?)<\/strong>/gi, '<b>$1</b>'); }
 
+        // Güncellenmiş: \n karakterlerini koruyarak sadece yatay boşlukları temizle
         function cleanInvisibleWebGarbage(t, f = false) {
             if (!t) return "";
             let c = t
@@ -716,8 +717,8 @@
                 .replace(/&[^;]+;/g, " ")
                 .replace(/&/g, " ")
                 .replace(/;/g, " ");
-            // Fazla boşlukları tek boşluğa indir
-            c = c.replace(/\s+/g, " ");
+            // Sadece yatay boşlukları (space, tab) tek boşluğa indir, satır sonlarını koru
+            c = c.replace(/[ \t]+/g, " ");
             c = c.replace(/B\s*\+\s*/gi, "B+").replace(/B\s*-\s*/gi, "B-");
             if (f) c = c.toLocaleLowerCase('tr-TR');
             return c;
@@ -727,12 +728,10 @@
             const inp = document.getElementById(id);
             if (!inp || !inp.innerHTML.trim()) return "";
             let raw = inp.innerHTML;
-            // Sadece bold span'leri b etiketine çevir, diğer stiller korunur
             let bolded = hardProtectBoldStyles(raw);
             let div = document.createElement("div");
             div.innerHTML = bolded;
 
-            // Blok elemanlarına satır sonu ekle
             div.querySelectorAll('h1,h2,h3,h4,h5,h6,p,div,br,li,tr,ul').forEach(el => {
                 if (el.tagName.toLowerCase() === 'br') {
                     el.before(document.createTextNode('\n'));
@@ -742,7 +741,6 @@
                 }
             });
 
-            // Metin düğümlerinde boşluk temizliği (HTML etiketlerini koru)
             function cleanTextNodes(node) {
                 if (node.nodeType === Node.TEXT_NODE) {
                     let text = node.textContent;
@@ -756,7 +754,6 @@
             }
             div.childNodes.forEach(child => cleanTextNodes(child));
 
-            // Satırları al ve boş satırları temizle
             let lines = div.innerHTML.split('\n');
             let res = [];
             lines.forEach(line => {
@@ -766,7 +763,6 @@
                 }
             });
             let result = res.join('<br>');
-            // Yasaklı kelimeleri vurgula
             result = highlight(result);
             return result;
         }
