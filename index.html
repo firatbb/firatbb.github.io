@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tengri5</title>
+    <title>Tengri2</title>
 
     <style>
         /* ==========================================================================
@@ -716,7 +716,7 @@
             if (f) c = c.toLocaleLowerCase('tr-TR');
             return c; }
 
-        // DÜZELTİLMİŞ processUltraEngine – strong ve b korunuyor, font-weight inherit ile garanti
+        // DÜZELTİLMİŞ processUltraEngine – strong ve b korunuyor, font-weight doğrudan ekleniyor
         function processUltraEngine(id, f = false) {
             const inp = document.getElementById(id);
             if (!inp || !inp.innerHTML.trim()) return "";
@@ -746,6 +746,7 @@
                     el.removeAttribute('style');
                     el.removeAttribute('class');
                     el.removeAttribute('id');
+                    el.style.fontWeight = 'bold'; // ← KALINLIĞI KESİNLEŞTİREN SATIR
                 }
             }
 
@@ -761,9 +762,9 @@
                 }
             });
 
-            // Yasaklı kelimeleri işaretle ve font-weight: inherit ile span içine al
+            // Yasaklı kelimeleri işaretle ve span içine al
             let result = highlight(res.join("<br>"));
-            return `<span style="font-size:14px; font-family: inherit; line-height: 1.6; font-weight: inherit; color: inherit;">${result}</span>`;
+            return `<span style="font-size:14px; font-family: inherit; line-height: 1.6;">${result}</span>`;
         }
 
         function copyToClipboard(id) { const el = document.getElementById(id);
