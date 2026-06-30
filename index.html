@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tengri</title>
+    <title>Tengri1</title>
 
     <style>
         /* ==========================================================================
@@ -710,43 +710,50 @@
             if (f) c = c.toLocaleLowerCase('tr-TR');
             return c; }
 
-        // **** DÜZELTİLEN FONKSİYON – TÜM BLOK ETİKETLERİ EKLENDİ ****
+        // **** YENİ processUltraEngine – inline biçimlendirme korunur, sadece blok etiketleri kaldırılır ****
         function processUltraEngine(id, f = false) {
-            const inp = document.getElementById(id); 
+            const inp = document.getElementById(id);
             if (!inp || !inp.innerHTML.trim()) return "";
             let raw = inp.innerHTML;
             let bolded = hardProtectBoldStyles(raw);
             let div = document.createElement("div");
             div.innerHTML = bolded;
-            // Tüm blok etiketleri, tablo ve pre etiketleri eklendi
-            div.querySelectorAll('p,div,br,li,tr,ul,ol,h1,h2,h3,h4,h5,h6,table,tbody,td,th,pre,blockquote,section,article,header,footer,main,aside,figure,figcaption,address,dl,dt,dd,form,fieldset,legend,font,strong').forEach(el => { 
-                if (el.tagName.toLowerCase() === 'br') { 
-                    el.before(document.createTextNode('\n')); 
-                } else { 
+
+            // Blok etiketlerine satır sonu ekle
+            const blockTags = 'p,div,br,li,tr,ul,ol,h1,h2,h3,h4,h5,h6,table,tbody,td,th,pre,blockquote,section,article,header,footer,main,aside,figure,figcaption,address,dl,dt,dd,form,fieldset,legend';
+            div.querySelectorAll(blockTags).forEach(el => {
+                if (el.tagName.toLowerCase() === 'br') {
+                    el.before(document.createTextNode('\n'));
+                } else {
                     el.before(document.createTextNode('\n'));
                     el.after(document.createTextNode('\n'));
-                } 
+                }
             });
-            let all = div.getElementsByTagName("*");
-            for (let i = all.length - 1; i >= 0; i--) { 
-                let el = all[i]; 
-                if (el.tagName.toLowerCase() !== 'b') { 
-                    el.outerHTML = el.innerHTML; 
-                } else { 
-                    el.removeAttribute('style');
-                    el.removeAttribute('class');
-                    el.removeAttribute('id');
-                } 
-            }
+
+            // Tüm elementleri dolaş, blok olanları içeriğine dönüştür, inline olanları koru
+            const allElements = div.querySelectorAll('*');
+            // Inline etiketler (biçimlendirme) – bunlar korunacak
+            const inlineTags = ['b','strong','i','em','u','span','font','a','sub','sup','small','big','strike','del','ins','mark','abbr','acronym','cite','code','dfn','kbd','q','samp','var','tt','time','wbr','bdo','bdi','img','br','script','style','svg','canvas'];
+            allElements.forEach(el => {
+                const tag = el.tagName.toLowerCase();
+                // Eğer blok etiketi ise ve inline değilse, içeriğini al
+                if (!inlineTags.includes(tag)) {
+                    // Blok ise, innerHTML'yi al (içindeki inline etiketler kalır)
+                    el.outerHTML = el.innerHTML;
+                }
+                // Inline ise dokunma
+            });
+
+            // Şimdi div içinde sadece inline etiketler ve düz metin kaldı, satırları ayır
             let lines = div.innerHTML.split('\n');
             let res = [];
-            lines.forEach(line => { 
-                let cl = cleanInvisibleWebGarbage(line, f); 
-                if (cl.replace(/<[^>]*>/g, "").replace(/\s+/g, "").trim() !== "") { 
-                    let fin = cl.trim(); 
+            lines.forEach(line => {
+                let cl = cleanInvisibleWebGarbage(line, f);
+                if (cl.replace(/<[^>]*>/g, "").replace(/\s+/g, "").trim() !== "") {
+                    let fin = cl.trim();
                     if (f) fin = fin.replace(/(^|>|[.!?]\s+)([a-zçğıöşü])/g, (m, p1, p2) => p1 + p2.toLocaleUpperCase('tr-TR'));
-                    res.push(fin); 
-                } 
+                    res.push(fin);
+                }
             });
             return highlight(res.join("<br>"));
         }
