@@ -710,7 +710,7 @@
             if (f) c = c.toLocaleLowerCase('tr-TR');
             return c; }
 
-        // **** DÜZELTİLEN FONKSİYON ****
+        // **** DÜZELTİLEN FONKSİYON – TÜM BLOK ETİKETLERİ EKLENDİ ****
         function processUltraEngine(id, f = false) {
             const inp = document.getElementById(id); 
             if (!inp || !inp.innerHTML.trim()) return "";
@@ -718,8 +718,8 @@
             let bolded = hardProtectBoldStyles(raw);
             let div = document.createElement("div");
             div.innerHTML = bolded;
-            // Aşağıdaki satıra 'ul,ol,h1,h2,h3,h4,h5,h6' eklendi.
-            div.querySelectorAll('p,div,br,li,tr,ul,ol,h1,h2,h3,h4,h5,h6').forEach(el => { 
+            // Tüm blok etiketleri, tablo ve pre etiketleri eklendi
+            div.querySelectorAll('p,div,br,li,tr,ul,ol,h1,h2,h3,h4,h5,h6,table,tbody,td,th,pre,blockquote,section,article,header,footer,main,aside,figure,figcaption,address,dl,dt,dd,form,fieldset,legend,font,strong').forEach(el => { 
                 if (el.tagName.toLowerCase() === 'br') { 
                     el.before(document.createTextNode('\n')); 
                 } else { 
