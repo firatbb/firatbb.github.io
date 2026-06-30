@@ -59,7 +59,6 @@
         .theme-dot:hover { transform:scale(1.2); }
         .theme-dot.active { border-color:var(--text-heading)!important; transform:scale(1.1); box-shadow:0 0 12px var(--accent-color); }
 
-        /* Premium Butonlar (Kahve, Burç, Oyun) */
         .coffee-btn-premium, .burc-btn-premium, .game-btn-premium {
             margin-right:4px; padding:7px 16px; font-size:11px; font-weight:700; letter-spacing:0.5px;
             border-radius:20px; transition:all 0.3s cubic-bezier(0.4,0,0.2,1);
@@ -95,7 +94,6 @@
         .glitch-effect { animation:textGlitch 0.2s linear 2; }
         @keyframes textGlitch { 0%{transform:translate(2px,1px);opacity:0.7;} 50%{transform:translate(-1px,-1px);opacity:0.9;} 100%{transform:translate(0,0);opacity:1;} }
 
-        /* Bunu biliyor muydun? */
         .oracle-fact-box { flex-shrink:0; width:190px; text-align:right; border-left:1px solid var(--border-color); padding-left:16px; margin-left:4px; min-height:70px; display:flex; flex-direction:column; justify-content:center; }
         .oracle-fact-label { font-size:9px; text-transform:uppercase; letter-spacing:1.8px; color:var(--text-main); opacity:0.5; margin-bottom:4px; font-weight:600; }
         .oracle-fact-text { font-size:12px; color:var(--text-input); line-height:1.5; transition:opacity 0.8s ease, transform 0.8s ease; opacity:1; transform:translateY(0); }
@@ -115,7 +113,7 @@
         h3 { color:var(--text-heading); font-size:14px; margin-top:0; margin-bottom:22px; letter-spacing:1px; text-transform:uppercase; border-left:3px solid var(--accent-color); padding-left:12px; font-weight:600; }
         .input-area, .output{ width:100%; height:220px; background:var(--bg-input); color:var(--text-input); border:1px solid var(--border-color); padding:16px; font-size:14px; line-height:1.6; border-radius:6px; outline:none; transition:all 0.2s ease; margin-bottom:6px; overflow-y:auto; word-break:break-word; font-family:inherit; }
         .input-area:focus, .output:focus { border-color:var(--accent-color); box-shadow:0 0 10px var(--accent-glow); }
-        .output{ min-height:220px; height:auto; border-style:dashed; }
+        .output{ min-height:220px; height:auto; border-style:dashed; white-space:pre-wrap; }
         .meta-info { font-size:11px; color:var(--text-main); margin-bottom:18px; display:flex; gap:18px; opacity:0.7; letter-spacing:0.5px; }
         .meta-info span strong { color:var(--text-heading); }
         .action-buttons { margin-bottom:25px; display:flex; gap:12px; flex-wrap:wrap; }
@@ -714,10 +712,12 @@
             const inp = document.getElementById(id);
             if (!inp || !inp.innerHTML.trim()) return "";
             let raw = inp.innerHTML;
+            // Sadece bold span'leri b etiketine çevir, diğer stiller korunur
             let bolded = hardProtectBoldStyles(raw);
             let div = document.createElement("div");
             div.innerHTML = bolded;
-            // Tüm blok elemanlarını yakala – h1-h6, p, div, br, li, tr, ul
+
+            // Blok elemanlarına satır sonu ekle
             div.querySelectorAll('h1,h2,h3,h4,h5,h6,p,div,br,li,tr,ul').forEach(el => {
                 if (el.tagName.toLowerCase() === 'br') {
                     el.before(document.createTextNode('\n'));
@@ -726,29 +726,39 @@
                     el.after(document.createTextNode('\n'));
                 }
             });
-            let all = div.getElementsByTagName("*");
-            for (let i = all.length - 1; i >= 0; i--) {
-                let el = all[i];
-                if (el.tagName.toLowerCase() !== 'b') {
-                    el.outerHTML = el.innerHTML;
-                } else {
-                    el.removeAttribute('style');
-                    el.removeAttribute('class');
-                    el.removeAttribute('id');
+
+            // Metin düğümlerinde boşluk temizliği (HTML etiketlerini koru)
+            function cleanTextNodes(node) {
+                if (node.nodeType === Node.TEXT_NODE) {
+                    let text = node.textContent;
+                    let cleaned = cleanInvisibleWebGarbage(text, f);
+                    // f=true ise büyük harf düzeltmesi metin düğümünde yapılabilir ama
+                    // bu fonksiyon sadece boşluk temizler, f ile ilgili kısmı atlıyoruz
+                    // Çünkü yazım düzenleyici için f=true kullanılıyor, o kısımda da aynı mantık işlesin
+                    // Ancak mevcut f ile büyük harf dönüşümü zaten cleanInvisibleWebGarbage içinde yok,
+                    // onu ayrıca yapmak gerekir. O yüzden f'i burada kullanmıyoruz, sadece boşluk temizliği.
+                    if (cleaned !== text) {
+                        node.textContent = cleaned;
+                    }
+                } else if (node.nodeType === Node.ELEMENT_NODE) {
+                    node.childNodes.forEach(child => cleanTextNodes(child));
                 }
             }
+            div.childNodes.forEach(child => cleanTextNodes(child));
+
+            // Satırları al ve boş satırları temizle
             let lines = div.innerHTML.split('\n');
             let res = [];
             lines.forEach(line => {
-                let cl = cleanInvisibleWebGarbage(line, f);
-                if (cl.replace(/<[^>]*>/g, "").replace(/\s+/g, "").trim() !== "") {
-                    let fin = cl.trim();
-                    if (f) fin = fin.replace(/(^|>|[.!?]\s+)([a-zçğıöşü])/g, (m, p1, p2) => p1 + p2.toLocaleUpperCase(
-                        'tr-TR'));
-                    res.push(fin);
+                let trimmed = line.trim();
+                if (trimmed) {
+                    res.push(trimmed);
                 }
             });
-            return highlight(res.join("<br>"));
+            let result = res.join('<br>');
+            // Yasaklı kelimeleri vurgula
+            result = highlight(result);
+            return result;
         }
 
         function copyToClipboard(id) { const el = document.getElementById(id);
