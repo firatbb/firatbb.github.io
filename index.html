@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tengri2</title>
+    <title>Tengri3</title>
 
     <style>
         /* ==========================================================================
@@ -710,7 +710,7 @@
             if (f) c = c.toLocaleLowerCase('tr-TR');
             return c; }
 
-        // DÜZELTİLMİŞ processUltraEngine – sadece blok etiketleri işlenir, inline'lar korunur, font-size 14px sabit
+        // SON HALİ – tüm inline biçimlendirme korunur, sadece blok etiketleri satır sonu olur
         function processUltraEngine(id, f = false) {
             const inp = document.getElementById(id);
             if (!inp || !inp.innerHTML.trim()) return "";
@@ -719,7 +719,7 @@
             let div = document.createElement("div");
             div.innerHTML = bolded;
 
-            // Sadece gerçek blok etiketlerine satır sonu ekle (font, strong vb. inline'lar eklenmedi)
+            // Blok etiketlerine satır sonu ekle (inline'lar kesinlikle işlenmez)
             const blockSelectors = 'p,div,br,li,tr,ul,ol,h1,h2,h3,h4,h5,h6,table,tbody,td,th,pre,blockquote,section,article,header,footer,main,aside,figure,figcaption,address,dl,dt,dd,form,fieldset,legend';
             div.querySelectorAll(blockSelectors).forEach(el => {
                 if (el.tagName.toLowerCase() === 'br') {
@@ -730,21 +730,8 @@
                 }
             });
 
-            // Tüm elementleri dolaş, sadece <b> etiketlerini koru, diğerlerini kaldır
-            let all = div.getElementsByTagName("*");
-            for (let i = all.length - 1; i >= 0; i--) {
-                let el = all[i];
-                if (el.tagName.toLowerCase() !== 'b') {
-                    el.outerHTML = el.innerHTML;
-                } else {
-                    // <b> etiketlerinden gereksiz atributları temizle
-                    el.removeAttribute('style');
-                    el.removeAttribute('class');
-                    el.removeAttribute('id');
-                }
-            }
-
-            // Satırları böl ve boş olmayanları topla
+            // Hiçbir etiketi kaldırma – sadece içeriği al
+            // Ancak satırları böleceğiz
             let lines = div.innerHTML.split('\n');
             let res = [];
             lines.forEach(line => {
@@ -757,8 +744,8 @@
                 }
             });
 
-            // Yasaklı kelimeleri işaretle ve 14px span ile sar
             let result = highlight(res.join("<br>"));
+            // 14px span ile sar, tüm orijinal etiketler korunur
             return `<span style="font-size:14px; font-family: inherit; line-height: 1.6;">${result}</span>`;
         }
 
