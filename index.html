@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tengri4</title>
+    <title>Tengri2</title>
 
     <style>
         /* ==========================================================================
@@ -710,9 +710,7 @@
             if (f) c = c.toLocaleLowerCase('tr-TR');
             return c; }
 
-        // ==========================================================================
-        // SADECE <br> VE <strong> KORUNUR, DİĞER TÜM ETİKETLER KALDIRILIR
-        // ==========================================================================
+        // DÜZELTİLMİŞ processUltraEngine – sadece blok etiketleri işlenir, inline'lar korunur, font-size 14px sabit
         function processUltraEngine(id, f = false) {
             const inp = document.getElementById(id);
             if (!inp || !inp.innerHTML.trim()) return "";
@@ -721,22 +719,25 @@
             let div = document.createElement("div");
             div.innerHTML = bolded;
 
-            // Önce <br> etiketlerini \n ile değiştir
-            div.querySelectorAll('br').forEach(el => {
-                el.before(document.createTextNode('\n'));
-                el.remove();
+            // Sadece gerçek blok etiketlerine satır sonu ekle (font, strong vb. inline'lar eklenmedi)
+            const blockSelectors = 'p,div,br,li,tr,ul,ol,h1,h2,h3,h4,h5,h6,table,tbody,td,th,pre,blockquote,section,article,header,footer,main,aside,figure,figcaption,address,dl,dt,dd,form,fieldset,legend';
+            div.querySelectorAll(blockSelectors).forEach(el => {
+                if (el.tagName.toLowerCase() === 'br') {
+                    el.before(document.createTextNode('\n'));
+                } else {
+                    el.before(document.createTextNode('\n'));
+                    el.after(document.createTextNode('\n'));
+                }
             });
 
-            // Tüm elementleri dolaş, sadece <b> (kalın) korunsun, diğerleri kaldırılsın
+            // Tüm elementleri dolaş, sadece <b> etiketlerini koru, diğerlerini kaldır
             let all = div.getElementsByTagName("*");
             for (let i = all.length - 1; i >= 0; i--) {
                 let el = all[i];
                 if (el.tagName.toLowerCase() !== 'b') {
-                    // <b> değilse, innerHTML'ini al ve kendisini kaldır (içindeki metin kalır)
-                    let content = el.innerHTML;
-                    el.outerHTML = content;
+                    el.outerHTML = el.innerHTML;
                 } else {
-                    // <b> ise, sadece style/class/id temizle
+                    // <b> etiketlerinden gereksiz atributları temizle
                     el.removeAttribute('style');
                     el.removeAttribute('class');
                     el.removeAttribute('id');
@@ -756,8 +757,8 @@
                 }
             });
 
+            // Yasaklı kelimeleri işaretle ve 14px span ile sar
             let result = highlight(res.join("<br>"));
-            // 14px span ile sar
             return `<span style="font-size:14px; font-family: inherit; line-height: 1.6;">${result}</span>`;
         }
 
