@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tengri2</title>
+    <title>Tengri</title>
 
     <style>
         /* ==========================================================================
@@ -365,12 +365,6 @@
         .tengri-panic { position:relative!important; animation:chaosBounce1 0.4s infinite linear!important; z-index:999998!important; }
         button.tengri-panic,.tab-btn.tengri-panic,.player-btn.tengri-panic,.coffee-btn-premium.tengri-panic,.burc-btn-premium.tengri-panic { animation:chaosBounce2 0.35s infinite linear!important; }
 
-        /* Çıktı alanında kalın yazımı garanti et */
-        .output b,
-        .output strong {
-            font-weight: bold !important;
-        }
-
         @media (max-width: 600px) {
             .burc-grid { grid-template-columns: repeat(2,1fr); }
             .game-iframe-wrapper .iframe-container { height:400px; }
@@ -704,78 +698,68 @@
         function highlight(t) { bannedWords.forEach(w => { const p = escapeRegExp(w).replace(/\s+/g, "\\s+");
                 t = t.replace(new RegExp(p, "gi"), m => `<span class="bad-word">${m}</span>`); }); return t; }
 
-        // ==========================================================================
-        // YENİ processUltraEngine – HTML etiketlerine dokunmaz, sadece metni temizler
-        // ==========================================================================
+        function hardProtectBoldStyles(r) { if (!r) return ""; return r.replace(
+                /<span[^>]*style="[^"]*font-weight:\s*bold;?[^"]*"[^>]*>([\s\S]*?)<\/span>/gi, '<b>$1</b>').replace(
+                /<strong[^>]*>([\s\S]*?)<\/strong>/gi, '<b>$1</b>'); }
+
+        function cleanInvisibleWebGarbage(t, f = false) { if (!t) return ""; let c = t.replace(/[\r\u200B\u200C\u200D\uFEFF]/g,
+                "").replace(/&nbsp;/gi, " ").replace(/nbsp;/gi, " ").replace(/;nbsp/gi, " ").replace(/&nbsp/gi, " ").replace(
+                /\u00A0/g, " ").replace(/&amp;;/gi, " ").replace(/&amp;/gi, " ").replace(/&[^;]+;/g, " ").replace(/&/g,
+                " ").replace(/;/g, " ");
+            c = c.replace(/B\s*\+\s*/gi, "B+").replace(/B\s*-\s*/gi, "B-").replace(/\s{2,}/g, " ");
+            if (f) c = c.toLocaleLowerCase('tr-TR');
+            return c; }
+
+        // DÜZELTİLMİŞ processUltraEngine – sadece blok etiketleri işlenir, inline'lar korunur, font-size 14px sabit
         function processUltraEngine(id, f = false) {
             const inp = document.getElementById(id);
             if (!inp || !inp.innerHTML.trim()) return "";
-
             let raw = inp.innerHTML;
-            // Önce kalın stilleri <b> ile değiştir (strong'ları da <b> yap)
-            raw = raw
-                .replace(/<span[^>]*style="[^"]*font-weight:\s*bold;?[^"]*"[^>]*>([\s\S]*?)<\/span>/gi, '<b>$1</b>')
-                .replace(/<strong[^>]*>([\s\S]*?)<\/strong>/gi, '<b>$1</b>');
-
+            let bolded = hardProtectBoldStyles(raw);
             let div = document.createElement("div");
-            div.innerHTML = raw;
+            div.innerHTML = bolded;
 
-            // Düğümleri temizleyen rekürsif fonksiyon
-            function cleanNode(node) {
-                if (node.nodeType === Node.TEXT_NODE) {
-                    let text = node.textContent;
-                    // Görünmez çöpleri temizle (HTML etiketlerine dokunmadan)
-                    text = text.replace(/[\r\u200B\u200C\u200D\uFEFF]/g, "");
-                    text = text.replace(/&nbsp;/gi, " ").replace(/nbsp;/gi, " ").replace(/;nbsp/gi, " ").replace(/\u00A0/g, " ");
-                    text = text.replace(/&amp;;/gi, " ").replace(/&amp;/gi, " ").replace(/&[^;]+;/g, " ").replace(/&/g, " ").replace(/;/g, " ");
-                    text = text.replace(/B\s*\+\s*/gi, "B+").replace(/B\s*-\s*/gi, "B-").replace(/\s{2,}/g, " ");
-                    if (f) text = text.toLocaleLowerCase('tr-TR');
-                    return text.trim() ? document.createTextNode(text) : null;
-                } else if (node.nodeType === Node.ELEMENT_NODE) {
-                    const tag = node.tagName.toLowerCase();
-                    if (tag === 'b' || tag === 'strong') {
-                        // Kalın etiketini koru, içeriğini temizle
-                        let cleaned = document.createElement('b');
-                        cleaned.style.fontWeight = 'bold';
-                        Array.from(node.childNodes).forEach(child => {
-                            const c = cleanNode(child);
-                            if (c) cleaned.appendChild(c);
-                        });
-                        return cleaned;
-                    } else if (tag === 'br') {
-                        return document.createTextNode('\n');
-                    } else {
-                        // Diğer tüm etiketleri atla, sadece içeriklerini işle
-                        let fragment = document.createDocumentFragment();
-                        Array.from(node.childNodes).forEach(child => {
-                            const c = cleanNode(child);
-                            if (c) fragment.appendChild(c);
-                        });
-                        return fragment;
-                    }
+            // Sadece gerçek blok etiketlerine satır sonu ekle (font, strong vb. inline'lar eklenmedi)
+            const blockSelectors = 'p,div,br,li,tr,ul,ol,h1,h2,h3,h4,h5,h6,table,tbody,td,th,pre,blockquote,section,article,header,footer,main,aside,figure,figcaption,address,dl,dt,dd,form,fieldset,legend';
+            div.querySelectorAll(blockSelectors).forEach(el => {
+                if (el.tagName.toLowerCase() === 'br') {
+                    el.before(document.createTextNode('\n'));
+                } else {
+                    el.before(document.createTextNode('\n'));
+                    el.after(document.createTextNode('\n'));
                 }
-                return null;
-            }
-
-            let fragment = document.createDocumentFragment();
-            Array.from(div.childNodes).forEach(child => {
-                const c = cleanNode(child);
-                if (c) fragment.appendChild(c);
             });
 
-            let resultDiv = document.createElement('div');
-            resultDiv.appendChild(fragment);
-            let html = resultDiv.innerHTML;
+            // Tüm elementleri dolaş, sadece <b> etiketlerini koru, diğerlerini kaldır
+            let all = div.getElementsByTagName("*");
+            for (let i = all.length - 1; i >= 0; i--) {
+                let el = all[i];
+                if (el.tagName.toLowerCase() !== 'b') {
+                    el.outerHTML = el.innerHTML;
+                } else {
+                    // <b> etiketlerinden gereksiz atributları temizle
+                    el.removeAttribute('style');
+                    el.removeAttribute('class');
+                    el.removeAttribute('id');
+                }
+            }
 
-            // Satır sonlarına göre böl, boş satırları at, <br> ile birleştir
-            let lines = html.split('\n');
-            let res = lines.map(line => line.trim()).filter(line => line.length > 0);
-            let output = res.join('<br>');
+            // Satırları böl ve boş olmayanları topla
+            let lines = div.innerHTML.split('\n');
+            let res = [];
+            lines.forEach(line => {
+                let cl = cleanInvisibleWebGarbage(line, f);
+                // Satırda sadece boşluk veya boş HTML varsa atla
+                if (cl.replace(/<[^>]*>/g, "").replace(/\s+/g, "").trim() !== "") {
+                    let fin = cl.trim();
+                    if (f) fin = fin.replace(/(^|>|[.!?]\s+)([a-zçğıöşü])/g, (m, p1, p2) => p1 + p2.toLocaleUpperCase('tr-TR'));
+                    res.push(fin);
+                }
+            });
 
-            // Yasaklı kelimeleri işaretle
-            output = highlight(output);
-
-            return `<span style="font-size:14px; font-family: inherit; line-height: 1.6;">${output}</span>`;
+            // Yasaklı kelimeleri işaretle ve 14px span ile sar
+            let result = highlight(res.join("<br>"));
+            return `<span style="font-size:14px; font-family: inherit; line-height: 1.6;">${result}</span>`;
         }
 
         function copyToClipboard(id) { const el = document.getElementById(id);
