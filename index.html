@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tengri123</title>
+    <title>Tengri123456</title>
 
     <style>
         /* ==========================================================================
@@ -714,7 +714,7 @@
             if (f) c = c.toLocaleLowerCase('tr-TR');
             return c; }
 
-        // processUltraEngine – blok etiketleri işlenir, başlıklar otomatik kalın, bold span'lar kalın
+        // processUltraEngine – blok etiketleri işlenir, sadece bold span'lar bold kalır
         function processUltraEngine(id, f = false) {
             const inp = document.getElementById(id);
             if (!inp || !inp.innerHTML.trim()) return "";
@@ -722,16 +722,6 @@
             let bolded = hardProtectBoldStyles(raw);
             let div = document.createElement("div");
             div.innerHTML = bolded;
-
-            // Sadece başlık etiketlerini (h1-h6) <b> ile sar
-            const headings = div.querySelectorAll('h1, h2, h3, h4, h5, h6');
-            headings.forEach(heading => {
-                const b = document.createElement('b');
-                while (heading.firstChild) {
-                    b.appendChild(heading.firstChild);
-                }
-                heading.appendChild(b);
-            });
 
             const blockSelectors = 'p,div,br,li,tr,ul,ol,h1,h2,h3,h4,h5,h6,table,tbody,td,th,pre,blockquote,section,article,header,footer,main,aside,figure,figcaption,address,dl,dt,dd,form,fieldset,legend';
             div.querySelectorAll(blockSelectors).forEach(el => {
