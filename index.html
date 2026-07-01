@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tengri</title>
+    <title>Tengri4</title>
 
     <style>
         /* ==========================================================================
@@ -698,12 +698,10 @@
         function highlight(t) { bannedWords.forEach(w => { const p = escapeRegExp(w).replace(/\s+/g, "\\s+");
                 t = t.replace(new RegExp(p, "gi"), m => `<span class="bad-word">${m}</span>`); }); return t; }
 
-        // GÜNCELLENMİŞ: sayısal font-weight değerlerini de <b> etiketine dönüştürür
+        // sayısal font-weight değerlerini de <b> etiketine dönüştürür (sadece span ve strong)
         function hardProtectBoldStyles(r) {
             if (!r) return "";
-            // font-weight: bold, bolder, 700, 800, 900 gibi değerleri kapsar (sadece span için)
             r = r.replace(/<span\b[^>]*\bstyle\s*=\s*"[^"]*font-weight\s*:\s*(bold|bolder|[7-9]00)[^"]*"[^>]*>([\s\S]*?)<\/span>/gi, '<b>$2</b>');
-            // <strong> etiketlerini de <b> yap
             r = r.replace(/<strong\b[^>]*>([\s\S]*?)<\/strong>/gi, '<b>$1</b>');
             return r;
         }
@@ -716,7 +714,7 @@
             if (f) c = c.toLocaleLowerCase('tr-TR');
             return c; }
 
-        // processUltraEngine – blok etiketleri işlenir, <b> korunur, başlıklar ve bold stiller <b>'ye dönüştürülür
+        // processUltraEngine – blok etiketleri işlenir, yalnızca gerçek kalın stiller <b> olur
         function processUltraEngine(id, f = false) {
             const inp = document.getElementById(id);
             if (!inp || !inp.innerHTML.trim()) return "";
@@ -724,30 +722,6 @@
             let bolded = hardProtectBoldStyles(raw);
             let div = document.createElement("div");
             div.innerHTML = bolded;
-
-            // --- YENİ ADIM: Başlık etiketleri (h1-h6) ve inline font-weight:bold olan tüm elementleri <b> ile sar ---
-            const allElems = Array.from(div.querySelectorAll('*'));
-            for (let i = allElems.length - 1; i >= 0; i--) {
-                const el = allElems[i];
-                if (!el.parentNode) continue; // zaten kaldırılmış olabilir
-                const tag = el.tagName.toLowerCase();
-                if (tag === 'b') continue; // zaten kalın
-                const style = el.getAttribute('style') || '';
-                const isHeading = /^h[1-6]$/.test(tag);
-                let isBoldStyle = false;
-                if (style) {
-                    const fwMatch = style.match(/font-weight\s*:\s*(bold|bolder|[7-9]00)\b/i);
-                    if (fwMatch) isBoldStyle = true;
-                }
-                if (isHeading || isBoldStyle) {
-                    const b = document.createElement('b');
-                    while (el.firstChild) {
-                        b.appendChild(el.firstChild);
-                    }
-                    el.parentNode.replaceChild(b, el);
-                }
-            }
-            // --- YENİ ADIM SONU ---
 
             const blockSelectors = 'p,div,br,li,tr,ul,ol,h1,h2,h3,h4,h5,h6,table,tbody,td,th,pre,blockquote,section,article,header,footer,main,aside,figure,figcaption,address,dl,dt,dd,form,fieldset,legend';
             div.querySelectorAll(blockSelectors).forEach(el => {
